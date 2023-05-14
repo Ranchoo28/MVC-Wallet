@@ -61,7 +61,7 @@ public class EmailHandler {
     }
 
     public void startThreadEmail(String toEmail, String subject, String body){
-        // Thread per l'invio di una mail. Senza questo l'app si bloccherebbe fino l'invio della mail non viene completato.
+        // Thread per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
         ExecutorService emailExecutor  = Executors.newSingleThreadExecutor();
         emailExecutor.execute(new Runnable() {
             @Override
@@ -73,7 +73,7 @@ public class EmailHandler {
 
 
     public void startThreadForgotPassword(String toEmail, String subject, String body, String newPassword){
-        // Thread per l'invio di una mail. Senza questo l'app si bloccherebbe fino l'invio della mail non viene completato.
+        // Thread per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
         ExecutorService emailExecutor  = Executors.newSingleThreadExecutor();
         emailExecutor.execute(new Runnable() {
             @Override
