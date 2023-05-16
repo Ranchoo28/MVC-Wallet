@@ -5,36 +5,32 @@ import com.example.progettouid.application.handler.SceneHandler;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
-
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class SideBarController {
+    @FXML
+    private MenuButton accessMenu;
     @FXML
     private Label labelUser;
     @FXML
     private VBox sideBar;
     @FXML
-    private Label labelSettings;
+    private Label labelSettings, moneyLabel, cryptoLabel, logoutLabel;
     @FXML
-    private Button logoutButton, moneyButton, cryptoButton;
+    private HBox moneyHbox, cryptoHbox, logoutHbox;
     @FXML
     private BorderPane bp;
     @FXML
-    private HBox boxInfo;
+    private HBox hboxInfo;
     @FXML
     private AnchorPane homeAP;
     @FXML
@@ -47,10 +43,6 @@ public class SideBarController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        // da aggiustare
-        //cryptoButton.setStyle("-fx-background-color: #ff9900");
-        //moneyButton.setStyle("-fx-background-color: #3366ff");
     }
 
     @FXML
@@ -61,8 +53,6 @@ public class SideBarController {
     @FXML
     void onMoneyClick() {
         bp.setCenter(homeAP);
-        //moneyButton.setStyle("-fx-background-color: #ff9900");
-        //cryptoButton.setStyle("-fx-background-color: #3366ff");
     }
 
     @FXML
@@ -71,63 +61,90 @@ public class SideBarController {
     }
 
     @FXML
-    void initialize() {
+    void onAccountClick() {
+        SceneHandler.getInstance().createAccountSettingsScene();
+    }
 
-        // Thread per calcolare ora e data sempre aggiornati.
-        Platform.runLater(new Runnable() {
+    @FXML
+    void initialize() {
+        // Thread per la stampa dell'ora ora e data in tempo reale.
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
                     dateLabel.setText(InfoHandler.getInstance().getDay());
                     timeLabel.setText(InfoHandler.getInstance().getTime());
-                    userLabel.setText(InfoHandler.getInstance().getInfoDay());
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
             }
-        });
+        }).start();
+
+        /*
+        String [] array = SQLHandler.getIstance().getNameSurname(LoginController.username);
+        userLabel.setText(array[0] + " " + array[1]);
+
+         */
+
+        // da cambiare
+        moneyHbox.getStyleClass().add("hbox");
+        cryptoHbox.getStyleClass().add("hbox");
+        logoutHbox.getStyleClass().add("hbox");
 
         // Icona per l'utente
-        FontIcon iconUsers = new FontIcon("mdi2e-emoticon-excited");
+        FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
         iconUsers.setIconSize(25);
         userLabel.setContentDisplay(ContentDisplay.LEFT);
+        iconUsers.setIconColor(Paint.valueOf("#fff"));
         userLabel.setGraphic(iconUsers);
 
         // Icona per l'ora
         FontIcon iconTime = new FontIcon("mdi2c-calendar-today");
         iconTime.setIconSize(25);
         dateLabel.setContentDisplay(ContentDisplay.LEFT);
+        iconTime.setIconColor(Paint.valueOf("#fff"));
         dateLabel.setGraphic(iconTime);
 
         // Icona per la data
         FontIcon iconDate = new FontIcon("mdi2c-clock");
         iconDate.setIconSize(25);
         timeLabel.setContentDisplay(ContentDisplay.LEFT);
+        iconDate.setIconColor(Paint.valueOf("#fff"));
         timeLabel.setGraphic(iconDate);
 
         // Icon del bottone dei settings
         FontIcon iconSettings = new FontIcon("mdi2c-cog"); //mid2c-cogs
-        iconSettings.setIconSize(30);
+        iconSettings.setIconSize(25);
         labelSettings.setContentDisplay(ContentDisplay.RIGHT);
+        iconSettings.setIconColor(Paint.valueOf("#fff"));
         labelSettings.setGraphic(iconSettings);
+
+        FontIcon accessIcon = new FontIcon("mdi2h-human");
+        accessIcon.setIconSize(25);
+        accessIcon.setIconColor(Paint.valueOf("#fff"));
+        accessMenu.setContentDisplay(ContentDisplay.CENTER);
+        accessMenu.setGraphic(accessIcon);
 
         // Icona del bottone del logout
         FontIcon iconLogout = new FontIcon("mdi2a-account-off");
         iconLogout.setIconSize(25);
-        logoutButton.setContentDisplay(ContentDisplay.RIGHT);
-        logoutButton.setGraphic(iconLogout);
+        logoutLabel.setContentDisplay(ContentDisplay.RIGHT);
+        iconLogout.setIconColor(Paint.valueOf("#fff"));
+        logoutLabel.setGraphic(iconLogout);
 
         // Icona del bottone dei soldi
         FontIcon iconMoney = new FontIcon("mdi2c-currency-usd-circle"); //mdi2c-cash-usd
         iconMoney.setIconSize(25);
-        moneyButton.setContentDisplay(ContentDisplay.RIGHT);
-        moneyButton.setGraphic(iconMoney);
+        iconMoney.setIconColor(Paint.valueOf("#fff"));
+        moneyLabel.setContentDisplay(ContentDisplay.RIGHT);
+        moneyLabel.setGraphic(iconMoney);
 
         // Icona del bottone delle Crypto
         FontIcon iconCrypto = new FontIcon("mdi2b-bitcoin");
         iconCrypto.setIconSize(25);
-        cryptoButton.setContentDisplay(ContentDisplay.RIGHT);
-        cryptoButton.setGraphic(iconCrypto);
+        iconCrypto.setIconColor(Paint.valueOf("#fff"));
+        cryptoLabel.setContentDisplay(ContentDisplay.RIGHT);
+        cryptoLabel.setGraphic(iconCrypto);
 
     }
 }

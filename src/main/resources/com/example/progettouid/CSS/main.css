@@ -1,0 +1,41 @@
+
+.global-color{
+     -fx-background-color:  #13123A;
+}
+
+/* Hover dell'hbox */
+.hbox:hover{
+   -fx-background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* UI Datepicker */
+.datepicker {
+    -fx-background-color: #F0F0F0;
+    -fx-background-radius: 10;
+}
+
+.datepicker .text-field {
+    -fx-background-color: transparent;
+}
+
+.datepicker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+    -fx-padding: 6;
+}
+
+.datepicker .arrow-button:hover {
+    -fx-background-color: #E0E0E0;
+}
+
+.datepicker .arrow-button:pressed {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup > * > .today {
+        -fx-font-weight: bolder;
+}
+
+.date-picker-popup > * > .day-cell {
+    -fx-text-fill: green;
+}

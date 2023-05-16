@@ -29,7 +29,7 @@ public class SettingsController {
         accountLabel.setGraphic(iconAccount);
 
         // Icona per l'accessibilità
-        FontIcon iconAccess = new FontIcon("mdi2a-alpha-a-circle");
+        FontIcon iconAccess = new FontIcon("mdi2h-human");
         iconAccess.setIconSize(30);
         accessibilityLabel.setContentDisplay(ContentDisplay.RIGHT);
         accessibilityLabel.setGraphic(iconAccess);

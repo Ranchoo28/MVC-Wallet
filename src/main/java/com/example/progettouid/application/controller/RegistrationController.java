@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.DatePickerSkin;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -24,13 +25,10 @@ public class RegistrationController {
     private DatePicker Birthday;
 
     @FXML
-    private TextField Email;
-
-    @FXML
     private PasswordField Password;
 
     @FXML
-    private TextField Username;
+    private TextField Username, Email, Nome, Cognome;
     @FXML
     private Button buttonRegisterAccount = new Button();
 
@@ -42,14 +40,17 @@ public class RegistrationController {
     void onRegisterAccountButtonClick() {
         // Una volta premuto il bottone, effettua la registrazion, manda una mail, effettua una query
         // per la registrazione e poi ti riporta alla schermata del login.
-        SQLHandler.getIstance().registerAccount(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue());
+        SQLHandler.getIstance().registerAccount(
+                Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText());
+
         sendEmail();
-        //SceneHandler.getInstance().createInformationMessage("Registrazione completata! Effettua il login");
+        SceneHandler.getInstance().createRegistrationAlert();
         SceneHandler.getInstance().createLoginScene();
     }
 
     @FXML
     void initialize() {
+
         buttonRegisterAccount.setDisable(true);
 
         Username.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -127,7 +128,7 @@ public class RegistrationController {
     public void sendEmail() {
         // Manda una mail dopo essersi registrati.
        EmailHandler.getInstance().startThreadEmail(Email.getText(),
-               "ProgettoUID",
-               "Registrazione effettuata! Diocane. \n SIUM");
+               "MVC Wallet",
+               "Ciao " + Nome.getText() + ", ti ringraziamo per aver effettuato la registrazione!");
     }
 }

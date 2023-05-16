@@ -19,7 +19,7 @@ public class InfoHandler {
         return LocalDate.now().toString();
     }
 
-    public String getInfoDay(){
+    public String getInfoAccount(){
         if(LocalTime.now().getHour() >= 5 && LocalTime.now().getHour() < 14)
             return "Buongiorno " + LoginController.username + "!";
         if(LocalTime.now().getHour() >= 14 && LocalTime.now().getHour() < 19)

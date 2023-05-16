@@ -1,5 +1,6 @@
 package com.example.progettouid.application.handler;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -82,18 +83,20 @@ public class SQLHandler {
         return 3;
     }
 
-    public boolean registerAccount(String email, String username, String password, LocalDate birthday) {
+    public boolean registerAccount(String email, String username, String password, LocalDate birthday, String nome, String cognome) {
         // Esegue una query per la registrazione di un utente.
         try {
             java.util.Date date =
                     java.util.Date.from(birthday.atStartOfDay(ZoneId.systemDefault()).toInstant());
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             con = newConnection();
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)");
             stmt.setString(1, username);
             stmt.setString(2, password);
             stmt.setString(3, email);
             stmt.setObject(4, sqlDate);
+            stmt.setString(5, nome);
+            stmt.setString(6, cognome);
             stmt.execute();
             stmt.close();
             return true;
@@ -133,5 +136,22 @@ public class SQLHandler {
             }catch(SQLException e){ e.getMessage(); }
         }
         return false;
+    }
+
+    public String[] getNameSurname(String username){
+        try{
+            String [] array = new String[2];
+            PreparedStatement stmt = con.prepareStatement("SELECT Nome, Cognome FROM users WHERE Username = ?");
+            stmt.setString(1,username);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                array[0] = rs.getNString(1);
+                array[1] = rs.getNString(2);
+                return array;
+            }
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;
     }
 }
