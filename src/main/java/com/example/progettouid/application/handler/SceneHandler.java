@@ -205,7 +205,7 @@ public class SceneHandler {
     public void createRegistrationAlert(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         FontIcon icon = new FontIcon("mdi2s-send-check");
-        icon.setIconColor(Paint.valueOf("blu")); // Rosso
+        icon.setIconColor(Paint.valueOf("blue"));
         icon.getStyleClass().add("icons-color");
         icon.setIconSize(45);
         alert.setHeaderText("");

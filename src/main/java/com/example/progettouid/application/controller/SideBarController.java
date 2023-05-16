@@ -5,6 +5,7 @@ import com.example.progettouid.application.handler.SceneHandler;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
@@ -68,7 +69,7 @@ public class SideBarController {
     @FXML
     void initialize() {
         // Thread per la stampa dell'ora ora e data in tempo reale.
-        new Thread(new Runnable() {
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
@@ -78,18 +79,13 @@ public class SideBarController {
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
             }
-        }).start();
+        });
 
         /*
         String [] array = SQLHandler.getIstance().getNameSurname(LoginController.username);
         userLabel.setText(array[0] + " " + array[1]);
 
          */
-
-        // da cambiare
-        moneyHbox.getStyleClass().add("hbox");
-        cryptoHbox.getStyleClass().add("hbox");
-        logoutHbox.getStyleClass().add("hbox");
 
         // Icona per l'utente
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
