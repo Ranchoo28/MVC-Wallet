@@ -1,7 +1,7 @@
-package com.example.progettouid.application.controller;
+package it.unical.demacs.informatica.mvcwallet.controller;
 
-import com.example.progettouid.application.handler.SQLHandler;
-import com.example.progettouid.application.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SQLHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;

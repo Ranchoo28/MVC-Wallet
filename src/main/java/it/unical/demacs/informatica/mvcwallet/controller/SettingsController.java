@@ -1,6 +1,6 @@
-package com.example.progettouid.application.controller;
+package it.unical.demacs.informatica.mvcwallet.controller;
 
-import com.example.progettouid.application.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;

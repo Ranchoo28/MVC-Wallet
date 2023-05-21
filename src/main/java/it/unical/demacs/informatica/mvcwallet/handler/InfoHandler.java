@@ -1,6 +1,6 @@
-package com.example.progettouid.application.handler;
+package it.unical.demacs.informatica.mvcwallet.handler;
 
-import com.example.progettouid.application.controller.LoginController;
+import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
