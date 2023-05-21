@@ -11,9 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import static java.lang.Thread.sleep;
-
-
 public class LoginController {
     public static String username;
     private boolean isGoodUsername;
@@ -22,12 +19,12 @@ public class LoginController {
     private TextField Username;
     @FXML
     private PasswordField Password;
-
     @FXML
     private Button buttonLogin = new Button();
 
     @FXML
     void onLoginButtonClick() {
+
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
         if(SQLHandler.getIstance().checkLogin(Username.getText(), Password.getText()) == 0){
@@ -51,7 +48,6 @@ public class LoginController {
 
     @FXML
     void initialize(){
-
         buttonLogin.setDisable(true);
         Username.textProperty().addListener(new ChangeListener<String>() {
             @Override

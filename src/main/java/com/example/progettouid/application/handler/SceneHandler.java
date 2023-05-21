@@ -40,7 +40,8 @@ public class SceneHandler {
 
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
-            createLoginScene();
+            //createLoginScene();
+            createSideBar();
             this.stage.setScene(scene);
             this.stage.show();
             scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource("/com/example/progettouid/CSS/main.css").toExternalForm()));
@@ -51,7 +52,6 @@ public class SceneHandler {
                         if(stage.isFullScreen()){
                             stage.setFullScreen(false);
                         }
-
                         else{
                             stage.setFullScreen(true);
                         }
@@ -68,13 +68,16 @@ public class SceneHandler {
     public void createSideBar() {
         // Crea la scena per l'homepage
         try {
+            if(scene == null)
+                scene = new Scene(loadRootFromFXML("/com/example/progettouid/sidebar-view.fxml"));
+            else
+                scene.setRoot(loadRootFromFXML("/com/example/progettouid/sidebar-view.fxml"));
             stage.setTitle("MVC Wallet");
-            scene.setRoot(loadRootFromFXML("/com/example/progettouid/sidebar-view.fxml"));
+            //scene.setRoot(loadRootFromFXML("/com/example/progettouid/sidebar-view.fxml"));
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
                 stage.setWidth(700);
                 stage.setHeight(500);
-
             }
             stage.setResizable(true);
         } catch (IOException ignored) {

@@ -1,13 +1,13 @@
 package com.example.progettouid.application.handler;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class SQLHandler {
     private Connection con = null;
-    final private String url = "jdbc:mysql://localhost:3306/progettouid";
+    final private String url = "jdbc:mysql://localhost:3306/progettouid.db";
     final private String user = "root";
     final private String password = "supersium";
 
@@ -20,16 +20,56 @@ public class SQLHandler {
         return istance;
     }
 
+
+
     public Connection newConnection() {
         try {
+            // $12$o5oojaSJOEk1cmysAwW4BedYRzoXIO388IznZ7tXsgYM.A7vckXhO
+            String url = "jdbc:sqlite:progettouid.db";
+            Class.forName("org.sqlite.JDBC");
             // Effettua la connessione al database
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url);
             //if (con != null) System.out.println("Connessione avvenuta con successo");
 
         } catch (SQLException e) {
             System.out.println("Non connesso" + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return con;
+    }
+
+    public void createTable(){
+        try {
+            System.out.println("Eseguo query");
+            Connection con = newConnection();
+            /*
+            PreparedStatement stmt = con.prepareStatement(
+                    "CREATE TABLE `users` (" +
+                    "  `Username` varchar(45) NOT NULL," +
+                    "  `Password` varchar(70) NOT NULL," +
+                    "  `Email` varchar(45) NOT NULL," +
+                    "  `DataNascita` date NOT NULL," +
+                    "  `Nome` varchar(45) NOT NULL," +
+                    "  `Cognome` varchar(45) NOT NULL," +
+                    "  PRIMARY KEY (`Username`)"
+                    );
+
+             */
+            String query = "CREATE TABLE `users` (" +
+                    "  `Username` varchar(45) NOT NULL," +
+                    "  `Password` varchar(70) NOT NULL," +
+                    "  `Email` varchar(45) NOT NULL," +
+                    "  `DataNascita` date NOT NULL," +
+                    "  `Nome` varchar(45) NOT NULL," +
+                    "  `Cognome` varchar(45) NOT NULL," +
+                    "  PRIMARY KEY (`Username`)";
+            Statement stmt = con.createStatement();
+            stmt.execute(query);
+            //stmt.close();
+        }catch (SQLException e){
+            e.getErrorCode();
+        }
     }
 
     public void closeConnection (Connection con){
@@ -61,14 +101,18 @@ public class SQLHandler {
                 stmt1.setString(1, username);
                 ResultSet rs1 = stmt1.executeQuery();
                 while (rs1.next()) {
-                    if (rs1.getNString(1).equals(password)) {
-                        stmt.execute();
-                        stmt1.execute();
-
+                    if(BCrypt.checkpw(password, rs1.getNString(1))) {
                         stmt.close();
                         stmt1.close();
                         return 0;
                     }
+                    else{
+                        stmt.close();
+                        stmt1.close();
+                        return 2;
+                    }
+
+
                 }
                 stmt1.execute();
                 stmt1.close();
@@ -92,12 +136,12 @@ public class SQLHandler {
             con = newConnection();
             PreparedStatement stmt = con.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)");
             stmt.setString(1, username);
-            stmt.setString(2, password);
+            stmt.setString(2, BCrypt.hashpw(password, BCrypt.gensalt(12)));
             stmt.setString(3, email);
             stmt.setObject(4, sqlDate);
             stmt.setString(5, nome);
             stmt.setString(6, cognome);
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             return true;
         } catch (SQLException e) {
@@ -128,7 +172,8 @@ public class SQLHandler {
         if(checkEmail(email)){
             try {
                 PreparedStatement stmt1 = con.prepareStatement("UPDATE users SET Password = ? WHERE Email = ?");
-                stmt1.setString(1,newPassword);
+
+                stmt1.setString(1,BCrypt.hashpw(newPassword, BCrypt.gensalt(12)));
                 stmt1.setString(2,email);
                 stmt1.executeUpdate();
                 stmt1.close();

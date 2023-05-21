@@ -84,7 +84,6 @@ public class SideBarController {
         /*
         String [] array = SQLHandler.getIstance().getNameSurname(LoginController.username);
         userLabel.setText(array[0] + " " + array[1]);
-
          */
 
         // Icona per l'utente

@@ -14,6 +14,8 @@ module com.example.progettouid {
     requires spring.context.support;
     requires jakarta.mail;
     requires org.apache.commons.codec;
+    requires spring.security.crypto;
+    requires org.xerial.sqlitejdbc;
 
     exports com.example.progettouid.application.controller;
     opens com.example.progettouid.application.controller to javafx.fxml;
