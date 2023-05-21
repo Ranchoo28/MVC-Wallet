@@ -1,8 +1,8 @@
-package com.example.progettouid.application.controller;
+package it.unical.demacs.informatica.mvcwallet.controller;
 
-import com.example.progettouid.application.handler.EmailHandler;
-import com.example.progettouid.application.handler.SQLHandler;
-import com.example.progettouid.application.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.EmailHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SQLHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.DatePickerSkin;
 
 import java.time.LocalDate;
 import java.time.Period;

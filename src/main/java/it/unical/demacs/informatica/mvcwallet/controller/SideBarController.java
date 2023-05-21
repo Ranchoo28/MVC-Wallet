@@ -1,7 +1,7 @@
-package com.example.progettouid.application.controller;
+package it.unical.demacs.informatica.mvcwallet.controller;
 
-import com.example.progettouid.application.handler.InfoHandler;
-import com.example.progettouid.application.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.InfoHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -40,7 +40,7 @@ public class SideBarController {
     @FXML
     void onCryptoClick() {
         try {
-            bp.setCenter(FXMLLoader.load(getClass().getResource("/com/example/progettouid/crypto-view.fxml")));
+            bp.setCenter(FXMLLoader.load(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -110,10 +110,15 @@ public class SideBarController {
         // Icon del bottone dei settings
         FontIcon iconSettings = new FontIcon("mdi2c-cog"); //mid2c-cogs
         iconSettings.setIconSize(25);
-        labelSettings.setContentDisplay(ContentDisplay.RIGHT);
+        labelSettings.setContentDisplay(ContentDisplay.LEFT);
         iconSettings.setIconColor(Paint.valueOf("#fff"));
         labelSettings.setGraphic(iconSettings);
 
+        //icona dell'accessibilità
+        //https://stackoverflow.com/questions/17467137/how-can-i-create-a-switch-button-in-javafx
+        //Qua dentro dobbiamo mettere gli interruttori per attivare le opzioni di fianco alle
+        //label Alto contrasto, Testo largo ecc...
+        //Quelle che ci sono non vanno bene
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
         accessIcon.setIconColor(Paint.valueOf("#fff"));
@@ -123,7 +128,7 @@ public class SideBarController {
         // Icona del bottone del logout
         FontIcon iconLogout = new FontIcon("mdi2a-account-off");
         iconLogout.setIconSize(25);
-        logoutLabel.setContentDisplay(ContentDisplay.RIGHT);
+        logoutLabel.setContentDisplay(ContentDisplay.LEFT);
         iconLogout.setIconColor(Paint.valueOf("#fff"));
         logoutLabel.setGraphic(iconLogout);
 
@@ -131,14 +136,14 @@ public class SideBarController {
         FontIcon iconMoney = new FontIcon("mdi2c-currency-usd-circle"); //mdi2c-cash-usd
         iconMoney.setIconSize(25);
         iconMoney.setIconColor(Paint.valueOf("#fff"));
-        moneyLabel.setContentDisplay(ContentDisplay.RIGHT);
+        moneyLabel.setContentDisplay(ContentDisplay.LEFT);
         moneyLabel.setGraphic(iconMoney);
 
         // Icona del bottone delle Crypto
         FontIcon iconCrypto = new FontIcon("mdi2b-bitcoin");
         iconCrypto.setIconSize(25);
         iconCrypto.setIconColor(Paint.valueOf("#fff"));
-        cryptoLabel.setContentDisplay(ContentDisplay.RIGHT);
+        cryptoLabel.setContentDisplay(ContentDisplay.LEFT);
         cryptoLabel.setGraphic(iconCrypto);
 
     }

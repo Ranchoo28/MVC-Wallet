@@ -1,4 +1,4 @@
-module com.example.progettouid {
+module it.unical.demacs.informatica.mvcwallet {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -17,8 +17,7 @@ module com.example.progettouid {
     requires spring.security.crypto;
     requires org.xerial.sqlitejdbc;
 
-    exports com.example.progettouid.application.controller;
-    opens com.example.progettouid.application.controller to javafx.fxml;
-    exports com.example.progettouid.application;
-    opens com.example.progettouid.application to javafx.fxml;
+    exports it.unical.demacs.informatica.mvcwallet.controller;
+    opens it.unical.demacs.informatica.mvcwallet.controller to javafx.fxml;
+    exports it.unical.demacs.informatica.mvcwallet;
 }
