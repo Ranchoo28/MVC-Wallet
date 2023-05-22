@@ -18,6 +18,7 @@ import java.util.Optional;
 public class SceneHandler {
 
     private static final SceneHandler instance = new SceneHandler();
+    private static final String view = "/it/unical/demacs/informatica/mvcwallet/view/";
     private Stage stage;
     public boolean fullscreen = false;
     private Scene scene;
@@ -48,12 +49,7 @@ public class SceneHandler {
                 @Override
                 public void handle(KeyEvent key) {
                     if(key.getCode().equals(KeyCode.F11))
-                        if(stage.isFullScreen()){
-                            stage.setFullScreen(false);
-                        }
-                        else{
-                            stage.setFullScreen(true);
-                        }
+                        stage.setFullScreen(!stage.isFullScreen());
                     }
             });
         }
@@ -68,11 +64,11 @@ public class SceneHandler {
         // Crea la scena per l'homepage
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/main-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"main-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/main-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             stage.setTitle("MVC Wallet");
-            //scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/main-view.fxml"));
+            //scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
                 stage.setWidth(700);
@@ -86,10 +82,10 @@ public class SceneHandler {
     public void createAccountSettingsScene() {
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/account-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"account-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/account-view.fxml"));
-            //scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource("/it/unical/demacs/informatica/mvcwallet/view/CSS/main.css")).toExternalForm());
+                scene.setRoot(loadRootFromFXML(view+"account-view.fxml"));
+            //scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource(view+"CSS/main.css")).toExternalForm());
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
                 stage.setWidth(700);
@@ -107,9 +103,9 @@ public class SceneHandler {
         // Crea la scena del login
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/login-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"login-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/login-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"login-view.fxml"));
             stage.setTitle("MVC Wallet login");
             if(stage.isFullScreen()) stage.setFullScreen(false);
 
@@ -126,9 +122,9 @@ public class SceneHandler {
         // Crea la scena della registrazione
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/register-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"register-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/register-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"register-view.fxml"));
             stage.setTitle("MVC Wallet registrazione");
             stage.setMinWidth(600);
             stage.setMinHeight(500);
@@ -144,9 +140,9 @@ public class SceneHandler {
         // Crea la scena per la password dimenticata
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/forgot-pass.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"forgot-pass.fxml"));
             else
-                scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/forgot-pass.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"forgot-pass.fxml"));
             stage.setTitle("MVC Wallet password dimenticata");
             stage.setMinWidth(400);
             stage.setMinHeight(250);
@@ -162,9 +158,9 @@ public class SceneHandler {
         // Crea la scena per la password dimenticata
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/settings-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"settings-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML("/it/unical/demacs/informatica/mvcwallet/view/settings-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"settings-view.fxml"));
             stage.setTitle("MVC Wallet impostazioni");
             stage.setMinWidth(600);
             stage.setMinHeight(450);
