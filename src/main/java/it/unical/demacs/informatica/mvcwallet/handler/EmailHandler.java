@@ -18,7 +18,7 @@ public class EmailHandler {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendSimpleEmail(String toEmail, String subject, String body) {
+    public void sendEmail(String toEmail, String subject, String body) {
         // Codice per l'invio di una mail
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         Properties properties = new Properties();
@@ -63,22 +63,14 @@ public class EmailHandler {
     public void startThreadEmail(String toEmail, String subject, String body){
         // Thread per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
-        emailExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                sendSimpleEmail(toEmail, subject, body);
-            }
-        });
+        emailExecutor.execute(() -> sendEmail(toEmail, subject, body));
+        emailExecutor.shutdown();
     }
 
     public void startThreadForgotPassword(String toEmail, String subject, String body, String newPassword){
         // Thread per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
-        emailExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                sendForgotPasswordEmail(toEmail, subject, body, newPassword);
-            }
-        });
+        emailExecutor.execute(() -> sendForgotPasswordEmail(toEmail, subject, body, newPassword));
+        emailExecutor.shutdown();
     }
 }

@@ -75,7 +75,7 @@
          <top>
             <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="600.0" spacing="50.0" styleClass="global-color" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="userLabel" onMouseClicked="#onAccountClick" stylesheets="@../css/main.css" text="Mario Rossi" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="userLabel" onMouseClicked="#onAccountClick" stylesheets="@../css/main.css" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="MS Outlook" size="14.0" />
                      </font>

@@ -14,7 +14,6 @@ public class AccountSettingsController {
     @FXML
     private Label passwordLabel, profileLabel, settingsLabel, backLabel;
 
-
     @FXML
     void onBackClick() {
         SceneHandler.getInstance().createSideBar();
@@ -27,11 +26,8 @@ public class AccountSettingsController {
 
     @FXML
     void initialize(){
-        hboxProfile.getStyleClass().add("hbox");
-        hboxPassword.getStyleClass().add("hbox");
-        hboxSettings.getStyleClass().add("hbox");
-        hboxBack.getStyleClass().add("hbox");
 
+        // Togliere il colore delle icon
         FontIcon profileIcon = new FontIcon("mdi2a-account-cog");
         profileIcon.setIconColor(Paint.valueOf("#fff"));
         profileIcon.setIconSize(25);
@@ -55,7 +51,6 @@ public class AccountSettingsController {
         backIcon.setIconColor(Paint.valueOf("#fff"));
         settingsLabel.setContentDisplay(ContentDisplay.LEFT);
         backLabel.setGraphic(backIcon);
-
 
     }
 

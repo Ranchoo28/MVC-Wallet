@@ -20,7 +20,6 @@ public class SceneHandler {
     private static final SceneHandler instance = new SceneHandler();
     private static final String view = "/it/unical/demacs/informatica/mvcwallet/view/";
     private Stage stage;
-    public boolean fullscreen = false;
     private Scene scene;
 
     public static SceneHandler getInstance() {
@@ -29,15 +28,14 @@ public class SceneHandler {
 
     private SceneHandler() {}
 
-    public boolean isFullscreen(){
-        if(stage.isFullScreen()) return true;
-        else return false;
+    private <T> T loadRootFromFXML(String resourceName) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SceneHandler.class.getResource(resourceName));
+        return fxmlLoader.load();
     }
 
     public void init(Stage stage) {
         // Crea lo stage iniziale
         if (this.stage == null) {
-
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
             //createLoginScene();
@@ -45,20 +43,13 @@ public class SceneHandler {
             this.stage.setScene(scene);
             this.stage.show();
             scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource("/it/unical/demacs/informatica/mvcwallet/css/main.css").toExternalForm()));
-            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent key) {
-                    if(key.getCode().equals(KeyCode.F11))
-                        stage.setFullScreen(!stage.isFullScreen());
-                    }
-            });
+            scene.setOnKeyPressed(key -> {
+                if(key.getCode().equals(KeyCode.F11))
+                    stage.setFullScreen(!stage.isFullScreen());
+                });
         }
     }
 
-    private <T> T loadRootFromFXML(String resourceName) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SceneHandler.class.getResource(resourceName));
-        return fxmlLoader.load();
-    }
 
     public void createSideBar() {
         // Crea la scena per l'homepage
@@ -71,7 +62,7 @@ public class SceneHandler {
             //scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
-                stage.setWidth(700);
+                stage.setWidth(800);
                 stage.setHeight(500);
             }
             stage.setResizable(true);
@@ -88,9 +79,8 @@ public class SceneHandler {
             //scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource(view+"CSS/main.css")).toExternalForm());
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
-                stage.setWidth(700);
+                stage.setWidth(800);
                 stage.setHeight(500);
-
             }
             stage.setTitle("MVC Wallet account");
 
@@ -210,7 +200,10 @@ public class SceneHandler {
         alert.setGraphic(icon);
         alert.setTitle("Informazione");
         alert.setContentText("Registrazione effettuata, controlla la tua posta per la mail. \n Puoi effettuare il login!");
-        alert.show();
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isEmpty()) alert.close();
+        else if(result.get() == ButtonType.OK) createSideBar();
+
     }
 
     public void createForgotPassAlert(String message){

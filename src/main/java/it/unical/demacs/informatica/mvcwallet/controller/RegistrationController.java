@@ -39,12 +39,10 @@ public class RegistrationController {
     void onRegisterAccountButtonClick() {
         // Una volta premuto il bottone, effettua la registrazion, manda una mail, effettua una query
         // per la registrazione e poi ti riporta alla schermata del login.
-        SQLHandler.getIstance().registerAccount(
-                Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText());
 
-        sendEmail();
-        SceneHandler.getInstance().createRegistrationAlert();
-        SceneHandler.getInstance().createLoginScene();
+        if(SQLHandler.getIstance().serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText()))
+            SceneHandler.getInstance().createRegistrationAlert();
+        else SceneHandler.getInstance().createErrorAlert("Username o email già presenti nel sistema");
     }
 
     @FXML

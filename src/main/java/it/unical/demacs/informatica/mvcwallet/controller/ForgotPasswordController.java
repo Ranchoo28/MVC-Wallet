@@ -25,7 +25,7 @@ public class ForgotPasswordController {
                     "Nuova password",
                     "Ecco a te la nuova password: ", newPassword);
             SceneHandler.getInstance().createForgotPassAlert(
-                    "La nuova password è stata inviata via mail. Cambiala il prima possibile");
+                    "La nuova password è stata inviata via email. Cambiala il prima possibile");
         }else{
             SceneHandler.getInstance().createErrorAlert("Email non presente nel sistema. Riprova");
         }

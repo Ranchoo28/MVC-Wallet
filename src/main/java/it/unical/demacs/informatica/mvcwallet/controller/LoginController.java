@@ -27,14 +27,15 @@ public class LoginController {
 
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
-        if(SQLHandler.getIstance().checkLogin(Username.getText(), Password.getText()) == 0){
+
+        if(SQLHandler.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
             SceneHandler.getInstance().createLoginAlert();
-        }else if(SQLHandler.getIstance().checkLogin(Username.getText(), Password.getText()) == 1)
+        }else if(SQLHandler.getIstance().serviceLogin(Username.getText(), Password.getText()) == 1)
             SceneHandler.getInstance().createErrorAlert("Username inesistente. Riprova");
-        else if(SQLHandler.getIstance().checkLogin(Username.getText(), Password.getText()) == 2)
+        else if(SQLHandler.getIstance().serviceLogin(Username.getText(), Password.getText()) == 2)
             SceneHandler.getInstance().createErrorAlert("Password errata. Riprova");
-        else if (SQLHandler.getIstance().checkLogin(Username.getText(), Password.getText()) == 3) {
+        else if (SQLHandler.getIstance().serviceLogin(Username.getText(), Password.getText()) == 3) {
             SceneHandler.getInstance().createErrorAlert("Username o password errati. Riprova");
         }
     }

@@ -3,6 +3,11 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class SQLHandler {
@@ -11,18 +16,13 @@ public class SQLHandler {
     final private String user = "root";
     final private String password = "supersium";
 
-    private SQLHandler() {
-    }
-
+    private SQLHandler() {}
     private static SQLHandler istance = new SQLHandler();
-
     public static SQLHandler getIstance() {
         return istance;
     }
 
-
-
-    public Connection newConnection() {
+    private Connection newConnection() {
         try {
             // $12$o5oojaSJOEk1cmysAwW4BedYRzoXIO388IznZ7tXsgYM.A7vckXhO
             String url = "jdbc:sqlite:progettouid.db";
@@ -72,14 +72,14 @@ public class SQLHandler {
         }
     }
 
-    public void closeConnection (Connection con){
+    private void closeConnection (Connection con){
         // Esegue la disconnessione dal database
        try{
            con.close();
        }catch (SQLException e){ e.getMessage(); }
     }
 
-    public byte checkLogin(String username, String password) {
+    private byte checkLogin(String username, String password) {
         // Esegue una query per il login di un utente.
         try {
             boolean UsernameCorrect = false;
@@ -87,7 +87,7 @@ public class SQLHandler {
             PreparedStatement stmt = con.prepareStatement("SELECT Username FROM users");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                if (rs.getNString(1).equals(username)) {
+                if (rs.getString(1).equals(username)) {
                     UsernameCorrect = true;
                     break;
                 } else {
@@ -101,7 +101,7 @@ public class SQLHandler {
                 stmt1.setString(1, username);
                 ResultSet rs1 = stmt1.executeQuery();
                 while (rs1.next()) {
-                    if(BCrypt.checkpw(password, rs1.getNString(1))) {
+                    if(BCrypt.checkpw(password, rs1.getString(1))) {
                         stmt.close();
                         stmt1.close();
                         return 0;
@@ -111,8 +111,6 @@ public class SQLHandler {
                         stmt1.close();
                         return 2;
                     }
-
-
                 }
                 stmt1.execute();
                 stmt1.close();
@@ -127,14 +125,14 @@ public class SQLHandler {
         return 3;
     }
 
-    public boolean registerAccount(String email, String username, String password, LocalDate birthday, String nome, String cognome) {
+    private boolean registerAccount(String email, String username, String password, LocalDate birthday, String nome, String cognome) {
         // Esegue una query per la registrazione di un utente.
         try {
             java.util.Date date =
                     java.util.Date.from(birthday.atStartOfDay(ZoneId.systemDefault()).toInstant());
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             con = newConnection();
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO users values (?, ?, ?, ?, ?, ?)");
             stmt.setString(1, username);
             stmt.setString(2, BCrypt.hashpw(password, BCrypt.gensalt(12)));
             stmt.setString(3, email);
@@ -199,4 +197,27 @@ public class SQLHandler {
         }
         return null;
     }
+
+    public byte serviceLogin(String username, String password) {
+        byte[] res = new byte[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = checkLogin(username, password));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
+
+    public boolean serviceRegister(String email, String username, String password, LocalDate birthday, String nome, String cognome){
+        boolean[] res = new boolean[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = registerAccount(email, username, password, birthday, nome, cognome));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
+
 }
