@@ -3,6 +3,8 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 import it.unical.demacs.informatica.mvcwallet.handler.EmailHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SQLHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.model.EmailService;
+import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
@@ -40,8 +42,11 @@ public class RegistrationController {
         // Una volta premuto il bottone, effettua la registrazion, manda una mail, effettua una query
         // per la registrazione e poi ti riporta alla schermata del login.
 
-        if(SQLHandler.getIstance().serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText()))
+        if(SqlService.getIstance().serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText())){
+            sendEmail();
             SceneHandler.getInstance().createRegistrationAlert();
+        }
+
         else SceneHandler.getInstance().createErrorAlert("Username o email già presenti nel sistema");
     }
 
@@ -124,7 +129,7 @@ public class RegistrationController {
 
     public void sendEmail() {
         // Manda una mail dopo essersi registrati.
-       EmailHandler.getInstance().startThreadEmail(Email.getText(),
+       EmailService.getInstance().startThreadEmail(Email.getText(),
                "MVC Wallet",
                "Ciao " + Nome.getText() + ", ti ringraziamo per aver effettuato la registrazione!");
     }
