@@ -24,7 +24,6 @@ public class SQLHandler {
 
     private Connection newConnection() {
         try {
-            // $12$o5oojaSJOEk1cmysAwW4BedYRzoXIO388IznZ7tXsgYM.A7vckXhO
             String url = "jdbc:sqlite:progettouid.db";
             Class.forName("org.sqlite.JDBC");
             // Effettua la connessione al database
@@ -151,12 +150,14 @@ public class SQLHandler {
     public boolean checkEmail(String email){
         // Esegue una query per vedere se la mial inserita esiste nel database. Questo metodo viene sfruttato
         // qualora un utente si fosse dimenticato la password
+
+        // Da sistemare
         try{
             con = newConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT Email From users");
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
-                if (rs.getNString(1).equals(email)){
+                if (rs.getString(1).equals(email)){
                     stmt.close();
                     return true;
                 }
@@ -165,12 +166,12 @@ public class SQLHandler {
         }catch(SQLException e){ e.getMessage(); }
         return false;
     }
-    public boolean forgotPassword(String email, String newPassword) {
+
+    private boolean forgotPassword(String email, String newPassword) {
         // Esegue una query per il cambio password
         if(checkEmail(email)){
             try {
                 PreparedStatement stmt1 = con.prepareStatement("UPDATE users SET Password = ? WHERE Email = ?");
-
                 stmt1.setString(1,BCrypt.hashpw(newPassword, BCrypt.gensalt(12)));
                 stmt1.setString(2,email);
                 stmt1.executeUpdate();
@@ -188,8 +189,8 @@ public class SQLHandler {
             stmt.setString(1,username);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
-                array[0] = rs.getNString(1);
-                array[1] = rs.getNString(2);
+                array[0] = rs.getString(1);
+                array[1] = rs.getString(2);
                 return array;
             }
         }catch(SQLException e){
@@ -198,6 +199,7 @@ public class SQLHandler {
         return null;
     }
 
+    // Executor service per l'esecuzione delle query
     public byte serviceLogin(String username, String password) {
         byte[] res = new byte[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
@@ -213,6 +215,17 @@ public class SQLHandler {
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
         Future<?> future = queryExe.submit(() -> res[0] = registerAccount(email, username, password, birthday, nome, cognome));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
+
+    public boolean serviceForgotPassword(String email, String password){
+        boolean[] res = new boolean[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = forgotPassword(email, password));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}

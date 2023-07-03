@@ -20,7 +20,7 @@ public class ForgotPasswordController {
         // Una volta premuto il button genera una nuova password, controlla se la mail esiste, manda la nuova password
         // via mail, esegue una query per cambiare password ed infine esce un popup come avviso.
         String newPassword =  UUID.randomUUID().toString();
-        if(SQLHandler.getIstance().forgotPassword(fieldMail.getText(), newPassword)){
+        if(SQLHandler.getIstance().serviceForgotPassword(fieldMail.getText(), newPassword)){
             EmailHandler.getInstance().startThreadForgotPassword(fieldMail.getText(),
                     "Nuova password",
                     "Ecco a te la nuova password: ", newPassword);

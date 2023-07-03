@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CustomMenuItem?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.RadioMenuItem?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController" >
    <children>
       <BorderPane fx:id="bp" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="700.0" style="-fx-background-radius: 10px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -36,6 +37,7 @@
                   </HBox>
                   <HBox fx:id="cryptoHbox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onCryptoClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
+                        <JFXToolbar />
                         <Label fx:id="cryptoLabel" alignment="CENTER" text="Markets" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="MS Outlook" size="15.0" />
@@ -110,21 +112,27 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <MenuButton fx:id="accessMenu" mnemonicParsing="false" prefHeight="15.0" prefWidth="32.0" styleClass="global-color">
+                  <MenuButton fx:id="accessMenu" mnemonicParsing="false" prefHeight="26.0" prefWidth="43.0" styleClass="global-color">
                      <items>
-                        <RadioMenuItem mnemonicParsing="false" text="Alto contrasto">
-                           <graphic>
-                              <ToggleButton mnemonicParsing="false" />
-                           </graphic></RadioMenuItem>
-                        <RadioMenuItem mnemonicParsing="false" text="Testo largo">
-                           <graphic>
-                              <ToggleButton mnemonicParsing="false" />
-                           </graphic></RadioMenuItem>
-                        <RadioMenuItem mnemonicParsing="false" text="Lettore schermo">
-                           <graphic>
-                              <ToggleButton mnemonicParsing="false" />
-                           </graphic></RadioMenuItem>
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                           <content>
+                              <JFXToggleButton size="5.0" text="Testo ad alto contrasto" />
+                           </content>
+                        </CustomMenuItem>
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                           <content>
+                              <JFXToggleButton size="5.0" text="Lettore schermo" />
+                           </content>
+                        </CustomMenuItem>
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
+                           <content>
+                              <JFXToggleButton size="5.0" text="Testo largo" />
+                           </content>
+                        </CustomMenuItem>
                      </items>
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
                   </MenuButton>
                   <Label fx:id="accessibilityLabel" prefHeight="26.0" prefWidth="36.0" />
                </children>

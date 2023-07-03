@@ -3,6 +3,7 @@ module it.unical.demacs.informatica.mvcwallet {
     requires javafx.fxml;
     requires javafx.web;
     requires java.sql;
+    requires com.jfoenix;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;

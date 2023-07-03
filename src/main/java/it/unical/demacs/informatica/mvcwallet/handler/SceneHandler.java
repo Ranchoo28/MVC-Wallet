@@ -38,10 +38,11 @@ public class SceneHandler {
         if (this.stage == null) {
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
+            stage.setResizable(false);
             //createLoginScene();
             createSideBar();
-            this.stage.setScene(scene);
-            this.stage.show();
+            stage.setScene(scene);
+            stage.show();
             scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource("/it/unical/demacs/informatica/mvcwallet/css/main.css").toExternalForm()));
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
@@ -235,6 +236,4 @@ public class SceneHandler {
         else if(result.get() == ButtonType.OK) createLoginScene();
         else if(result.get() == ButtonType.CANCEL) alert.close();
     }
-
-
 }

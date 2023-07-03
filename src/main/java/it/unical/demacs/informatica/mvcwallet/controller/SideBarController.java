@@ -8,6 +8,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -40,6 +41,7 @@ public class SideBarController {
     @FXML
     void onCryptoClick() {
         try {
+            // Da cambiare il caricamento del fxml
             bp.setCenter(FXMLLoader.load(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml")));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -68,7 +70,7 @@ public class SideBarController {
 
     @FXML
     void initialize() {
-        // Thread per la stampa dell'ora ora e data in tempo reale.
+        // Gestione dell'ora ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
