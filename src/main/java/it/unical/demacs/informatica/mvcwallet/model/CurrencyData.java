@@ -1,6 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.model;
 
-public record CurrencyData (String symbol, Double priceChange, Double openPrice, Double highPrice, Double lowPrice) implements Comparable<CurrencyData>{
+public record CurrencyData (String symbol, Double weightedAvgPrice, Double open, Double high, Double low) implements Comparable<CurrencyData>{
 
     @Override
     public int compareTo(CurrencyData o) {
@@ -10,9 +10,9 @@ public record CurrencyData (String symbol, Double priceChange, Double openPrice,
 }
 /*
     "symbol":"ETHBTC",
-    "priceChange":"0.00106000",
+"priceChange":"0.00106000",
 "priceChangePercent":"1.688",
-"weightedAvgPrice":"0.06313759",
+    "weightedAvgPrice":"0.06313759",
 "prevClosePrice":"0.06278000",
 "lastPrice":"0.06384000",
 "lastQty":"0.02750000",

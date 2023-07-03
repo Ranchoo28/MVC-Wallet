@@ -33,5 +33,4 @@ public class DataService extends Service<CurrencyDataResult> {
             }
         };
     }
-
 }
