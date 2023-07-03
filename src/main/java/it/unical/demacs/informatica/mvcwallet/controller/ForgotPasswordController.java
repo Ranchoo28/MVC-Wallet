@@ -3,6 +3,8 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 import it.unical.demacs.informatica.mvcwallet.handler.EmailHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SQLHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.model.EmailService;
+import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -20,8 +22,8 @@ public class ForgotPasswordController {
         // Una volta premuto il button genera una nuova password, controlla se la mail esiste, manda la nuova password
         // via mail, esegue una query per cambiare password ed infine esce un popup come avviso.
         String newPassword =  UUID.randomUUID().toString();
-        if(SQLHandler.getIstance().serviceForgotPassword(fieldMail.getText(), newPassword)){
-            EmailHandler.getInstance().startThreadForgotPassword(fieldMail.getText(),
+        if(SqlService.getIstance().serviceForgotPassword(fieldMail.getText(), newPassword)){
+            EmailService.getInstance().startThreadForgotPassword(fieldMail.getText(),
                     "Nuova password",
                     "Ecco a te la nuova password: ", newPassword);
             SceneHandler.getInstance().createForgotPassAlert(
