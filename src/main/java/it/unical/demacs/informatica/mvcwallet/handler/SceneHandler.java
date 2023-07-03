@@ -1,5 +1,8 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+import it.unical.demacs.informatica.mvcwallet.model.BarData;
+import it.unical.demacs.informatica.mvcwallet.model.CandleStickChart;
+import it.unical.demacs.informatica.mvcwallet.model.DecimalAxisFormatter;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,8 +15,7 @@ import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class SceneHandler {
 
@@ -155,6 +157,51 @@ public class SceneHandler {
             stage.setHeight(450);
         } catch (IOException ignored) {
         }
+    }
+
+    public void createCandleStickChart(){
+        CandleStickChart candleStickChart = new CandleStickChart("Mo vediamo", buildBars());
+        scene.getStylesheets().add("it.unical.demacs.informatica.mvcwallet.css/CandleStickChartStyles.css");
+        scene = new Scene(candleStickChart);
+
+        candleStickChart.setYAxisFormatter(new DecimalAxisFormatter("#000.0"));
+    }
+
+    public List<BarData> buildBars() {
+        double previousClose = 1850;
+
+
+        final List<BarData> bars = new ArrayList<>();
+        GregorianCalendar now = new GregorianCalendar();
+        for (int i = 0; i < 26; i++) {
+            double open = getNewValue(previousClose);
+            double close = getNewValue(open);
+            double high = Math.max(open + getRandom(),close);
+            double low = Math.min(open - getRandom(),close);
+            previousClose = close;
+
+            BarData bar = new BarData((GregorianCalendar) now.clone(), open, high, low, close, 1);
+            now.add(Calendar.MINUTE, 5);
+            bars.add(bar);
+        }
+        return bars;
+    }
+
+    protected double getNewValue( double previousValue ) {
+        int sign;
+
+        if( Math.random() < 0.5 ) {
+            sign = -1;
+        } else {
+            sign = 1;
+        }
+        return getRandom() * sign + previousValue;
+    }
+
+    protected double getRandom() {
+        double newValue = 0;
+        newValue = Math.random() * 10;
+        return newValue;
     }
 
 

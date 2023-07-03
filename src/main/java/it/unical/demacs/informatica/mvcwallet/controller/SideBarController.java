@@ -41,8 +41,8 @@ public class SideBarController {
     @FXML
     void onCryptoClick() {
         try {
-            // Da cambiare il caricamento del fxml
             bp.setCenter(FXMLLoader.load(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml")));
+            bp.getChildren().add()
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
