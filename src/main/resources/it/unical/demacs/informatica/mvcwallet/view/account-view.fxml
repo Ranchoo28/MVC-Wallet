@@ -2,31 +2,25 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.AccountSettingsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.AccountSettingsController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="444.0" prefWidth="210.0" styleClass="global-color" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="440.0" prefWidth="210.0" styleClass="global-color" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="hboxProfile" alignment="CENTER" prefHeight="54.0" prefWidth="200.0" styleClass="hbox">
                <children>
                   <Label fx:id="profileLabel" prefHeight="18.0" prefWidth="117.0" text="Profilo" textFill="WHITE">
-                     <font>
-                        <Font name="MS Outlook" size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </HBox>
-            <HBox fx:id="hboxPassword" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="61.0" prefWidth="200.0" styleClass="hbox">
-               <children>
-                  <Label fx:id="passwordLabel" prefHeight="18.0" prefWidth="116.0" stylesheets="@../css/main.css" text="Password" textFill="WHITE">
                      <font>
                         <Font name="MS Outlook" size="15.0" />
                      </font>
@@ -72,4 +66,73 @@
          </padding>
       </VBox>
    </left>
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="104.0" prefHeight="58.0" prefWidth="135.0">
+               <children>
+                  <Label prefHeight="54.0" prefWidth="159.0" text="Profilo">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox layoutX="18.0" layoutY="131.0" prefHeight="293.0" prefWidth="563.0" spacing="25.0">
+               <children>
+                  <HBox prefHeight="36.0" prefWidth="563.0" spacing="40.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="88.0" text="Username" />
+                        <TextField style="-fx-background-radius: 10;" />
+                        <Button disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="563.0" spacing="40.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="88.0" text="Nome" />
+                        <TextField style="-fx-background-radius: 10;" />
+                        <Button disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="46.0" prefHeight="36.0" prefWidth="563.0" spacing="40.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="88.0" text="Cognome" />
+                        <TextField style="-fx-background-radius: 10;" />
+                        <Button disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="hboxPass" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="563.0" spacing="40.0">
+                     <children>
+                        <Label prefHeight="31.0" prefWidth="88.0" text="Password" />
+                        <Pane>
+                           <children>
+                              <TextField fx:id="passwordText" style="-fx-background-radius: 10;" />
+                              <PasswordField fx:id="passwordField" style="-fx-background-radius: 10;" />
+                              <CheckBox fx:id="showPasswordCheckBox" layoutX="5.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeVisibility" prefHeight="18.0" prefWidth="146.0" text="Mostra password" />
+                           </children>
+                        </Pane>
+                        <Button disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

@@ -33,6 +33,7 @@ public class SceneHandler {
         return fxmlLoader.load();
     }
 
+
     public void init(Stage stage) {
         // Crea lo stage iniziale
         if (this.stage == null) {
@@ -47,10 +48,9 @@ public class SceneHandler {
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
                     stage.setFullScreen(!stage.isFullScreen());
-                });
+            });
         }
     }
-
 
     public void createSideBar() {
         // Crea la scena per l'homepage
@@ -66,7 +66,7 @@ public class SceneHandler {
                 stage.setWidth(800);
                 stage.setHeight(500);
             }
-            stage.setResizable(true);
+
         } catch (IOException ignored) {
         }
     }
@@ -85,7 +85,6 @@ public class SceneHandler {
             }
             stage.setTitle("MVC Wallet account");
 
-            stage.setResizable(true);
         } catch (IOException ignored) {
         }
     }
@@ -104,7 +103,6 @@ public class SceneHandler {
             stage.setMinHeight(350);
             stage.setWidth(600);
             stage.setHeight(350);
-            stage.setResizable(false);
         } catch (IOException ignored) {
         }
     }
@@ -122,7 +120,6 @@ public class SceneHandler {
             stage.setWidth(600);
             stage.setHeight(500);
             if(stage.isFullScreen()) stage.setFullScreen(false);
-            stage.setResizable(false);
         } catch (IOException ignored) {
         }
     }
@@ -140,7 +137,6 @@ public class SceneHandler {
             stage.setWidth(400);
             if(stage.isFullScreen()) stage.setFullScreen(false);
             stage.setHeight(250);
-            stage.setResizable(false);
         } catch (IOException ignored) {
         }
     }
@@ -157,7 +153,6 @@ public class SceneHandler {
             stage.setMinHeight(450);
             stage.setWidth(600);
             stage.setHeight(450);
-            stage.setResizable(false);
         } catch (IOException ignored) {
         }
     }

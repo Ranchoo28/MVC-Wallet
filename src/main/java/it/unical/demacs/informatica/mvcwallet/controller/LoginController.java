@@ -29,6 +29,7 @@ public class LoginController {
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
 
+        /*
         if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
             SceneHandler.getInstance().createLoginAlert();
@@ -39,6 +40,9 @@ public class LoginController {
         else if (SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 3) {
             SceneHandler.getInstance().createErrorAlert("Username o password errati. Riprova");
         }
+
+         */
+        SceneHandler.getInstance().createSideBar();
     }
 
     @FXML
@@ -50,6 +54,7 @@ public class LoginController {
 
     @FXML
     void initialize(){
+        /*
         buttonLogin.setDisable(true);
         Username.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -98,5 +103,7 @@ public class LoginController {
 
             buttonLogin.disableProperty().bind(bb);
         });
+
+         */
     }
 }

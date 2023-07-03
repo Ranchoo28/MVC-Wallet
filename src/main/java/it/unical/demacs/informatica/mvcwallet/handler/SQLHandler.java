@@ -88,15 +88,12 @@ public class SQLHandler {
         if(checkEmail(email) && checkUsername(username)) return false;
         else
             try {
-                java.util.Date date =
-                        java.util.Date.from(birthday.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                 con = newConnection();
                 PreparedStatement stmt = con.prepareStatement("INSERT INTO users values (?, ?, ?, ?, ?, ?)");
                 stmt.setString(1, username);
                 stmt.setString(2, BCrypt.hashpw(password, BCrypt.gensalt(12)));
                 stmt.setString(3, email);
-                stmt.setObject(4, sqlDate);
+                stmt.setObject(4, birthday);
                 stmt.setString(5, nome);
                 stmt.setString(6, cognome);
                 stmt.executeUpdate();
