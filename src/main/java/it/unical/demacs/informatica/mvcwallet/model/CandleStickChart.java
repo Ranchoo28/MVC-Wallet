@@ -17,7 +17,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Path;
 import javafx.util.Duration;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,7 +51,7 @@ public class CandleStickChart extends XYChart<String, Number> {
         yAxis.forceZeroInRangeProperty().setValue(Boolean.FALSE);
         setTitle(title);
         setAnimated(true);
-        getStylesheets().add(getClass().getResource("/it.unical.demacs.informatica.mvcwallet/css/CandleStickChartStyles.css").toExternalForm());
+        getStylesheets().add(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/css/CandleStickChartStyles.css").toExternalForm());
         xAxis.setAnimated(true);
         yAxis.setAnimated(true);
         verticalGridLinesVisibleProperty().set(false);

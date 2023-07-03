@@ -2,6 +2,8 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.InfoHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.model.BarData;
+import it.unical.demacs.informatica.mvcwallet.model.CandleStickChart;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +19,10 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class SideBarController {
     @FXML
@@ -24,28 +30,27 @@ public class SideBarController {
     @FXML
     private Label labelUser;
     @FXML
-    private VBox sideBar;
-    @FXML
     private Label labelSettings, moneyLabel, cryptoLabel, logoutLabel;
     @FXML
-    private HBox moneyHbox, cryptoHbox, logoutHbox;
-    @FXML
-    private BorderPane bp;
-    @FXML
-    private HBox hboxInfo;
-    @FXML
-    private AnchorPane homeAP;
+    private AnchorPane centerPage;
     @FXML
     private Label dateLabel, timeLabel, userLabel;
 
+
     @FXML
-    void onCryptoClick() {
-        try {
-            bp.setCenter(FXMLLoader.load(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml")));
-            bp.getChildren().add()
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    void onCryptoClick() throws IOException {
+        String path = "/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        AnchorPane pane = fxmlLoader.load();
+
+        List<BarData> array = buildBars();
+        CandleStickChart chart = new CandleStickChart("SIUM", array);
+        centerPage.getChildren().add(chart);
+
+        centerPage.setTopAnchor(chart, 0.0);
+        centerPage.setRightAnchor(chart, 0.0);
+        centerPage.setBottomAnchor(chart, 0.0);
+        centerPage.setLeftAnchor(chart, 0.0);
     }
 
     @FXML
@@ -55,7 +60,7 @@ public class SideBarController {
 
     @FXML
     void onMoneyClick() {
-        bp.setCenter(homeAP);
+        return ;
     }
 
     @FXML
@@ -148,5 +153,45 @@ public class SideBarController {
         cryptoLabel.setContentDisplay(ContentDisplay.LEFT);
         cryptoLabel.setGraphic(iconCrypto);
 
+    }
+
+    public void loadFXML(String nomeFXML) throws IOException {
+
+    }
+
+    public List<BarData> buildBars() {
+        double previousClose = 1850;
+
+
+        final List<BarData> bars = new ArrayList<>();
+        GregorianCalendar now = new GregorianCalendar();
+        for (int i = 0; i < 26; i++) {
+            double open = getNewValue(previousClose);
+            double close = getNewValue(open);
+            double high = Math.max(open + getRandom(),close);
+            double low = Math.min(open - getRandom(),close);
+            previousClose = close;
+
+            BarData bar = new BarData((GregorianCalendar) now.clone(), open, high, low, close, 1);
+            now.add(Calendar.MINUTE, 5);
+            bars.add(bar);
+        }
+        return bars;
+    }
+    protected double getNewValue( double previousValue ) {
+        int sign;
+
+        if( Math.random() < 0.5 ) {
+            sign = -1;
+        } else {
+            sign = 1;
+        }
+        return getRandom() * sign + previousValue;
+    }
+
+    protected double getRandom() {
+        double newValue = 0;
+        newValue = Math.random() * 10;
+        return newValue;
     }
 }
