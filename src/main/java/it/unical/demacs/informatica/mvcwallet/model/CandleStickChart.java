@@ -33,8 +33,8 @@ public class CandleStickChart extends XYChart<String, Number> {
     protected NumberAxis yAxis;
     protected CategoryAxis xAxis;
 
-    public CandleStickChart(String title, List<BarData> bars) {
-        this(title, bars, Integer.MAX_VALUE);
+    public CandleStickChart(String title, List<BarData> bars, double paneWidth) {
+        this(title, bars,(int)paneWidth/28);
     }
 
     public CandleStickChart(String title, List<BarData> bars, int maxBarsToDisplay) {
@@ -51,24 +51,32 @@ public class CandleStickChart extends XYChart<String, Number> {
         yAxis.forceZeroInRangeProperty().setValue(Boolean.FALSE);
         setTitle(title);
         setAnimated(true);
+        setLegendVisible(false);
         getStylesheets().add(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/css/CandleStickChartStyles.css").toExternalForm());
         xAxis.setAnimated(true);
         yAxis.setAnimated(true);
         verticalGridLinesVisibleProperty().set(false);
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         List<BarData> sublist = getSubList(bars, maxBarsToDisplay);
-        for (BarData bar : sublist) {
+
+        int start;
+        int end = sublist.size();
+
+        System.out.println(end + " " + maxBarsToDisplay + " ");
+        for (int i = 0 ; i < end; i++) {
+            BarData bar = sublist.get(i);
             String label = "";
             label = sdf.format(bar.getDateTime().getTime());
             series.getData().add(new XYChart.Data<>(label, bar.getOpen(), bar));
             logger.log(Level.INFO, "Adding bar with date/time: {0}", bar.getDateTime().getTime());
             logger.log(Level.INFO, "Adding bar with price: {0}", bar.getOpen());
-        }
+            }
 
         dataSeries = FXCollections.observableArrayList(series);
-
         setData(dataSeries);
-        lastBar = sublist.get(sublist.size() - 1);
+
+        if(sublist.size()>0)
+            lastBar = sublist.get(sublist.size() - 1);
     }
 
     public void setYAxisFormatter(DecimalAxisFormatter formatter) {

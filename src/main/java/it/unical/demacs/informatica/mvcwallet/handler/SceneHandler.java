@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -41,7 +42,7 @@ public class SceneHandler {
         if (this.stage == null) {
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
-            stage.setResizable(false);
+            stage.setResizable(true);
             //createLoginScene();
             createSideBar();
             stage.setScene(scene);
@@ -159,13 +160,13 @@ public class SceneHandler {
         }
     }
 
-    public void createCandleStickChart(){
-        CandleStickChart candleStickChart = new CandleStickChart("Mo vediamo", buildBars());
+    /*public void createCandleStickChart(){
+        CandleStickChart candleStickChart = new CandleStickChart("Mo vediamo", buildBars(), p);
         scene.getStylesheets().add("it.unical.demacs.informatica.mvcwallet.css/CandleStickChartStyles.css");
         scene = new Scene(candleStickChart);
 
         candleStickChart.setYAxisFormatter(new DecimalAxisFormatter("#000.0"));
-    }
+    }*/
 
     public List<BarData> buildBars() {
         double previousClose = 1850;
@@ -181,7 +182,7 @@ public class SceneHandler {
             previousClose = close;
 
             BarData bar = new BarData((GregorianCalendar) now.clone(), open, high, low, close, 1);
-            now.add(Calendar.MINUTE, 5);
+            now.add(Calendar.HOUR, 1);
             bars.add(bar);
         }
         return bars;

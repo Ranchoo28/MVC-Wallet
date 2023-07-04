@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -35,20 +36,8 @@ public class SideBarController {
     @FXML
     private Label dateLabel, timeLabel, userLabel;
 
-    @FXML
-    void onCryptoClick() throws IOException {
-        String path = "/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
-        AnchorPane pane = fxmlLoader.load();
+    public void loadFXML(String nomeFXML) throws IOException {
 
-        List<BarData> array = buildBars();
-        CandleStickChart chart = new CandleStickChart("", array);
-        centerPage.getChildren().add(chart);
-
-        centerPage.setTopAnchor(chart, 70.0);
-        centerPage.setRightAnchor(chart, 10.0);
-        centerPage.setBottomAnchor(chart, 10.0);
-        centerPage.setLeftAnchor(chart, 10.0);
     }
 
     @FXML
@@ -120,6 +109,10 @@ public class SideBarController {
         labelSettings.setGraphic(iconSettings);
 
         //icona dell'accessibilità
+        //https://stackoverflow.com/questions/17467137/how-can-i-create-a-switch-button-in-javafx
+        //Qua dentro dobbiamo mettere gli interruttori per attivare le opzioni di fianco alle
+        //label Alto contrasto, Testo largo ecc...
+        //Quelle che ci sono non vanno bene
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
         accessIcon.setIconColor(Paint.valueOf("#fff"));
@@ -149,12 +142,29 @@ public class SideBarController {
 
     }
 
+    @FXML
+    void onCryptoClick() throws IOException {
+        String path = "/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        AnchorPane pane = fxmlLoader.load();
+
+        List<BarData> array = buildBars();
+        CandleStickChart chart = new CandleStickChart("SIUM", array, centerPage.getWidth());
+
+        centerPage.getChildren().add(chart);
+        centerPage.setTopAnchor(chart, 5.0);
+        centerPage.setRightAnchor(chart, 5.0);
+        centerPage.setBottomAnchor(chart, 5.0);
+        centerPage.setLeftAnchor(chart, 5.0);
+    }
+
     public List<BarData> buildBars() {
         double previousClose = 1850;
 
+
         final List<BarData> bars = new ArrayList<>();
         GregorianCalendar now = new GregorianCalendar();
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 100; i++) {
             double open = getNewValue(previousClose);
             double close = getNewValue(open);
             double high = Math.max(open + getRandom(),close);
@@ -162,7 +172,7 @@ public class SideBarController {
             previousClose = close;
 
             BarData bar = new BarData((GregorianCalendar) now.clone(), open, high, low, close, 1);
-            now.add(Calendar.MINUTE, 5);
+            now.add(Calendar.HOUR, 1);
             bars.add(bar);
         }
         return bars;
@@ -183,5 +193,4 @@ public class SideBarController {
         newValue = Math.random() * 10;
         return newValue;
     }
-
 }
