@@ -17,6 +17,8 @@ module it.unical.demacs.informatica.mvcwallet {
     requires org.apache.commons.codec;
     requires spring.security.crypto;
     requires org.xerial.sqlitejdbc;
+    requires com.fasterxml.jackson.databind;
+    requires com.google.gson;
 
     exports it.unical.demacs.informatica.mvcwallet.controller;
     opens it.unical.demacs.informatica.mvcwallet.controller to javafx.fxml;

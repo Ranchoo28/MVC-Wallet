@@ -1,0 +1,92 @@
+package it.unical.demacs.informatica.mvcwallet.handler;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+public class APIsHandler {
+
+    private static final APIsHandler instance = new APIsHandler();
+
+    public static APIsHandler getInstance() {
+        return instance;
+    }
+
+    /*Coingecko API*/
+    String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart";
+    String vsCurrency = "usd";
+    int days = 1095;
+
+    public Map<String, ArrayList<Double>> getHistoricalData() throws MalformedURLException {
+        // Calcola la data di inizio 365 giorni fa
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusDays(days);
+
+        // Formatta le date nel formato richiesto da Coingecko
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String startFormatted = startDate.format(formatter);
+        String endFormatted = endDate.format(formatter);
+
+        // Costruisci l'URL per la richiesta API
+        String requestUrl = coingeckoAPI + "?vs_currency=" + vsCurrency + "&days=" + days
+                + "&start_date=" + startFormatted + "&end_date=" + endFormatted;
+
+        // Effettua la richiesta GET all'API di CoinGecko
+        try {
+            // Effettua la richiesta API
+            System.out.println(requestUrl);
+            URL url = new URL(requestUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // Leggi la risposta JSON
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                // Elabora la risposta JSON
+                Gson gson = new Gson();
+                JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
+                JsonArray prices = jsonResponse.get("prices").getAsJsonArray();
+
+                HashMap<String, ArrayList<Double>> dictionary = new HashMap<>();
+
+                for(JsonElement element: prices){
+                    System.out.println(element);
+                    JsonArray priceData = element.getAsJsonArray();
+                    long timestamp = priceData.get(0).getAsLong();
+
+                    String localDate = TimeStampHandler.getInstance().convertTimeStamp(timestamp);
+                    if(dictionary.containsKey(localDate)){
+                        dictionary.get(localDate).add(priceData.get(1).getAsDouble());
+                    }
+                    else{
+                        ArrayList<Double> dailyPrices = new ArrayList<>();
+                        dictionary.put(localDate, dailyPrices);
+                        dictionary.get(localDate).add(priceData.get(1).getAsDouble());
+                    }
+                }
+                return dictionary;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+}

@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CandleStickChart extends XYChart<String, Number> {
-    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     protected static final Logger logger = Logger.getLogger(CandleStickChart.class.getName());
     protected int maxBarsToDisplay;
     protected ObservableList<Series<String, Number>> dataSeries;
@@ -59,10 +59,10 @@ public class CandleStickChart extends XYChart<String, Number> {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         List<BarData> sublist = getSubList(bars, maxBarsToDisplay);
 
-        int start;
         int end = sublist.size();
 
-        System.out.println(end + " " + maxBarsToDisplay + " ");
+        System.out.println(end+", "+ maxBarsToDisplay);
+
         for (int i = 0 ; i < end; i++) {
             BarData bar = sublist.get(i);
             String label = "";
@@ -96,7 +96,7 @@ public class CandleStickChart extends XYChart<String, Number> {
         logger.log(Level.INFO, "Adding bar with actual time:  {0}", bar.getDateTime().getTime());
         logger.log(Level.INFO, "Adding bar with formated time: {0}", label);
 
-        lastBar = new BarData(bar.getDateTime(), bar.getClose(), bar.getClose(), bar.getClose(), bar.getClose(), 0);
+        lastBar = new BarData(bar.getDateTime(), bar.getClose(), bar.getClose(), bar.getClose(), bar.getClose(), 1);
         Data<String, Number> data = new XYChart.Data<>(label, lastBar.getOpen(), lastBar);
         dataSeries.get(0).getData().add(data);
     }

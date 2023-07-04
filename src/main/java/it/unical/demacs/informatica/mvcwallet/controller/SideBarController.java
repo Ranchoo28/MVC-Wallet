@@ -1,7 +1,9 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.APIsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.InfoHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.TimeStampHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import it.unical.demacs.informatica.mvcwallet.model.CandleStickChart;
 import javafx.animation.Animation;
@@ -10,7 +12,6 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -19,10 +20,8 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.net.MalformedURLException;
+import java.util.*;
 
 public class SideBarController {
     @FXML
@@ -159,38 +158,30 @@ public class SideBarController {
     }
 
     public List<BarData> buildBars() {
-        double previousClose = 1850;
 
+        double previusClose = 1850;
 
         final List<BarData> bars = new ArrayList<>();
-        GregorianCalendar now = new GregorianCalendar();
-        for (int i = 0; i < 100; i++) {
-            double open = getNewValue(previousClose);
-            double close = getNewValue(open);
-            double high = Math.max(open + getRandom(),close);
-            double low = Math.min(open - getRandom(),close);
-            previousClose = close;
+        Map<String, ArrayList<Double>> dictionary;
 
-            BarData bar = new BarData((GregorianCalendar) now.clone(), open, high, low, close, 1);
-            now.add(Calendar.HOUR, 1);
+        try {
+            dictionary = APIsHandler.getInstance().getHistoricalData();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        for(String key : dictionary.keySet()){
+            ArrayList<Double> dailyPrices = dictionary.get(key);
+
+            double highPrice = Collections.max(dailyPrices);
+            double lowPrice = Collections.min(dailyPrices);
+            double openPrice = dailyPrices.get(0);
+            double closePrice = dailyPrices.get(dailyPrices.size()-1);
+
+            GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key);
+            BarData bar = new BarData(date, openPrice, highPrice, lowPrice, closePrice, 1);
             bars.add(bar);
         }
+        bars.sort(Comparator.comparing(BarData::getDateTime));
         return bars;
-    }
-    protected double getNewValue( double previousValue ) {
-        int sign;
-
-        if( Math.random() < 0.5 ) {
-            sign = -1;
-        } else {
-            sign = 1;
-        }
-        return getRandom() * sign + previousValue;
-    }
-
-    protected double getRandom() {
-        double newValue = 0;
-        newValue = Math.random() * 10;
-        return newValue;
     }
 }
