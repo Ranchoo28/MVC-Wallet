@@ -160,52 +160,6 @@ public class SceneHandler {
         }
     }
 
-    /*public void createCandleStickChart(){
-        CandleStickChart candleStickChart = new CandleStickChart("Mo vediamo", buildBars(), p);
-        scene.getStylesheets().add("it.unical.demacs.informatica.mvcwallet.css/CandleStickChartStyles.css");
-        scene = new Scene(candleStickChart);
-
-        candleStickChart.setYAxisFormatter(new DecimalAxisFormatter("#000.0"));
-    }*/
-
-    public List<BarData> buildBars() {
-        double previousClose = 1850;
-
-
-        final List<BarData> bars = new ArrayList<>();
-        GregorianCalendar now = new GregorianCalendar();
-        for (int i = 0; i < 26; i++) {
-            double open = getNewValue(previousClose);
-            double close = getNewValue(open);
-            double high = Math.max(open + getRandom(),close);
-            double low = Math.min(open - getRandom(),close);
-            previousClose = close;
-
-            BarData bar = new BarData((GregorianCalendar) now.clone(), open, high, low, close, 1);
-            now.add(Calendar.HOUR, 1);
-            bars.add(bar);
-        }
-        return bars;
-    }
-
-    protected double getNewValue( double previousValue ) {
-        int sign;
-
-        if( Math.random() < 0.5 ) {
-            sign = -1;
-        } else {
-            sign = 1;
-        }
-        return getRandom() * sign + previousValue;
-    }
-
-    protected double getRandom() {
-        double newValue = 0;
-        newValue = Math.random() * 10;
-        return newValue;
-    }
-
-
     // Creazione dei vari alert
     public void createErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

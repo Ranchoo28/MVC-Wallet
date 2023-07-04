@@ -1,7 +1,7 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.APIsHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.InfoHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.TimeStampHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
@@ -35,9 +35,7 @@ public class SideBarController {
     @FXML
     private Label dateLabel, timeLabel, userLabel;
 
-    public void loadFXML(String nomeFXML) throws IOException {
 
-    }
 
     @FXML
     void onLogoutClick() {
@@ -45,13 +43,18 @@ public class SideBarController {
     }
 
     @FXML
-    void onMoneyClick() {
-        return ;
+    void onSpotClick() throws IOException {
+        loadFXML("spot-view.fxml");
+    }
+
+    @FXML
+    void onMarketClick() throws IOException {
+        loadFXMLChart("market-view.fxml");
     }
 
     @FXML
     void onSettingsClick() {
-           SceneHandler.getInstance().createSettingsScene();
+        SceneHandler.getInstance().createSettingsScene();
     }
 
     @FXML
@@ -59,15 +62,21 @@ public class SideBarController {
         SceneHandler.getInstance().createAccountSettingsScene();
     }
 
+
     @FXML
-    void initialize() {
+    void initialize() throws IOException{
+
+        if(SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
+        if(SettingsHandler.getInstance().page.equals("market")) loadFXMLChart("market-view.fxml");
+
+
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                    dateLabel.setText(InfoHandler.getInstance().getDay());
-                    timeLabel.setText(InfoHandler.getInstance().getTime());
+                    dateLabel.setText(SettingsHandler.getInstance().getDay());
+                    timeLabel.setText(SettingsHandler.getInstance().timeFormatter());
                 }));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
@@ -75,7 +84,7 @@ public class SideBarController {
         });
 
         /*
-        String [] array = SQLHandler.getIstance().getNameSurname(LoginController.username);
+        String [] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
         userLabel.setText(array[0] + " " + array[1]);
          */
 
@@ -141,10 +150,23 @@ public class SideBarController {
 
     }
 
-    @FXML
-    void onCryptoClick() throws IOException {
-        String path = "/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+    public void loadFXML(String nomeFXML) throws IOException {
+        centerPage.getChildren().clear();
+        String path = "/it/unical/demacs/informatica/mvcwallet/view/";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+        AnchorPane pane = fxmlLoader.load();
+
+        centerPage.getChildren().add(pane);
+        centerPage.setTopAnchor(pane, 5.0);
+        centerPage.setRightAnchor(pane, 5.0);
+        centerPage.setBottomAnchor(pane, 5.0);
+        centerPage.setLeftAnchor(pane, 5.0);
+    }
+
+    public void loadFXMLChart(String nomeFXML) throws IOException {
+        centerPage.getChildren().clear();
+        String path = "/it/unical/demacs/informatica/mvcwallet/view/";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
         AnchorPane pane = fxmlLoader.load();
 
         List<BarData> array = buildBars();

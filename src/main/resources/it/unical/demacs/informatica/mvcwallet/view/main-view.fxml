@@ -22,7 +22,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <HBox fx:id="moneyHbox" alignment="CENTER" onMouseClicked="#onMoneyClick" prefHeight="100.0" prefWidth="130.0" styleClass="hbox">
+                  <HBox fx:id="moneyHbox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" prefWidth="130.0" styleClass="hbox">
                      <children>
                         <Label fx:id="moneyLabel" alignment="CENTER" text="Spot" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -34,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="cryptoHbox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onCryptoClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
+                  <HBox fx:id="cryptoHbox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
                         <JFXToolbar />
                         <Label fx:id="cryptoLabel" alignment="CENTER" text="Markets" textFill="WHITE" HBox.hgrow="ALWAYS">
