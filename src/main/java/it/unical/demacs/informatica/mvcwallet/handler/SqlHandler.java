@@ -42,20 +42,16 @@ public class SqlHandler {
         try {
             boolean UsernameCorrect = false;
             con = newConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT Username FROM users");
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                if (rs.getString(1).equals(username)) {
-                    UsernameCorrect = true;
-                    break;
-                } else {
-                    closeConnection(con);
-                    return 1;
-                }
+            PreparedStatement stmt = con.prepareStatement("SELECT username FROM users WHERE username = ?");
+            if (stmt.execute()){
+                UsernameCorrect=true;
+
+            }else{
+                return 1;
             }
 
             if (UsernameCorrect) {
-                PreparedStatement stmt1 = con.prepareStatement("SELECT Password FROM users WHERE Username = ?");
+                PreparedStatement stmt1 = con.prepareStatement("SELECT password FROM users WHERE username = ?");
                 stmt1.setString(1, username);
                 ResultSet rs1 = stmt1.executeQuery();
                 while (rs1.next()) {
@@ -108,7 +104,7 @@ public class SqlHandler {
     public boolean checkUsernameLogin(String username){
         try{
             con = newConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT username From users");
+            PreparedStatement stmt = con.prepareStatement("SELECT username From users WHERE username = ?");
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
                 if (rs.getString(1).equals(username)){
@@ -158,7 +154,7 @@ public class SqlHandler {
     public String[] getNameSurname(String username){
         try{
             String [] array = new String[2];
-            PreparedStatement stmt = con.prepareStatement("SELECT Nome, Cognome FROM users WHERE Username = ?");
+            PreparedStatement stmt = con.prepareStatement("SELECT name, surname FROM users WHERE username = ?");
             stmt.setString(1,username);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
@@ -191,6 +187,7 @@ public class SqlHandler {
                 stm.close();
                 return true;
             }
+
            if(stm.executeUpdate() == 0){
                stm.close();
                return false;
@@ -200,5 +197,68 @@ public class SqlHandler {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean changeName(String newName,String username){
+        try{
+            PreparedStatement stm = con.prepareStatement("UPDATE users SET name = ? WHERE username = ?");
+            stm.setString(1, newName );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                return false;
+            }
+
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean changeSurname(String surname,String username){
+        try{
+            PreparedStatement stm = con.prepareStatement("UPDATE users SET surname = ? WHERE username = ?");
+            stm.setString(1, surname );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                return false;
+            }
+
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean changePassword(String Password, String username) {
+        try{
+            PreparedStatement stm = con.prepareStatement("UPDATE users SET password = ? WHERE username = ?");
+            stm.setString(1, Password );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                return false;
+            }
+
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

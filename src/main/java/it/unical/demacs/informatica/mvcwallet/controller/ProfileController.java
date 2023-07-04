@@ -15,7 +15,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class ProfileController {
-
     @FXML
     private TextField usernameText, nameText, surnameText, passwordText;
     @FXML
@@ -27,14 +26,18 @@ public class ProfileController {
     @FXML
     private CheckBox showPasswordCheckBox;
 
+    boolean isGoodUsername;
+    boolean isGoodPassword;
+
+
 
     @FXML
     void changeVisibility() {
-        if(showPasswordCheckBox.isSelected()){
+        if (showPasswordCheckBox.isSelected()) {
             passwordText.setText(passwordField.getText());
             passwordText.setVisible(true);
             passwordField.setVisible(false);
-            return ;
+            return;
         }
         passwordField.setText(passwordText.getText());
         passwordField.setVisible(true);
@@ -43,40 +46,68 @@ public class ProfileController {
 
     @FXML
     void onChangeUsernameButtonClick() {
-        if(SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameText.getText())){
+        if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameText.getText())) {
             LoginController.username = usernameText.getText();
-            SceneHandler.getInstance().createAskForChangeUsernameAlert();
+            SceneHandler.getInstance().createChangedAlert("username");
             SceneHandler.getInstance().createSideBar();
-        }
-        else System.out.println("nome non cambiato");
+        } else System.out.println("nome non cambiato");
 
     }
+
     @FXML
     void onChangeNameButtonClick() {
-    }
-
-    @FXML
-    void onChangePasswordButtonClick() {
+        if (SqlService.getIstance().serviceChangeName(nameText.getText(), usernameText.getText())) {
+            SceneHandler.getInstance().createChangedAlert("nome");
+            SceneHandler.getInstance().createSideBar();
+        }
 
     }
 
     @FXML
     void onChangeSurnameButtonClick() {
+        if (SqlService.getIstance().serviceChangeSurName(surnameText.getText(), usernameText.getText())) {
+            SceneHandler.getInstance().createChangedAlert("cognome");
+            SceneHandler.getInstance().createSideBar();
+        }
+    }
+
+    @FXML
+    void onChangePasswordButtonClick() {
+        if (SqlService.getIstance().serviceChangePassword(passwordText.getText(), usernameText.getText())) {
+            SceneHandler.getInstance().createChangedAlert("password");
+            SceneHandler.getInstance().createSideBar();
+        }
 
     }
 
 
-
     @FXML
     void initialize() {
+
+        passwordText.textProperty().addListener((observable, oldValue, newValue) -> {
+                    // Controlla se la password rispetta il Regex
+                    if (newValue.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=])[a-zA-Z0-9@!%&£°#'?*=]{8,}"))
+                        isGoodPassword = true;
+                    else
+                        isGoodPassword = false;
+                    checkPassword();
+        });
         usernameText.setText(LoginController.username);
         usernameText.textProperty().addListener(new ChangeListener<String>() {
+
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue.length() < 5)
+                    isGoodUsername = false;
+                else
+                    isGoodUsername = true;
                 checkUsername();
             }
         });
-
+        String[] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
+        nameText.setText(array[0]);
+        surnameText.setText(array[1]);
+        //passwordText.setText(LoginController.);
         nameText.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -100,7 +131,7 @@ public class ProfileController {
 
     }
 
-    private void checkUsername () {
+    private void checkUsername() {
         Platform.runLater(() -> {
             BooleanBinding bb = new BooleanBinding() {
                 {
@@ -109,14 +140,14 @@ public class ProfileController {
 
                 @Override
                 protected boolean computeValue() {
-                    return (usernameText.getText().equals(LoginController.username));
+                    return (!usernameText.getText().equals(LoginController.username)&& !isGoodUsername);
                 }
             };
             usernameButton.disableProperty().bind(bb);
         });
     }
 
-    private void checkName () {
+    private void checkName() {
         Platform.runLater(() -> {
             BooleanBinding bb = new BooleanBinding() {
                 {
@@ -132,7 +163,7 @@ public class ProfileController {
         });
     }
 
-    private void checkSurname () {
+    private void checkSurname() {
         Platform.runLater(() -> {
             BooleanBinding bb = new BooleanBinding() {
                 {
@@ -148,7 +179,7 @@ public class ProfileController {
         });
     }
 
-    private void checkPassword () {
+    private void checkPassword() {
         Platform.runLater(() -> {
             BooleanBinding bb = new BooleanBinding() {
                 {
@@ -164,7 +195,8 @@ public class ProfileController {
             };
             passwordButton.disableProperty().bind(bb);
         });
-    }
+
+        }
 
 
 }

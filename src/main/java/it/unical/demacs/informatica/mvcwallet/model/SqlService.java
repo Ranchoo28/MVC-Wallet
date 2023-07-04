@@ -57,4 +57,35 @@ public class SqlService {
         finally { queryExe.shutdown(); }
         return res[0];
     }
+    public boolean serviceChangeName( String newName,String username){
+        boolean[] res = new boolean[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changeName(newName,username));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
+    public boolean serviceChangeSurName( String newSurName,String username){
+        boolean[] res = new boolean[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changeSurname(newSurName,username));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
+
+    public boolean serviceChangePassword(String newPassword, String username) {
+        boolean[] res = new boolean[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changePassword(newPassword,username));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
 }

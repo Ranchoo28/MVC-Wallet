@@ -234,23 +234,9 @@ public class SceneHandler {
     }
 
 
-    public void createAskForChangeUsernameAlert(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        FontIcon icon = new FontIcon("mdi2s-send-check");
-        icon.setIconColor(Paint.valueOf("blue"));
-        icon.getStyleClass().add("icons-color");
-        icon.setIconSize(45);
-        alert.setHeaderText("");
-        alert.setGraphic(icon);
-        alert.setTitle("Cambio nome");
-        alert.setContentText("Sei sicuro di voler cambiare nome?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK) createChangedUsernameAlert();
-        else if(result.get() == ButtonType.CANCEL) alert.close();
-    }
 
-    public void createChangedUsernameAlert(){
+
+    public void createChangedAlert(String details){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
         icon.setIconColor(Paint.valueOf("blue"));
@@ -258,8 +244,8 @@ public class SceneHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle("Cambio nome");
-        alert.setContentText("Nome cambiato con successo!");
+        alert.setTitle("Cambio "+details);
+        alert.setContentText(details+ " cambiato con successo!");
         alert.show();
     }
 }
