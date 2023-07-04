@@ -2,45 +2,32 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.IOException;
+
 public class AccountSettingsController {
-    @FXML
-    private HBox hboxProfile, hboxSettings, hboxBack, hboxPass;
+
+    String path = "/it/unical/demacs/informatica/mvcwallet/view/";
     @FXML
     private Label profileLabel, settingsLabel, backLabel;
     @FXML
-    PasswordField passwordField;
+    private AnchorPane centerPage;
+
     @FXML
-    TextField passwordText;
-    @FXML
-    CheckBox showPasswordCheckBox;
+    void onProfileClick() throws IOException {
+        loadFXML("profile-view.fxml");
+    }
 
     @FXML
     void onBackClick() {
         SceneHandler.getInstance().createSideBar();
-    }
-
-    @FXML
-    void onSaveClick() {
-        SceneHandler.getInstance().createSideBar();
-    }
-
-    @FXML
-    void changeVisibility(){
-        if(showPasswordCheckBox.isSelected()){
-            passwordText.setText(passwordField.getText());
-            passwordText.setVisible(true);
-            passwordField.setVisible(false);
-            return ;
-        }
-        passwordField.setText(passwordText.getText());
-        passwordField.setVisible(true);
-        passwordText.setVisible(false);
     }
 
     @FXML
@@ -74,4 +61,17 @@ public class AccountSettingsController {
         settingsLabel.setContentDisplay(ContentDisplay.LEFT);
         backLabel.setGraphic(backIcon);
     }
+
+    public void loadFXML(String nomeFXML) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+        AnchorPane pane = fxmlLoader.load();
+
+        centerPage.getChildren().add(pane);
+
+        centerPage.setTopAnchor(pane, 0.0);
+        centerPage.setRightAnchor(pane, 0.0);
+        centerPage.setBottomAnchor(pane, 0.0);
+        centerPage.setLeftAnchor(pane, 0.0);
+    }
+
 }

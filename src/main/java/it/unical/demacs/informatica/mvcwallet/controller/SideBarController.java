@@ -10,7 +10,6 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -36,7 +35,6 @@ public class SideBarController {
     @FXML
     private Label dateLabel, timeLabel, userLabel;
 
-
     @FXML
     void onCryptoClick() throws IOException {
         String path = "/it/unical/demacs/informatica/mvcwallet/view/crypto-view.fxml";
@@ -44,13 +42,13 @@ public class SideBarController {
         AnchorPane pane = fxmlLoader.load();
 
         List<BarData> array = buildBars();
-        CandleStickChart chart = new CandleStickChart("SIUM", array);
+        CandleStickChart chart = new CandleStickChart("", array);
         centerPage.getChildren().add(chart);
 
-        centerPage.setTopAnchor(chart, 0.0);
-        centerPage.setRightAnchor(chart, 0.0);
-        centerPage.setBottomAnchor(chart, 0.0);
-        centerPage.setLeftAnchor(chart, 0.0);
+        centerPage.setTopAnchor(chart, 70.0);
+        centerPage.setRightAnchor(chart, 10.0);
+        centerPage.setBottomAnchor(chart, 10.0);
+        centerPage.setLeftAnchor(chart, 10.0);
     }
 
     @FXML
@@ -75,7 +73,7 @@ public class SideBarController {
 
     @FXML
     void initialize() {
-        // Gestione dell'ora ora e della data in tempo reale.
+        // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -122,10 +120,6 @@ public class SideBarController {
         labelSettings.setGraphic(iconSettings);
 
         //icona dell'accessibilità
-        //https://stackoverflow.com/questions/17467137/how-can-i-create-a-switch-button-in-javafx
-        //Qua dentro dobbiamo mettere gli interruttori per attivare le opzioni di fianco alle
-        //label Alto contrasto, Testo largo ecc...
-        //Quelle che ci sono non vanno bene
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
         accessIcon.setIconColor(Paint.valueOf("#fff"));
@@ -155,13 +149,8 @@ public class SideBarController {
 
     }
 
-    public void loadFXML(String nomeFXML) throws IOException {
-
-    }
-
     public List<BarData> buildBars() {
         double previousClose = 1850;
-
 
         final List<BarData> bars = new ArrayList<>();
         GregorianCalendar now = new GregorianCalendar();
@@ -194,4 +183,5 @@ public class SideBarController {
         newValue = Math.random() * 10;
         return newValue;
     }
+
 }

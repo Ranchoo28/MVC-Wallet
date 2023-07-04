@@ -2,15 +2,15 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-public class SQLHandler {
+public class SqlHandler {
 
-    private SQLHandler() {}
+    private SqlHandler() {}
     private Connection con = null;
-    private static SQLHandler istance = new SQLHandler();
-    public static SQLHandler getIstance() {
+    private static SqlHandler istance = new SqlHandler();
+    public static SqlHandler getIstance() {
         return istance;
     }
 
@@ -105,7 +105,7 @@ public class SQLHandler {
         return false;
     }
 
-    public boolean checkUsername(String username){
+    public boolean checkUsernameLogin(String username){
         try{
             con = newConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT username From users");
@@ -170,5 +170,35 @@ public class SQLHandler {
             e.getMessage();
         }
         return null;
+    }
+
+    public boolean checkUsername(String username){
+        try{
+            PreparedStatement s = con.prepareStatement("select username from users where username = ?");
+             if(s.execute()) return false;
+             else return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean changeUsername(String oldUsername, String newUsername){
+        try{
+            PreparedStatement stm = con.prepareStatement("UPDATE users SET username = ? WHERE username = ?");
+            stm.setString(1, newUsername );
+            stm.setString(2, oldUsername);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                return true;
+            }
+           if(stm.executeUpdate() == 0){
+               stm.close();
+               return false;
+           }
+
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

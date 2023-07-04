@@ -1,7 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.EmailHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SQLHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;

@@ -1,6 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.SQLHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
@@ -29,7 +28,7 @@ public class LoginController {
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
 
-        /*
+
         if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
             SceneHandler.getInstance().createLoginAlert();
@@ -41,8 +40,7 @@ public class LoginController {
             SceneHandler.getInstance().createErrorAlert("Username o password errati. Riprova");
         }
 
-         */
-        SceneHandler.getInstance().createSideBar();
+        //SceneHandler.getInstance().createSideBar();
     }
 
     @FXML
@@ -54,7 +52,7 @@ public class LoginController {
 
     @FXML
     void initialize(){
-        /*
+
         buttonLogin.setDisable(true);
         Username.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -104,6 +102,6 @@ public class LoginController {
             buttonLogin.disableProperty().bind(bb);
         });
 
-         */
+
     }
 }
