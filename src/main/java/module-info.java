@@ -23,4 +23,5 @@ module it.unical.demacs.informatica.mvcwallet {
     exports it.unical.demacs.informatica.mvcwallet.controller;
     opens it.unical.demacs.informatica.mvcwallet.controller to javafx.fxml;
     exports it.unical.demacs.informatica.mvcwallet;
+    opens it.unical.demacs.informatica.mvcwallet.model to javafx.base;
 }
