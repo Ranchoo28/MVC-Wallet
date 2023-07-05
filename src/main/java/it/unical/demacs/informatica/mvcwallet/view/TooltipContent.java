@@ -3,6 +3,8 @@ package it.unical.demacs.informatica.mvcwallet.view;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
+import java.math.BigDecimal;
+
 public class TooltipContent extends GridPane {
 
     private final Label openValue = new Label();
@@ -31,9 +33,9 @@ public class TooltipContent extends GridPane {
     }
 
     public void update(double open, double close, double high, double low) {
-        openValue.setText(Double.toString(open));
-        closeValue.setText(Double.toString(close));
-        highValue.setText(Double.toString(high));
-        lowValue.setText(Double.toString(low));
+        openValue.setText(String.valueOf(new BigDecimal(open).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        closeValue.setText(String.valueOf(new BigDecimal(close).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        highValue.setText(String.valueOf(new BigDecimal(high).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        lowValue.setText(String.valueOf(new BigDecimal(low).setScale(2, BigDecimal.ROUND_HALF_UP)));
     }
 }

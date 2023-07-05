@@ -1,7 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.view;
 
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
-import it.unical.demacs.informatica.mvcwallet.model.DecimalAxisFormatter;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,10 +69,6 @@ public class CandleStickChart extends XYChart<String, Number> {
 
         if(sublist.size()>0)
             lastBar = sublist.get(sublist.size() - 1);
-    }
-
-    public void setYAxisFormatter(DecimalAxisFormatter formatter) {
-        yAxis.setTickLabelFormatter(formatter);
     }
 
     public void addBar(BarData bar) {
