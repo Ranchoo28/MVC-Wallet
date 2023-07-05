@@ -49,8 +49,6 @@ public class SettingsController {
         SettingsHandler.getInstance().format = "market";
     }
 
-
-
     @FXML
     void onCancelClick(){
         SceneHandler.getInstance().createSideBar();
