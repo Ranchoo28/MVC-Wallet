@@ -91,7 +91,7 @@ public class SqlService {
 
    public String [] serviceSettings(String username){
        var ref = new Object() {
-           String[] settings = new String[2];
+           String[] settings = new String[3];
        };
        ExecutorService queryExe = Executors.newSingleThreadExecutor();
        Future<?> future = queryExe.submit(() -> ref.settings = SqlHandler.getIstance().getSettingsQuery(username));
@@ -99,7 +99,7 @@ public class SqlService {
        try { future.get(); }
        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
        finally { queryExe.shutdown(); }
-       System.out.println( "ciaogergergerg" + ref.settings[0] +  ref.settings[1] );
+       //System.out.println( "Settings: " + ref.settings[0] +  ref.settings[1] + ref.settings[2]);
        return ref.settings;
    }
 }

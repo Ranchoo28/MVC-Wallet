@@ -79,7 +79,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </MenuButton>
-                  <CheckBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Mantieni accesso" />
+                  <CheckBox fx:id="stayLogged" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Mantieni accesso" />
                   <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Valuta">
                      <items>
                         <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" text="EUR" />

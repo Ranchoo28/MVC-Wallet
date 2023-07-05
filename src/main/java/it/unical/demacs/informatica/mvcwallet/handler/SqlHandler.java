@@ -8,13 +8,13 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class SqlHandler {
 
     private SqlHandler() {}
-    private Connection con = null;
+    private Connection con;
     private static SqlHandler istance = new SqlHandler();
     public static SqlHandler getIstance() {
         return istance;
     }
 
-    private Connection newConnection() {
+    public Connection newConnection() {
         try {
             String url = "jdbc:sqlite:progettouid.db";
             Class.forName("org.sqlite.JDBC");
@@ -23,7 +23,8 @@ public class SqlHandler {
             //if (con != null) System.out.println("Connessione avvenuta con successo");
 
         } catch (SQLException e) {
-            System.out.println("Non connesso" + e.getMessage());
+            //System.out.println("Non connesso" );
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -258,27 +259,41 @@ public class SqlHandler {
 
     public String [] getSettingsQuery(String username){
         try{
-            String [] settings = new String[2];
-            PreparedStatement s = con.prepareStatement("SELECT time,page FROM settings WHERE username = ?");
+            String [] settings = new String[3];
+            PreparedStatement s = con.prepareStatement("SELECT time,page,logged FROM settings WHERE username = ?");
             s.setString(1, username);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 settings[0] = rs.getString(1);
                 settings[1] = rs.getString(2);
-                return settings;
+                settings[2] = rs.getString(3);
             }
+
+            return settings;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
-    public void setSettingsQuery(String username, String time, String page){
+    public void setSettingsQuery(String username, String time, String page, String logged){
         try{
-            PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ? WHERE username = ? ");
+            PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, logged = ? WHERE username = ? ");
             s.setString(1, time );
             s.setString(2, page );
-            s.setString(3, username );
+            s.setString(3, logged);
+            s.setString(4, username );
+            s.executeUpdate();
+            s.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setLogutQuery(String username){
+        try{
+            PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
+            s.setString(1, "0" );
+            s.setString(2, username );
             s.executeUpdate();
             s.close();
         } catch (SQLException e) {

@@ -1,7 +1,9 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.LoggedHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -11,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.util.concurrent.TimeUnit;
 
 public class LoginController {
     public static String username;
@@ -56,6 +60,16 @@ public class LoginController {
     @FXML
     void initialize(){
 
+        Platform.runLater(() -> {
+            if (!LoggedHandler.getInstance().stayLoggedReading().equals("null")) {
+                // Non capisco perchè bisogna rifare la connessione.
+                SqlHandler.getIstance().newConnection();
+                username = LoggedHandler.getInstance().stayLoggedReading();
+                SettingsHandler.getInstance().updateSettings();
+                SceneHandler.getInstance().createSideBar();
+            }
+        });
+
         buttonLogin.setDisable(true);
         Username.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -81,6 +95,7 @@ public class LoginController {
                 performBinding();
             }
         });
+
     }
 
     private void performBinding() {
@@ -104,7 +119,6 @@ public class LoginController {
 
             buttonLogin.disableProperty().bind(bb);
         });
-
 
     }
 }

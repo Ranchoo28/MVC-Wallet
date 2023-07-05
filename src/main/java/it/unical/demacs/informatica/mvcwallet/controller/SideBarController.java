@@ -62,10 +62,7 @@ public class SideBarController {
     void initialize() throws IOException {
 
         if (SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
-        if (SettingsHandler.getInstance().page.equals("market")) {
-            loadChart();
-        }
-        ;
+        if (SettingsHandler.getInstance().page.equals("market")) loadChart();
 
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {

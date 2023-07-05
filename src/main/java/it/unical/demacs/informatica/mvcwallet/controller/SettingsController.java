@@ -1,13 +1,11 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.LoggedHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.*;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.Set;
@@ -18,6 +16,9 @@ public class SettingsController {
 
     @FXML
     private Label accessibilityLabel, accountLabel;
+
+    @FXML
+    private CheckBox stayLogged;
 
     @FXML
     private RadioMenuItem italianLanguage, englishLanguage,
@@ -46,13 +47,19 @@ public class SettingsController {
         marketChoosen();
     }
 
+
     @FXML
     void onSaveClick(){
         String [] settings = changeSettings();
         SqlHandler.getIstance().setSettingsQuery(
                 LoginController.username,
-                settings[1] ,
-                settings[0]);
+                settings[0] ,
+                settings[1],
+                settings[2]);
+
+        if(settings[2].equals("0")) LoggedHandler.getInstance().stayLoggedWriting("null");
+        if(settings[2].equals("1")) LoggedHandler.getInstance().stayLoggedWriting(LoginController.username);
+
         SettingsHandler.getInstance().updateSettings();
         SceneHandler.getInstance().createSideBar();
     }
@@ -69,6 +76,9 @@ public class SettingsController {
 
         if(SettingsHandler.getInstance().page.equals("spot")) spotChoosen();
         if(SettingsHandler.getInstance().page.equals("market")) marketChoosen();
+
+        if(SettingsHandler.getInstance().logged) stayLogged();
+        if(!SettingsHandler.getInstance().logged) noStayLogged();
 
         // Icona per i temi
         FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
@@ -103,14 +113,25 @@ public class SettingsController {
         marketPage.setSelected(true);
     }
 
+    private void stayLogged(){
+        stayLogged.setSelected(true);
+    }
+
+    private void noStayLogged(){
+        stayLogged.setSelected(false);
+    }
+
     private String [] changeSettings(){
-        String [] settings = new String[2];
+        String [] settings = new String[3];
 
-        if(marketPage.isSelected()) settings[0] = "market";
-        if(spotPage.isSelected()) settings[0] = "spot";
+        if(h24Time.isSelected()) settings[0] = "HH:mm:ss";
+        if(h12Time.isSelected()) settings[0] = "hh:mm:ss a";
 
-        if(h24Time.isSelected()) settings[1] = "HH:mm:ss";
-        if(h12Time.isSelected()) settings[1] = "hh:mm:ss a";
+        if(marketPage.isSelected()) settings[1] = "market";
+        if(spotPage.isSelected()) settings[1] = "spot";
+
+        if(stayLogged.isSelected()) settings[2] = "1";
+        else settings[2] = "0";
 
         return settings;
     }

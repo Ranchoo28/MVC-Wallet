@@ -29,8 +29,6 @@ public class ProfileController {
     boolean isGoodUsername;
     boolean isGoodPassword;
 
-
-
     @FXML
     void changeVisibility() {
         if (showPasswordCheckBox.isSelected()) {

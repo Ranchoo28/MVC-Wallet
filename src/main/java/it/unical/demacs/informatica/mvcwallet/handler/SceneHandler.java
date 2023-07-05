@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -13,15 +14,15 @@ import java.util.*;
 
 public class SceneHandler {
 
-    private static final SceneHandler instance = new SceneHandler();
+
     private static final String view = "/it/unical/demacs/informatica/mvcwallet/view/";
     private Stage stage;
     private Scene scene;
 
+    private static final SceneHandler instance = new SceneHandler();
     public static SceneHandler getInstance() {
         return instance;
     }
-
     private SceneHandler() {}
 
     private <T> T loadRootFromFXML(String resourceName) throws IOException {
@@ -223,7 +224,11 @@ public class SceneHandler {
         alert.setContentText(message);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK) createLoginScene();
+        else if(result.get() == ButtonType.OK){
+            SqlHandler.getIstance().setLogutQuery(LoginController.username);
+            LoggedHandler.getInstance().stayLoggedWriting("null");
+            createLoginScene();
+        }
         else if(result.get() == ButtonType.CANCEL) alert.close();
     }
 
