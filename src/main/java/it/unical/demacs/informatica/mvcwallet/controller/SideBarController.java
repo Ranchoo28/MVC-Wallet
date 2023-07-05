@@ -33,7 +33,6 @@ public class SideBarController {
     @FXML
     private Label dateLabel, timeLabel, userLabel;
 
-
     @FXML
     void onLogoutClick() {
         SceneHandler.getInstance().createLogoutAlert("Sei sicuro di voler effettuare il logout?");
@@ -84,7 +83,7 @@ public class SideBarController {
         /*
         String [] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
         userLabel.setText(array[0] + " " + array[1]);
-         */
+        */
 
         // Icona per l'utente
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
@@ -145,7 +144,6 @@ public class SideBarController {
         iconCrypto.setIconColor(Paint.valueOf("#fff"));
         cryptoLabel.setContentDisplay(ContentDisplay.LEFT);
         cryptoLabel.setGraphic(iconCrypto);
-
     }
 
     public void loadFXML(String nomeFXML) throws IOException {

@@ -154,8 +154,6 @@ public class SceneHandler {
         }
     }
 
-
-
     // Creazione dei vari alert
     public void createErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
