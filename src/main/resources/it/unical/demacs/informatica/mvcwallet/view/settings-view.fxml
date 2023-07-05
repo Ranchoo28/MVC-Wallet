@@ -2,36 +2,48 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="543.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SettingsController">
    <children>
-      <HBox layoutX="74.0" layoutY="54.0" prefHeight="18.0" prefWidth="112.0">
+      <HBox layoutX="102.0" layoutY="45.0" prefHeight="26.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="427.8" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="148.39999999999998" AnchorPane.topAnchor="45.0">
          <children>
-            <Label fx:id="accountLabel" prefHeight="18.0" prefWidth="101.0" text="Account">
+            <MenuButton fx:id="languageMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Lingua">
+               <items>
+                  <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false" text="Italiano" />
+                  <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false" text="Inglese" />
+               </items>
                <font>
-                  <Font name="MS Outlook" size="15.0" />
+                  <Font size="13.0" />
                </font>
-            </Label>
-         </children>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </HBox>
-      <HBox layoutX="74.0" layoutY="107.0" prefHeight="26.0" prefWidth="200.0" />
-      <HBox layoutX="311.0" layoutY="48.0" prefHeight="30.0" prefWidth="200.0">
-         <children>
-            <MenuButton fx:id="themesMenu" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Temi">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <MenuButton fx:id="themesMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Temi">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <RadioMenuItem fx:id="whiteTheme" mnemonicParsing="false" text="Chiaro" />
+                  <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false" text="Scuro" />
+                  <RadioMenuItem fx:id="mvcTheme" mnemonicParsing="false" text="MVC" />
               </items>
+               <font>
+                  <Font name="MS Outlook" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
+            <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" text="Formato ora">
+               <items>
+                  <RadioMenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick" text="12H" />
+                  <RadioMenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick" text="24H" />
+               </items>
                <font>
                   <Font name="MS Outlook" size="13.0" />
                </font>
@@ -41,12 +53,13 @@
             </MenuButton>
          </children>
       </HBox>
-      <HBox layoutX="311.0" layoutY="182.0" prefHeight="26.0" prefWidth="200.0">
+      <Line endX="643.5999755859375" layoutX="127.0" layoutY="155.0" startX="-100.0" AnchorPane.bottomAnchor="344.5" AnchorPane.leftAnchor="26.5" AnchorPane.rightAnchor="28.9000244140625" AnchorPane.topAnchor="154.5" />
+      <HBox layoutX="102.0" layoutY="197.0" prefHeight="26.0" prefWidth="200.0" spacing="100.0" AnchorPane.bottomAnchor="275.8" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="144.39999999999998" AnchorPane.topAnchor="197.0">
          <children>
-            <MenuButton fx:id="languageMenu" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Lingua">
+            <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Pagina iniziale">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" text="Spot" />
+                  <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" text="Market" />
                </items>
                <font>
                   <Font size="13.0" />
@@ -55,26 +68,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MenuButton>
+            <CheckBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Mantieni accesso" />
+            <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Valuta">
+               <items>
+                  <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" text="EUR" />
+                  <RadioMenuItem fx:id="usdCurrency" mnemonicParsing="false" text="USD" />
+               </items>
+               <font>
+                  <Font name="MS Outlook" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuButton>
          </children>
       </HBox>
-      <Button layoutX="390.0" layoutY="312.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #e60000;" text="Salva" textFill="WHITE">
+      <Button layoutX="344.0" layoutY="429.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffa31a;" text="Indietro" textFill="WHITE" AnchorPane.bottomAnchor="44.6" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="389.6" AnchorPane.topAnchor="429.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="103.0" layoutY="312.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffa31a;" text="Indietro" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label fx:id="accessibilityLabel" layoutX="74.0" layoutY="187.0" prefHeight="18.0" prefWidth="126.0" text="Accessibilità">
-         <font>
-            <Font name="MS Outlook" size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Separator layoutX="247.0" layoutY="33.0" orientation="VERTICAL" prefHeight="200.0" />
    </children>
 </AnchorPane>
