@@ -45,7 +45,7 @@ public class SideBarController {
     }
 
     @FXML
-    void onMarketClick() {
+    void onMarketClick() throws IOException {
         loadChart();
     }
 
@@ -161,17 +161,21 @@ public class SideBarController {
         centerPage.setLeftAnchor(pane, 5.0);
     }
 
-    public void loadChart() {
+    public void loadChart() throws IOException {
         centerPage.getChildren().clear();
 
-        List<BarData> array = BuildBars.getInstance().buildBars();
-        CandleStickChart chart = new CandleStickChart(array, centerPage.getWidth());
+        String path = "/it/unical/demacs/informatica/mvcwallet/view/";
 
-        centerPage.getChildren().add(chart);
-        centerPage.setTopAnchor(chart, 5.0);
-        centerPage.setRightAnchor(chart, 5.0);
-        centerPage.setBottomAnchor(chart, 5.0);
-        centerPage.setLeftAnchor(chart, 5.0);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + "market-view.fxml"));
+
+        AnchorPane pane = fxmlLoader.load();
+
+        centerPage.getChildren().add(pane);
+
+        centerPage.setTopAnchor(pane, 5.0);
+        centerPage.setRightAnchor(pane, 0.0);
+        centerPage.setBottomAnchor(pane, 0.0);
+        centerPage.setLeftAnchor(pane, 0.0);
     }
 }
 

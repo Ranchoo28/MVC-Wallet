@@ -40,13 +40,13 @@ public class SettingsController {
     @FXML
     void onSpotClick() {
         spotChoosen();
-        SettingsHandler.getInstance().format = "spot";
+        SettingsHandler.getInstance().page = "spot";
     }
 
     @FXML
     void onMarketClick() {
         marketChoosen();
-        SettingsHandler.getInstance().format = "market";
+        SettingsHandler.getInstance().page = "market";
     }
 
     @FXML

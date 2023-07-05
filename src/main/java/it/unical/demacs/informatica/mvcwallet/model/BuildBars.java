@@ -12,13 +12,13 @@ public class BuildBars {
         return instance;
     }
 
-    public List<BarData> buildBars(){
+    public List<BarData> buildBars(String coin, String currency){
 
         final List<BarData> bars = new ArrayList<>();
         Map<String, ArrayList<Double>> dictionary;
 
         try {
-            dictionary = APIsHandler.getInstance().getHistoricalData("ethereum", "eur");
+            dictionary = APIsHandler.getInstance().getHistoricalData(coin, currency);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
