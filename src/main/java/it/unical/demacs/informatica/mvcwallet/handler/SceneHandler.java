@@ -36,8 +36,8 @@ public class SceneHandler {
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
             stage.setResizable(true);
-            //createLoginScene();
-            createSideBar();
+            createLoginScene();
+            //createSideBar();
             stage.setScene(scene);
             stage.show();
             scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource("/it/unical/demacs/informatica/mvcwallet/css/main.css").toExternalForm()));

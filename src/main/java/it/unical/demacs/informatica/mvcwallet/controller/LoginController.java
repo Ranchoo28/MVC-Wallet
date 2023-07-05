@@ -1,6 +1,7 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -31,7 +32,9 @@ public class LoginController {
 
         if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
+            SettingsHandler.getInstance().updateSettings();
             SceneHandler.getInstance().createLoginAlert();
+            //for(String i: SettingsHandler.getInstance().settings) System.out.println("ciao" + i);
         }else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 1)
             SceneHandler.getInstance().createErrorAlert("Username inesistente. Riprova");
         else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 2)

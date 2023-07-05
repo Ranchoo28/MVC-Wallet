@@ -43,13 +43,8 @@ public class SqlHandler {
             boolean UsernameCorrect = false;
             con = newConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT username FROM users WHERE username = ?");
-            if (stmt.execute()){
-                UsernameCorrect=true;
-
-            }else{
-                return 1;
-            }
-
+            if (stmt.execute()) UsernameCorrect=true;
+            else return 1;
             if (UsernameCorrect) {
                 PreparedStatement stmt1 = con.prepareStatement("SELECT password FROM users WHERE username = ?");
                 stmt1.setString(1, username);
@@ -259,6 +254,35 @@ public class SqlHandler {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public String [] getSettingsQuery(String username){
+        try{
+            String [] settings = new String[2];
+            PreparedStatement s = con.prepareStatement("SELECT time,page FROM settings WHERE username = ?");
+            s.setString(1, username);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                settings[0] = rs.getString(1);
+                settings[1] = rs.getString(2);
+                return settings;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    public void setSettingsQuery(String username, String time, String page){
+        try{
+            PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ? WHERE username = ? ");
+            s.setString(1, time );
+            s.setString(2, page );
+            s.setString(3, username );
+            s.executeUpdate();
+            s.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

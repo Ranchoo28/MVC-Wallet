@@ -88,4 +88,18 @@ public class SqlService {
         finally { queryExe.shutdown(); }
         return res[0];
     }
+
+   public String [] serviceSettings(String username){
+       var ref = new Object() {
+           String[] settings = new String[2];
+       };
+       ExecutorService queryExe = Executors.newSingleThreadExecutor();
+       Future<?> future = queryExe.submit(() -> ref.settings = SqlHandler.getIstance().getSettingsQuery(username));
+
+       try { future.get(); }
+       catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+       finally { queryExe.shutdown(); }
+       System.out.println( "ciaogergergerg" + ref.settings[0] +  ref.settings[1] );
+       return ref.settings;
+   }
 }

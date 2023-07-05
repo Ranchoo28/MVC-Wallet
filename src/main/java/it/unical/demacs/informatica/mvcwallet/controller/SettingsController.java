@@ -2,6 +2,7 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
@@ -28,25 +29,32 @@ public class SettingsController {
     @FXML
     void on12hClick() {
         h12Choosen();
-        SettingsHandler.getInstance().format = "hh:mm:ss a";
     }
 
     @FXML
     void on24hClick() {
         h24Choosen();
-        SettingsHandler.getInstance().format = "HH:mm:ss";
     }
 
     @FXML
     void onSpotClick() {
         spotChoosen();
-        SettingsHandler.getInstance().page = "spot";
     }
 
     @FXML
     void onMarketClick() {
         marketChoosen();
-        SettingsHandler.getInstance().page = "market";
+    }
+
+    @FXML
+    void onSaveClick(){
+        String [] settings = changeSettings();
+        SqlHandler.getIstance().setSettingsQuery(
+                LoginController.username,
+                settings[1] ,
+                settings[0]);
+        SettingsHandler.getInstance().updateSettings();
+        SceneHandler.getInstance().createSideBar();
     }
 
     @FXML
@@ -78,7 +86,6 @@ public class SettingsController {
     private void h12Choosen(){
         h12Time.setSelected(true);
         h24Time.setSelected(false);
-
     }
 
     private void h24Choosen(){
@@ -94,6 +101,18 @@ public class SettingsController {
     private void marketChoosen(){
         spotPage.setSelected(false);
         marketPage.setSelected(true);
+    }
+
+    private String [] changeSettings(){
+        String [] settings = new String[2];
+
+        if(marketPage.isSelected()) settings[0] = "market";
+        if(spotPage.isSelected()) settings[0] = "spot";
+
+        if(h24Time.isSelected()) settings[1] = "HH:mm:ss";
+        if(h12Time.isSelected()) settings[1] = "hh:mm:ss a";
+
+        return settings;
     }
 
 }

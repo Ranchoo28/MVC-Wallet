@@ -9,10 +9,10 @@ public class MainApplication extends Application {
     public void start(Stage stage) {
         //stage.setResizable(false);
         SceneHandler.getInstance().init(stage);
-        //SceneHandler.getInstance().createLoginScene();
+        SceneHandler.getInstance().createLoginScene();
 
         // Aggiunto solo per i test
-        SceneHandler.getInstance().createSideBar();
+        //SceneHandler.getInstance().createSideBar();
     }
 
     public static void main(String[] args) {
