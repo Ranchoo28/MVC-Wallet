@@ -1,20 +1,13 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
-import it.unical.demacs.informatica.mvcwallet.model.BarData;
-import it.unical.demacs.informatica.mvcwallet.model.CandleStickChart;
-import it.unical.demacs.informatica.mvcwallet.model.DecimalAxisFormatter;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
-
 import java.io.IOException;
 import java.util.*;
 
@@ -69,7 +62,24 @@ public class SceneHandler {
                 stage.setWidth(800);
                 stage.setHeight(500);
             }
+        } catch (IOException ignored) {
+        }
+    }
 
+    public void createSettingsScene() {
+        // Crea la scena per la password dimenticata
+        try {
+            if(scene == null)
+                scene = new Scene(loadRootFromFXML(view+"settings-view.fxml"));
+            else
+                scene.setRoot(loadRootFromFXML(view+"settings-view.fxml"));
+            stage.setTitle("MVC Wallet impostazioni");
+
+            if(stage.isFullScreen()) stage.setFullScreen(true);
+            else{
+                stage.setWidth(800);
+                stage.setHeight(500);
+            }
         } catch (IOException ignored) {
         }
     }
@@ -144,21 +154,7 @@ public class SceneHandler {
         }
     }
 
-    public void createSettingsScene() {
-        // Crea la scena per la password dimenticata
-        try {
-            if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"settings-view.fxml"));
-            else
-                scene.setRoot(loadRootFromFXML(view+"settings-view.fxml"));
-            stage.setTitle("MVC Wallet impostazioni");
-            stage.setMinWidth(600);
-            stage.setMinHeight(450);
-            stage.setWidth(600);
-            stage.setHeight(450);
-        } catch (IOException ignored) {
-        }
-    }
+
 
     // Creazione dei vari alert
     public void createErrorAlert(String message) {

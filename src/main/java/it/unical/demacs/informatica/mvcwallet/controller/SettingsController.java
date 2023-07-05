@@ -9,6 +9,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioMenuItem;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.util.Set;
+
 public class SettingsController {
     @FXML
     private MenuButton languageMenu, themesMenu;
@@ -26,7 +28,7 @@ public class SettingsController {
     @FXML
     void on12hClick() {
         h12Choosen();
-        SettingsHandler.getInstance().format = "HH:mm:ss a";
+        SettingsHandler.getInstance().format = "hh:mm:ss a";
     }
 
     @FXML
@@ -36,6 +38,20 @@ public class SettingsController {
     }
 
     @FXML
+    void onSpotClick() {
+        spotChoosen();
+        SettingsHandler.getInstance().format = "spot";
+    }
+
+    @FXML
+    void onMarketClick() {
+        marketChoosen();
+        SettingsHandler.getInstance().format = "market";
+    }
+
+
+
+    @FXML
     void onCancelClick(){
         SceneHandler.getInstance().createSideBar();
     }
@@ -43,7 +59,10 @@ public class SettingsController {
     @FXML
     void initialize(){
         if(SettingsHandler.getInstance().format.equals("HH:mm:ss")) h24Choosen();
-        if(SettingsHandler.getInstance().format.equals("HH:mm:ss a")) h12Choosen();
+        if(SettingsHandler.getInstance().format.equals("hh:mm:ss a")) h12Choosen();
+
+        if(SettingsHandler.getInstance().page.equals("spot")) spotChoosen();
+        if(SettingsHandler.getInstance().page.equals("market")) marketChoosen();
 
         // Icona per i temi
         FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
@@ -69,6 +88,15 @@ public class SettingsController {
         h24Time.setSelected(true);
     }
 
+    private void spotChoosen(){
+        spotPage.setSelected(true);
+        marketPage.setSelected(false);
+    }
+
+    private void marketChoosen(){
+        spotPage.setSelected(false);
+        marketPage.setSelected(true);
+    }
 
 }
 

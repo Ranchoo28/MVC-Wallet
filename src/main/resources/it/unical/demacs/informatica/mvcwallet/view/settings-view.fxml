@@ -58,8 +58,8 @@
          <children>
             <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Pagina iniziale">
                <items>
-                  <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" text="Spot" />
-                  <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" text="Market" />
+                  <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick" text="Spot" />
+                  <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick" text="Market" />
                </items>
                <font>
                   <Font size="13.0" />
