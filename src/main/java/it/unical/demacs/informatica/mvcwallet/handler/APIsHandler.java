@@ -26,7 +26,7 @@ public class APIsHandler {
     int days = 5000;
 
     public Map<String, ArrayList<Double>> getHistoricalData(String coin, String vsCurrency) throws MalformedURLException {
-        // Calcola la data di inizio 365 giorni fa
+        // Calcola la data di inizio di massimo giorni fa
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = endDate.minusDays(days);
 

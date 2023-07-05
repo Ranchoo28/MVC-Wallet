@@ -230,8 +230,6 @@ public class SceneHandler {
     }
 
 
-
-
     public void createChangedAlert(String details){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
