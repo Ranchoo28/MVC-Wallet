@@ -31,7 +31,7 @@ public class MarketController {
 
         market.getChildren().add(chart);
 
-        market.setTopAnchor(chart, 5.0);
+        market.setTopAnchor(chart, 0.0);
         market.setRightAnchor(chart, 5.0);
         market.setBottomAnchor(chart, 5.0);
         market.setLeftAnchor(chart, 0.0);
