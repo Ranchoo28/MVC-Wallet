@@ -11,8 +11,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +28,8 @@ public class LoginController {
     private PasswordField Password;
     @FXML
     private Button buttonLogin = new Button();
+    @FXML
+    private CheckBox stayLogged;
 
     @FXML
     void onLoginButtonClick() {
@@ -36,6 +40,10 @@ public class LoginController {
 
         if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
+            if(stayLogged.isSelected()){
+                SqlHandler.getIstance().stayLoggedOfLogin(username);
+                LoggedHandler.getInstance().stayLoggedWriting(username);
+            }
             SettingsHandler.getInstance().updateSettings();
             SceneHandler.getInstance().createLoginAlert();
             //for(String i: SettingsHandler.getInstance().settings) System.out.println("ciao" + i);
@@ -63,8 +71,9 @@ public class LoginController {
         Platform.runLater(() -> {
             if (!LoggedHandler.getInstance().stayLoggedReading().equals("null")) {
                 // Non capisco perchè bisogna rifare la connessione.
-                SqlHandler.getIstance().newConnection();
                 username = LoggedHandler.getInstance().stayLoggedReading();
+                SqlHandler.getIstance().newConnection();
+                System.out.println(username);
                 SettingsHandler.getInstance().updateSettings();
                 SceneHandler.getInstance().createSideBar();
             }

@@ -1,38 +1,95 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
-import java.util.List;
-import java.util.Random;
-import java.util.Vector;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
 
 public class LoggedHandler {
 
-    private static final LoggedHandler instance = new LoggedHandler();
+    private static final LoggedHandler instance;
+
+    static {
+        try {
+            instance = new LoggedHandler();
+        } catch (NoSuchPaddingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static LoggedHandler getInstance() {
         return instance;
     }
-    private LoggedHandler() {}
+    private LoggedHandler() throws NoSuchPaddingException, NoSuchAlgorithmException {}
 
+    private  SecretKeySpec secretKey;
+    private String myKey = "MVC-Wallet";
+    byte [] key;
+
+    // Trasforma la chiave in una SecretKeySpec (con l'algoritmo di hashing SHA-512)
+    public void setKey(String myKey) throws NoSuchAlgorithmException {
+
+        key = myKey.getBytes(StandardCharsets.UTF_8);
+        MessageDigest sha = MessageDigest.getInstance("SHA-512");
+        key = sha.digest(key);
+        key = Arrays.copyOf(key, 32);
+        secretKey = new SecretKeySpec(key, "AES");
+    }
+
+    // Crypta l'username
+    public String encryptUsername(String username, String sec){
+        try {
+            setKey(sec);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(username.getBytes("UTF-8")));
+        }catch (Exception e){
+
+        }
+        return null;
+    }
+
+    // Decrypta username
+    public String decryptUsername(String usernameCrypyted, String sec){
+        try {
+            setKey(sec);
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            return new String(cipher.doFinal(Base64.getDecoder().decode(usernameCrypyted)));
+        }catch (Exception e){
+
+        }
+        return null;
+    }
+
+    // Legge sul file di testo su cui è salvato l'username
     public String stayLoggedReading(){
-        String username;
         try {
             FileReader stream = new FileReader("stayLogged.txt");
             BufferedReader buff = new BufferedReader(stream);
-            username = buff.readLine();
-            buff.close();
-            stream.close();
-            return username;
+            return decryptUsername(buff.readLine(), myKey);
         }catch (IOException e){
             e.printStackTrace();
         }
         return null;
     }
 
+    // Scrive sul file di testo in cui verrà salvato il nome
     public void stayLoggedWriting(String username){
         try {
             FileWriter stream = new FileWriter("stayLogged.txt", false);
             PrintWriter file = new PrintWriter(stream);
-            file.println(username);
+
+            file.println(encryptUsername(username, myKey));
             file.close();
             stream.close();
         }catch (IOException e){

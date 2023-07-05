@@ -2,23 +2,36 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="517.0" styleClass="global-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.LoginController">
    <children>
-      <Label layoutX="99.0" layoutY="85.0" prefHeight="18.0" prefWidth="92.0" text="Username" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font></Label>
-      <Label layoutX="99.0" layoutY="143.0" prefHeight="18.0" prefWidth="63.0" text="Password" textFill="WHITE">
-         <font>
-            <Font size="13.0" />
-         </font></Label>
-      <TextField fx:id="Username" layoutX="205.0" layoutY="81.0" prefHeight="26.0" prefWidth="243.0" style="-fx-background-radius: 10;" />
+      <HBox layoutX="53.0" layoutY="44.0" prefHeight="26.0" prefWidth="400.0" spacing="40.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="92.0" text="Username" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="Username" prefHeight="26.0" prefWidth="243.0" style="-fx-background-radius: 10;" />
+         </children>
+      </HBox>
+      <HBox layoutX="53.0" layoutY="93.0" prefHeight="36.0" prefWidth="400.0" spacing="40.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="92.0" text="Password" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="Password" prefHeight="26.0" prefWidth="243.0" style="-fx-background-radius: 10;" />
+         </children>
+      </HBox>
       <Button fx:id="buttonLogin" layoutX="205.0" layoutY="198.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="26.0" prefWidth="59.0" style="-fx-background-color: #e60000; -fx-background-radius: 15;" text="Login" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -28,13 +41,11 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <PasswordField fx:id="Password" layoutX="205.0" layoutY="139.0" prefHeight="26.0" prefWidth="243.0" style="-fx-background-radius: 10;" />
-      <Label fx:id="dateLabel" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="102.0" />
-      <Label fx:id="timeLabel" layoutX="182.0" layoutY="14.0" prefHeight="18.0" prefWidth="135.0" />
       <Button layoutX="321.0" layoutY="198.0" mnemonicParsing="false" onAction="#onForgotPasswordClick" prefHeight="26.0" prefWidth="151.0" style="-fx-background-color: #ffa31a; -fx-background-radius: 15;" text="Password dimenticata?" textFill="#fff9f9">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <CheckBox fx:id="stayLogged" layoutX="321.0" layoutY="129.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="112.0" text="Mantieni acesso" textFill="#fffbfb" />
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />

@@ -300,4 +300,16 @@ public class SqlHandler {
             throw new RuntimeException(e);
         }
     }
+
+    public void stayLoggedOfLogin(String username){
+        try{
+            PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
+            s.setString(1, "1" );
+            s.setString(2, username );
+            s.executeUpdate();
+            s.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
