@@ -61,7 +61,6 @@ public class MarketController {
         currencyChoiceBox.setOnAction(this::getSelectedCurrency);
 
         updateChart();
-
     }
 }
 

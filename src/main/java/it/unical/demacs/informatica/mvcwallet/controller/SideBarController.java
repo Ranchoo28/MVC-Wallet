@@ -33,7 +33,6 @@ public class SideBarController {
     @FXML
     private Label dateLabel, timeLabel, userLabel;
 
-
     @FXML
     void onLogoutClick() {
         SceneHandler.getInstance().createLogoutAlert("Sei sicuro di voler effettuare il logout?");
