@@ -48,11 +48,6 @@ public class SideBarController {
     }
 
     @FXML
-    void onMarketClick() throws IOException {
-        loadFXMLChart("market-view.fxml");
-    }
-
-    @FXML
     void onSettingsClick() {
         SceneHandler.getInstance().createSettingsScene();
     }
@@ -62,13 +57,11 @@ public class SideBarController {
         SceneHandler.getInstance().createAccountSettingsScene();
     }
 
-
     @FXML
     void initialize() throws IOException{
 
         if(SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
-        if(SettingsHandler.getInstance().page.equals("market")) loadFXMLChart("market-view.fxml");
-
+        if(SettingsHandler.getInstance().page.equals("market")) {loadChart();};
 
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
@@ -163,11 +156,13 @@ public class SideBarController {
         centerPage.setLeftAnchor(pane, 5.0);
     }
 
-    public void loadFXMLChart(String nomeFXML) throws IOException {
+    @FXML
+    void onMarketClick(){
+        loadChart();
+    }
+
+    public void loadChart(){
         centerPage.getChildren().clear();
-        String path = "/it/unical/demacs/informatica/mvcwallet/view/";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
-        AnchorPane pane = fxmlLoader.load();
 
         List<BarData> array = buildBars();
         CandleStickChart chart = new CandleStickChart("SIUM", array, centerPage.getWidth());
@@ -181,8 +176,6 @@ public class SideBarController {
 
     public List<BarData> buildBars() {
 
-        double previusClose = 1850;
-
         final List<BarData> bars = new ArrayList<>();
         Map<String, ArrayList<Double>> dictionary;
 
@@ -191,6 +184,7 @@ public class SideBarController {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+
         for(String key : dictionary.keySet()){
             ArrayList<Double> dailyPrices = dictionary.get(key);
 
@@ -203,7 +197,9 @@ public class SideBarController {
             BarData bar = new BarData(date, openPrice, highPrice, lowPrice, closePrice, 1);
             bars.add(bar);
         }
+
         bars.sort(Comparator.comparing(BarData::getDateTime));
+
         return bars;
     }
 }

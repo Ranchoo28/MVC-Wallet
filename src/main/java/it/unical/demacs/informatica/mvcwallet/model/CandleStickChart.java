@@ -61,7 +61,7 @@ public class CandleStickChart extends XYChart<String, Number> {
 
         int end = sublist.size();
 
-        System.out.println(end+", "+ maxBarsToDisplay);
+        //System.out.println(end+", "+ maxBarsToDisplay);
 
         for (int i = 0 ; i < end; i++) {
             BarData bar = sublist.get(i);
@@ -116,6 +116,7 @@ public class CandleStickChart extends XYChart<String, Number> {
 
     protected List<BarData> getSubList(List<BarData> bars, int maxBars) {
         List<BarData> sublist;
+        if(maxBars == 0) maxBars = 22;
         if (bars.size() > maxBars) {
             return bars.subList(bars.size() - 1 - maxBars, bars.size() - 1);
         } else {
