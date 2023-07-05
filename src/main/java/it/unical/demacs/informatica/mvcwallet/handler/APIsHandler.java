@@ -22,11 +22,10 @@ public class APIsHandler {
     }
 
     /*Coingecko API*/
-    String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart";
-    String vsCurrency = "usd";
+    String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/";
     int days = 5000;
 
-    public Map<String, ArrayList<Double>> getHistoricalData() throws MalformedURLException {
+    public Map<String, ArrayList<Double>> getHistoricalData(String coin, String vsCurrency) throws MalformedURLException {
         // Calcola la data di inizio 365 giorni fa
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = endDate.minusDays(days);
@@ -36,14 +35,15 @@ public class APIsHandler {
         String startFormatted = startDate.format(formatter);
         String endFormatted = endDate.format(formatter);
 
-        // Costruisci l'URL per la richiesta API
-        String requestUrl = coingeckoAPI + "?vs_currency=" + vsCurrency + "&days=" + days
+        // Costruisce l'URL per la richiesta API
+        String requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=" + days
                 + "&start_date=" + startFormatted + "&end_date=" + endFormatted;
 
         // Effettua la richiesta GET all'API di CoinGecko
         try {
             // Effettua la richiesta API
             URL url = new URL(requestUrl);
+            System.out.println(url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 

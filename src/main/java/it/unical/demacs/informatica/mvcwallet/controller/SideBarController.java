@@ -1,11 +1,10 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.APIsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.TimeStampHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
-import it.unical.demacs.informatica.mvcwallet.model.CandleStickChart;
+import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
+import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,7 +19,6 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 
 public class SideBarController {
@@ -36,7 +34,6 @@ public class SideBarController {
     private Label dateLabel, timeLabel, userLabel;
 
 
-
     @FXML
     void onLogoutClick() {
         SceneHandler.getInstance().createLogoutAlert("Sei sicuro di voler effettuare il logout?");
@@ -45,6 +42,11 @@ public class SideBarController {
     @FXML
     void onSpotClick() throws IOException {
         loadFXML("spot-view.fxml");
+    }
+
+    @FXML
+    void onMarketClick() {
+        loadChart();
     }
 
     @FXML
@@ -58,10 +60,13 @@ public class SideBarController {
     }
 
     @FXML
-    void initialize() throws IOException{
+    void initialize() throws IOException {
 
-        if(SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
-        if(SettingsHandler.getInstance().page.equals("market")) {loadChart();};
+        if (SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
+        if (SettingsHandler.getInstance().page.equals("market")) {
+            loadChart();
+        }
+        ;
 
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
@@ -156,16 +161,11 @@ public class SideBarController {
         centerPage.setLeftAnchor(pane, 5.0);
     }
 
-    @FXML
-    void onMarketClick(){
-        loadChart();
-    }
-
-    public void loadChart(){
+    public void loadChart() {
         centerPage.getChildren().clear();
 
-        List<BarData> array = buildBars();
-        CandleStickChart chart = new CandleStickChart("SIUM", array, centerPage.getWidth());
+        List<BarData> array = BuildBars.getInstance().buildBars();
+        CandleStickChart chart = new CandleStickChart(array, centerPage.getWidth());
 
         centerPage.getChildren().add(chart);
         centerPage.setTopAnchor(chart, 5.0);
@@ -173,33 +173,6 @@ public class SideBarController {
         centerPage.setBottomAnchor(chart, 5.0);
         centerPage.setLeftAnchor(chart, 5.0);
     }
-
-    public List<BarData> buildBars() {
-
-        final List<BarData> bars = new ArrayList<>();
-        Map<String, ArrayList<Double>> dictionary;
-
-        try {
-            dictionary = APIsHandler.getInstance().getHistoricalData();
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-
-        for(String key : dictionary.keySet()){
-            ArrayList<Double> dailyPrices = dictionary.get(key);
-
-            double highPrice = Collections.max(dailyPrices);
-            double lowPrice = Collections.min(dailyPrices);
-            double openPrice = dailyPrices.get(0);
-            double closePrice = dailyPrices.get(dailyPrices.size()-1);
-
-            GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key);
-            BarData bar = new BarData(date, openPrice, highPrice, lowPrice, closePrice, 1);
-            bars.add(bar);
-        }
-
-        bars.sort(Comparator.comparing(BarData::getDateTime));
-
-        return bars;
-    }
 }
+
+

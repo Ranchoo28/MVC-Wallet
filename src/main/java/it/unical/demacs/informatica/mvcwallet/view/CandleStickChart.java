@@ -1,5 +1,7 @@
-package it.unical.demacs.informatica.mvcwallet.model;
+package it.unical.demacs.informatica.mvcwallet.view;
 
+import it.unical.demacs.informatica.mvcwallet.model.BarData;
+import it.unical.demacs.informatica.mvcwallet.model.DecimalAxisFormatter;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,15 +35,15 @@ public class CandleStickChart extends XYChart<String, Number> {
     protected NumberAxis yAxis;
     protected CategoryAxis xAxis;
 
-    public CandleStickChart(String title, List<BarData> bars, double paneWidth) {
-        this(title, bars,(int)paneWidth/28);
+    public CandleStickChart(List<BarData> bars, double paneWidth) {
+        this(bars,(int)paneWidth/28);
     }
 
-    public CandleStickChart(String title, List<BarData> bars, int maxBarsToDisplay) {
-        this(title, new CategoryAxis(), new NumberAxis(), bars, maxBarsToDisplay);
+    public CandleStickChart(List<BarData> bars, int maxBarsToDisplay) {
+        this(new CategoryAxis(), new NumberAxis(), bars, maxBarsToDisplay);
     }
 
-    public CandleStickChart(String title, CategoryAxis xAxis, NumberAxis yAxis, List<BarData> bars, int maxBarsToDisplay) {
+    public CandleStickChart(CategoryAxis xAxis, NumberAxis yAxis, List<BarData> bars, int maxBarsToDisplay) {
         super(xAxis, yAxis);
         this.xAxis = xAxis;
         this.yAxis = yAxis;
@@ -49,7 +51,6 @@ public class CandleStickChart extends XYChart<String, Number> {
 
         yAxis.autoRangingProperty().set(true);
         yAxis.forceZeroInRangeProperty().setValue(Boolean.FALSE);
-        setTitle(title);
         setAnimated(true);
         setLegendVisible(false);
         getStylesheets().add(getClass().getResource("/it/unical/demacs/informatica/mvcwallet/css/CandleStickChartStyles.css").toExternalForm());
