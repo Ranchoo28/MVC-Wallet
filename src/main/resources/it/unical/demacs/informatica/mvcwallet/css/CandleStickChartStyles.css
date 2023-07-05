@@ -26,7 +26,7 @@
 /*Contorno candele*/
 .candlestick-line {
     -fx-stroke: rgb(255,255,255,1.00);
-    -fx-stroke-width: 1px;
+    -fx-stroke-width: 2px;
 }
 
 /*Candele verdi*/
@@ -38,7 +38,7 @@
 /*Candele rosse*/
 .candlestick-bar.open-above-close {
     -fx-background-color: rgb(255,0,0,1.00);
-    -fx-border-width: 1, 1,1,1;
+    -fx-border-width: 1,1,1,1;
     -fx-font-weight: bold;
     -fx-border-color: #e2e2e2;
 }
@@ -70,12 +70,15 @@
     -fx-font-family: "Segoe UI Light";
 }
 
+/*Trattini grandi*/
 .axis-tick-mark {
-    -fx-stroke: grey;
-    -fx-stroke-width: 2;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1.5;
 }
+
+/*Trattini piccoli*/
 .axis-minor-tick-mark {
-    -fx-stroke: grey;
+    -fx-stroke: #FFFFFF;
 }
 
 .fx-background-color {
