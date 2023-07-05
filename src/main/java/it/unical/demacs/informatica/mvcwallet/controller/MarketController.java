@@ -15,8 +15,10 @@ import java.util.List;
 public class MarketController {
     private List<String> coins = new ArrayList<>(Arrays.asList("bitcoin", "ethereum", "binancecoin", "solana"));
     private List<String> currencies = new ArrayList<>(Arrays.asList("eur", "usd"));
+    private List<String> timeframes = new ArrayList<>(Arrays.asList("1W", "1M", "1Y"));
     private static String coin = "bitcoin";
     private static String currency = "usd";
+    private static String timeframe = "1M";
 
     @FXML
     private ChoiceBox<String> coinChoiceBox;
@@ -25,12 +27,15 @@ public class MarketController {
     private ChoiceBox<String> currencyChoiceBox;
 
     @FXML
+    private ChoiceBox<String> timeChoiceBox;
+
+    @FXML
     private AnchorPane market;
 
     public void updateChart(){
         market.getChildren().clear();
 
-        List<BarData> array = BuildBars.getInstance().buildBars(coin, currency);
+        List<BarData> array = BuildBars.getInstance().buildBars(coin, currency, timeframe);
         CandleStickChart chart = new CandleStickChart(array, market.getWidth());
 
         market.getChildren().add(chart);
@@ -69,16 +74,24 @@ public class MarketController {
         updateChart();
     }
 
+    public void getSelectedTime(ActionEvent event) {
+        this.timeframe = timeChoiceBox.getValue();
+        updateChart();
+    }
+
     @FXML
     void initialize() {
         coinChoiceBox.getItems().addAll(coins);
         currencyChoiceBox.getItems().addAll(currencies);
+        timeChoiceBox.getItems().addAll(timeframes);
 
         coinChoiceBox.setValue(coin);
         currencyChoiceBox.setValue(currency);
+        timeChoiceBox.setValue(timeframe);
 
         coinChoiceBox.setOnAction(this::getSelectedtCoin);
         currencyChoiceBox.setOnAction(this::getSelectedCurrency);
+        timeChoiceBox.setOnAction(this::getSelectedTime);
 
         updateChart();
     }

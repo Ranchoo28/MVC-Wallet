@@ -12,13 +12,13 @@ public class BuildBars {
         return instance;
     }
 
-    public List<BarData> buildBars(String coin, String currency){
+    public List<BarData> buildBars(String coin, String currency, String timeframe){
 
         final List<BarData> bars = new ArrayList<>();
         Map<String, ArrayList<Double>> dictionary;
 
         try {
-            dictionary = APIsHandler.getInstance().getHistoricalData(coin, currency);
+            dictionary = APIsHandler.getInstance().getHistoricalData(coin, currency, timeframe);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -31,7 +31,7 @@ public class BuildBars {
             double openPrice = dailyPrices.get(0);
             double closePrice = dailyPrices.get(dailyPrices.size()-1);
 
-            GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key);
+            GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key, timeframe);
             BarData bar = new BarData(date, openPrice, highPrice, lowPrice, closePrice, 1);
             bars.add(bar);
         }

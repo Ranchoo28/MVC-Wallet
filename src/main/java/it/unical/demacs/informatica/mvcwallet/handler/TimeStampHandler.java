@@ -15,22 +15,60 @@ public class TimeStampHandler {
         return instance;
     }
 
-    public String convertTimeStamp(long timeStamp){
-        Instant specificTimeStamp = Instant.ofEpochMilli(timeStamp);
-        LocalDate specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        return specificDate.format(formatter);
+    public String convertTimeStamp(long timeStamp, String timeframe){
+        Instant specificTimeStamp;
+        LocalDate specificDate;
+        DateTimeFormatter formatter;
+        switch (timeframe){
+            case "1W":
+                specificTimeStamp = Instant.ofEpochMilli(timeStamp);
+                specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                return specificDate.format(formatter);
+            case "1M":
+                specificTimeStamp = Instant.ofEpochMilli(timeStamp);
+                specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+                return specificDate.format(formatter);
+            case "1Y":
+                specificTimeStamp = Instant.ofEpochMilli(timeStamp);
+                specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
+                formatter = DateTimeFormatter.ofPattern("yyyy");
+                return specificDate.format(formatter);
+            }
+        return null;
     }
 
-    public GregorianCalendar convertToGregorianCalendar(String date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+    public GregorianCalendar convertToGregorianCalendar(String date, String timeframe){
+        SimpleDateFormat dateFormat = new SimpleDateFormat();
         GregorianCalendar calendar = new GregorianCalendar();
 
-        try{
-            calendar.setTime(dateFormat.parse(date));
-        } catch (ParseException e) {
-            System.out.println("Errore durante l'analisi della data.");
+        switch (timeframe){
+            case "1W":
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                try{
+                    calendar.setTime(dateFormat.parse(date));
+                } catch (ParseException e) {
+                    System.out.println("Errore durante l'analisi della data.");
+                }
+                return calendar;
+            case "1M":
+                dateFormat = new SimpleDateFormat("yyyy-MM");
+                try{
+                    calendar.setTime(dateFormat.parse(date));
+                } catch (ParseException e) {
+                    System.out.println("Errore durante l'analisi della data.");
+                }
+                return calendar;
+            case "1Y":
+                dateFormat = new SimpleDateFormat("yyyy");
+                try{
+                    calendar.setTime(dateFormat.parse(date));
+                } catch (ParseException e) {
+                    System.out.println("Errore durante l'analisi della data.");
+                }
+                return calendar;
         }
-        return calendar;
+        return null;
     }
 }

@@ -14,18 +14,24 @@
          <children>
             <HBox alignment="CENTER" spacing="40.0">
                <children>
-                  <Label text="Select Coin" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label text="Coin" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <ChoiceBox fx:id="coinChoiceBox" />
-                  <Label text="Select Currency" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label text="Currency" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <ChoiceBox fx:id="currencyChoiceBox" />
+                  <Label text="Time" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="timeChoiceBox" />
                </children>
                <VBox.margin>
                   <Insets />

@@ -25,8 +25,8 @@ public class APIsHandler {
     String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/";
     int days = 5000;
 
-    public Map<String, ArrayList<Double>> getHistoricalData(String coin, String vsCurrency) throws MalformedURLException {
-        // Calcola la data di inizio di massimo giorni fa
+    public Map<String, ArrayList<Double>> getHistoricalData(String coin, String vsCurrency, String timeframe) throws MalformedURLException {
+        // Calcola la data di inizio di massimo 5000 giorni fa
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = endDate.minusDays(days);
 
@@ -70,7 +70,7 @@ public class APIsHandler {
                     JsonArray priceData = element.getAsJsonArray();
                     long timestamp = priceData.get(0).getAsLong();
 
-                    String localDate = TimeStampHandler.getInstance().convertTimeStamp(timestamp);
+                    String localDate = TimeStampHandler.getInstance().convertTimeStamp(timestamp, timeframe);
                     if(dictionary.containsKey(localDate)){
                         dictionary.get(localDate).add(priceData.get(1).getAsDouble());
                     }

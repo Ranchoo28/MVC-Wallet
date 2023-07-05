@@ -13,14 +13,18 @@ public class TooltipContent extends GridPane {
     private final Label lowValue = new Label();
 
     TooltipContent() {
-        Label open = new Label("OPEN:");
-        Label close = new Label("CLOSE:");
-        Label high = new Label("HIGH:");
-        Label low = new Label("LOW:");
+        Label open = new Label("Open:");
+        Label close = new Label("Close:");
+        Label high = new Label("High:");
+        Label low = new Label("Low:");
         open.getStyleClass().add("candlestick-tooltip-label");
         close.getStyleClass().add("candlestick-tooltip-label");
         high.getStyleClass().add("candlestick-tooltip-label");
         low.getStyleClass().add("candlestick-tooltip-label");
+        openValue.getStyleClass().add("candlestick-tooltip-data-label");
+        closeValue.getStyleClass().add("candlestick-tooltip-data-label");
+        highValue.getStyleClass().add("candlestick-tooltip-data-label");
+        lowValue.getStyleClass().add("candlestick-tooltip-data-label");
         setConstraints(open, 0, 0);
         setConstraints(openValue, 1, 0);
         setConstraints(close, 0, 1);
