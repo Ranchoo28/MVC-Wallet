@@ -17,10 +17,12 @@ public class BarData implements Serializable {
     protected long volume = 0;
     protected long openInterest = 0;
     protected GregorianCalendar dateTime;
+    protected String date;
 
     public BarData() {}
 
-    public BarData( GregorianCalendar dateTime, double open, double high, double low, double close, long volume) {
+    public BarData(String date, GregorianCalendar dateTime, double open, double high, double low, double close, long volume) {
+        this.date = date;
         this.dateTime = dateTime;
         this.open = open;
         this.formattedOpen = format(open);
@@ -34,11 +36,12 @@ public class BarData implements Serializable {
     }
 
     //constructor()
-    public BarData(GregorianCalendar dateTime, double open, double high, double low, double close, long volume, long openInterest) {
-        this(dateTime, open, high, low, close, volume);
+    public BarData(String date, GregorianCalendar dateTime, double open, double high, double low, double close, long volume, long openInterest) {
+        this(date, dateTime, open, high, low, close, volume);
         this.openInterest = openInterest;
     }
 
+    public String getDate(){return date;}
     public GregorianCalendar getDateTime() {
         return dateTime;
     }

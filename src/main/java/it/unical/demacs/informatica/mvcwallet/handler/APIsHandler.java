@@ -43,7 +43,7 @@ public class APIsHandler {
         try {
             // Effettua la richiesta API
             URL url = new URL(requestUrl);
-            System.out.println(url);
+            //System.out.println(url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 

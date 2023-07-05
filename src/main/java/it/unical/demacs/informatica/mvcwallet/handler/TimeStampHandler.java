@@ -40,7 +40,7 @@ public class TimeStampHandler {
     }
 
     public GregorianCalendar convertToGregorianCalendar(String date, String timeframe){
-        SimpleDateFormat dateFormat = new SimpleDateFormat();
+        SimpleDateFormat dateFormat;
         GregorianCalendar calendar = new GregorianCalendar();
 
         switch (timeframe){

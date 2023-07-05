@@ -32,7 +32,8 @@ public class BuildBars {
             double closePrice = dailyPrices.get(dailyPrices.size()-1);
 
             GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key, timeframe);
-            BarData bar = new BarData(date, openPrice, highPrice, lowPrice, closePrice, 1);
+
+            BarData bar = new BarData(key, date, openPrice, highPrice, lowPrice, closePrice, 1);
             bars.add(bar);
         }
 
