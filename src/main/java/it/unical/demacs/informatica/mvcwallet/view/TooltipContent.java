@@ -21,10 +21,12 @@ public class TooltipContent extends GridPane {
         close.getStyleClass().add("candlestick-tooltip-label");
         high.getStyleClass().add("candlestick-tooltip-label");
         low.getStyleClass().add("candlestick-tooltip-label");
+
         openValue.getStyleClass().add("candlestick-tooltip-data-label");
         closeValue.getStyleClass().add("candlestick-tooltip-data-label");
         highValue.getStyleClass().add("candlestick-tooltip-data-label");
         lowValue.getStyleClass().add("candlestick-tooltip-data-label");
+
         setConstraints(open, 0, 0);
         setConstraints(openValue, 1, 0);
         setConstraints(close, 0, 1);

@@ -23,7 +23,7 @@ public class TimeStampHandler {
             case "1W":
                 specificTimeStamp = Instant.ofEpochMilli(timeStamp);
                 specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
-                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                formatter = DateTimeFormatter.ofPattern("yyyy-ww");
                 return specificDate.format(formatter);
             case "1M":
                 specificTimeStamp = Instant.ofEpochMilli(timeStamp);
@@ -45,7 +45,7 @@ public class TimeStampHandler {
 
         switch (timeframe){
             case "1W":
-                dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                dateFormat = new SimpleDateFormat("yyyy-ww");
                 try{
                     calendar.setTime(dateFormat.parse(date));
                 } catch (ParseException e) {

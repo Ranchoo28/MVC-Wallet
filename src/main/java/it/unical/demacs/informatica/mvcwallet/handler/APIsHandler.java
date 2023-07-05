@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import com.google.gson.Gson;
@@ -23,11 +24,13 @@ public class APIsHandler {
 
     /*Coingecko API*/
     String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/";
-    int days = 5000;
+
+    LocalDate today = LocalDate.now();
+    LocalDate decemberTwelveTwelve = LocalDate.of(2012, 12, 12);
+    int days = (int) ChronoUnit.DAYS.between(decemberTwelveTwelve, today);
 
     public Map<String, ArrayList<Double>> getHistoricalData(String coin, String vsCurrency, String timeframe) throws MalformedURLException {
-        // Calcola la data di inizio di massimo 5000 giorni fa
-        LocalDate endDate = LocalDate.now();
+        LocalDate endDate = today;
         LocalDate startDate = endDate.minusDays(days);
 
         // Formatta le date nel formato richiesto da Coingecko
