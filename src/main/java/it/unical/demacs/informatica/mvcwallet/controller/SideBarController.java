@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -52,8 +53,10 @@ public class SideBarController {
     }
 
     @FXML
-    void onSettingsClick() {
-        SceneHandler.getInstance().createSettingsScene();
+    void onSettingsClick() throws IOException {
+        spotHBox.setDisable(false);
+        marketHBox.setDisable(false);
+        loadFXML("settings-view.fxml");
     }
 
     @FXML
@@ -88,10 +91,11 @@ public class SideBarController {
             }
         });
 
-        /*
+        /* FIXME
         String [] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
         userLabel.setText(array[0] + " " + array[1]);
-        */
+         */
+
 
         // Icona per l'utente
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
