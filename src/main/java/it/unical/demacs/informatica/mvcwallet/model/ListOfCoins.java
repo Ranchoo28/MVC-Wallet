@@ -28,7 +28,9 @@ public class ListOfCoins {
         return coins;
     }
     public List<String> getCoinNames() {
-        return new ArrayList<>(coins.keySet());
+        ArrayList<String> coinNames = new ArrayList<>(coins.keySet());
+        Collections.sort(coinNames);
+        return coinNames;
     }
     /*
     Bisogna implementare un metodo per controllare che il nome sia corretto.

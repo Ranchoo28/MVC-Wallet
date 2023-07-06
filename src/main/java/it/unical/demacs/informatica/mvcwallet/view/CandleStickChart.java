@@ -115,9 +115,7 @@ public class CandleStickChart extends XYChart<String, Number> {
     }
 
     // -------------- METHODS ------------------------------------------------------------------------------------------
-    /**
-     * Called to update and layout the content for the plot
-     */
+
     @Override
     protected void layoutPlotChildren() {
         // we have nothing to layout if no data is present
@@ -254,51 +252,4 @@ public class CandleStickChart extends XYChart<String, Number> {
         }
         return candle;
     }
-
-    /**
-     * This is called when the range has been invalidated and we need to update
-     * it. If the axis are auto ranging then we compile a list of all data that
-     * the given axis has to plot and call invalidateRange() on the axis passing
-     * it that data.
-     */
-    @Override
-    protected void updateAxisRange() {
-        // For candle stick chart we need to override this method as we need to let the axis know that they need to be able
-        // to cover the whole area occupied by the high to low range not just its center data value
-        final Axis<String> xa = getXAxis();
-        final Axis<Number> ya = getYAxis();
-        List<String> xData = null;
-        List<Number> yData = null;
-        if (xa.isAutoRanging()) {
-            xData = new ArrayList<>();
-        }
-        if (ya.isAutoRanging()) {
-            yData = new ArrayList<>();
-        }
-        if (xData != null || yData != null) {
-            for (Series<String, Number> series : getData()) {
-                for (Data<String, Number> data : series.getData()) {
-                    if (xData != null) {
-                        xData.add(data.getXValue());
-                    }
-                    if (yData != null) {
-                        BarData extras = (BarData) data.getExtraValue();
-                        if (extras != null) {
-                            yData.add(extras.getHigh());
-                            yData.add(extras.getLow());
-                        } else {
-                            yData.add(data.getYValue());
-                        }
-                    }
-                }
-            }
-            if (xData != null) {
-                xa.invalidateRange(xData);
-            }
-            if (yData != null) {
-                ya.invalidateRange(yData);
-            }
-        }
-    }
-    protected static CandleStickChart chart;
 }
