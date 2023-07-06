@@ -12,16 +12,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
+<AnchorPane minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
    <children>
-      <BorderPane fx:id="bp" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="700.0" style="-fx-background-radius: 10px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="bp" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 10px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox fx:id="sideBar" alignment="CENTER" prefHeight="278.0" prefWidth="150.0" spacing="1.0" style="-fx-background-radius: 8px;" styleClass="global-color" BorderPane.alignment="CENTER">
+            <VBox fx:id="sideBar" alignment="CENTER" spacing="1.0" style="-fx-background-radius: 8px;" styleClass="global-color" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" prefWidth="130.0" styleClass="hbox">
+                  <HBox fx:id="spotHBox" alignment="CENTER" maxWidth="200.0" minWidth="150.0" onMouseClicked="#onSpotClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
                         <Label fx:id="moneyLabel" alignment="CENTER" text="Spot" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -33,7 +33,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
+                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
                         <Label fx:id="cryptoLabel" alignment="CENTER" text="Market" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -45,7 +45,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
+                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" maxWidth="100.0" minWidth="200.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
                         <Label fx:id="logoutLabel" alignment="CENTER" text="Logout" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -61,9 +61,9 @@
             </VBox>
          </left>
          <top>
-            <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="600.0" spacing="50.0" styleClass="global-color" stylesheets="@../css/main.css" BorderPane.alignment="CENTER">
+            <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" spacing="50.0" styleClass="global-color" stylesheets="@../css/main.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="userLabel" onMouseClicked="#onAccountClick" stylesheets="@../css/main.css" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="200.0" onMouseClicked="#onAccountClick" stylesheets="@../css/main.css" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="MS Outlook" size="14.0" />
                      </font>
