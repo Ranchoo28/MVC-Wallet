@@ -64,8 +64,16 @@ public class SideBarController {
     @FXML
     void initialize() throws IOException {
 
-        if (SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
-        if (SettingsHandler.getInstance().page.equals("market")) loadFXML("market-view.fxml");
+        if (SettingsHandler.getInstance().page.equals("spot")){
+            spotHBox.setDisable(true);
+            marketHBox.setDisable(false);
+            loadFXML("spot-view.fxml");
+        }
+        if (SettingsHandler.getInstance().page.equals("market")){
+            spotHBox.setDisable(false);
+            marketHBox.setDisable(true);
+            loadFXML("market-view.fxml");
+        }
 
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {

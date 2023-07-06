@@ -12,13 +12,53 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SettingsController">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="200.0" spacing="100.0">
+            <HBox alignment="CENTER" spacing="20.0">
                <children>
-                  <MenuButton fx:id="languageMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Lingua">
+                  <MenuButton alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Pagina iniziale" textAlignment="CENTER">
+                     <items>
+                        <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick" text="Spot" />
+                        <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick" text="Market" />
+                     </items>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Valuta">
+                     <items>
+                        <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" text="EUR" />
+                        <RadioMenuItem fx:id="usdCurrency" mnemonicParsing="false" text="USD" />
+                     </items>
+                     <font>
+                        <Font name="MS Outlook" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </MenuButton>
+                  <CheckBox fx:id="stayLogged" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Mantieni accesso" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Line startX="-500.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="25.0" top="25.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <MenuButton fx:id="languageMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Lingua">
                      <items>
                         <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false" text="Italiano" />
                         <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false" text="Inglese" />
@@ -30,7 +70,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </MenuButton>
-                  <MenuButton fx:id="themesMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Temi">
+                  <MenuButton fx:id="themesMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Temi">
                     <items>
                         <RadioMenuItem fx:id="whiteTheme" mnemonicParsing="false" text="Chiaro" />
                         <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false" text="Scuro" />
@@ -43,7 +83,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </MenuButton>
-                  <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" text="Formato ora">
+                  <MenuButton alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Formato ora">
                      <items>
                         <RadioMenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick" text="12H" />
                         <RadioMenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick" text="24H" />
@@ -56,60 +96,26 @@
                      </cursor>
                   </MenuButton>
                </children>
-               <padding>
-                  <Insets top="70.0" />
-               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <Line startX="-600.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="200.0" spacing="100.0">
-               <children>
-                  <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Pagina iniziale">
-                     <items>
-                        <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick" text="Spot" />
-                        <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick" text="Market" />
-                     </items>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-                  <CheckBox fx:id="stayLogged" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="118.0" text="Mantieni accesso" />
-                  <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Valuta">
-                     <items>
-                        <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" text="EUR" />
-                        <RadioMenuItem fx:id="usdCurrency" mnemonicParsing="false" text="USD" />
-                     </items>
-                     <font>
-                        <Font name="MS Outlook" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-               </children>
-               <padding>
-                  <Insets bottom="250.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="250.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onSaveClick" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffa31a;" text="Salva" textFill="WHITE">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="70.0" style="-fx-background-color: #ffa31a;" text="Salva" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #ffa31a;" text="Indietro" textFill="WHITE">
+                  <Button contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="80.0" style="-fx-background-color: #ffa31a;" text="Indietro" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
                </children>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
