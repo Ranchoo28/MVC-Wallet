@@ -15,7 +15,7 @@
          <children>
             <HBox fx:id="hboxProfile" alignment="CENTER" onMouseClicked="#onProfileClick" prefHeight="54.0" prefWidth="200.0" styleClass="hbox">
                <children>
-                  <Label fx:id="profileLabel" prefHeight="18.0" prefWidth="117.0" text="Profilo" textFill="WHITE">
+                  <Label fx:id="profileLabel" prefHeight="18.0" prefWidth="117.0" text="Profile" textFill="WHITE">
                      <font>
                         <Font name="MS Outlook" size="15.0" />
                      </font>
@@ -27,7 +27,7 @@
             </HBox>
             <HBox fx:id="hboxSettings" alignment="CENTER" layoutX="10.0" layoutY="86.0" prefHeight="58.0" prefWidth="200.0" styleClass="hbox">
                <children>
-                  <Label fx:id="settingsLabel" prefHeight="18.0" prefWidth="118.0" text="Impostazioni" textFill="WHITE">
+                  <Label fx:id="settingsLabel" prefHeight="18.0" prefWidth="118.0" text="Change Password" textFill="WHITE">
                      <font>
                         <Font name="MS Outlook" size="15.0" />
                      </font>
@@ -39,7 +39,7 @@
             </HBox>
             <HBox fx:id="hboxBack" alignment="CENTER" layoutX="10.0" layoutY="190.0" onMouseClicked="#onBackClick" prefHeight="58.0" prefWidth="200.0" styleClass="hbox">
                <children>
-                  <Label fx:id="backLabel" prefHeight="58.0" prefWidth="116.0" text="Indietro" textFill="WHITE">
+                  <Label fx:id="backLabel" prefHeight="58.0" prefWidth="116.0" text="Back" textFill="WHITE">
                      <font>
                         <Font name="MS Outlook" size="15.0" />
                      </font>

@@ -14,51 +14,42 @@ import javafx.scene.control.*;
 public class ProfileController {
     String [] nameSurnameArray;
     @FXML
-    private TextField usernameText, nameText, surnameText;
+    private TextField usernameTextField, firstTextField, lastTextField;
 
     @FXML
-    private Button applyButton;
+    private PasswordField passwordField;
 
     @FXML
-    private Button backButton;
+    private CheckBox showPassCheckBox;
 
     @FXML
-    private Label checkLabel;
+    private Button saveButton, cancelButton;
+
     boolean isGoodUsername, isGoodName, isGoodSurname;
 
 
     @FXML
-    void onChangeUsernameButtonClick() {
-        if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameText.getText())) {
-            LoginController.username = usernameText.getText();
+    void onSaveClick() {
+        if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameTextField.getText())) {
+            LoginController.username = usernameTextField.getText();
             SceneHandler.getInstance().createChangedAlert("username");
             SceneHandler.getInstance().createSideBar();
-        } else System.out.println("nome non cambiato");
-
-    }
-
-    @FXML
-    void onChangeNameButtonClick() {
-        if (SqlService.getIstance().serviceChangeName(nameText.getText(), usernameText.getText())) {
+        } else System.out.println("username non cambiato");
+        if (SqlService.getIstance().serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
             SceneHandler.getInstance().createChangedAlert("nome");
             SceneHandler.getInstance().createSideBar();
-        }
-
-    }
-
-    @FXML
-    void onChangeSurnameButtonClick() {
-        if (SqlService.getIstance().serviceChangeSurName(surnameText.getText(), usernameText.getText())) {
+        } else System.out.println("nome non cambiato");
+        if (SqlService.getIstance().serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
             SceneHandler.getInstance().createChangedAlert("cognome");
             SceneHandler.getInstance().createSideBar();
-        }
+        } else System.out.println("cognome non cambiato");
     }
 
 
     private boolean isGoodApply(String username,String name, String surname){
         if ((username.length() >= 5 && !SqlHandler.getIstance().checkUsername(username))
-                && (name.length()>=1 && !name.equals(nameText.getText()))
-                && (surname.length()>=1 && !surname.equals(surnameText.getText())))
+                && (name.length()>=1 && !name.equals(firstTextField.getText()))
+                && (surname.length()>=1 && !surname.equals(lastTextField.getText())))
             return true;
         else return false;
     }
@@ -67,21 +58,21 @@ public class ProfileController {
 
     @FXML
     void initialize() {
-        applyButton.setDisable(true);
+        saveButton.setDisable(true);
         nameSurnameArray = SqlHandler.getIstance().getNameSurname(LoginController.username);
         String[] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
-        nameText.setText(array[0]);
-        surnameText.setText(array[1]);
+        firstTextField.setText(array[0]);
+        lastTextField.setText(array[1]);
 
 
 
-        usernameText.setText(LoginController.username);
-        usernameText.textProperty().addListener(new ChangeListener<String>() {
+        usernameTextField.setText(LoginController.username);
+        usernameTextField.textProperty().addListener(new ChangeListener<String>() {
 
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 System.out.println(SqlHandler.getIstance().checkUsername(newValue));
-                if (isGoodApply(usernameText.getText(), nameText.getText(), surnameText.getText())){
+                if (isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText())){
                     isGoodUsername = true;
                 }else{
                     isGoodUsername = false;
@@ -102,11 +93,11 @@ public class ProfileController {
 
 
 
-        nameText.textProperty().addListener(new ChangeListener<String>() {
+        firstTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-                if (isGoodApply(usernameText.getText(), nameText.getText(), surnameText.getText())){
+                if (isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText())){
                     isGoodName = true;
                 }else{
                     isGoodName = false;
@@ -125,12 +116,12 @@ public class ProfileController {
             }
         });
 
-        surnameText.textProperty().addListener(new ChangeListener<String>() {
+        lastTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println(usernameText.getText());
-                System.out.println(SqlHandler.getIstance().checkUsername(usernameText.getText()));
-                if (isGoodApply(usernameText.getText(), nameText.getText(), surnameText.getText())){
+                System.out.println(usernameTextField.getText());
+                System.out.println(SqlHandler.getIstance().checkUsername(usernameTextField.getText()));
+                if (isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText())){
                     isGoodSurname = true;
                 }else{
                     isGoodSurname = false;
@@ -156,9 +147,9 @@ public class ProfileController {
         Platform.runLater(() -> {
             BooleanBinding bb = new BooleanBinding() {
                 {
-                    super.bind(usernameText.textProperty()
-                               ,nameText.textProperty()
-                               ,surnameText.textProperty());
+                    super.bind(usernameTextField.textProperty()
+                               ,firstTextField.textProperty()
+                               ,lastTextField.textProperty());
                 }
 
                 @Override
@@ -166,9 +157,7 @@ public class ProfileController {
                     return  isGoodUsername || isGoodName  || isGoodSurname;
                 }
             };
-            applyButton.disableProperty().bind(bb);
+            saveButton.disableProperty().bind(bb);
         });
     }
-
-
 }
