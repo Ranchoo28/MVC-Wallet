@@ -44,8 +44,7 @@ public class SpotsController {
         ObservableList<Coin> A= FXCollections.observableArrayList();
         A.add(new Coin("BTC",0.102));
         coinsColmun.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        allColumn.setCellValueFactory(new PropertyValueFactory<>("all"));
-        equivalentColumn.setCellValueFactory(new PropertyValueFactory<>("equivalent"));
+        allColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
         tableCoins.setItems(A);
     }
 

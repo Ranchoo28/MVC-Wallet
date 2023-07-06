@@ -101,5 +101,7 @@ public class SqlService {
        finally { queryExe.shutdown(); }
        //System.out.println( "Settings: " + ref.settings[0] +  ref.settings[1] + ref.settings[2]);
        return ref.settings;
+
    }
+
 }

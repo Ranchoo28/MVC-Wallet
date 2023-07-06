@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,6 +17,9 @@
                <font>
                   <Font size="36.0" />
                </font>
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin>
             </Label>
          </children></HBox>
       <VBox layoutX="104.0" layoutY="151.0" prefHeight="242.0" prefWidth="432.0" spacing="25.0">
@@ -28,53 +28,31 @@
                <children>
                   <Label prefHeight="31.0" prefWidth="88.0" text="Username" />
                   <TextField fx:id="usernameText" style="-fx-background-radius: 10;" />
-                  <Button fx:id="usernameButton" disable="true" mnemonicParsing="false" onAction="#onChangeUsernameButtonClick" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
+                  <Label fx:id="checkLabel" prefHeight="29.0" prefWidth="61.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="563.0" spacing="40.0">
                <children>
-                  <Label prefHeight="31.0" prefWidth="88.0" text="Nome" />
+                  <Label prefHeight="31.0" prefWidth="88.0" text="Name" />
                   <TextField fx:id="nameText" style="-fx-background-radius: 10;" />
-                  <Button fx:id="nameButton" disable="true" mnemonicParsing="false" onAction="#onChangeNameButtonClick" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="46.0" prefHeight="36.0" prefWidth="474.0" spacing="40.0">
                <children>
-                  <Label prefHeight="31.0" prefWidth="88.0" text="Cognome" />
+                  <Label prefHeight="31.0" prefWidth="88.0" text="Surname" />
                   <TextField fx:id="surnameText" style="-fx-background-radius: 10;" />
-                  <Button fx:id="surnameButton" disable="true" mnemonicParsing="false" onAction="#onChangeSurnameButtonClick" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox fx:id="hboxPass" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="563.0" spacing="40.0">
-               <children>
-                  <Label prefHeight="31.0" prefWidth="88.0" text="Password" />
-                  <Pane>
-                     <children>
-                        <TextField fx:id="passwordText" style="-fx-background-radius: 10;" />
-                        <PasswordField fx:id="passwordField" editable="false" style="-fx-background-radius: 10;" />
-                        <CheckBox fx:id="showPasswordCheckBox" layoutX="5.0" layoutY="35.0" mnemonicParsing="false" onAction="#changeVisibility" prefHeight="18.0" prefWidth="146.0" text="Mostra password" />
-                     </children>
-                  </Pane>
-                  <Button fx:id="passwordButton" disable="true" mnemonicParsing="false" onAction="#onChangePasswordButtonClick" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 15;" text="Cambia">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                </children>
             </HBox>
          </children>
       </VBox>
+      <Button fx:id="backButton" layoutX="219.0" layoutY="394.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="applyButton" layoutX="340.0" layoutY="394.0" mnemonicParsing="false" text="Apply" />
    </children>
 </AnchorPane>

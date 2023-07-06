@@ -166,9 +166,12 @@ public class SqlHandler {
 
     public boolean checkUsername(String username){
         try{
-            PreparedStatement s = con.prepareStatement("select username from users where username = ?");
-             if(s.execute()) return false;
-             else return true;
+            PreparedStatement s = con.prepareStatement("select username from users");
+            ResultSet s1 = s.executeQuery();
+            while(s1.next())
+                if(s1.getString(1).equals(username))
+                    return true;
+            return false;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
