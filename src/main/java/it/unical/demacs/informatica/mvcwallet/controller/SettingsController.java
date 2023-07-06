@@ -11,8 +11,6 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import java.util.Set;
 
 public class SettingsController {
-    @FXML
-    private MenuButton languageMenu, themesMenu;
 
     @FXML
     private Label accessibilityLabel, accountLabel;
@@ -22,11 +20,12 @@ public class SettingsController {
 
     @FXML
     private RadioMenuItem italianLanguage, englishLanguage,
-            whiteTheme, darkTheme, mvcTheme,
+            lightTheme, darkTheme, mvcTheme, marketPage, spotPage,
             h24Time, h12Time,
-            spotPage, marketPage,
             eurCurrency, usdCurrency;
 
+    @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
+            currencyMenuButton, languageMenuButton, themeMenuButton;
     @FXML
     void on12hClick() {
         h12Choosen();
@@ -83,34 +82,38 @@ public class SettingsController {
         // Icona per i temi
         FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
         iconThemes.setIconSize(25);
-        themesMenu.setContentDisplay(ContentDisplay.RIGHT);
-        themesMenu.setGraphic(iconThemes);
+        themeMenuButton.setContentDisplay(ContentDisplay.RIGHT);
+        themeMenuButton.setGraphic(iconThemes);
 
         // Icona per la lingua
         FontIcon iconLanguage = new FontIcon("mdi2e-earth");
         iconLanguage.setIconSize(25);
-        languageMenu.setContentDisplay(ContentDisplay.RIGHT);
-        languageMenu.setGraphic(iconLanguage);
+        languageMenuButton.setContentDisplay(ContentDisplay.RIGHT);
+        languageMenuButton.setGraphic(iconLanguage);
     }
 
     private void h12Choosen(){
         h12Time.setSelected(true);
         h24Time.setSelected(false);
+        timeFormatMenuButton.setText("12H");
     }
 
     private void h24Choosen(){
         h12Time.setSelected(false);
         h24Time.setSelected(true);
+        timeFormatMenuButton.setText("24H");
     }
 
     private void spotChoosen(){
         spotPage.setSelected(true);
         marketPage.setSelected(false);
+        mainPageMenuButton.setText("Spot");
     }
 
     private void marketChoosen(){
         spotPage.setSelected(false);
         marketPage.setSelected(true);
+        mainPageMenuButton.setText("Market");
     }
 
     private void stayLogged(){

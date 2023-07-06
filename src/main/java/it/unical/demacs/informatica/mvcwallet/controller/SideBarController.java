@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -29,6 +30,8 @@ public class SideBarController {
     private AnchorPane centerPage;
     @FXML
     private Label dateLabel, timeLabel, userLabel;
+    @FXML
+    private HBox spotHBox, marketHBox, logoutHBox;
 
     @FXML
     void onLogoutClick() {
@@ -37,17 +40,26 @@ public class SideBarController {
 
     @FXML
     void onSpotClick() throws IOException {
+        labelSettings.setDisable(false);
+        spotHBox.setDisable(true);
+        marketHBox.setDisable(false);
         loadFXML("spot-view.fxml");
     }
 
     @FXML
     void onMarketClick() throws IOException {
+        labelSettings.setDisable(false);
+        spotHBox.setDisable(false);
+        marketHBox.setDisable(true);
         loadFXML("market-view.fxml");
     }
 
     @FXML
-    void onSettingsClick() {
-        SceneHandler.getInstance().createSettingsScene();
+    void onSettingsClick() throws IOException {
+        labelSettings.setDisable(true);
+        spotHBox.setDisable(false);
+        marketHBox.setDisable(false);
+        loadFXML("settings-view.fxml");
     }
 
     @FXML
@@ -58,8 +70,16 @@ public class SideBarController {
     @FXML
     void initialize() throws IOException {
 
-        if (SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
-        if (SettingsHandler.getInstance().page.equals("market")) loadFXML("market-view.fxml");
+        if (SettingsHandler.getInstance().page.equals("spot")){
+            spotHBox.setDisable(true);
+            marketHBox.setDisable(false);
+            loadFXML("spot-view.fxml");
+        }
+        if (SettingsHandler.getInstance().page.equals("market")){
+            spotHBox.setDisable(false);
+            marketHBox.setDisable(true);
+            loadFXML("market-view.fxml");
+        }
 
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
@@ -74,10 +94,11 @@ public class SideBarController {
             }
         });
 
-        /*
+        /* FIXME
         String [] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
         userLabel.setText(array[0] + " " + array[1]);
-        */
+         */
+
 
         // Icona per l'utente
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");

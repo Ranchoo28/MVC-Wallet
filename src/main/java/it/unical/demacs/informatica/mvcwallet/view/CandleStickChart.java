@@ -56,9 +56,13 @@ public class CandleStickChart extends XYChart<String, Number> {
         List<BarData> sublist = getSubList(bars, maxBarsToDisplay);
 
         int end = sublist.size();
+        double highestValue = 0;
+        double lowestValue = 0;
+
 
         for (int i = 0 ; i < end; i++) {
             BarData bar = sublist.get(i);
+
             String label = "";
             label = bar.getDate();
             series.getData().add(new XYChart.Data<>(label, bar.getOpen(), bar));

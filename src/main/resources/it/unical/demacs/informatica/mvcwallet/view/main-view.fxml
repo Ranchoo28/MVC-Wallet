@@ -21,7 +21,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <HBox fx:id="moneyHbox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" prefWidth="130.0" styleClass="hbox">
+                  <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" prefWidth="130.0" styleClass="hbox">
                      <children>
                         <Label fx:id="moneyLabel" alignment="CENTER" text="Spot" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -33,7 +33,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="cryptoHbox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
+                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
                         <Label fx:id="cryptoLabel" alignment="CENTER" text="Markets" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -45,7 +45,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="logoutHbox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
+                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
                         <Label fx:id="logoutLabel" alignment="CENTER" text="Esci" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>

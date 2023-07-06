@@ -45,6 +45,7 @@ public class SpotsController {
         A.add(new Coin("BTC",0.102));
         coinsColmun.setCellValueFactory(new PropertyValueFactory<>("Name"));
         allColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
+        //equivalentColumn.setCellValueFactory(new PropertyValueFactory<>("Equivalent"));
         tableCoins.setItems(A);
     }
 
