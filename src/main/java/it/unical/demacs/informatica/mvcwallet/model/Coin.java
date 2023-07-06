@@ -4,40 +4,26 @@ import java.util.Objects;
 
 public class Coin {
     private String name;
-    private double all;
-    private double equivalent;
+    private double amount;
 
-    public Coin(String name, double all, double equivalent){
+    public Coin(String name, double amount){
             this.name = name;
-            this.all = all;
-            this.equivalent = equivalent;
+            this.amount = amount;
     }
-
-
     public String getName() {
         return name;
     }
-
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public double getAll() {
-        return all;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setAll(double all) {
-        this.all = all;
-    }
-
-    public double getEquivalent() {
-        return equivalent;
-    }
-
-    public void setEquivalent(double equivalent) {
-        this.equivalent = equivalent;
+    public void setAmount(double all) {
+        this.amount = all;
     }
 
     @Override

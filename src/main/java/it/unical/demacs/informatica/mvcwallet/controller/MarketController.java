@@ -2,11 +2,11 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
+import it.unical.demacs.informatica.mvcwallet.model.ListOfCoins;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MarketController {
-    private List<String> coins = new ArrayList<>(Arrays.asList("Bitcoin", "Ethereum", "Binance Coin", "Solana", "Ciolla colin"));
-    private List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
-    private List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
+    private final List<String> coins = ListOfCoins.getInstance().getCoinNames();
+    private final List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
+    private final List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
     private static String coin = "Bitcoin";
     private static String currency = "USD";
     private static String timeframe = "1D";
@@ -45,22 +45,6 @@ public class MarketController {
         market.setRightAnchor(chart, 5.0);
         market.setBottomAnchor(chart, 5.0);
         market.setLeftAnchor(chart, 0.0);
-    }
-
-    public void addCoin(String coin){
-        coins.add(coin);
-    }
-
-    public void removeCoin(String coin){
-        if(coin.contains(coin)) coins.remove(coin);
-    }
-
-    public void addCurrency(String currency){
-        currencies.add(currency);
-    }
-
-    public void removeCurrency(String currency){
-        if(currencies.contains(currency)) currencies.remove(currency);
     }
 
     @FXML

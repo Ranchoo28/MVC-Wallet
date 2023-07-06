@@ -39,7 +39,7 @@ public class APIsHandler {
         String requestUrl = "";
 
         // Costruisce l'URL per la richiesta API
-        if(timeframe == "1D") {
+        if(timeframe == "1D") { //Limitato a 90 giorni
             requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=90" + "&interval=1m";
         } else{
             requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=" + days + "&start_date=" + startFormatted + "&end_date=" + endFormatted + "&interval=1m";
