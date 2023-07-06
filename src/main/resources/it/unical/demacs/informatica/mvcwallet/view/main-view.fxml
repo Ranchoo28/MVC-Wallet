@@ -35,7 +35,7 @@
                   </HBox>
                   <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
-                        <Label fx:id="cryptoLabel" alignment="CENTER" text="Markets" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="cryptoLabel" alignment="CENTER" text="Market" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="MS Outlook" size="15.0" />
                            </font>
@@ -47,7 +47,7 @@
                   </HBox>
                   <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
-                        <Label fx:id="logoutLabel" alignment="CENTER" text="Esci" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="logoutLabel" alignment="CENTER" text="Logout" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="MS Outlook" size="15.0" />
                            </font>
@@ -90,7 +90,7 @@
                         <Font name="MS Outlook" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelSettings" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onSettingsClick" style="ù: ù;" text="Impostazioni" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="labelSettings" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onSettingsClick" style="ù: ù;" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -102,17 +102,17 @@
                      <items>
                         <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
                            <content>
-                              <JFXToggleButton size="5.0" text="Testo ad alto contrasto" />
+                              <JFXToggleButton size="5.0" text="High Contrast" />
                            </content>
                         </CustomMenuItem>
                         <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
                            <content>
-                              <JFXToggleButton size="5.0" text="Lettore schermo" />
+                              <JFXToggleButton size="5.0" text="Large Text" />
                            </content>
                         </CustomMenuItem>
                         <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
                            <content>
-                              <JFXToggleButton size="5.0" text="Testo largo" />
+                              <JFXToggleButton size="5.0" text="Screen Reader" />
                            </content>
                         </CustomMenuItem>
                      </items>
