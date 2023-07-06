@@ -17,15 +17,15 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="25.0">
                      <children>
-                        <Label prefHeight="25.0" text="Username" textFill="WHITE">
+                        <Label prefHeight="25.0" text="Username">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label prefHeight="25.0" text="First name" textFill="WHITE">
+                        <Label prefHeight="25.0" text="First name">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
-                        <Label prefHeight="25.0" text="Last name" textFill="WHITE">
+                        <Label prefHeight="25.0" text="Last name">
                            <font>
                               <Font size="18.0" />
                            </font></Label>
@@ -51,6 +51,14 @@
                      </font>
                   </Button>
                   <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" text="Cancel" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cancelButton1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="200.0" style="-fx-background-color: #ffa31a;" text="Change Password" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

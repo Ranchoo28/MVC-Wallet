@@ -23,13 +23,13 @@ public class SideBarController {
     @FXML
     private MenuButton accessMenu;
     @FXML
-    private Label labelUser;
+    private Label userLabel;
     @FXML
-    private Label labelSettings, moneyLabel, cryptoLabel, logoutLabel;
+    private Label settingsLabel, moneyLabel, cryptoLabel, logoutLabel;
     @FXML
     private AnchorPane centerPage;
     @FXML
-    private Label dateLabel, timeLabel, userLabel;
+    private Label dateLabel, timeLabel;
     @FXML
     private HBox spotHBox, marketHBox, logoutHBox;
 
@@ -40,7 +40,8 @@ public class SideBarController {
 
     @FXML
     void onSpotClick() throws IOException {
-        labelSettings.setDisable(false);
+        userLabel.setDisable(false);
+        settingsLabel.setDisable(false);
         spotHBox.setDisable(true);
         marketHBox.setDisable(false);
         loadFXML("spot-view.fxml");
@@ -48,7 +49,8 @@ public class SideBarController {
 
     @FXML
     void onMarketClick() throws IOException {
-        labelSettings.setDisable(false);
+        userLabel.setDisable(false);
+        settingsLabel.setDisable(false);
         spotHBox.setDisable(false);
         marketHBox.setDisable(true);
         loadFXML("market-view.fxml");
@@ -56,15 +58,20 @@ public class SideBarController {
 
     @FXML
     void onSettingsClick() throws IOException {
-        labelSettings.setDisable(true);
+        userLabel.setDisable(false);
+        settingsLabel.setDisable(true);
         spotHBox.setDisable(false);
         marketHBox.setDisable(false);
         loadFXML("settings-view.fxml");
     }
 
     @FXML
-    void onAccountClick() {
-        SceneHandler.getInstance().createAccountSettingsScene();
+    void onAccountClick() throws IOException {
+        userLabel.setDisable(true);
+        settingsLabel.setDisable(false);
+        spotHBox.setDisable(false);
+        marketHBox.setDisable(false);
+        loadFXML("profile-view.fxml");
     }
 
     @FXML
@@ -124,9 +131,9 @@ public class SideBarController {
         // Icon del bottone dei settings
         FontIcon iconSettings = new FontIcon("mdi2c-cog"); //mid2c-cogs
         iconSettings.setIconSize(25);
-        labelSettings.setContentDisplay(ContentDisplay.LEFT);
+        settingsLabel.setContentDisplay(ContentDisplay.LEFT);
         iconSettings.setIconColor(Paint.valueOf("#fff"));
-        labelSettings.setGraphic(iconSettings);
+        settingsLabel.setGraphic(iconSettings);
 
         //icona dell'accessibilità
         //https://stackoverflow.com/questions/17467137/how-can-i-create-a-switch-button-in-javafx

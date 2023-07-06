@@ -17,17 +17,12 @@ public class ProfileController {
     private TextField usernameTextField, firstTextField, lastTextField;
 
     @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private CheckBox showPassCheckBox;
-
-    @FXML
     private Button saveButton, cancelButton;
 
     boolean isGoodUsername, isGoodName, isGoodSurname;
-
-
+    @FXML
+    void onCancelClick(){
+    }
     @FXML
     void onSaveClick() {
         if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameTextField.getText())) {

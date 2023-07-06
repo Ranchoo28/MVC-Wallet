@@ -86,24 +86,6 @@ public class SceneHandler {
         }
     }
 
-    public void createAccountSettingsScene() {
-        try {
-            if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"account-view.fxml"));
-            else
-                scene.setRoot(loadRootFromFXML(view+"account-view.fxml"));
-            //scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource(view+"CSS/main.css")).toExternalForm());
-            if(stage.isFullScreen()) stage.setFullScreen(true);
-            else {
-                stage.setWidth(800);
-                stage.setHeight(500);
-            }
-            stage.setTitle("MVC Wallet account");
-
-        } catch (IOException ignored) {
-        }
-    }
-
     public void createLoginScene() {
         // Crea la scena del login
         try {

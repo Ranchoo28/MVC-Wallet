@@ -90,7 +90,7 @@
                         <Font name="MS Outlook" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelSettings" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onSettingsClick" style="ù: ù;" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="settingsLabel" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#onSettingsClick" style="ù: ù;" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
