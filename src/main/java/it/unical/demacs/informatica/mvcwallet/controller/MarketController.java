@@ -65,7 +65,7 @@ public class MarketController {
 
     @FXML
     public void getSelectedtCoin(ActionEvent event) {
-        this.coin = coinChoiceBox.getValue().toLowerCase();
+        this.coin = coinChoiceBox.getValue().toLowerCase().replaceAll(" ", "");
         updateChart();
     }
 

@@ -46,7 +46,6 @@ public class APIsHandler {
         }
 
         URL url = new URL(requestUrl);
-        System.out.println(url);
 
         HashMap<String, ArrayList<Double>> dictionary = new HashMap<>();
         StringBuilder response = null;
