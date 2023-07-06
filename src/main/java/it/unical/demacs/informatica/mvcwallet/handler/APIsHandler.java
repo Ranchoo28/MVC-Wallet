@@ -9,10 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 
 public class APIsHandler {
 
@@ -27,6 +24,8 @@ public class APIsHandler {
 
     LocalDate today = LocalDate.now();
     LocalDate decemberTwelveTwelve = LocalDate.of(2012, 12, 12);
+
+    //Calcola quanti giorni sono trascorsi dal 12-12-2012 a Oggi
     int days = (int) ChronoUnit.DAYS.between(decemberTwelveTwelve, today);
 
     public Map<String, ArrayList<Double>> getHistoricalData(String coin, String vsCurrency, String timeframe) throws MalformedURLException {
@@ -37,57 +36,74 @@ public class APIsHandler {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String startFormatted = startDate.format(formatter);
         String endFormatted = endDate.format(formatter);
+        String requestUrl = "";
 
         // Costruisce l'URL per la richiesta API
-        String requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=" + days
-                + "&start_date=" + startFormatted + "&end_date=" + endFormatted;
+        if(timeframe == "1D") {
+            requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=90" + "&interval=1m";
+        } else{
+            requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=" + days + "&start_date=" + startFormatted + "&end_date=" + endFormatted + "&interval=1m";
+        }
 
-        // Effettua la richiesta GET all'API di CoinGecko
+        URL url = new URL(requestUrl);
+        System.out.println(url);
+
+        HashMap<String, ArrayList<Double>> dictionary = new HashMap<>();
+        StringBuilder response = null;
+        HttpURLConnection connection = null;
+        int responseCode = 404;
+
+        // Tenativo di connessione all'API
         try {
-            // Effettua la richiesta API
-            URL url = new URL(requestUrl);
-            //System.out.println(url);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection();
+            // Effettua la richiesta GET all'API di CoinGecko
             connection.setRequestMethod("GET");
+            responseCode = connection.getResponseCode();
+        } catch (Exception e) {
+            System.out.println("Connessione fallita");
+        }
 
-            int responseCode = connection.getResponseCode();
-
-            if (responseCode == HttpURLConnection.HTTP_OK) {
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            try{
                 // Leggi la risposta JSON
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
+                response = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
                     response.append(line);
                 }
                 reader.close();
+            } catch (Exception e) {
+                System.out.println("Risposta dall'API non valida");
+            }
 
+            try {
                 // Elabora la risposta JSON
                 Gson gson = new Gson();
                 JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
                 JsonArray prices = jsonResponse.get("prices").getAsJsonArray();
 
-                HashMap<String, ArrayList<Double>> dictionary = new HashMap<>();
-
-                for(JsonElement element: prices){
+                for (JsonElement element : prices) {
                     JsonArray priceData = element.getAsJsonArray();
                     long timestamp = priceData.get(0).getAsLong();
-
                     String localDate = TimeStampHandler.getInstance().convertToString(timestamp, timeframe);
-                    if(dictionary.containsKey(localDate)){
+
+                    if (dictionary.containsKey(localDate)) {
                         dictionary.get(localDate).add(priceData.get(1).getAsDouble());
-                    }
-                    else{
+                    } else {
                         ArrayList<Double> dailyPrices = new ArrayList<>();
                         dictionary.put(localDate, dailyPrices);
                         dictionary.get(localDate).add(priceData.get(1).getAsDouble());
                     }
                 }
-                return dictionary;
+            } catch (JsonSyntaxException e) {
+                System.out.println("Errore nell'elaborazione del JSON");
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } else if(responseCode == HttpURLConnection.HTTP_NOT_FOUND){
+            System.out.println("ERROR "+responseCode+": Coin not found");
+        } else if(responseCode == 429){
+            System.out.println("ERROR "+responseCode+": The API received an excessive number of requests. Please wait some minutes and restart MVC Wallet.");
         }
-        return null;
+        return dictionary;
     }
 }

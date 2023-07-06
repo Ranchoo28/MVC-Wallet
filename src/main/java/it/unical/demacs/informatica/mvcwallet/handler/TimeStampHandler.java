@@ -20,6 +20,11 @@ public class TimeStampHandler {
         LocalDate specificDate;
         DateTimeFormatter formatter;
         switch (timeframe){
+            case "1D":
+                specificTimeStamp = Instant.ofEpochMilli(timeStamp);
+                specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
+                formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                return specificDate.format(formatter);
             case "1W":
                 specificTimeStamp = Instant.ofEpochMilli(timeStamp);
                 specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
@@ -44,6 +49,14 @@ public class TimeStampHandler {
         GregorianCalendar calendar = new GregorianCalendar();
 
         switch (timeframe){
+            case "1D":
+                dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                try{
+                    calendar.setTime(dateFormat.parse(date));
+                } catch (ParseException e) {
+                    System.out.println("Errore durante l'analisi della data.");
+                }
+                return calendar;
             case "1W":
                 dateFormat = new SimpleDateFormat("w'W' yyyy");
                 try{

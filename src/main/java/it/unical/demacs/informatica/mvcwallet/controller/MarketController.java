@@ -14,12 +14,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MarketController {
-    private List<String> coins = new ArrayList<>(Arrays.asList("Bitcoin", "Ethereum", "Binancecoin", "Solana"));
+    private List<String> coins = new ArrayList<>(Arrays.asList("Bitcoin", "Ethereum", "Binance Coin", "Solana", "Ciolla colin"));
     private List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
-    private List<String> timeframes = new ArrayList<>(Arrays.asList("1W", "1M", "1Y"));
+    private List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
     private static String coin = "Bitcoin";
     private static String currency = "USD";
-    private static String timeframe = "1M";
+    private static String timeframe = "1D";
 
     @FXML
     private ChoiceBox<String> coinChoiceBox;
