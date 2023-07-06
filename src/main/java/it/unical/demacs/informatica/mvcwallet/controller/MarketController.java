@@ -2,7 +2,7 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
-import it.unical.demacs.informatica.mvcwallet.model.ListOfCoins;
+import it.unical.demacs.informatica.mvcwallet.handler.CoinsHandler;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MarketController {
-    private final List<String> coins = ListOfCoins.getInstance().getCoinNames();
+    private final List<String> coins = CoinsHandler.getInstance().getCoinNames();
     private final List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
     private final List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
     private static String coin = "Bitcoin";

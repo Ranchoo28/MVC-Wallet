@@ -1,12 +1,14 @@
-package it.unical.demacs.informatica.mvcwallet.model;
+package it.unical.demacs.informatica.mvcwallet.handler;
+
+import it.unical.demacs.informatica.mvcwallet.model.Coin;
 
 import java.util.*;
 
-public class ListOfCoins {
+public class CoinsHandler {
 
-    public static final ListOfCoins instance = new ListOfCoins();
+    public static final CoinsHandler instance = new CoinsHandler();
 
-    public static ListOfCoins getInstance() {
+    public static CoinsHandler getInstance() {
         return instance;
     }
 
