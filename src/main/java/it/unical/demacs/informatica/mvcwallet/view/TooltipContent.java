@@ -17,6 +17,7 @@ public class TooltipContent extends GridPane {
         Label close = new Label("Close:");
         Label high = new Label("High:");
         Label low = new Label("Low:");
+
         open.getStyleClass().add("candlestick-tooltip-label");
         close.getStyleClass().add("candlestick-tooltip-label");
         high.getStyleClass().add("candlestick-tooltip-label");

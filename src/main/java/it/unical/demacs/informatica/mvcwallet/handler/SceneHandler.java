@@ -15,7 +15,8 @@ import java.util.*;
 public class SceneHandler {
 
 
-    private static final String view = "/it/unical/demacs/informatica/mvcwallet/view/";
+    private static final String view = PathHandler.getInstance().getPathOfView();
+    private static final String css = PathHandler.getInstance().getPathOfCSS();
     private Stage stage;
     private Scene scene;
 
@@ -41,7 +42,7 @@ public class SceneHandler {
             //createSideBar();
             stage.setScene(scene);
             stage.show();
-            scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource("/it/unical/demacs/informatica/mvcwallet/css/main.css").toExternalForm()));
+            scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource(css+"main.css").toExternalForm()));
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
                     stage.setFullScreen(!stage.isFullScreen());

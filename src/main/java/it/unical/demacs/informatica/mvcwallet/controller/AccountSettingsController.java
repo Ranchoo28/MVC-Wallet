@@ -1,12 +1,11 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -14,7 +13,7 @@ import java.io.IOException;
 
 public class AccountSettingsController {
 
-    String path = "/it/unical/demacs/informatica/mvcwallet/view/";
+    String path = PathHandler.getInstance().getPathOfView();
     @FXML
     private Label profileLabel, settingsLabel, backLabel;
     @FXML

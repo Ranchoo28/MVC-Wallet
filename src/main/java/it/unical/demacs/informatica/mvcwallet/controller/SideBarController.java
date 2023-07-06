@@ -1,10 +1,8 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.model.BarData;
-import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
-import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,7 +17,6 @@ import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.IOException;
-import java.util.*;
 
 public class SideBarController {
     @FXML
@@ -45,7 +42,7 @@ public class SideBarController {
 
     @FXML
     void onMarketClick() throws IOException {
-        loadChart();
+        loadFXML("market-view.fxml");
     }
 
     @FXML
@@ -62,7 +59,7 @@ public class SideBarController {
     void initialize() throws IOException {
 
         if (SettingsHandler.getInstance().page.equals("spot")) loadFXML("spot-view.fxml");
-        if (SettingsHandler.getInstance().page.equals("market")) loadChart();
+        if (SettingsHandler.getInstance().page.equals("market")) loadFXML("market-view.fxml");
 
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(new Runnable() {
@@ -114,7 +111,6 @@ public class SideBarController {
         //https://stackoverflow.com/questions/17467137/how-can-i-create-a-switch-button-in-javafx
         //Qua dentro dobbiamo mettere gli interruttori per attivare le opzioni di fianco alle
         //label Alto contrasto, Testo largo ecc...
-        //Quelle che ci sono non vanno bene
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
         accessIcon.setIconColor(Paint.valueOf("#fff"));
@@ -145,7 +141,8 @@ public class SideBarController {
 
     public void loadFXML(String nomeFXML) throws IOException {
         centerPage.getChildren().clear();
-        String path = "/it/unical/demacs/informatica/mvcwallet/view/";
+
+        String path = PathHandler.getInstance().getPathOfView();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
         AnchorPane pane = fxmlLoader.load();
 
@@ -154,23 +151,6 @@ public class SideBarController {
         centerPage.setRightAnchor(pane, 5.0);
         centerPage.setBottomAnchor(pane, 5.0);
         centerPage.setLeftAnchor(pane, 5.0);
-    }
-
-    public void loadChart() throws IOException {
-        centerPage.getChildren().clear();
-
-        String path = "/it/unical/demacs/informatica/mvcwallet/view/";
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + "market-view.fxml"));
-
-        AnchorPane pane = fxmlLoader.load();
-
-        centerPage.getChildren().add(pane);
-
-        centerPage.setTopAnchor(pane, 5.0);
-        centerPage.setRightAnchor(pane, 0.0);
-        centerPage.setBottomAnchor(pane, 0.0);
-        centerPage.setLeftAnchor(pane, 0.0);
     }
 }
 
