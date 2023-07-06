@@ -29,6 +29,8 @@ public class SideBarController {
     private AnchorPane centerPage;
     @FXML
     private Label dateLabel, timeLabel, userLabel;
+    @FXML
+    private HBox spotHBox, marketHBox, logoutHBox;
 
     @FXML
     void onLogoutClick() {
@@ -37,11 +39,15 @@ public class SideBarController {
 
     @FXML
     void onSpotClick() throws IOException {
+        spotHBox.setDisable(true);
+        marketHBox.setDisable(false);
         loadFXML("spot-view.fxml");
     }
 
     @FXML
     void onMarketClick() throws IOException {
+        spotHBox.setDisable(false);
+        marketHBox.setDisable(true);
         loadFXML("market-view.fxml");
     }
 

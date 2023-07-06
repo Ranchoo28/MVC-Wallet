@@ -17,9 +17,11 @@ public class MarketController {
     private final List<String> coins = CoinsHandler.getInstance().getCoinNames();
     private final List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
     private final List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
-    private static String coin = "Bitcoin";
-    private static String currency = "USD";
-    private static String timeframe = "1D";
+    private String coin = "Bitcoin";
+    private String formattedCoin = "bitcoin";
+    private String currency = "USD";
+    private String formattedCurrency = "usd";
+    private String timeframe = "1D";
 
     @FXML
     private ChoiceBox<String> coinChoiceBox;
@@ -36,7 +38,7 @@ public class MarketController {
     public void updateChart(){
         market.getChildren().clear();
 
-        List<BarData> array = BuildBars.getInstance().buildBars(coin.toLowerCase(), currency.toLowerCase(), timeframe);
+        List<BarData> array = BuildBars.getInstance().buildBars(this.formattedCoin, this.formattedCurrency, this.timeframe);
         CandleStickChart chart = new CandleStickChart(array, market.getWidth());
 
         market.getChildren().add(chart);
@@ -49,18 +51,23 @@ public class MarketController {
 
     @FXML
     public void getSelectedtCoin(ActionEvent event) {
-        this.coin = coinChoiceBox.getValue().toLowerCase().replaceAll(" ", "");
+        String value = coinChoiceBox.getValue();
+        this.coin = value;
+        this.formattedCoin = value.toLowerCase().replaceAll(" ", "");
         updateChart();
     }
 
     @FXML
     public void getSelectedCurrency(ActionEvent event) {
-        this.currency = currencyChoiceBox.getValue().toLowerCase();
+        String value = currencyChoiceBox.getValue();
+        this.currency = value;
+        this.formattedCurrency = value.toLowerCase().replaceAll(" ", "");
         updateChart();
     }
 
     public void getSelectedTime(ActionEvent event) {
-        this.timeframe = timeChoiceBox.getValue();
+        String value = timeChoiceBox.getValue();
+        this.timeframe = value;
         updateChart();
     }
 
