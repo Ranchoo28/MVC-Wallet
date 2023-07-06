@@ -40,6 +40,7 @@ public class SideBarController {
 
     @FXML
     void onSpotClick() throws IOException {
+        labelSettings.setDisable(false);
         spotHBox.setDisable(true);
         marketHBox.setDisable(false);
         loadFXML("spot-view.fxml");
@@ -47,6 +48,7 @@ public class SideBarController {
 
     @FXML
     void onMarketClick() throws IOException {
+        labelSettings.setDisable(false);
         spotHBox.setDisable(false);
         marketHBox.setDisable(true);
         loadFXML("market-view.fxml");
@@ -54,6 +56,7 @@ public class SideBarController {
 
     @FXML
     void onSettingsClick() throws IOException {
+        labelSettings.setDisable(true);
         spotHBox.setDisable(false);
         marketHBox.setDisable(false);
         loadFXML("settings-view.fxml");

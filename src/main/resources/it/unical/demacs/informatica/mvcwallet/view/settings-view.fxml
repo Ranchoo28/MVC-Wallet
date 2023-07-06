@@ -4,12 +4,12 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SettingsController">
@@ -18,103 +18,173 @@
          <children>
             <HBox alignment="CENTER" spacing="20.0">
                <children>
-                  <MenuButton alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Pagina iniziale" textAlignment="CENTER">
-                     <items>
-                        <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick" text="Spot" />
-                        <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick" text="Market" />
-                     </items>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-                  <MenuButton alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="120.0" text="Valuta">
-                     <items>
-                        <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" text="EUR" />
-                        <RadioMenuItem fx:id="usdCurrency" mnemonicParsing="false" text="USD" />
-                     </items>
-                     <font>
-                        <Font name="MS Outlook" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-                  <CheckBox fx:id="stayLogged" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" text="Mantieni accesso" />
+                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <Label text="Pagina principale">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Formato ora">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Valuta">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Lingua">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Tema">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Resta collegato">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <MenuButton fx:id="mainPageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" textAlignment="CENTER">
+                           <items>
+                              <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="Spot" />
+                                 </graphic>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="Market" />
+                                 </graphic>
+                              </RadioMenuItem>
+                           </items>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                        <MenuButton fx:id="timeFormatMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0">
+                           <items>
+                              <RadioMenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="12H" textAlignment="CENTER" />
+                                 </graphic>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="24H" />
+                                 </graphic>
+                              </RadioMenuItem>
+                           </items>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                        <MenuButton fx:id="currencyMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0">
+                           <items>
+                              <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="EUR" />
+                                 </graphic>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="usdCurrency" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="USD" />
+                                 </graphic>
+                              </RadioMenuItem>
+                           </items>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0">
+                           <items>
+                              <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="Italiano" />
+                                 </graphic>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="English" />
+                                 </graphic>
+                              </RadioMenuItem>
+                           </items>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                        <MenuButton fx:id="themeMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0">
+                          <items>
+                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="Dark" />
+                                 </graphic>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="Light" />
+                                 </graphic>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="mvcTheme" mnemonicParsing="false">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="MVC" />
+                                 </graphic>
+                              </RadioMenuItem>
+                          </items>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </MenuButton>
+                        <CheckBox fx:id="stayLogged" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="150.0" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER">
-               <children>
-                  <Line startX="-500.0" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="25.0" top="25.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" spacing="20.0">
-               <children>
-                  <MenuButton fx:id="languageMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Lingua">
-                     <items>
-                        <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false" text="Italiano" />
-                        <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false" text="Inglese" />
-                     </items>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-                  <MenuButton fx:id="themesMenu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Temi">
-                    <items>
-                        <RadioMenuItem fx:id="whiteTheme" mnemonicParsing="false" text="Chiaro" />
-                        <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false" text="Scuro" />
-                        <RadioMenuItem fx:id="mvcTheme" mnemonicParsing="false" text="MVC" />
-                    </items>
-                     <font>
-                        <Font name="MS Outlook" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-                  <MenuButton alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="Formato ora">
-                     <items>
-                        <RadioMenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick" text="12H" />
-                        <RadioMenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick" text="24H" />
-                     </items>
-                     <font>
-                        <Font name="MS Outlook" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </MenuButton>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="70.0" style="-fx-background-color: #ffa31a;" text="Salva" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" text="Salva" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                   </Button>
-                  <Button contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="80.0" style="-fx-background-color: #ffa31a;" text="Indietro" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" text="Indietro" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets top="60.0" />
+                  <Insets top="30.0" />
                </VBox.margin>
             </HBox>
          </children>
