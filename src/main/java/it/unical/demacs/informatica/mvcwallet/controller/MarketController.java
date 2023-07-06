@@ -6,6 +6,7 @@ import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
@@ -13,11 +14,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MarketController {
-    private List<String> coins = new ArrayList<>(Arrays.asList("bitcoin", "ethereum", "binancecoin", "solana"));
-    private List<String> currencies = new ArrayList<>(Arrays.asList("eur", "usd"));
+    private List<String> coins = new ArrayList<>(Arrays.asList("Bitcoin", "Ethereum", "Binancecoin", "Solana"));
+    private List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
     private List<String> timeframes = new ArrayList<>(Arrays.asList("1W", "1M", "1Y"));
-    private static String coin = "bitcoin";
-    private static String currency = "usd";
+    private static String coin = "Bitcoin";
+    private static String currency = "USD";
     private static String timeframe = "1M";
 
     @FXML
@@ -35,7 +36,7 @@ public class MarketController {
     public void updateChart(){
         market.getChildren().clear();
 
-        List<BarData> array = BuildBars.getInstance().buildBars(coin, currency, timeframe);
+        List<BarData> array = BuildBars.getInstance().buildBars(coin.toLowerCase(), currency.toLowerCase(), timeframe);
         CandleStickChart chart = new CandleStickChart(array, market.getWidth());
 
         market.getChildren().add(chart);
@@ -64,13 +65,13 @@ public class MarketController {
 
     @FXML
     public void getSelectedtCoin(ActionEvent event) {
-        this.coin = coinChoiceBox.getValue();
+        this.coin = coinChoiceBox.getValue().toLowerCase();
         updateChart();
     }
 
     @FXML
     public void getSelectedCurrency(ActionEvent event) {
-        this.currency = currencyChoiceBox.getValue();
+        this.currency = currencyChoiceBox.getValue().toLowerCase();
         updateChart();
     }
 

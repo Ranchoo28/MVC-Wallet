@@ -61,7 +61,7 @@
             </VBox>
          </left>
          <top>
-            <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="600.0" spacing="50.0" styleClass="global-color" BorderPane.alignment="CENTER">
+            <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="600.0" spacing="50.0" styleClass="global-color" stylesheets="@../css/main.css" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="userLabel" onMouseClicked="#onAccountClick" stylesheets="@../css/main.css" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
@@ -98,7 +98,7 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <MenuButton fx:id="accessMenu" mnemonicParsing="false" prefHeight="26.0" prefWidth="43.0" styleClass="global-color">
+                  <MenuButton fx:id="accessMenu" alignment="CENTER" graphicTextGap="3.0" mnemonicParsing="false" styleClass="access-menu" stylesheets="@../css/main.css">
                      <items>
                         <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
                            <content>
@@ -117,8 +117,11 @@
                         </CustomMenuItem>
                      </items>
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </MenuButton>
                   <Label fx:id="accessibilityLabel" prefHeight="26.0" prefWidth="36.0" />
                </children>

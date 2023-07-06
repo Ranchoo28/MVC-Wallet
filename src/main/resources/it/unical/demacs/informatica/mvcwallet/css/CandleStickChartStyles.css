@@ -1,6 +1,18 @@
+/* Barra superiore */
+.bar-label {
+    -fx-font-family: "monospace";
+    -fx-font-size: 1.0em;
+    -fx-font-weight: normal;
+}
+
+.choice-box {
+    -fx-font-family: "monospace";
+    -fx-text-transform: uppercase;
+}
+
 /*Menu a comparsa dettagli candela*/
 .candlestick-tooltip-label {
-    -fx-font-size: 1.0em;
+    -fx-font-size: 0.8em;
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
     -fx-padding: 2 5 2 0;
@@ -66,7 +78,7 @@
     -fx-font-color: #FFFFFF;
     -fx-tick-label-fill: #FFFFFF;
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "monospace";
     -fx-tick-length: 20;
     -fx-minor-tick-length: 10;
 }
@@ -74,7 +86,7 @@
 .chart-title {
      -fx-text-fill: #FFFFFF;
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "monospace";
 }
 
 /*Trattini grandi*/

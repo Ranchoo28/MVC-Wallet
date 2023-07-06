@@ -73,7 +73,7 @@ public class APIsHandler {
                     JsonArray priceData = element.getAsJsonArray();
                     long timestamp = priceData.get(0).getAsLong();
 
-                    String localDate = TimeStampHandler.getInstance().convertTimeStamp(timestamp, timeframe);
+                    String localDate = TimeStampHandler.getInstance().convertToString(timestamp, timeframe);
                     if(dictionary.containsKey(localDate)){
                         dictionary.get(localDate).add(priceData.get(1).getAsDouble());
                     }

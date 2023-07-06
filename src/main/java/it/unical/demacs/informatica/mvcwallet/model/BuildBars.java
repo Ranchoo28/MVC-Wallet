@@ -12,7 +12,7 @@ public class BuildBars {
         return instance;
     }
 
-    public List<BarData> buildBars(String coin, String currency, String timeframe){
+    public List<BarData> buildBars(String coin, String currency, String timeframe) {
 
         final List<BarData> bars = new ArrayList<>();
         Map<String, ArrayList<Double>> dictionary;
@@ -23,22 +23,38 @@ public class BuildBars {
             throw new RuntimeException(e);
         }
 
-        for(String key : dictionary.keySet()){
-            ArrayList<Double> dailyPrices = dictionary.get(key);
+        try {
+            for (String key : dictionary.keySet()) {
+                ArrayList<Double> dailyPrices = dictionary.get(key);
 
-            double highPrice = Collections.max(dailyPrices);
-            double lowPrice = Collections.min(dailyPrices);
-            double openPrice = dailyPrices.get(0);
-            double closePrice = dailyPrices.get(dailyPrices.size()-1);
+                double highPrice = Collections.max(dailyPrices);
+                double lowPrice = Collections.min(dailyPrices);
+                double openPrice = dailyPrices.get(0);
+                double closePrice = dailyPrices.get(dailyPrices.size() - 1);
 
-            GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key, timeframe);
+                GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key, timeframe);
 
-            BarData bar = new BarData(key, date, openPrice, highPrice, lowPrice, closePrice, 1);
-            bars.add(bar);
+                BarData bar = new BarData(key, date, openPrice, highPrice, lowPrice, closePrice, 1);
+                bars.add(bar);
+            }
+
+            for (String key : dictionary.keySet()) {
+                ArrayList<Double> dailyPrices = dictionary.get(key);
+
+                double highPrice = Collections.max(dailyPrices);
+                double lowPrice = Collections.min(dailyPrices);
+                double openPrice = dailyPrices.get(0);
+                double closePrice = dailyPrices.get(dailyPrices.size() - 1);
+
+                GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key, timeframe);
+
+                BarData bar = new BarData(key, date, openPrice, highPrice, lowPrice, closePrice, 1);
+                bars.add(bar);
+            }
+            bars.sort(Comparator.comparing(BarData::getDateTime));
+        } catch (Exception e){
+            System.out.println("Error Message: You have exceeded the API request rate limit. Please wait before submitting a new request.");
         }
-
-        bars.sort(Comparator.comparing(BarData::getDateTime));
-
         return bars;
     }
 }

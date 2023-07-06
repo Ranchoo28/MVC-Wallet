@@ -15,7 +15,7 @@ public class TimeStampHandler {
         return instance;
     }
 
-    public String convertTimeStamp(long timeStamp, String timeframe){
+    public String convertToString(long timeStamp, String timeframe){
         Instant specificTimeStamp;
         LocalDate specificDate;
         DateTimeFormatter formatter;
@@ -23,12 +23,12 @@ public class TimeStampHandler {
             case "1W":
                 specificTimeStamp = Instant.ofEpochMilli(timeStamp);
                 specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
-                formatter = DateTimeFormatter.ofPattern("yyyy-ww");
+                formatter = DateTimeFormatter.ofPattern("w'W' yyyy");
                 return specificDate.format(formatter);
             case "1M":
                 specificTimeStamp = Instant.ofEpochMilli(timeStamp);
                 specificDate = specificTimeStamp.atZone(ZoneId.systemDefault()).toLocalDate();
-                formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+                formatter = DateTimeFormatter.ofPattern("MM-yyyy");
                 return specificDate.format(formatter);
             case "1Y":
                 specificTimeStamp = Instant.ofEpochMilli(timeStamp);
@@ -45,7 +45,7 @@ public class TimeStampHandler {
 
         switch (timeframe){
             case "1W":
-                dateFormat = new SimpleDateFormat("yyyy-ww");
+                dateFormat = new SimpleDateFormat("w'W' yyyy");
                 try{
                     calendar.setTime(dateFormat.parse(date));
                 } catch (ParseException e) {
@@ -53,7 +53,7 @@ public class TimeStampHandler {
                 }
                 return calendar;
             case "1M":
-                dateFormat = new SimpleDateFormat("yyyy-MM");
+                dateFormat = new SimpleDateFormat("MM-yyyy");
                 try{
                     calendar.setTime(dateFormat.parse(date));
                 } catch (ParseException e) {
