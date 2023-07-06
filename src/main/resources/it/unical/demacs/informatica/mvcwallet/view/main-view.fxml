@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXToggleButton?>
-<?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.CustomMenuItem?>
@@ -36,7 +35,6 @@
                   </HBox>
                   <HBox fx:id="cryptoHbox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" prefWidth="200.0" styleClass="hbox">
                      <children>
-                        <JFXToolbar />
                         <Label fx:id="cryptoLabel" alignment="CENTER" text="Markets" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="MS Outlook" size="15.0" />
