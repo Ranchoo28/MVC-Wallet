@@ -136,7 +136,7 @@
                         </MenuButton>
                         <MenuButton fx:id="themeMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                           <items>
-                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Dark" />
                                  </graphic>
