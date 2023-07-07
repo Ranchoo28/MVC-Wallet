@@ -47,6 +47,21 @@ public class SqlService {
         return res[0];
     }
 
+    public void serviceLogout(String username){
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> {
+            try {
+                SqlHandler.getInstance().setLogutQuery(username);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+    }
+
     public boolean serviceChangeUsername(String oldUsername, String newUsername){
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
@@ -101,7 +116,15 @@ public class SqlService {
        finally { queryExe.shutdown(); }
        //System.out.println( "Settings: " + ref.settings[0] +  ref.settings[1] + ref.settings[2]);
        return ref.settings;
+   }
 
+   public void serviceChangeSetting(String username, String time, String page, String logged){
+       ExecutorService queryExe = Executors.newSingleThreadExecutor();
+       Future<?> future = queryExe.submit(() -> SqlHandler.getInstance().setSettingsQuery(username, time, page, logged));
+
+       try { future.get(); }
+       catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+       finally { queryExe.shutdown(); }
    }
 
 }

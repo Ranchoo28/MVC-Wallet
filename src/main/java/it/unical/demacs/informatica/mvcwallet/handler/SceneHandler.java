@@ -1,6 +1,7 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
 import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
+import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -208,17 +209,9 @@ public class SceneHandler {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK){
-            try {
-                SqlHandler.getInstance().setLogutQuery(LoginController.username);
-            } catch (Exception e) {
-                System.out.println("Error: SceneHandler.java rows: 211-215");
-            }
-            try{
-                LoggedHandler.getInstance().stayLoggedWriting("null");
-                createLoginScene();
-            } catch (Exception e){
-                System.out.println("Error: SceneHandler.java rows: 216-220");
-            }
+            SqlService.getIstance().serviceLogout(LoginController.username);
+            LoggedHandler.getInstance().stayLoggedWriting("null");
+            createLoginScene();
         }
         else if(result.get() == ButtonType.CANCEL) alert.close();
     }

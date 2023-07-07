@@ -4,6 +4,7 @@ import it.unical.demacs.informatica.mvcwallet.handler.LoggedHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
+import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -48,7 +49,7 @@ public class SettingsController {
     @FXML
     void onSaveClick() throws InterruptedException {
         String [] settings = changeSettings();
-        SqlHandler.getInstance().setSettingsQuery(
+        SqlService.getIstance().serviceChangeSetting(
                 LoginController.username,
                 settings[0] ,
                 settings[1],
