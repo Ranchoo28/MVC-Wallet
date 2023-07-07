@@ -143,7 +143,7 @@ public class SideBarController {
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
         accessIcon.setIconColor(Paint.valueOf("#fff"));
-        accessMenu.setContentDisplay(ContentDisplay.CENTER);
+        accessMenu.setContentDisplay(ContentDisplay.RIGHT);
         accessMenu.setGraphic(accessIcon);
 
         // Icona del bottone del logout
