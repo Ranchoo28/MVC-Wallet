@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="global-color" stylesheets="@../css/dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="global-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
    <children>
       <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox fx:id="sideBar" alignment="CENTER" maxWidth="200.0" minWidth="150.0" prefWidth="150.0" spacing="1.0" styleClass="sidebar" stylesheets="@../css/dark.css" BorderPane.alignment="CENTER">
+            <VBox fx:id="sideBar" alignment="CENTER" maxWidth="200.0" minWidth="150.0" prefWidth="150.0" spacing="1.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
@@ -62,9 +62,9 @@
             </VBox>
          </left>
          <top>
-            <HBox fx:id="infoHBox" alignment="CENTER" fillHeight="false" maxHeight="50.0" prefHeight="30.0" styleClass="hbox-info" stylesheets="@../css/dark.css" BorderPane.alignment="CENTER">
+            <HBox fx:id="infoHBox" alignment="CENTER" fillHeight="false" maxHeight="50.0" prefHeight="30.0" styleClass="hbox-info" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" styleClass="hbox-info-button" stylesheets="@../css/dark.css">
+                  <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
                         <Label fx:id="userLabel" maxHeight="50.0" onMouseClicked="#onAccountClick" prefHeight="30.0" text="First Name Last Name" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -79,7 +79,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" styleClass="hbox-info-button" stylesheets="@../css/dark.css">
+                  <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
                         <Label fx:id="dateLabel" alignment="CENTER" maxHeight="50.0" minWidth="119.0" prefHeight="30.0" stylesheets="@../css/dark.css" text="1970-01-01" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -91,9 +91,9 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" styleClass="hbox-info-button" stylesheets="@../css/dark.css">
+                  <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="timeLabel" alignment="CENTER" maxHeight="50.0" minWidth="100.0" prefHeight="30.0" stylesheets="@../css/dark.css" text="00:00:00" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="timeLabel" alignment="CENTER" maxHeight="50.0" minWidth="100.0" prefHeight="30.0" text="00:00:00" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -103,7 +103,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" styleClass="hbox-info-button" stylesheets="@../css/dark.css">
+                  <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
                         <Label fx:id="settingsLabel" alignment="CENTER" maxHeight="50.0" minWidth="101.0" onMouseClicked="#onSettingsClick" prefHeight="30.0" stylesheets="@../css/dark.css" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <cursor>
@@ -118,7 +118,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <StackPane styleClass="access-menu" stylesheets="@../css/dark.css">
+                  <StackPane styleClass="access-menu">
                      <children>
                         <Label fx:id="accessLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" />
                         <MenuButton fx:id="accessMenuButton" mnemonicParsing="false" opacity="0.0">

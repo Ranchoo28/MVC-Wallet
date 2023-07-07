@@ -34,7 +34,7 @@ public class SceneHandler {
 
     public void uploadTheme(){
         System.out.println(css+SettingsHandler.getInstance().theme);
-        scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
+        scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)));
     }
 
     public void uploadLanguage(){
