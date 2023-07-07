@@ -106,7 +106,7 @@ public class SqlService {
 
    public String [] serviceSettings(String username){
        var ref = new Object() {
-           String[] settings = new String[3];
+           String[] settings = new String[4];
        };
        ExecutorService queryExe = Executors.newSingleThreadExecutor();
        Future<?> future = queryExe.submit(() -> ref.settings = SqlHandler.getInstance().getSettingsQuery(username));
@@ -118,9 +118,9 @@ public class SqlService {
        return ref.settings;
    }
 
-   public void serviceChangeSetting(String username, String time, String page, String logged){
+   public void serviceChangeSetting(String username, String time, String page, String logged, String theme){
        ExecutorService queryExe = Executors.newSingleThreadExecutor();
-       Future<?> future = queryExe.submit(() -> SqlHandler.getInstance().setSettingsQuery(username, time, page, logged));
+       Future<?> future = queryExe.submit(() -> SqlHandler.getInstance().setSettingsQuery(username, time, page, logged, theme));
 
        try { future.get(); }
        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}

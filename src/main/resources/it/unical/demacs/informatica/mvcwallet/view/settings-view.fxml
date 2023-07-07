@@ -136,17 +136,17 @@
                         </MenuButton>
                         <MenuButton fx:id="themeMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                           <items>
-                              <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false" onAction="#onDarkClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Dark" />
                                  </graphic>
                               </RadioMenuItem>
-                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#onLightClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Light" />
                                  </graphic>
                               </RadioMenuItem>
-                              <RadioMenuItem fx:id="mvcTheme" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="mvcTheme" mnemonicParsing="false" onAction="#onMvcClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="MVC" />
                                  </graphic>

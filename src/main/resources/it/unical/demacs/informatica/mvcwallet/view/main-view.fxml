@@ -61,9 +61,9 @@
             </VBox>
          </left>
          <top>
-            <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" spacing="50.0" styleClass="global-color" stylesheets="@../css/main.css" BorderPane.alignment="CENTER">
+            <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" spacing="50.0" styleClass="global-color" stylesheets="@../css/mvc.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="200.0" onMouseClicked="#onAccountClick" stylesheets="@../css/main.css" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" minWidth="200.0" onMouseClicked="#onAccountClick" stylesheets="@../css/mvc.css" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="MS Outlook" size="14.0" />
                      </font>
@@ -98,7 +98,7 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <MenuButton fx:id="accessMenu" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" mnemonicParsing="false" styleClass="access-menu" stylesheets="@../css/main.css">
+                  <MenuButton fx:id="accessMenu" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" mnemonicParsing="false" styleClass="access-menu" stylesheets="@../css/mvc.css">
                      <items>
                         <CustomMenuItem hideOnClick="false" mnemonicParsing="false" text="Unspecified Action">
                            <content>

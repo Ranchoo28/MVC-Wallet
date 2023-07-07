@@ -269,14 +269,15 @@ public class SqlHandler {
     public String [] getSettingsQuery(String username){
         try{
             con = newConnection();
-            String [] settings = new String[3];
-            PreparedStatement s = con.prepareStatement("SELECT time,page,logged FROM settings WHERE username = ?");
+            String [] settings = new String[4];
+            PreparedStatement s = con.prepareStatement("SELECT time, page, logged, theme FROM settings WHERE username = ?");
             s.setString(1, username);
 
             ResultSet rs = s.executeQuery();
             settings[0] = rs.getString(1);
             settings[1] = rs.getString(2);
             settings[2] = rs.getString(3);
+            settings[3] = rs.getString(4);
 
             closeConnection(con);
             return settings;
@@ -285,14 +286,15 @@ public class SqlHandler {
         }
     }
 
-    public void setSettingsQuery(String username, String time, String page, String logged)  {
+    public void setSettingsQuery(String username, String time, String page, String logged, String theme)  {
             try {
                 con = newConnection();
-                PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, logged = ? WHERE username = ? ");
+                PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, logged = ?, theme = ? WHERE username = ? ");
                 s.setString(1, time);
                 s.setString(2, page);
                 s.setString(3, logged);
-                s.setString(4, username);
+                s.setString(4, theme);
+                s.setString(5, username);
                 s.executeUpdate();
                 closeConnection(con);
             } catch (SQLException e) {

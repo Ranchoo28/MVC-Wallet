@@ -32,6 +32,12 @@ public class SceneHandler {
         return fxmlLoader.load();
     }
 
+    public void uploadTheme(){
+        //\System.out.println(SettingsHandler.getInstance().theme);
+        scene.getStylesheets().add(
+                Objects.requireNonNull(Objects.requireNonNull(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)).toExternalForm()));
+    }
+
 
     public void init(Stage stage) {
         // Crea lo stage iniziale
@@ -43,7 +49,7 @@ public class SceneHandler {
             //createSideBar();
             stage.setScene(scene);
             stage.show();
-            scene.getStylesheets().add(Objects.requireNonNull(Objects.requireNonNull(SceneHandler.class.getResource(css + "main.css")).toExternalForm()));
+
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
                     stage.setFullScreen(!stage.isFullScreen());
@@ -59,12 +65,14 @@ public class SceneHandler {
             else
                 scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             stage.setTitle("MVC Wallet");
+            uploadTheme();
             //scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
                 stage.setMinWidth(900);
                 stage.setMinHeight(600);
             }
+
         } catch (IOException ignored) {
         }
     }
@@ -101,6 +109,7 @@ public class SceneHandler {
             stage.setMinHeight(350);
             stage.setWidth(600);
             stage.setHeight(350);
+            //uploadTheme();
         } catch (IOException ignored) {
         }
     }

@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class SettingsHandler {
+
     // Classe che serve a gestire le impostazioni
 
     private SettingsHandler(){}
@@ -16,8 +17,7 @@ public class SettingsHandler {
 
     public String username;
     public String [] settings;
-    public String format; //"HH:mm:ss";
-    public String page; //"market";
+    public String format, page, theme;
     public boolean logged;
 
     //public String format = "HH:mm:ss";
@@ -40,5 +40,7 @@ public class SettingsHandler {
         //for(String i: settings) System.out.println(i);
         if(settings[2].equals("0")) logged = false;
         if(settings[2].equals("1")) logged = true;
+        System.out.println(settings[3]);
+        theme = settings[3];
     }
 }

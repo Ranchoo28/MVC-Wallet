@@ -47,13 +47,25 @@ public class SettingsController {
 
 
     @FXML
+    void onDarkClick() { darkThemeChoosen(); }
+
+    @FXML
+    void onLightClick() { lightThemeChoosen(); }
+
+    @FXML
+    void onMvcClick() { mvcThemeChoosen(); }
+
+
+
+    @FXML
     void onSaveClick() throws InterruptedException {
         String [] settings = changeSettings();
         SqlService.getIstance().serviceChangeSetting(
                 LoginController.username,
                 settings[0] ,
                 settings[1],
-                settings[2]);
+                settings[2],
+                settings[3]);
 
         if(settings[2].equals("0")) LoggedHandler.getInstance().stayLoggedWriting("null");
         if(settings[2].equals("1")) LoggedHandler.getInstance().stayLoggedWriting(LoginController.username);
@@ -77,6 +89,10 @@ public class SettingsController {
 
         if(SettingsHandler.getInstance().logged) stayLogged();
         if(!SettingsHandler.getInstance().logged) noStayLogged();
+
+        if(SettingsHandler.getInstance().theme.equals("mvc.css")) mvcThemeChoosen();
+        if(SettingsHandler.getInstance().theme.equals("dark.css")) darkThemeChoosen();
+        if(SettingsHandler.getInstance().theme.equals("light.css")) lightThemeChoosen();
 
         // Icona per i temi
         FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
@@ -115,6 +131,27 @@ public class SettingsController {
         mainPageMenuButton.setText("Market");
     }
 
+    private void mvcThemeChoosen(){
+        mvcTheme.setSelected(true);
+        darkTheme.setSelected(false);
+        lightTheme.setSelected(false);
+        themeMenuButton.setText("MVC");
+    }
+
+    private void darkThemeChoosen(){
+        mvcTheme.setSelected(false);
+        darkTheme.setSelected(true);
+        lightTheme.setSelected(false);
+        themeMenuButton.setText("Dark");
+    }
+
+    private void lightThemeChoosen(){
+        mvcTheme.setSelected(false);
+        darkTheme.setSelected(false);
+        lightTheme.setSelected(true);
+        themeMenuButton.setText("Light");
+    }
+
     private void stayLogged(){
         stayLogged.setSelected(true);
     }
@@ -124,7 +161,7 @@ public class SettingsController {
     }
 
     private String [] changeSettings(){
-        String [] settings = new String[3];
+        String [] settings = new String[4];
 
         if(h24Time.isSelected()) settings[0] = "HH:mm:ss";
         if(h12Time.isSelected()) settings[0] = "hh:mm:ss a";
@@ -134,6 +171,10 @@ public class SettingsController {
 
         if(stayLogged.isSelected()) settings[2] = "1";
         else settings[2] = "0";
+
+        if(mvcTheme.isSelected()) settings[3] = "mvc.css";
+        if(darkTheme.isSelected()) settings[3] = "dark.css";
+        if(lightTheme.isSelected()) settings[3] = "light.css";
 
         return settings;
     }
