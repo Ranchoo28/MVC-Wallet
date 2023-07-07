@@ -300,7 +300,8 @@ public class SqlHandler {
             s.executeUpdate();
             s.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
+            System.out.println("Error: SqlHandler.java rows: 296-305");
         }
     }
 
@@ -312,7 +313,8 @@ public class SqlHandler {
             s.executeUpdate();
             s.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
+            System.out.println("Error: SqlHandler.java rows: 309-318");
         }
     }
 }
