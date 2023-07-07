@@ -264,11 +264,11 @@ public class SqlHandler {
         }
     }
 
-    public boolean changePassword(String Password, String username) {
+    public boolean changePassword(String password, String username) {
         try{
             con = newConnection();
             PreparedStatement stm = con.prepareStatement("UPDATE users SET password = ? WHERE username = ?");
-            stm.setString(1, Password );
+            stm.setString(1, BCrypt.hashpw(password, BCrypt.gensalt(12)) );
             stm.setString(2,username);
             if(stm.executeUpdate() == 1){
                 closeConnection(con);
@@ -357,4 +357,23 @@ public class SqlHandler {
 
         }
     }
+
+    public boolean getEmail(String email) {
+        try{
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement("SELECT email FROM users");
+            ResultSet rs = s.executeQuery();
+            while(rs.next()){
+                if(rs.getString(1).equals(email)){
+                    closeConnection(con);
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        closeConnection(con);
+        return false;
+    }
+
 }

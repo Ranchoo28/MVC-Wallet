@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.RegexHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
@@ -74,14 +75,13 @@ public class RegistrationController {
 
         Email.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la mail rispetta il Regex.
-            isGoodEmail = newValue.matches("^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@(?:gmail\\.com|yahoo\\.com|hotmail\\.com|libero\\.it|icloud\\.com|gmx\\.com|aol\\.com)");
-
+            isGoodEmail = newValue.matches(RegexHandler.getInstance().regexEmail);
             performBinding();
         });
 
         Password.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
-            isGoodPassword = newValue.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=])[a-zA-Z0-9@!%&£°#'?*=]{8,}");
+            isGoodPassword = newValue.matches(RegexHandler.getInstance().regexPassword);
 
             performBinding();
         });

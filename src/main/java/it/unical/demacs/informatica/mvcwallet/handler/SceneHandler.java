@@ -33,7 +33,6 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        //\System.out.println(SettingsHandler.getInstance().theme);
         scene.getStylesheets().add(
                 Objects.requireNonNull(Objects.requireNonNull(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)).toExternalForm()));
     }
@@ -114,6 +113,24 @@ public class SceneHandler {
         }
     }
 
+    public void createChangePasswordFromForgot() {
+        // Crea la scena del cambio password dal forgot
+        try {
+            if(scene == null)
+                scene = new Scene(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
+            else
+                scene.setRoot(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
+            stage.setTitle("MVC Wallet Change password");
+            if(stage.isFullScreen()) stage.setFullScreen(false);
+
+            stage.setMinWidth(500);
+            stage.setMinHeight(300);
+            stage.setWidth(500);
+            stage.setHeight(300);
+        } catch (IOException ignored) {
+        }
+    }
+
     public void createRegistrationScene() {
         // Crea la scena della registrazione
         try {
@@ -135,9 +152,9 @@ public class SceneHandler {
         // Crea la scena per la password dimenticata
         try {
             if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"forgot-pass.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"forgot-pass-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML(view+"forgot-pass.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"forgot-pass-view.fxml"));
             stage.setTitle("MVC Wallet password dimenticata");
             stage.setMinWidth(400);
             stage.setMinHeight(250);
@@ -177,7 +194,7 @@ public class SceneHandler {
     }
 
     public void createRegistrationAlert(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
         icon.setIconColor(Paint.valueOf("blue"));
         icon.getStyleClass().add("icons-color");
@@ -185,7 +202,7 @@ public class SceneHandler {
         alert.setHeaderText("");
         alert.setGraphic(icon);
         alert.setTitle("Informazione");
-        alert.setContentText("Registrazione effettuata, controlla la tua posta per la mail. \n Puoi effettuare il login!");
+        alert.setContentText("Registrazione effettuata! Ti abbiamo mandato una mail darti alcune info.");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK) createSideBar();
@@ -199,11 +216,11 @@ public class SceneHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle("Informazione");
+        alert.setTitle("Cambio password");
         alert.setContentText(message);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK) createLoginScene();
+        else if(result.get() == ButtonType.OK) createChangePasswordFromForgot();
     }
 
     public void createLogoutAlert(String message){
@@ -237,5 +254,20 @@ public class SceneHandler {
         alert.setTitle("Cambio "+details);
         alert.setContentText(details+ " cambiato con successo!");
         alert.show();
+    }
+
+    public void passChangedFromForgot() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        FontIcon icon = new FontIcon("mdi2e-email-send");
+        icon.getStyleClass().add("icons-color");
+        icon.setIconColor(Paint.valueOf("#4d79ff"));
+        icon.setIconSize(45);
+        alert.setGraphic(icon);
+        alert.setHeaderText("");
+        alert.setTitle("Cambio password");
+        alert.setContentText("Password cambiata con successo! Ora puoi effettuare il login.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isEmpty()) createLoginScene();
+        else if(result.get() == ButtonType.OK) createLoginScene();
     }
 }
