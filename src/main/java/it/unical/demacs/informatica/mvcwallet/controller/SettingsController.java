@@ -26,25 +26,16 @@ public class SettingsController {
     @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
             currencyMenuButton, languageMenuButton, themeMenuButton;
     @FXML
-    void on12hClick() {
-        h12Choosen();
-    }
+    void on12hClick() { h12Choosen(); }
 
     @FXML
-    void on24hClick() {
-        h24Choosen();
-    }
+    void on24hClick() { h24Choosen(); }
 
     @FXML
-    void onSpotClick() {
-        spotChoosen();
-    }
+    void onSpotClick() { spotChoosen(); }
 
     @FXML
-    void onMarketClick() {
-        marketChoosen();
-    }
-
+    void onMarketClick() { marketChoosen(); }
 
     @FXML
     void onDarkClick() { darkThemeChoosen(); }
@@ -55,6 +46,17 @@ public class SettingsController {
     @FXML
     void onMvcClick() { mvcThemeChoosen(); }
 
+    @FXML
+    void onItalianClick(){ italianLanguageChoosen(); }
+
+    @FXML
+    void onEnglishClick(){ englishLanguageChoosen(); }
+
+    @FXML
+    void onEurClick(){ eurCurrencyChoosen(); }
+
+    @FXML
+    void onUsdClick(){ usdCurrencyChoosen(); }
 
 
     @FXML
@@ -65,7 +67,9 @@ public class SettingsController {
                 settings[0] ,
                 settings[1],
                 settings[2],
-                settings[3]);
+                settings[3],
+                settings[4],
+                settings[5]);
 
         if(settings[2].equals("0")) LoggedHandler.getInstance().stayLoggedWriting("null");
         if(settings[2].equals("1")) LoggedHandler.getInstance().stayLoggedWriting(LoginController.username);
@@ -93,6 +97,12 @@ public class SettingsController {
         if(SettingsHandler.getInstance().theme.equals("mvc.css")) mvcThemeChoosen();
         if(SettingsHandler.getInstance().theme.equals("dark.css")) darkThemeChoosen();
         if(SettingsHandler.getInstance().theme.equals("light.css")) lightThemeChoosen();
+
+        if(SettingsHandler.getInstance().language.equals("italian")) italianLanguageChoosen();
+        if(SettingsHandler.getInstance().language.equals("english")) englishLanguageChoosen();
+
+        if(SettingsHandler.getInstance().currency.equals("eur")) eurCurrencyChoosen();
+        if(SettingsHandler.getInstance().currency.equals("usd")) usdCurrencyChoosen();
 
         // Icona per i temi
         FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
@@ -152,6 +162,30 @@ public class SettingsController {
         themeMenuButton.setText("Light");
     }
 
+    private void italianLanguageChoosen(){
+        italianLanguage.setSelected(true);
+        englishLanguage.setSelected(false);
+        languageMenuButton.setText("Italiano");
+    }
+
+    private void englishLanguageChoosen(){
+        italianLanguage.setSelected(false);
+        englishLanguage.setSelected(true);
+        languageMenuButton.setText("English");
+    }
+
+    private void eurCurrencyChoosen(){
+        eurCurrency.setSelected(true);
+        usdCurrency.setSelected(false);
+        currencyMenuButton.setText("EUR");
+    }
+
+    private void usdCurrencyChoosen(){
+        eurCurrency.setSelected(false);
+        usdCurrency.setSelected(true);
+        currencyMenuButton.setText("USD");
+    }
+
     private void stayLogged(){
         stayLogged.setSelected(true);
     }
@@ -161,7 +195,7 @@ public class SettingsController {
     }
 
     private String [] changeSettings(){
-        String [] settings = new String[4];
+        String [] settings = new String[6];
 
         if(h24Time.isSelected()) settings[0] = "HH:mm:ss";
         if(h12Time.isSelected()) settings[0] = "hh:mm:ss a";
@@ -175,6 +209,12 @@ public class SettingsController {
         if(mvcTheme.isSelected()) settings[3] = "mvc.css";
         if(darkTheme.isSelected()) settings[3] = "dark.css";
         if(lightTheme.isSelected()) settings[3] = "light.css";
+
+        if(italianLanguage.isSelected()) settings[4] = "italian";
+        if(englishLanguage.isSelected()) settings[4] = "english";
+
+        if(eurCurrency.isSelected()) settings[5] = "eur";
+        if(usdCurrency.isSelected()) settings[5] = "usd";
 
         return settings;
     }

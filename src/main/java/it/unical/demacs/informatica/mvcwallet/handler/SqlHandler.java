@@ -269,8 +269,8 @@ public class SqlHandler {
     public String [] getSettingsQuery(String username){
         try{
             con = newConnection();
-            String [] settings = new String[4];
-            PreparedStatement s = con.prepareStatement("SELECT time, page, logged, theme FROM settings WHERE username = ?");
+            String [] settings = new String[6];
+            PreparedStatement s = con.prepareStatement("SELECT time, page, logged, theme, language, currency FROM settings WHERE username = ?");
             s.setString(1, username);
 
             ResultSet rs = s.executeQuery();
@@ -278,6 +278,8 @@ public class SqlHandler {
             settings[1] = rs.getString(2);
             settings[2] = rs.getString(3);
             settings[3] = rs.getString(4);
+            settings[4] = rs.getString(5);
+            settings[5] = rs.getString(6);
 
             closeConnection(con);
             return settings;
@@ -286,15 +288,18 @@ public class SqlHandler {
         }
     }
 
-    public void setSettingsQuery(String username, String time, String page, String logged, String theme)  {
+    public void setSettingsQuery(String username, String time, String page, String logged, String theme, String language, String currency)  {
             try {
                 con = newConnection();
-                PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, logged = ?, theme = ? WHERE username = ? ");
+                PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, " +
+                        "logged = ?, theme = ?, language = ?, currency = ? WHERE username = ? ");
                 s.setString(1, time);
                 s.setString(2, page);
                 s.setString(3, logged);
                 s.setString(4, theme);
-                s.setString(5, username);
+                s.setString(5, language);
+                s.setString(6, currency);
+                s.setString(7, username);
                 s.executeUpdate();
                 closeConnection(con);
             } catch (SQLException e) {
