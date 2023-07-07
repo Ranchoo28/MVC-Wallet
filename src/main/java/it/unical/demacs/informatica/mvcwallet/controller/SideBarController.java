@@ -1,22 +1,22 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
+import com.jfoenix.controls.JFXToggleButton;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.MenuButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
+
 import java.io.IOException;
 
 public class SideBarController {
@@ -27,10 +27,26 @@ public class SideBarController {
     @FXML
     private Label dateLabel, logoutLabel, marketLabel, settingsLabel, spotLabel, timeLabel, userLabel;
     @FXML
-    private SplitMenuButton accessMenu;
+    private Label accessLabel;
+    @FXML
+    private MenuButton accessMenuButton;
     @FXML
     private VBox sideBar;
+    @FXML
+    private JFXToggleButton highContrastButton, largeTextButton, screenReaderButton;
 
+    @FXML
+    private void onHighContrastClick(ActionEvent event){
+        event.consume(); // Impedisce la chiusura del MenuButton
+    }
+    @FXML
+    private void onLargeTextClick(ActionEvent event){
+        event.consume(); // Impedisce la chiusura del MenuButton
+    }
+    @FXML
+    private void onScreenReaderClick(ActionEvent event){
+        event.consume(); // Impedisce la chiusura del MenuButton
+    }
     @FXML
     void onLogoutClick() {
         SceneHandler.getInstance().createLogoutAlert("Sei sicuro di voler effettuare il logout?");
@@ -140,9 +156,9 @@ public class SideBarController {
         //label Alto contrasto, Testo largo ecc...
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
+        accessLabel.setContentDisplay(ContentDisplay.RIGHT);
         accessIcon.setIconColor(Paint.valueOf("#fff"));
-        accessMenu.setContentDisplay(ContentDisplay.RIGHT);
-        accessMenu.setGraphic(accessIcon);
+        accessLabel.setGraphic(accessIcon);
 
         // Icona del bottone del logout
         FontIcon iconLogout = new FontIcon("mdi2a-account-off");
@@ -169,15 +185,20 @@ public class SideBarController {
     public void loadFXML(String nomeFXML) throws IOException {
         centerPage.getChildren().clear();
 
-        String path = PathHandler.getInstance().getPathOfView();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
-        AnchorPane pane = fxmlLoader.load();
+        try{
 
-        centerPage.getChildren().add(pane);
-        AnchorPane.setTopAnchor(pane, 5.0);
-        AnchorPane.setRightAnchor(pane, 0.0);
-        AnchorPane.setBottomAnchor(pane, 0.0);
-        AnchorPane.setLeftAnchor(pane, 0.0);
+            String path = PathHandler.getInstance().getPathOfView();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+            AnchorPane pane = fxmlLoader.load();
+
+            centerPage.getChildren().add(pane);
+            AnchorPane.setTopAnchor(pane, 5.0);
+            AnchorPane.setRightAnchor(pane, 0.0);
+            AnchorPane.setBottomAnchor(pane, 0.0);
+            AnchorPane.setLeftAnchor(pane, 0.0);
+        } catch (Exception e){
+            System.out.println(e);
+        }
     }
 }
 

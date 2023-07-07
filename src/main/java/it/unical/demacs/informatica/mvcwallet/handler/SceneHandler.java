@@ -33,9 +33,8 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        //\System.out.println(SettingsHandler.getInstance().theme);
-        scene.getStylesheets().add(
-                Objects.requireNonNull(Objects.requireNonNull(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)).toExternalForm()));
+        System.out.println(css+SettingsHandler.getInstance().getTheme());
+        scene.getStylesheets().add(css+SettingsHandler.getInstance().getTheme());
     }
 
 
@@ -109,7 +108,7 @@ public class SceneHandler {
             stage.setMinHeight(350);
             stage.setWidth(600);
             stage.setHeight(350);
-            //uploadTheme();
+            uploadTheme();
         } catch (IOException ignored) {
         }
     }

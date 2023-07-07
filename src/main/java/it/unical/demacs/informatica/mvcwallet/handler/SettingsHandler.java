@@ -12,12 +12,12 @@ public class SettingsHandler {
     // Classe che serve a gestire le impostazioni
 
     private SettingsHandler(){}
-    private static final SettingsHandler istance = new SettingsHandler();
-    public static SettingsHandler getInstance(){ return istance; }
+    private static final SettingsHandler instance = new SettingsHandler();
+    public static SettingsHandler getInstance(){ return instance; }
 
     public String username;
     public String [] settings;
-    public String format, page, theme, language, currency;
+    public String format, page, theme = "light", language, currency;
     public boolean logged;
 
     //public String format = "HH:mm:ss";
@@ -33,6 +33,10 @@ public class SettingsHandler {
 
     public String timeFormatter(){ return LocalTime.now().format(DateTimeFormatter.ofPattern(format)); }
 
+    public String getTheme(){
+        return theme;
+    }
+
     public void updateSettings(){
         settings = SqlService.getIstance().serviceSettings(LoginController.username);
         format = settings[0];
@@ -42,6 +46,5 @@ public class SettingsHandler {
         theme = settings[3];
         language = settings[4];
         currency = settings[5];
-
     }
 }

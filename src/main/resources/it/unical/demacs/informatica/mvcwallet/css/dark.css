@@ -1,3 +1,10 @@
+/*
+#03001C Scurissimo
+#301E67 Scuro
+#37306B Chiaro
+#856dcd Chiarissimo
+*/
+
 /*Colore di background dell'anchorpane*/
 .global-color{
      -fx-background-color: #03001C;
@@ -7,7 +14,6 @@
     -fx-background-color: #301E67;
     -fx-margin: 10px;
 }
-
 /*Bottoni della barra superiore*/
 
 .hbox-info-button{
@@ -27,10 +33,6 @@
    -fx-font-weight: bold;
 }
 /*Accessibility Menu*/
-.menu-button:hover {
-    /* Styles to apply when the MenuButton is being hovered */
-    -fx-background-color: transparent;
-}
 .access-menu {
     -fx-background-color: transparent;
 }
@@ -38,18 +40,30 @@
    -fx-background-color: #37306B;
    -fx-background-radius: 10;
 }
-.jfx-toggle-button {
+.context-menu{
+    -fx-background-color: #301E67;
+    -fx-background-radius: 10;
+}
+.menu-button {
     -fx-background-color: transparent;
 }
-
+.menu-button .menu-item{
+    -fx-background-color: transparent;
+}
+.menu-button .menu-item:hover{
+    -fx-background-color: #37306B;
+    -fx-background-radius: 10;
+}
+.jfx-toggle-button {
+    -fx-text-fill: white;
+    -jfx-toggle-color: white;
+    -jfx-toggle-line-color: #856dcd;
+    -jfx-untoggle-color: white;
+    -jfx-untoggle-line-color: #999999;
+}
 .jfx-toggle-button:hover {
     -fx-background-color: transparent;
-
 }
-
-.jfx-toggle-button:selected {
-}
-
 
 /*Barra laterale*/
 .sidebar{
