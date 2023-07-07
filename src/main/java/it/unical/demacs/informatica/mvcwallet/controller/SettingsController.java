@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import java.util.Set;
-
 public class SettingsController {
 
     @FXML

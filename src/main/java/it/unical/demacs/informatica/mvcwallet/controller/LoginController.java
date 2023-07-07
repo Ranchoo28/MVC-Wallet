@@ -7,16 +7,11 @@ import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-
-import java.util.concurrent.TimeUnit;
 
 public class LoginController {
     public static String username;
@@ -73,36 +68,21 @@ public class LoginController {
                 // Non capisco perchè bisogna rifare la connessione.
                 username = LoggedHandler.getInstance().stayLoggedReading();
                 SqlHandler.getIstance().newConnection();
-                System.out.println(username);
                 SettingsHandler.getInstance().updateSettings();
                 SceneHandler.getInstance().createSideBar();
             }
         });
 
         buttonLogin.setDisable(true);
-        Username.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.length() < 5)
-                    isGoodUsername = false;
-                else
-                    isGoodUsername = true;
-
-                performBinding();
-            }
+        Username.textProperty().addListener((observable, oldValue, newValue) -> {
+            isGoodUsername = newValue.length() >= 5;
+            performBinding();
         });
 
-        Password.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                // cambiare ad 8 (lasciare 4 per i test)
-                if(newValue.length() < 4)
-                    isGoodPassword = false;
-                else
-                    isGoodPassword = true;
-
-                performBinding();
-            }
+        Password.textProperty().addListener((observable, oldValue, newValue) -> {
+            // cambiare ad 8 (lasciare 4 per i test)
+            isGoodPassword = newValue.length() >= 4;
+            performBinding();
         });
 
     }

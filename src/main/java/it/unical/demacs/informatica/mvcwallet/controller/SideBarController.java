@@ -89,16 +89,13 @@ public class SideBarController {
         }
 
         // Gestione dell'ora e della data in tempo reale.
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                    dateLabel.setText(SettingsHandler.getInstance().getDay());
-                    timeLabel.setText(SettingsHandler.getInstance().timeFormatter());
-                }));
-                timeline.setCycleCount(Animation.INDEFINITE);
-                timeline.play();
-            }
+        Platform.runLater(() -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
+                dateLabel.setText(SettingsHandler.getInstance().getDay());
+                timeLabel.setText(SettingsHandler.getInstance().timeFormatter());
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
         });
 
         /* FIXME
@@ -179,10 +176,10 @@ public class SideBarController {
         AnchorPane pane = fxmlLoader.load();
 
         centerPage.getChildren().add(pane);
-        centerPage.setTopAnchor(pane, 5.0);
-        centerPage.setRightAnchor(pane, 0.0);
-        centerPage.setBottomAnchor(pane, 0.0);
-        centerPage.setLeftAnchor(pane, 0.0);
+        AnchorPane.setTopAnchor(pane, 5.0);
+        AnchorPane.setRightAnchor(pane, 0.0);
+        AnchorPane.setBottomAnchor(pane, 0.0);
+        AnchorPane.setLeftAnchor(pane, 0.0);
     }
 }
 
