@@ -1,9 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
-import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
@@ -19,9 +15,7 @@ public class LoggedHandler {
     static {
         try {
             instance = new LoggedHandler();
-        } catch (NoSuchPaddingException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
@@ -32,7 +26,7 @@ public class LoggedHandler {
     private LoggedHandler() throws NoSuchPaddingException, NoSuchAlgorithmException {}
 
     private  SecretKeySpec secretKey;
-    private String myKey = "MVC-Wallet";
+    private final String myKey = "MVC-Wallet";
     byte [] key;
 
     // Trasforma la chiave in una SecretKeySpec (con l'algoritmo di hashing SHA-512)
@@ -51,9 +45,10 @@ public class LoggedHandler {
             setKey(sec);
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(username.getBytes("UTF-8")));
+            return Base64.getEncoder().encodeToString(cipher.doFinal(username.getBytes(StandardCharsets.UTF_8)));
         }catch (Exception e){
-
+            System.out.println("Error: LoggedHandler.java rows: 44-52");
+            e.printStackTrace();
         }
         return null;
     }
@@ -66,7 +61,8 @@ public class LoggedHandler {
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(usernameCrypyted)));
         }catch (Exception e){
-
+            System.out.println("Error: LoggedHandler.java rows: 58-66");
+            e.printStackTrace();
         }
         return null;
     }
@@ -93,7 +89,7 @@ public class LoggedHandler {
             file.close();
             stream.close();
         }catch (IOException e){
-            System.out.println("Errore nella scrittura del file");
+            System.out.println("Error: LoggedHandler.java rows: 84-93");
         }
     }
 }

@@ -36,10 +36,10 @@ public class APIsHandler {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String startFormatted = startDate.format(formatter);
         String endFormatted = endDate.format(formatter);
-        String requestUrl = "";
+        String requestUrl;
 
         // Costruisce l'URL per la richiesta API
-        if(timeframe == "1D") { //Limitato a 90 giorni
+        if(Objects.equals(timeframe, "1D")) { //Limitato a 90 giorni
             requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=90" + "&interval=1m";
         } else{
             requestUrl = coingeckoAPI + coin + "/market_chart?vs_currency=" + vsCurrency + "&days=" + days + "&start_date=" + startFormatted + "&end_date=" + endFormatted + "&interval=1m";
@@ -79,6 +79,7 @@ public class APIsHandler {
             try {
                 // Elabora la risposta JSON
                 Gson gson = new Gson();
+                assert response != null;
                 JsonObject jsonResponse = gson.fromJson(response.toString(), JsonObject.class);
                 JsonArray prices = jsonResponse.get("prices").getAsJsonArray();
 

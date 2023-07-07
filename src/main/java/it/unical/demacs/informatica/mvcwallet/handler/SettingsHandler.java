@@ -11,7 +11,7 @@ public class SettingsHandler {
     // Classe che serve a gestire le impostazioni
 
     private SettingsHandler(){}
-    private static SettingsHandler istance = new SettingsHandler();
+    private static final SettingsHandler istance = new SettingsHandler();
     public static SettingsHandler getInstance(){ return istance; }
 
     public String username;
