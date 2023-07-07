@@ -46,7 +46,7 @@ public class SettingsController {
 
 
     @FXML
-    void onSaveClick(){
+    void onSaveClick() throws InterruptedException {
         String [] settings = changeSettings();
         SqlHandler.getInstance().setSettingsQuery(
                 LoginController.username,

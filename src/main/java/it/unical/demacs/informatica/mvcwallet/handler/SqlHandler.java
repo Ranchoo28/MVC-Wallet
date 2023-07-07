@@ -278,43 +278,71 @@ public class SqlHandler {
         }
     }
 
-    public void setSettingsQuery(String username, String time, String page, String logged){
-        try{
-            PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, logged = ? WHERE username = ? ");
-            s.setString(1, time );
-            s.setString(2, page );
-            s.setString(3, logged);
-            s.setString(4, username );
-            s.executeUpdate();
-            s.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+    public void setSettingsQuery(String username, String time, String page, String logged) throws InterruptedException {
+        boolean success = false;
+        int retries = 0;
+        int maxRetries = 5;
+        long retryDelayMillis = 200; // Tempo di attesa in millisecondi tra i tentativi
+
+        while(!success && retries < maxRetries) {
+            try {
+                PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, logged = ? WHERE username = ? ");
+                s.setString(1, time);
+                s.setString(2, page);
+                s.setString(3, logged);
+                s.setString(4, username);
+                s.executeUpdate();
+                s.close();
+            } catch (SQLException e) {
+                System.out.println("Error: SqlHandler.java rows: 288-301");
+                e.printStackTrace();
+                retries++;
+                Thread.sleep(retryDelayMillis);
+            }
         }
     }
 
-    public void setLogutQuery(String username){
-        try{
-            PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
-            s.setString(1, "0" );
-            s.setString(2, username );
-            s.executeUpdate();
-            s.close();
-        } catch (SQLException e) {
-            System.out.println("Error: SqlHandler.java rows: 296-305");
-            e.printStackTrace();
+    public void setLogutQuery(String username) throws InterruptedException {
+        boolean success = false;
+        int retries = 0;
+        int maxRetries = 5;
+        long retryDelayMillis = 200; // Tempo di attesa in millisecondi tra i tentativi
+
+        while(!success && retries < maxRetries) {
+            try {
+                PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
+                s.setString(1, "0");
+                s.setString(2, username);
+                s.executeUpdate();
+                s.close();
+            } catch (SQLException e) {
+                System.out.println("Error: SqlHandler.java rows: 312-323");
+                e.printStackTrace();
+                retries++;
+                Thread.sleep(retryDelayMillis);
+            }
         }
     }
 
-    public void stayLoggedOfLogin(String username){
-        try{
-            PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
-            s.setString(1, "1" );
-            s.setString(2, username );
-            s.executeUpdate();
-            s.close();
-        } catch (SQLException e) {
-            System.out.println("Error: SqlHandler.java rows: 309-318");
-            e.printStackTrace();
+    public void stayLoggedOfLogin(String username) throws InterruptedException {
+        boolean success = false;
+        int retries = 0;
+        int maxRetries = 5;
+        long retryDelayMillis = 200; // Tempo di attesa in millisecondi tra i tentativi
+
+        while(!success && retries < maxRetries){
+            try{
+                PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
+                s.setString(1, "1" );
+                s.setString(2, username );
+                s.executeUpdate();
+                s.close();
+                success = true;
+            } catch (SQLException e) {
+                System.out.println("Error: SqlHandler.java rows: 334-345");
+                retries++;
+                Thread.sleep(retryDelayMillis);
+            }
         }
     }
 }

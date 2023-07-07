@@ -27,7 +27,7 @@ public class LoginController {
     private CheckBox stayLogged;
 
     @FXML
-    void onLoginButtonClick() {
+    void onLoginButtonClick() throws InterruptedException {
 
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
