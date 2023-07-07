@@ -1,3 +1,97 @@
+/*Colore di background dell'anchorpane*/
 .global-color{
-     -fx-background-color:  black;
+     -fx-background-color: #03001C;
+}
+/*Barra superiore*/
+.hbox-info{
+    -fx-background-color: #301E67;
+    -fx-margin: 10px;
+}
+
+/*Bottoni della barra superiore*/
+
+.hbox-info-button{
+    -fx-pref-width: 200px;
+}
+.hbox-info-button:hover{
+   -fx-background-color: #37306B;
+   -fx-background-radius: 10;
+}
+.hbox-info-button .label{
+    -fx-text-overrun: ellipsis;
+    -fx-font-family: "monospace";
+    -fx-alignment: center;
+    -fx-max-width: 200px;
+}
+.hbox-info-button:hover .label{
+   -fx-font-weight: bold;
+}
+/*Accessibility Menu*/
+.menu-button:hover {
+    /* Styles to apply when the MenuButton is being hovered */
+    -fx-background-color: transparent;
+}
+.access-menu {
+    -fx-background-color: transparent;
+}
+.access-menu:hover {
+   -fx-background-color: #37306B;
+   -fx-background-radius: 10;
+}
+.jfx-toggle-button {
+    -fx-background-color: transparent;
+}
+
+.jfx-toggle-button:hover {
+    -fx-background-color: transparent;
+
+}
+
+.jfx-toggle-button:selected {
+}
+
+
+/*Barra laterale*/
+.sidebar{
+    -fx-font-weight: bold;
+    -fx-background-color: #301E67;
+    -fx-background-radius: 10;
+}
+
+/*Hover barra laterale*/
+.sidebar-button:hover{
+    -fx-font-weight: bold;
+    -fx-background-color: #37306B;
+}
+
+/* UI Datepicker */
+.datepicker {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+}
+
+.datepicker .text-field {
+    -fx-background-color: transparent;
+}
+
+.datepicker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+    -fx-padding: 6;
+}
+
+.datepicker .arrow-button:hover {
+    -fx-background-color: #E0E0E0;
+}
+
+.datepicker .arrow-button:pressed {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup > * > .today {
+        -fx-font-weight: bolder;
+}
+
+.date-picker-popup > * > .day-cell {
+    -fx-text-fill: green;
 }

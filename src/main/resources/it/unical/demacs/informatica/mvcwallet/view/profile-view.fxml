@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ProfileController">
+<AnchorPane fx:id="centerPage" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ProfileController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -58,7 +58,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancelButton1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChangePasswordClick" prefWidth="200.0" style="-fx-background-color: #ffa31a;" text="Change Password" textFill="WHITE">
+                  <Button fx:id="changePassButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChangePasswordClick" prefWidth="200.0" style="-fx-background-color: #ffa31a;" text="Change Password" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

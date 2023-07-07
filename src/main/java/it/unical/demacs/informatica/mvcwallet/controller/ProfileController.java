@@ -14,18 +14,21 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class ProfileController {
-    String [] nameSurnameArray;
+    @FXML
+    AnchorPane centerPage;
+
     @FXML
     private TextField usernameTextField, firstTextField, lastTextField;
 
     @FXML
-    private Button saveButton, cancelButton;
+    private Button saveButton, cancelButton, changePassButton;
+
+    String [] nameSurnameArray;
 
     boolean isGoodUsername, isGoodName, isGoodSurname;
     @FXML
-    void onChangePasswordClick() {
-
-
+    void onChangePasswordClick() throws IOException {
+        loadFXML("changepass-view.fxml");
     }
     @FXML
     void onCancelClick(){
@@ -58,14 +61,18 @@ public class ProfileController {
         centerPage.getChildren().clear();
 
         String path = PathHandler.getInstance().getPathOfView();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
-        AnchorPane pane = fxmlLoader.load();
-
-        centerPage.getChildren().add(pane);
-        AnchorPane.setTopAnchor(pane, 5.0);
-        AnchorPane.setRightAnchor(pane, 0.0);
-        AnchorPane.setBottomAnchor(pane, 0.0);
-        AnchorPane.setLeftAnchor(pane, 0.0);
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+            AnchorPane pane = fxmlLoader.load();
+            centerPage.getChildren().add(pane);
+            AnchorPane.setTopAnchor(pane, 5.0);
+            AnchorPane.setRightAnchor(pane, 0.0);
+            AnchorPane.setBottomAnchor(pane, 0.0);
+            AnchorPane.setLeftAnchor(pane, 0.0);
+        } catch (Exception e){
+            System.out.println(e);
+            System.out.println("L'errore sta qua");
+        }
     }
 
     @FXML

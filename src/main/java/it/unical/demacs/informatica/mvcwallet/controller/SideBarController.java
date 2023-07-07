@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
@@ -21,17 +21,15 @@ import java.io.IOException;
 
 public class SideBarController {
     @FXML
-    private MenuButton accessMenu;
-    @FXML
-    private Label userLabel;
-    @FXML
-    private Label settingsLabel, moneyLabel, cryptoLabel, logoutLabel;
-    @FXML
     private AnchorPane centerPage;
     @FXML
-    private Label dateLabel, timeLabel;
+    private HBox infoHBox, logoutHBox, marketHBox, spotHBox;
     @FXML
-    private HBox spotHBox, marketHBox, logoutHBox;
+    private Label dateLabel, logoutLabel, marketLabel, settingsLabel, spotLabel, timeLabel, userLabel;
+    @FXML
+    private SplitMenuButton accessMenu;
+    @FXML
+    private VBox sideBar;
 
     @FXML
     void onLogoutClick() {
@@ -157,15 +155,15 @@ public class SideBarController {
         FontIcon iconMoney = new FontIcon("mdi2c-currency-usd-circle"); //mdi2c-cash-usd
         iconMoney.setIconSize(25);
         iconMoney.setIconColor(Paint.valueOf("#fff"));
-        moneyLabel.setContentDisplay(ContentDisplay.LEFT);
-        moneyLabel.setGraphic(iconMoney);
+        spotLabel.setContentDisplay(ContentDisplay.LEFT);
+        spotLabel.setGraphic(iconMoney);
 
         // Icona del bottone delle Crypto
         FontIcon iconCrypto = new FontIcon("mdi2b-bitcoin");
         iconCrypto.setIconSize(25);
         iconCrypto.setIconColor(Paint.valueOf("#fff"));
-        cryptoLabel.setContentDisplay(ContentDisplay.LEFT);
-        cryptoLabel.setGraphic(iconCrypto);
+        marketLabel.setContentDisplay(ContentDisplay.LEFT);
+        marketLabel.setGraphic(iconCrypto);
     }
 
     public void loadFXML(String nomeFXML) throws IOException {
