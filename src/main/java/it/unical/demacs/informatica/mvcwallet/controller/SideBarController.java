@@ -180,9 +180,9 @@ public class SideBarController {
 
         centerPage.getChildren().add(pane);
         centerPage.setTopAnchor(pane, 5.0);
-        centerPage.setRightAnchor(pane, 5.0);
-        centerPage.setBottomAnchor(pane, 5.0);
-        centerPage.setLeftAnchor(pane, 5.0);
+        centerPage.setRightAnchor(pane, 0.0);
+        centerPage.setBottomAnchor(pane, 0.0);
+        centerPage.setLeftAnchor(pane, 0.0);
     }
 }
 

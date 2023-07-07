@@ -17,13 +17,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CandleStickChart extends XYChart<String, Number> {
     SimpleDateFormat sdf = new SimpleDateFormat();
-    private final String css = PathHandler.getInstance().getPathOfCSS();
+    private static final String css = PathHandler.getInstance().getPathOfCSS();
     protected static final Logger logger = Logger.getLogger(CandleStickChart.class.getName());
+    protected static CandleStickChart chart;
     protected int maxBarsToDisplay;
     protected ObservableList<Series<String, Number>> dataSeries;
     protected BarData lastBar;
@@ -44,31 +46,22 @@ public class CandleStickChart extends XYChart<String, Number> {
         this.yAxis = yAxis;
         this.maxBarsToDisplay = maxBarsToDisplay;
 
-        yAxis.autoRangingProperty().set(true);
         yAxis.forceZeroInRangeProperty().setValue(Boolean.FALSE);
         setAnimated(true);
         setLegendVisible(false);
-        getStylesheets().add(getClass().getResource(css+"CandleStickChartStyles.css").toExternalForm());
+        getStylesheets().add(Objects.requireNonNull(getClass().getResource(css + "CandleStickChartStyles.css")).toExternalForm());
         xAxis.setAnimated(true);
         yAxis.setAnimated(true);
         verticalGridLinesVisibleProperty().set(false);
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         List<BarData> sublist = getSubList(bars, maxBarsToDisplay);
 
-        int end = sublist.size();
-        double highestValue = 0;
-        double lowestValue = 0;
-
-
-        for (int i = 0 ; i < end; i++) {
-            BarData bar = sublist.get(i);
-
-            String label = "";
-            label = bar.getDate();
-            series.getData().add(new XYChart.Data<>(label, bar.getOpen(), bar));
-            //logger.log(Level.INFO, "Adding bar with date/time: {0}", bar.getDateTime().getTime());
-            //logger.log(Level.INFO, "Adding bar with price: {0}", bar.getOpen());
-            }
+        for (BarData bar : sublist) {
+            String label = bar.getDate();
+            series.getData().add(new Data<>(label, bar.getOpen(), bar));
+            logger.log(Level.INFO, "Adding bar with date/time: {0}", bar.getDateTime().getTime());
+            logger.log(Level.INFO, "Adding bar with price: {0}", bar.getOpen());
+        }
 
         dataSeries = FXCollections.observableArrayList(series);
         setData(dataSeries);
@@ -119,7 +112,9 @@ public class CandleStickChart extends XYChart<String, Number> {
     }
 
     // -------------- METHODS ------------------------------------------------------------------------------------------
-
+    /**
+     * Called to update and layout the content for the plot
+     */
     @Override
     protected void layoutPlotChildren() {
         // we have nothing to layout if no data is present
@@ -245,6 +240,14 @@ public class CandleStickChart extends XYChart<String, Number> {
         }
     }
 
+    /**
+     * Create a new Candle node to represent a single data item
+     *
+     * @param seriesIndex The index of the series the data item is in
+     * @param item The data item to create node for
+     * @param itemIndex The index of the data item in the series
+     * @return New candle node to represent the give data item
+     */
     private Node createCandle(int seriesIndex, final Data item, int itemIndex) {
         Node candle = item.getNode();
         // check if candle has already been created
@@ -256,4 +259,51 @@ public class CandleStickChart extends XYChart<String, Number> {
         }
         return candle;
     }
+
+    /**
+     * This is called when the range has been invalidated and we need to update
+     * it. If the axis are auto ranging then we compile a list of all data that
+     * the given axis has to plot and call invalidateRange() on the axis passing
+     * it that data.
+     */
+    @Override
+    protected void updateAxisRange() {
+        // For candle stick chart we need to override this method as we need to let the axis know that they need to be able
+        // to cover the whole area occupied by the high to low range not just its center data value
+        final Axis<String> xa = getXAxis();
+        final Axis<Number> ya = getYAxis();
+        List<String> xData = null;
+        List<Number> yData = null;
+        if (xa.isAutoRanging()) {
+            xData = new ArrayList<>();
+        }
+        if (ya.isAutoRanging()) {
+            yData = new ArrayList<>();
+        }
+        if (xData != null || yData != null) {
+            for (Series<String, Number> series : getData()) {
+                for (Data<String, Number> data : series.getData()) {
+                    if (xData != null) {
+                        xData.add(data.getXValue());
+                    }
+                    if (yData != null) {
+                        BarData extras = (BarData) data.getExtraValue();
+                        if (extras != null) {
+                            yData.add(extras.getHigh());
+                            yData.add(extras.getLow());
+                        } else {
+                            yData.add(data.getYValue());
+                        }
+                    }
+                }
+            }
+            if (xData != null) {
+                xa.invalidateRange(xData);
+            }
+            if (yData != null) {
+                ya.invalidateRange(yData);
+            }
+        }
+    }
 }
+

@@ -42,7 +42,7 @@ public class SceneHandler {
             //createSideBar();
             stage.setScene(scene);
             stage.show();
-            scene.getStylesheets().add(Objects.requireNonNull(SceneHandler.class.getResource(css+"main.css").toExternalForm()));
+            scene.getStylesheets().add(Objects.requireNonNull(Objects.requireNonNull(SceneHandler.class.getResource(css + "main.css")).toExternalForm()));
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
                     stage.setFullScreen(!stage.isFullScreen());
@@ -61,8 +61,8 @@ public class SceneHandler {
             //scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
-                stage.setWidth(800);
-                stage.setHeight(500);
+                stage.setMinWidth(900);
+                stage.setMinHeight(600);
             }
         } catch (IOException ignored) {
         }

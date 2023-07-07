@@ -36,17 +36,17 @@ public class MarketController {
     private AnchorPane market;
 
     public void updateChart(){
-        market.getChildren().clear();
+        this.market.getChildren().clear();
 
         List<BarData> array = BuildBars.getInstance().buildBars(this.formattedCoin, this.formattedCurrency, this.timeframe);
         CandleStickChart chart = new CandleStickChart(array, market.getWidth());
 
-        market.getChildren().add(chart);
+        this.market.getChildren().add(chart);
 
-        market.setTopAnchor(chart, 0.0);
-        market.setRightAnchor(chart, 5.0);
-        market.setBottomAnchor(chart, 5.0);
-        market.setLeftAnchor(chart, 0.0);
+        AnchorPane.setTopAnchor(chart, 0.0);
+        AnchorPane.setRightAnchor(chart, 5.0);
+        AnchorPane.setBottomAnchor(chart, 5.0);
+        AnchorPane.setLeftAnchor(chart, 0.0);
     }
 
     @FXML
@@ -66,8 +66,7 @@ public class MarketController {
     }
 
     public void getSelectedTime(ActionEvent event) {
-        String value = timeChoiceBox.getValue();
-        this.timeframe = value;
+        this.timeframe = timeChoiceBox.getValue();
         updateChart();
     }
 
