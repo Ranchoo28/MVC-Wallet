@@ -91,6 +91,8 @@ public class SideBarController {
     @FXML
     void initialize() throws IOException {
 
+        Platform.runLater(this::updateLanguage);
+
         if (SettingsHandler.getInstance().page.equals("spot")){
             spotHBox.setDisable(true);
             marketHBox.setDisable(false);
@@ -102,6 +104,8 @@ public class SideBarController {
             loadFXML("market-view.fxml");
         }
 
+
+
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(() -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
@@ -111,12 +115,6 @@ public class SideBarController {
             timeline.setCycleCount(Animation.INDEFINITE);
             timeline.play();
         });
-
-        /* FIXME
-        String [] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
-        userLabel.setText(array[0] + " " + array[1]);
-         */
-
 
         // Icona per l'utente
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
@@ -160,6 +158,7 @@ public class SideBarController {
         accessIcon.setIconColor(Paint.valueOf("#fff"));
         accessLabel.setGraphic(accessIcon);
 
+
         // Icona del bottone del logout
         FontIcon iconLogout = new FontIcon("mdi2a-account-off");
         iconLogout.setIconSize(25);
@@ -180,6 +179,8 @@ public class SideBarController {
         iconCrypto.setIconColor(Paint.valueOf("#fff"));
         marketLabel.setContentDisplay(ContentDisplay.LEFT);
         marketLabel.setGraphic(iconCrypto);
+
+
     }
 
     public void loadFXML(String nomeFXML) throws IOException {
@@ -199,6 +200,11 @@ public class SideBarController {
         } catch (Exception e){
             System.out.println(e);
         }
+    }
+
+    private void updateLanguage(){
+        settingsLabel.setText(LanguageHandler.getInstance().getBundle().getString("settingsLabel"));
+        logoutLabel.setText(LanguageHandler.getInstance().getBundle().getString("logoutLabel"));
     }
 }
 

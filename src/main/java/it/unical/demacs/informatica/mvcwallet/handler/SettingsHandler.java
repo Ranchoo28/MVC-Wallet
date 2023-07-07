@@ -17,15 +17,8 @@ public class SettingsHandler {
 
     public String username;
     public String [] settings;
-    public String format, page, theme = "light", language, currency;
+    public String format, page, theme, language, currency;
     public boolean logged;
-
-    //public String format = "HH:mm:ss";
-    //public String page = "market";
-
-    //public String language = SqlService.getIstance().getLanguage();
-    //public String logged = SqlService.getIstance().getLogged();
-    //public String currency = SqlService.getIstance().getCurrency();
 
     public String getDay(){
         return LocalDate.now().toString();

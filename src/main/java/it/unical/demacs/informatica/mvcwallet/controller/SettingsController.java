@@ -1,9 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.LoggedHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,6 +13,11 @@ public class SettingsController {
 
     @FXML
     private CheckBox stayLogged;
+
+    @FXML
+    private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel;
+    @FXML
+    private Button applyButton, backButton;
 
     @FXML
     private RadioMenuItem italianLanguage, englishLanguage,
@@ -85,6 +87,7 @@ public class SettingsController {
 
     @FXML
     void initialize(){
+        updateLanguage();
         if(SettingsHandler.getInstance().format.equals("HH:mm:ss")) h24Choosen();
         if(SettingsHandler.getInstance().format.equals("hh:mm:ss a")) h12Choosen();
 
@@ -98,8 +101,8 @@ public class SettingsController {
         if(SettingsHandler.getInstance().theme.equals("dark.css")) darkThemeChoosen();
         if(SettingsHandler.getInstance().theme.equals("light.css")) lightThemeChoosen();
 
-        if(SettingsHandler.getInstance().language.equals("italian")) italianLanguageChoosen();
-        if(SettingsHandler.getInstance().language.equals("english")) englishLanguageChoosen();
+        if(SettingsHandler.getInstance().language.equals("it")) italianLanguageChoosen();
+        if(SettingsHandler.getInstance().language.equals("en")) englishLanguageChoosen();
 
         if(SettingsHandler.getInstance().currency.equals("eur")) eurCurrencyChoosen();
         if(SettingsHandler.getInstance().currency.equals("usd")) usdCurrencyChoosen();
@@ -210,13 +213,24 @@ public class SettingsController {
         if(darkTheme.isSelected()) settings[3] = "dark.css";
         if(lightTheme.isSelected()) settings[3] = "light.css";
 
-        if(italianLanguage.isSelected()) settings[4] = "italian";
-        if(englishLanguage.isSelected()) settings[4] = "english";
+        if(italianLanguage.isSelected()) settings[4] = "it";
+        if(englishLanguage.isSelected()) settings[4] = "en";
 
         if(eurCurrency.isSelected()) settings[5] = "eur";
         if(usdCurrency.isSelected()) settings[5] = "usd";
 
         return settings;
+    }
+
+    private void updateLanguage(){
+        pageLabel.setText(LanguageHandler.getInstance().getBundle().getString("pageLabel"));
+        timeLabel.setText(LanguageHandler.getInstance().getBundle().getString("formatTimeLabel"));
+        currencyLabel.setText(LanguageHandler.getInstance().getBundle().getString("currencyLabel"));
+        languageLabel.setText(LanguageHandler.getInstance().getBundle().getString("languageLabel"));
+        themeLabel.setText(LanguageHandler.getInstance().getBundle().getString("themeLabel"));
+        signedLabel.setText(LanguageHandler.getInstance().getBundle().getString("staySignedLabel"));
+        applyButton.setText(LanguageHandler.getInstance().getBundle().getString("applyButton"));
+        backButton.setText(LanguageHandler.getInstance().getBundle().getString("backButton"));
     }
 
 }

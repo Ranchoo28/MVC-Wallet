@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
@@ -16,6 +17,9 @@ import java.io.IOException;
 public class ProfileController {
     @FXML
     AnchorPane centerPage;
+
+    @FXML
+    private Label nameLabel, surnameLabel;
 
     @FXML
     private TextField usernameTextField, firstTextField, lastTextField;
@@ -77,13 +81,12 @@ public class ProfileController {
 
     @FXML
     void initialize() {
+        updateLanguage();
         saveButton.setDisable(true);
         nameSurnameArray = SqlHandler.getInstance().getNameSurname(LoginController.username);
         String[] array = SqlHandler.getInstance().getNameSurname(LoginController.username);
         firstTextField.setText(array[0]);
         lastTextField.setText(array[1]);
-
-
 
         usernameTextField.setText(LoginController.username);
         usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -157,5 +160,13 @@ public class ProfileController {
             };
             saveButton.disableProperty().bind(bb);
         });
+    }
+
+    private void updateLanguage(){
+        saveButton.setText(LanguageHandler.getInstance().getBundle().getString("applyButton"));
+        cancelButton.setText(LanguageHandler.getInstance().getBundle().getString("backButton"));
+        changePassButton.setText(LanguageHandler.getInstance().getBundle().getString("changePasswordButton"));
+        nameLabel.setText(LanguageHandler.getInstance().getBundle().getString("nameLabel"));
+        surnameLabel.setText(LanguageHandler.getInstance().getBundle().getString("surnameLabel"));
     }
 }

@@ -1,12 +1,15 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
 import it.unical.demacs.informatica.mvcwallet.handler.CoinsHandler;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
@@ -24,6 +27,9 @@ public class MarketController {
     private String timeframe = "1D";
 
     @FXML
+    private Label currencyLabel, timeLabel;
+
+    @FXML
     private ChoiceBox<String> coinChoiceBox;
 
     @FXML
@@ -35,19 +41,6 @@ public class MarketController {
     @FXML
     private AnchorPane market;
 
-    public void updateChart(){
-        this.market.getChildren().clear();
-
-        List<BarData> array = BuildBars.getInstance().buildBars(this.formattedCoin, this.formattedCurrency, this.timeframe);
-        CandleStickChart chart = new CandleStickChart(array, market.getWidth());
-
-        this.market.getChildren().add(chart);
-
-        AnchorPane.setTopAnchor(chart, 0.0);
-        AnchorPane.setRightAnchor(chart, 5.0);
-        AnchorPane.setBottomAnchor(chart, 5.0);
-        AnchorPane.setLeftAnchor(chart, 0.0);
-    }
 
     @FXML
     public void getSelectedtCoin(ActionEvent event) {
@@ -72,6 +65,9 @@ public class MarketController {
 
     @FXML
     void initialize() {
+        //Platform.runLater(() -> updateLanguage());
+        updateLanguage();
+
         coinChoiceBox.getItems().addAll(coins);
         currencyChoiceBox.getItems().addAll(currencies);
         timeChoiceBox.getItems().addAll(timeframes);
@@ -85,6 +81,25 @@ public class MarketController {
         timeChoiceBox.setOnAction(this::getSelectedTime);
 
         updateChart();
+    }
+
+    public void updateChart(){
+        this.market.getChildren().clear();
+
+        List<BarData> array = BuildBars.getInstance().buildBars(this.formattedCoin, this.formattedCurrency, this.timeframe);
+        CandleStickChart chart = new CandleStickChart(array, market.getWidth());
+
+        this.market.getChildren().add(chart);
+
+        AnchorPane.setTopAnchor(chart, 0.0);
+        AnchorPane.setRightAnchor(chart, 5.0);
+        AnchorPane.setBottomAnchor(chart, 5.0);
+        AnchorPane.setLeftAnchor(chart, 0.0);
+    }
+
+    private void updateLanguage(){
+        currencyLabel.setText(LanguageHandler.getInstance().getBundle().getString("currencyLabel"));
+        timeLabel.setText(LanguageHandler.getInstance().getBundle().getString("timeLabel"));
     }
 }
 

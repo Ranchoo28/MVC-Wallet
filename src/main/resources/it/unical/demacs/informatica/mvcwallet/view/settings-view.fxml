@@ -20,32 +20,32 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" spacing="25.0">
                      <children>
-                        <Label prefHeight="25.0" text="Main page">
+                        <Label fx:id="pageLabel" prefHeight="25.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="25.0" text="Time format">
+                        <Label fx:id="timeLabel" prefHeight="25.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="25.0" text="Currency">
+                        <Label fx:id="currencyLabel" prefHeight="25.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="25.0" text="Language">
+                        <Label fx:id="languageLabel" prefHeight="25.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="25.0" text="Theme">
+                        <Label fx:id="themeLabel" prefHeight="25.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label prefHeight="25.0" text="Stay signed in">
+                        <Label fx:id="signedLabel" prefHeight="25.0">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -166,7 +166,7 @@
             </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" text="Save" textFill="WHITE">
+                  <Button fx:id="applyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -174,7 +174,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" text="Cancel" textFill="WHITE">
+                  <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

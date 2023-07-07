@@ -20,13 +20,13 @@
                      </font>
                   </Label>
                   <ChoiceBox fx:id="coinChoiceBox" stylesheets="@../css/CandleStickChartStyles.css" />
-                  <Label styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" text="Currency" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="currencyLabel" styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                   <ChoiceBox fx:id="currencyChoiceBox" styleClass="bar-button" stylesheets="@../css/CandleStickChartStyles.css" />
-                  <Label styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" text="Time" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="timeLabel" styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>

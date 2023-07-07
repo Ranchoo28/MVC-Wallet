@@ -37,6 +37,10 @@ public class SceneHandler {
         scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
     }
 
+    public void uploadLanguage(){
+        LanguageHandler.getInstance().updateLanguage(SettingsHandler.getInstance().language);
+    }
+
 
     public void init(Stage stage) {
         // Crea lo stage iniziale
@@ -48,7 +52,6 @@ public class SceneHandler {
             //createSideBar();
             stage.setScene(scene);
             stage.show();
-
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
                     stage.setFullScreen(!stage.isFullScreen());
@@ -65,6 +68,7 @@ public class SceneHandler {
                 scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             stage.setTitle("MVC Wallet");
             uploadTheme();
+            uploadLanguage();
             //scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             if(stage.isFullScreen()) stage.setFullScreen(true);
             else {
@@ -251,7 +255,7 @@ public class SceneHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle("Cambio "+details);
+        alert.setTitle("Cambio "+ details);
         alert.setContentText(details+ " cambiato con successo!");
         alert.show();
     }
