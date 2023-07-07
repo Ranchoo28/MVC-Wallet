@@ -118,9 +118,9 @@ public class SqlService {
        return ref.settings;
    }
 
-   public void serviceChangeSetting(String username, String time, String page, String logged, String theme){
+   public void serviceChangeSetting(String username, String time, String page, String logged, String theme, String language, String currency){
        ExecutorService queryExe = Executors.newSingleThreadExecutor();
-       Future<?> future = queryExe.submit(() -> SqlHandler.getInstance().setSettingsQuery(username, time, page, logged, theme));
+       Future<?> future = queryExe.submit(() -> SqlHandler.getInstance().setSettingsQuery(username, time, page, logged, theme, language, currency));
 
        try { future.get(); }
        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}

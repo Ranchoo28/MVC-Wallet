@@ -96,7 +96,7 @@
                         </MenuButton>
                         <MenuButton fx:id="currencyMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" onAction="#onEurClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="EUR" />
                                  </graphic>
@@ -114,14 +114,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </MenuButton>
-                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
+                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onUsdClick" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Italiano" />
                                  </graphic>
                               </RadioMenuItem>
-                              <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false">
+                              <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false" onAction="#onEnglishClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="English" />
                                  </graphic>

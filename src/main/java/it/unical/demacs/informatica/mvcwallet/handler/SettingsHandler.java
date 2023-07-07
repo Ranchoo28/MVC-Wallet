@@ -17,7 +17,7 @@ public class SettingsHandler {
 
     public String username;
     public String [] settings;
-    public String format, page, theme;
+    public String format, page, theme, language, currency;
     public boolean logged;
 
     //public String format = "HH:mm:ss";
@@ -37,10 +37,11 @@ public class SettingsHandler {
         settings = SqlService.getIstance().serviceSettings(LoginController.username);
         format = settings[0];
         page = settings[1];
-        //for(String i: settings) System.out.println(i);
         if(settings[2].equals("0")) logged = false;
         if(settings[2].equals("1")) logged = true;
-        System.out.println(settings[3]);
         theme = settings[3];
+        language = settings[4];
+        currency = settings[5];
+
     }
 }
