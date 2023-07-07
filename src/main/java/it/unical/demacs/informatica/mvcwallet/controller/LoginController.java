@@ -36,7 +36,7 @@ public class LoginController {
         if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
             if(stayLogged.isSelected()){
-                SqlHandler.getIstance().stayLoggedOfLogin(username);
+                SqlHandler.getInstance().stayLoggedOfLogin(username);
                 LoggedHandler.getInstance().stayLoggedWriting(username);
             }
             SettingsHandler.getInstance().updateSettings();
@@ -67,7 +67,7 @@ public class LoginController {
             if (!LoggedHandler.getInstance().stayLoggedReading().equals("null")) {
                 // Non capisco perchè bisogna rifare la connessione.
                 username = LoggedHandler.getInstance().stayLoggedReading();
-                SqlHandler.getIstance().newConnection();
+                SqlHandler.getInstance().newConnection();
                 SettingsHandler.getInstance().updateSettings();
                 SceneHandler.getInstance().createSideBar();
             }

@@ -9,9 +9,9 @@ public class SqlHandler {
 
     private SqlHandler() {}
     private Connection con;
-    private static SqlHandler istance = new SqlHandler();
-    public static SqlHandler getIstance() {
-        return istance;
+    private static final SqlHandler instance = new SqlHandler();
+    public static SqlHandler getInstance() {
+        return instance;
     }
 
     public Connection newConnection() {
@@ -41,7 +41,7 @@ public class SqlHandler {
     public byte checkLogin(String username, String password) {
         // Esegue una query per il login di un utente.
         try {
-            boolean UsernameCorrect = false;
+            boolean UsernameCorrect;
             con = newConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT username FROM users WHERE username = ?");
             if (stmt.execute()) UsernameCorrect=true;

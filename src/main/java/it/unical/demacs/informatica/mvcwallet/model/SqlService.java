@@ -17,7 +17,7 @@ public class SqlService {
     public byte serviceLogin(String username, String password) {
         byte[] res = new byte[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().checkLogin(username, password));
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().checkLogin(username, password));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -28,7 +28,7 @@ public class SqlService {
     public boolean serviceRegister(String email, String username, String password, LocalDate birthday, String nome, String cognome){
         final boolean[] c = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> c[0] = SqlHandler.getIstance().registerAccount(email, username, password, birthday, nome, cognome));
+        Future<?> future = queryExe.submit(() -> c[0] = SqlHandler.getInstance().registerAccount(email, username, password, birthday, nome, cognome));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -39,7 +39,7 @@ public class SqlService {
     public boolean serviceForgotPassword(String email, String password){
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().forgotPassword(email, password));
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().forgotPassword(email, password));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -50,7 +50,7 @@ public class SqlService {
     public boolean serviceChangeUsername(String oldUsername, String newUsername){
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changeUsername(oldUsername, newUsername));
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().changeUsername(oldUsername, newUsername));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -60,7 +60,7 @@ public class SqlService {
     public boolean serviceChangeName( String newName,String username){
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changeName(newName,username));
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().changeName(newName,username));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -70,7 +70,7 @@ public class SqlService {
     public boolean serviceChangeSurName( String newSurName,String username){
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changeSurname(newSurName,username));
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().changeSurname(newSurName,username));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -81,7 +81,7 @@ public class SqlService {
     public boolean serviceChangePassword(String newPassword, String username) {
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getIstance().changePassword(newPassword,username));
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().changePassword(newPassword,username));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
@@ -94,7 +94,7 @@ public class SqlService {
            String[] settings = new String[3];
        };
        ExecutorService queryExe = Executors.newSingleThreadExecutor();
-       Future<?> future = queryExe.submit(() -> ref.settings = SqlHandler.getIstance().getSettingsQuery(username));
+       Future<?> future = queryExe.submit(() -> ref.settings = SqlHandler.getInstance().getSettingsQuery(username));
 
        try { future.get(); }
        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}

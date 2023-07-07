@@ -209,7 +209,7 @@ public class SceneHandler {
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK){
             try {
-                SqlHandler.getIstance().setLogutQuery(LoginController.username);
+                SqlHandler.getInstance().setLogutQuery(LoginController.username);
             } catch (Exception e) {
                 System.out.println("Error: SceneHandler.java rows: 211-215");
             }

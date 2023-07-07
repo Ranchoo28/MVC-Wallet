@@ -110,7 +110,7 @@ public class SideBarController {
         userLabel.setContentDisplay(ContentDisplay.LEFT);
         iconUsers.setIconColor(Paint.valueOf("#fff"));
         userLabel.setGraphic(iconUsers);
-        String[] nameSurname = SqlHandler.getIstance().getNameSurname(LoginController.username);
+        String[] nameSurname = SqlHandler.getInstance().getNameSurname(LoginController.username);
         String first = nameSurname[0];
         String last = nameSurname[1];
         userLabel.setText(" "+first+" "+last);

@@ -39,7 +39,7 @@ public class ProfileController {
 
 
     private boolean isGoodApply(String username,String name, String surname){
-        return (username.length() >= 5 && !SqlHandler.getIstance().checkUsername(username))
+        return (username.length() >= 5 && !SqlHandler.getInstance().checkUsername(username))
                 && (name.length() >= 1 && !name.equals(firstTextField.getText()))
                 && (surname.length() >= 1 && !surname.equals(lastTextField.getText()));
     }
@@ -49,8 +49,8 @@ public class ProfileController {
     @FXML
     void initialize() {
         saveButton.setDisable(true);
-        nameSurnameArray = SqlHandler.getIstance().getNameSurname(LoginController.username);
-        String[] array = SqlHandler.getIstance().getNameSurname(LoginController.username);
+        nameSurnameArray = SqlHandler.getInstance().getNameSurname(LoginController.username);
+        String[] array = SqlHandler.getInstance().getNameSurname(LoginController.username);
         firstTextField.setText(array[0]);
         lastTextField.setText(array[1]);
 
@@ -58,7 +58,7 @@ public class ProfileController {
 
         usernameTextField.setText(LoginController.username);
         usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(SqlHandler.getIstance().checkUsername(newValue));
+            System.out.println(SqlHandler.getInstance().checkUsername(newValue));
             isGoodUsername = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
             checkUsername();
 
@@ -94,7 +94,7 @@ public class ProfileController {
 
         lastTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println(usernameTextField.getText());
-            System.out.println(SqlHandler.getIstance().checkUsername(usernameTextField.getText()));
+            System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
             isGoodSurname = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
             checkUsername();
             /*

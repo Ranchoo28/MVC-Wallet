@@ -48,7 +48,7 @@ public class SettingsController {
     @FXML
     void onSaveClick(){
         String [] settings = changeSettings();
-        SqlHandler.getIstance().setSettingsQuery(
+        SqlHandler.getInstance().setSettingsQuery(
                 LoginController.username,
                 settings[0] ,
                 settings[1],
