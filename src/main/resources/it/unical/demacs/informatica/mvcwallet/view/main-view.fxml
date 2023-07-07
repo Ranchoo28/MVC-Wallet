@@ -63,7 +63,7 @@
          <top>
             <HBox fx:id="hboxInfo" alignment="CENTER" fillHeight="false" maxHeight="50.0" prefHeight="30.0" styleClass="global-color" stylesheets="@../css/main.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="userLabel" maxHeight="50.0" minWidth="200.0" onMouseClicked="#onAccountClick" prefHeight="30.0" styleClass="hover" stylesheets="@../css/main.css" text="First Name Last Name" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="userLabel" maxHeight="50.0" minWidth="200.0" onMouseClicked="#onAccountClick" prefHeight="30.0" styleClass="hboxinfo" stylesheets="@../css/main.css" text="First Name Last Name" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="MS Outlook" size="14.0" />
                      </font>
@@ -74,7 +74,7 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="dateLabel" alignment="CENTER" maxHeight="50.0" minWidth="119.0" prefHeight="30.0" styleClass="hover" stylesheets="@../css/main.css" text="1970-01-01" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="dateLabel" alignment="CENTER" maxHeight="50.0" minWidth="119.0" prefHeight="30.0" styleClass="hboxinfo" stylesheets="@../css/main.css" text="1970-01-01" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="MS Outlook" size="14.0" />
                      </font>
@@ -82,7 +82,7 @@
                         <Insets right="30.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="timeLabel" alignment="CENTER" maxHeight="50.0" minWidth="100.0" prefHeight="30.0" styleClass="hover" stylesheets="@../css/main.css" text="00:00:00" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="timeLabel" alignment="CENTER" maxHeight="50.0" minWidth="100.0" prefHeight="30.0" styleClass="hboxinfo" stylesheets="@../css/main.css" text="00:00:00" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets right="30.0" />
                      </HBox.margin>
@@ -90,7 +90,7 @@
                         <Font name="MS Outlook" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="settingsLabel" alignment="CENTER" maxHeight="50.0" minWidth="96.0" onMouseClicked="#onSettingsClick" prefHeight="30.0" styleClass="hover" stylesheets="@../css/main.css" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="settingsLabel" alignment="CENTER" maxHeight="50.0" minWidth="96.0" onMouseClicked="#onSettingsClick" prefHeight="30.0" styleClass="hboxinfo" stylesheets="@../css/main.css" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

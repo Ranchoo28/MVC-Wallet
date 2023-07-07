@@ -1,9 +1,13 @@
 .global-color{
      -fx-background-color:  #0E2954;
 }
-/* Hover dell'hbox*/
-.hover:hover{
+/* Hover HBox Info*/
+.hboxinfo:hover{
    -fx-font-weight: bold;
+}
+
+.sideBar:hover{
+    -fx-background-color:  #0E2954;
 }
 
 
