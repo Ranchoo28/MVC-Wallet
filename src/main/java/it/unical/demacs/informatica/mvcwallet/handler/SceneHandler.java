@@ -33,8 +33,8 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        scene.getStylesheets().add(
-                Objects.requireNonNull(Objects.requireNonNull(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)).toExternalForm()));
+        System.out.println(css+SettingsHandler.getInstance().theme);
+        scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
     }
 
 
