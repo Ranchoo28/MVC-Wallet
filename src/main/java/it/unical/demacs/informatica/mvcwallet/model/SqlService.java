@@ -127,4 +127,14 @@ public class SqlService {
        finally { queryExe.shutdown(); }
    }
 
+    public boolean getEmail(String email) {
+        boolean[] res = new boolean[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> res[0] = SqlHandler.getInstance().getEmail(email));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return res[0];
+    }
 }
