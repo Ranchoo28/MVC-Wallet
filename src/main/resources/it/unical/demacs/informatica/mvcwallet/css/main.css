@@ -1,10 +1,11 @@
 .global-color{
      -fx-background-color:  #0E2954;
 }
-/* Hover dell'hbox */
-.hbox:hover{
-   -fx-background-color: #0C134F;
+/* Hover dell'hbox*/
+.hover:hover{
+   -fx-font-weight: bold;
 }
+
 
 /* UI Datepicker */
 .datepicker {
