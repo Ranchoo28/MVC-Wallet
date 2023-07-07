@@ -208,9 +208,13 @@ public class SceneHandler {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK){
-            SqlHandler.getIstance().setLogutQuery(LoginController.username);
-            LoggedHandler.getInstance().stayLoggedWriting("null");
-            createLoginScene();
+            try {
+                SqlHandler.getIstance().setLogutQuery(LoginController.username);
+                LoggedHandler.getInstance().stayLoggedWriting("null");
+                createLoginScene();
+            } catch (Exception e){
+                System.out.println("Error: SceneHandler.java rows: 211-217");
+            }
         }
         else if(result.get() == ButtonType.CANCEL) alert.close();
     }

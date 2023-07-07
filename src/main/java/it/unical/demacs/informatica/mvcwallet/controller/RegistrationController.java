@@ -55,10 +55,7 @@ public class RegistrationController {
 
         Username.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se il nickname è formato da almeno 5 caratteri.
-            if (newValue.length() > 5)
-                isGoodUsername = true;
-            else
-                isGoodUsername = false;
+            isGoodUsername = newValue.length() > 5;
 
             performBinding();
         });
@@ -70,30 +67,21 @@ public class RegistrationController {
             LocalDate birthday = LocalDate.of(newValue.getYear(), newValue.getMonth(), newValue.getDayOfMonth());
             Period p = Period.between(birthday, today);
 
-            if (p.getYears() > 18)
-                isGoodAge = true;
-            else
-                isGoodAge = false;
+            isGoodAge = p.getYears() > 18;
 
             performBinding();
         });
 
         Email.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la mail rispetta il Regex.
-            if (newValue.matches("^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@(?:gmail\\.com|yahoo\\.com|hotmail\\.com|libero\\.it|icloud\\.com|gmx\\.com|aol\\.com)"))
-                isGoodEmail = true;
-            else
-                isGoodEmail = false;
+            isGoodEmail = newValue.matches("^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@(?:gmail\\.com|yahoo\\.com|hotmail\\.com|libero\\.it|icloud\\.com|gmx\\.com|aol\\.com)");
 
             performBinding();
         });
 
         Password.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
-            if (newValue.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=])[a-zA-Z0-9@!%&£°#'?*=]{8,}"))
-                isGoodPassword = true;
-            else
-                isGoodPassword = false;
+            isGoodPassword = newValue.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=])[a-zA-Z0-9@!%&£°#'?*=]{8,}");
 
             performBinding();
         });
