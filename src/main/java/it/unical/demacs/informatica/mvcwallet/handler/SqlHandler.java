@@ -37,6 +37,27 @@ public class SqlHandler {
             throw new RuntimeException(e);
         }
     }
+    public boolean checkPassword(String username,String password) {
+        try {
+            con = newConnection();
+            PreparedStatement stmt = con.prepareStatement("SELECT password FROM users WHERE username = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (BCrypt.checkpw(password, rs.getString(1))) {
+                closeConnection(con);
+                return true;
+            }else{
+                closeConnection(con);
+                return false;
+            }
+
+        }catch(SQLException e){
+                e.printStackTrace();
+        }
+        closeConnection(con);
+        return false;
+    }
+
 
     public byte checkLogin(String username, String password) {
         // Esegue una query per il login di un utente.

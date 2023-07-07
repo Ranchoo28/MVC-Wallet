@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -9,36 +10,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ProfileController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="400.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER" spacing="20.0">
                <children>
                   <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="25.0">
                      <children>
-                        <Label prefHeight="25.0" text="Username">
+                        <Label prefHeight="25.0" text="Old password">
                            <font>
                               <Font size="18.0" />
-                           </font></Label>
-                        <Label prefHeight="25.0" text="First name">
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label prefHeight="25.0" text="New password">
                            <font>
                               <Font size="18.0" />
-                           </font></Label>
-                        <Label prefHeight="25.0" text="Last name">
-                           <font>
-                              <Font size="18.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" spacing="25.0">
                      <children>
-                        <TextField fx:id="usernameTextField" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
-                        <TextField fx:id="firstTextField" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
-                        <TextField fx:id="lastTextField" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                        <TextField fx:id="oldPasswordTextField" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                        <TextField fx:id="newPasswordTextField" prefHeight="25.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                      </children>
                   </VBox>
                </children>
+               <padding>
+                  <Insets top="130.0" />
+               </padding>
             </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
@@ -58,15 +63,10 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="cancelButton1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChangePasswordClick" prefWidth="200.0" style="-fx-background-color: #ffa31a;" text="Change Password" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Button>
                </children>
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

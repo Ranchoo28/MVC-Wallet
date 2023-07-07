@@ -1,12 +1,17 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class ProfileController {
     String [] nameSurnameArray;
@@ -17,6 +22,11 @@ public class ProfileController {
     private Button saveButton, cancelButton;
 
     boolean isGoodUsername, isGoodName, isGoodSurname;
+    @FXML
+    void onChangePasswordClick() {
+
+
+    }
     @FXML
     void onCancelClick(){
     }
@@ -44,7 +54,19 @@ public class ProfileController {
                 && (surname.length() >= 1 && !surname.equals(lastTextField.getText()));
     }
 
+    public void loadFXML(String nomeFXML) throws IOException {
+        centerPage.getChildren().clear();
 
+        String path = PathHandler.getInstance().getPathOfView();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+        AnchorPane pane = fxmlLoader.load();
+
+        centerPage.getChildren().add(pane);
+        AnchorPane.setTopAnchor(pane, 5.0);
+        AnchorPane.setRightAnchor(pane, 0.0);
+        AnchorPane.setBottomAnchor(pane, 0.0);
+        AnchorPane.setLeftAnchor(pane, 0.0);
+    }
 
     @FXML
     void initialize() {
