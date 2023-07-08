@@ -59,8 +59,8 @@ public class CandleStickChart extends XYChart<String, Number> {
         for (BarData bar : sublist) {
             String label = bar.getDate();
             series.getData().add(new Data<>(label, bar.getOpen(), bar));
-            logger.log(Level.INFO, "Adding bar with date/time: {0}", bar.getDateTime().getTime());
-            logger.log(Level.INFO, "Adding bar with price: {0}", bar.getOpen());
+            //logger.log(Level.INFO, "Adding bar with date/time: {0}", bar.getDateTime().getTime());
+            //logger.log(Level.INFO, "Adding bar with price: {0}", bar.getOpen());
         }
 
         dataSeries = FXCollections.observableArrayList(series);
