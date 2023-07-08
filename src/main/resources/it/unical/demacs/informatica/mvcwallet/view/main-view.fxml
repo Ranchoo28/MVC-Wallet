@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="global-color" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
+<AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" styleClass="global-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.SideBarController">
    <children>
       <BorderPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -21,7 +21,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" styleClass="sidebar-button">
+                  <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" styleClass="sidebar-button" VBox.vgrow="ALWAYS">
                      <children>
                         <Label fx:id="spotIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER">
                            <font>
@@ -34,7 +34,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" styleClass="sidebar-button">
+                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" styleClass="sidebar-button" VBox.vgrow="ALWAYS">
                      <children>
                         <Label fx:id="marketIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER">
                            <font>
@@ -47,7 +47,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" styleClass="sidebar-button">
+                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" styleClass="sidebar-button" VBox.vgrow="ALWAYS">
                      <children>
                         <Label fx:id="logoutIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER">
                            <font>
