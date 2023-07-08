@@ -113,9 +113,7 @@ public class SideBarController {
         String pathFont = PathHandler.getInstance().getPathOfFont();
         Font font = null;
         try {
-            FileInputStream fileFont = new FileInputStream(pathFont+"fa-solid-900.ttf");
-            font = Font.loadFont(fileFont, 20);
-            System.out.println(font.getName());
+            font = Font.loadFont(String.valueOf(getClass().getResource(pathFont+"fa-solid-900.ttf")), 20);
         } catch (Exception e){
             System.out.println("Error in SideBarController.java (rows: 115-121) " + e);
         }

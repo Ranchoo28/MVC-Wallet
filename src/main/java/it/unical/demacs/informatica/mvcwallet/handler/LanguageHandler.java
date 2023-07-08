@@ -16,7 +16,13 @@ public class LanguageHandler {
 
     public void updateLanguage(String language){
         Locale locale = new Locale(language);
-        bundle = ResourceBundle.getBundle(PathHandler.getInstance().pathOfLanguage + locale);
+        String path = PathHandler.getInstance().pathOfLanguage;
+        System.out.println(path+locale+".properties");
+        try {
+            bundle = ResourceBundle.getBundle(path+locale+".properties");
+        } catch (Exception e){
+            System.out.println("Error in LanguageHandler.java (rows: 21-25) " + e);
+        }
     }
 
     public ResourceBundle getBundle() {

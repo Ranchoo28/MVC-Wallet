@@ -7,7 +7,6 @@ public class PathHandler {
     public static PathHandler getInstance() {
         return instance;
     }
-
     String pathOfView = "/it/unical/demacs/informatica/mvcwallet/view/";
     String pathOfCSS = "/it/unical/demacs/informatica/mvcwallet/css/";
     String pathOfFont = "/it/unical/demacs/informatica/mvcwallet/font/";
@@ -21,6 +20,10 @@ public class PathHandler {
         return pathOfCSS;
     }
 
-    public String getPathOfLanguage() { return pathOfLanguage; }
-    public String getPathOfFont(){return pathOfFont;}
+    public String getPathOfLanguage() {
+        return pathOfLanguage;
+    }
+    public String getPathOfFont(){
+        return pathOfFont;
+    }
 }
