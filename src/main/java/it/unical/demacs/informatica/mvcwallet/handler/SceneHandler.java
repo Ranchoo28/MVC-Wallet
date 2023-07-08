@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -33,14 +34,12 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        System.out.println(css+SettingsHandler.getInstance().theme);
         scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)));
     }
 
     public void uploadLanguage(){
         LanguageHandler.getInstance().updateLanguage(SettingsHandler.getInstance().language);
     }
-
 
     public void init(Stage stage) {
         // Crea lo stage iniziale
@@ -60,22 +59,20 @@ public class SceneHandler {
     }
 
     public void createSideBar() {
-        // Crea la scena per l'homepage
         try {
-            if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"main-view.fxml"));
-            else
-                scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
             stage.setTitle("MVC Wallet");
+            stage.setMinWidth(900);
+            stage.setMinHeight(600);
+            Parent root = loadRootFromFXML(view + "main-view.fxml");
+            if (scene == null) {
+                scene = new Scene(root);
+            } else {
+                scene.setRoot(root);
+            }
             uploadTheme();
             uploadLanguage();
-            //scene.setRoot(loadRootFromFXML(view+"main-view.fxml"));
-            if(stage.isFullScreen()) stage.setFullScreen(true);
-            else {
-                stage.setMinWidth(900);
-                stage.setMinHeight(600);
-            }
-
+            if (stage.isFullScreen())
+                stage.setFullScreen(true);
         } catch (IOException ignored) {
         }
     }

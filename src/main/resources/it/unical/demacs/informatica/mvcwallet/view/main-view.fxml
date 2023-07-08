@@ -22,7 +22,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </BorderPane.margin>
                <children>
-                  <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" styleClass="sidebar-button" stylesheets="@../css/dark.css">
+                  <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" styleClass="sidebar-button">
                      <children>
                         <Label fx:id="spotLabel" alignment="CENTER" text="Spot" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -34,7 +34,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" styleClass="sidebar-button" stylesheets="@../css/dark.css">
+                  <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" styleClass="sidebar-button">
                      <children>
                         <Label fx:id="marketLabel" alignment="CENTER" text="Market" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -46,7 +46,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </HBox>
-                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" styleClass="sidebar-button" stylesheets="@../css/dark.css">
+                  <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" styleClass="sidebar-button">
                      <children>
                         <Label fx:id="logoutLabel" alignment="CENTER" text="Logout" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
@@ -81,7 +81,7 @@
                   </HBox>
                   <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="dateLabel" alignment="CENTER" maxHeight="50.0" minWidth="119.0" prefHeight="30.0" stylesheets="@../css/dark.css" text="1970-01-01" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="dateLabel" alignment="CENTER" maxHeight="50.0" minWidth="119.0" prefHeight="30.0" text="1970-01-01" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="MS Outlook" size="14.0" />
                            </font>
@@ -105,7 +105,7 @@
                   </HBox>
                   <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="settingsLabel" alignment="CENTER" maxHeight="50.0" minWidth="101.0" onMouseClicked="#onSettingsClick" prefHeight="30.0" stylesheets="@../css/dark.css" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="settingsLabel" alignment="CENTER" maxHeight="50.0" minWidth="101.0" onMouseClicked="#onSettingsClick" prefHeight="30.0" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

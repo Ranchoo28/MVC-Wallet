@@ -103,9 +103,6 @@ public class SideBarController {
             marketHBox.setDisable(true);
             loadFXML("market-view.fxml");
         }
-
-
-
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(() -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
@@ -120,7 +117,6 @@ public class SideBarController {
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
         iconUsers.setIconSize(25);
         userLabel.setContentDisplay(ContentDisplay.LEFT);
-        iconUsers.setIconColor(Paint.valueOf("#fff"));
         userLabel.setGraphic(iconUsers);
         String[] nameSurname = SqlHandler.getInstance().getNameSurname(LoginController.username);
         String first = nameSurname[0];
@@ -130,22 +126,22 @@ public class SideBarController {
         // Icona per l'ora
         FontIcon iconTime = new FontIcon("mdi2c-calendar-today");
         iconTime.setIconSize(25);
+        iconTime.setIconColor(timeLabel.getTextFill());
         dateLabel.setContentDisplay(ContentDisplay.LEFT);
-        iconTime.setIconColor(Paint.valueOf("#fff"));
         dateLabel.setGraphic(iconTime);
 
         // Icona per la data
         FontIcon iconDate = new FontIcon("mdi2c-clock");
         iconDate.setIconSize(25);
+        iconDate.setIconColor(dateLabel.getTextFill());
         timeLabel.setContentDisplay(ContentDisplay.LEFT);
-        iconDate.setIconColor(Paint.valueOf("#fff"));
         timeLabel.setGraphic(iconDate);
 
         // Icon del bottone dei settings
         FontIcon iconSettings = new FontIcon("mdi2c-cog"); //mid2c-cogs
         iconSettings.setIconSize(25);
+        iconSettings.setIconColor(settingsLabel.getTextFill());
         settingsLabel.setContentDisplay(ContentDisplay.LEFT);
-        iconSettings.setIconColor(Paint.valueOf("#fff"));
         settingsLabel.setGraphic(iconSettings);
 
         //icona dell'accessibilità
@@ -154,33 +150,31 @@ public class SideBarController {
         //label Alto contrasto, Testo largo ecc...
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
+        accessIcon.setIconColor(accessLabel.getTextFill());
         accessLabel.setContentDisplay(ContentDisplay.RIGHT);
-        accessIcon.setIconColor(Paint.valueOf("#fff"));
         accessLabel.setGraphic(accessIcon);
 
 
         // Icona del bottone del logout
         FontIcon iconLogout = new FontIcon("mdi2a-account-off");
         iconLogout.setIconSize(25);
+        iconLogout.setIconColor(logoutLabel.getTextFill());
         logoutLabel.setContentDisplay(ContentDisplay.LEFT);
-        iconLogout.setIconColor(Paint.valueOf("#fff"));
         logoutLabel.setGraphic(iconLogout);
 
         // Icona del bottone dei soldi
         FontIcon iconMoney = new FontIcon("mdi2c-currency-usd-circle"); //mdi2c-cash-usd
         iconMoney.setIconSize(25);
-        iconMoney.setIconColor(Paint.valueOf("#fff"));
+        iconMoney.setIconColor(spotLabel.getTextFill());
         spotLabel.setContentDisplay(ContentDisplay.LEFT);
         spotLabel.setGraphic(iconMoney);
 
         // Icona del bottone delle Crypto
         FontIcon iconCrypto = new FontIcon("mdi2b-bitcoin");
         iconCrypto.setIconSize(25);
-        iconCrypto.setIconColor(Paint.valueOf("#fff"));
+        iconCrypto.setIconColor(marketLabel.getTextFill());
         marketLabel.setContentDisplay(ContentDisplay.LEFT);
         marketLabel.setGraphic(iconCrypto);
-
-
     }
 
     public void loadFXML(String nomeFXML) throws IOException {

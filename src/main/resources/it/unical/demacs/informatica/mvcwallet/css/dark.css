@@ -3,8 +3,8 @@
 #301E67 Scuro
 #37306B Chiaro
 #856dcd Chiarissimo
+#FFFFFF Testo
 */
-
 /*Colore di background dell'anchorpane*/
 .global-color{
      -fx-background-color: #03001C;
@@ -15,7 +15,6 @@
     -fx-margin: 10px;
 }
 /*Bottoni della barra superiore*/
-
 .hbox-info-button{
     -fx-pref-width: 200px;
 }
@@ -25,9 +24,10 @@
 }
 .hbox-info-button .label{
     -fx-text-overrun: ellipsis;
-    -fx-font-family: "monospace";
     -fx-alignment: center;
     -fx-max-width: 200px;
+    -fx-font-family: "monospace";
+    -fx-text-fill: #FFFFFF;
 }
 .hbox-info-button:hover .label{
    -fx-font-weight: bold;
@@ -43,6 +43,8 @@
 .context-menu{
     -fx-background-color: #301E67;
     -fx-background-radius: 10;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 10;
 }
 .menu-button {
     -fx-background-color: transparent;
@@ -64,48 +66,42 @@
 .jfx-toggle-button:hover {
     -fx-background-color: transparent;
 }
-
 /*Barra laterale*/
 .sidebar{
     -fx-font-weight: bold;
     -fx-background-color: #301E67;
     -fx-background-radius: 10;
 }
-
+.sidebar .label{
+    -fx-text-fill: #FFFFFF;
+}
 /*Hover barra laterale*/
 .sidebar-button:hover{
     -fx-font-weight: bold;
     -fx-background-color: #37306B;
 }
-
 /* UI Datepicker */
 .datepicker {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 10;
 }
-
 .datepicker .text-field {
     -fx-background-color: transparent;
 }
-
 .datepicker .arrow-button {
     -fx-background-color: transparent;
     -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
     -fx-padding: 6;
 }
-
 .datepicker .arrow-button:hover {
     -fx-background-color: #E0E0E0;
 }
-
 .datepicker .arrow-button:pressed {
     -fx-background-color: transparent;
 }
-
 .date-picker-popup > * > .today {
         -fx-font-weight: bolder;
 }
-
 .date-picker-popup > * > .day-cell {
     -fx-text-fill: green;
 }
