@@ -65,8 +65,8 @@ public class MarketController {
 
     @FXML
     void initialize() {
-        //Platform.runLater(() -> updateLanguage());
-        updateLanguage();
+        Platform.runLater(() -> updateLanguage());
+        //updateLanguage();
 
         coinChoiceBox.getItems().addAll(coins);
         currencyChoiceBox.getItems().addAll(currencies);
@@ -98,8 +98,17 @@ public class MarketController {
     }
 
     private void updateLanguage(){
-        currencyLabel.setText(LanguageHandler.getInstance().getBundle().getString("currencyLabel"));
-        timeLabel.setText(LanguageHandler.getInstance().getBundle().getString("timeLabel"));
+        try {
+            currencyLabel.setText(LanguageHandler.getInstance().getBundle().getString("currencyLabel"));
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 101-105) " + e);
+        }
+        try {
+            timeLabel.setText(LanguageHandler.getInstance().getBundle().getString("timeLabel"));
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 106-110) " + e);
+        }
+
     }
 }
 
