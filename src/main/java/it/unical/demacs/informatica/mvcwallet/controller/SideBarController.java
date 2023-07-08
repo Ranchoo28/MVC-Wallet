@@ -9,14 +9,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
-import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class SideBarController {
     @FXML
@@ -24,15 +24,13 @@ public class SideBarController {
     @FXML
     private HBox infoHBox, logoutHBox, marketHBox, spotHBox;
     @FXML
+    private JFXToggleButton highContrastButton, largeTextButton, screenReaderButton;
+    @FXML
     private Label dateLabel, logoutLabel, marketLabel, settingsLabel, spotLabel, timeLabel, userLabel;
     @FXML
-    private Label accessLabel;
-    @FXML
-    private MenuButton accessMenuButton;
+    private Label dateIcon, logoutIcon, marketIcon, settingIcon, spotIcon, timeIcon, userIcon, accessMenuIcon;
     @FXML
     private VBox sideBar;
-    @FXML
-    private JFXToggleButton highContrastButton, largeTextButton, screenReaderButton;
 
     @FXML
     private void onHighContrastClick(ActionEvent event){
@@ -89,19 +87,19 @@ public class SideBarController {
 
     @FXML
     void initialize() throws IOException {
-
         //Platform.runLater(this::updateLanguage);
 
-        if (SettingsHandler.getInstance().page.equals("spot")){
+        if (SettingsHandler.getInstance().page.equals("spot")) {
             spotHBox.setDisable(true);
             marketHBox.setDisable(false);
             loadFXML("spot-view.fxml");
         }
-        if (SettingsHandler.getInstance().page.equals("market")){
+        if (SettingsHandler.getInstance().page.equals("market")) {
             spotHBox.setDisable(false);
             marketHBox.setDisable(true);
             loadFXML("market-view.fxml");
         }
+
         // Gestione dell'ora e della data in tempo reale.
         Platform.runLater(() -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
@@ -112,77 +110,71 @@ public class SideBarController {
             timeline.play();
         });
 
-        System.out.println(centerPage.getStylesheets());
+        String pathFont = PathHandler.getInstance().getPathOfFont();
+        Font font = null;
+        try {
+            InputStream fileFont = new FileInputStream("/home/rhaegal222/GitHub/MVC-Wallet/src/main/resources/it/unical/demacs/informatica/mvcwallet/font/fa-solid-900.ttf");
+            font = Font.loadFont(fileFont, 20);
+            System.out.println(font.getName());
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
         // Icona per l'utente
-        FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
-        iconUsers.setIconSize(25);
-        userLabel.setContentDisplay(ContentDisplay.LEFT);
-        userLabel.setGraphic(iconUsers);
+        userIcon.setText("\uF007");
+        userIcon.setFont(font);
+
         String[] nameSurname = SqlHandler.getInstance().getNameSurname(LoginController.username);
         String first = nameSurname[0];
         String last = nameSurname[1];
-        userLabel.setText(" "+first+" "+last);
 
-        // Icona per l'ora
-        FontIcon iconTime = new FontIcon("mdi2c-calendar-today");
-        iconTime.setIconSize(25);
-        dateLabel.setContentDisplay(ContentDisplay.LEFT);
-        dateLabel.setGraphic(iconTime);
+        userLabel.setText(" " + first + " " + last);
 
         // Icona per la data
-        FontIcon iconDate = new FontIcon("mdi2c-clock");
-        iconDate.setIconSize(25);
-        timeLabel.setContentDisplay(ContentDisplay.LEFT);
-        timeLabel.setGraphic(iconDate);
+        dateIcon.setText("\uF073");
+        dateIcon.setFont(font);
 
-        // Icon del bottone dei settings
-        FontIcon iconSettings = new FontIcon("mdi2c-cog"); //mid2c-cogs
-        iconSettings.setIconSize(25);
-        settingsLabel.setContentDisplay(ContentDisplay.LEFT);
-        settingsLabel.setGraphic(iconSettings);
+        // Icona per l'ora
+        timeIcon.setText("\uF017");
+        timeIcon.setFont(font);
 
-        //icona dell'accessibilità
-        //https://stackoverflow.com/questions/17467137/how-can-i-create-a-switch-button-in-javafx
-        //Qua dentro dobbiamo mettere gli interruttori per attivare le opzioni di fianco alle
-        //label Alto contrasto, Testo largo ecc...
-        FontIcon accessIcon = new FontIcon("mdi2h-human");
-        accessIcon.setIconSize(25);
-        accessLabel.setContentDisplay(ContentDisplay.RIGHT);
-        accessLabel.setGraphic(accessIcon);
+        // Icona del bottone dei settings
+        settingIcon.setText("\uF013");
+        settingIcon.setFont(font);
 
+        // Icona dell'accessibilitá uF183 uF256
+        accessMenuIcon.setText("\uF183");
+        accessMenuIcon.setFont(font);
 
-        // Icona del bottone del logout
-        FontIcon iconLogout = new FontIcon("mdi2a-account-off");
-        iconLogout.setIconSize(25);
-        logoutLabel.setContentDisplay(ContentDisplay.LEFT);
-        logoutLabel.setGraphic(iconLogout);
+        // Icona dello spot
+        spotIcon.setText("\uF555");
+        spotIcon.setFont(font);
 
-        // Icona del bottone dei soldi
-        FontIcon iconMoney = new FontIcon("mdi2c-currency-usd-circle"); //mdi2c-cash-usd
-        iconMoney.setIconSize(25);
-        spotLabel.setContentDisplay(ContentDisplay.LEFT);
-        spotLabel.setGraphic(iconMoney);
+        // Icona del mercato
+        marketIcon.setText("\uE0B4");
+        spotIcon.setFont(font);
 
-        // Icona del bottone delle Crypto
-        FontIcon iconCrypto = new FontIcon("mdi2b-bitcoin");
-        iconCrypto.setIconSize(25);
-        marketLabel.setContentDisplay(ContentDisplay.LEFT);
-        marketLabel.setGraphic(iconCrypto);
+        //Icona del bottone del logout
+        logoutIcon.setText("\uF2F5");
+        logoutIcon.setFont(font);
+
     }
 
     public void loadFXML(String nomeFXML) throws IOException {
         centerPage.getChildren().clear();
+        try {
+            String path = PathHandler.getInstance().getPathOfView();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+            AnchorPane pane = fxmlLoader.load();
 
-        String path = PathHandler.getInstance().getPathOfView();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
-        AnchorPane pane = fxmlLoader.load();
-
-        centerPage.getChildren().add(pane);
-        AnchorPane.setTopAnchor(pane, 5.0);
-        AnchorPane.setRightAnchor(pane, 0.0);
-        AnchorPane.setBottomAnchor(pane, 0.0);
-        AnchorPane.setLeftAnchor(pane, 0.0);
+            centerPage.getChildren().add(pane);
+            AnchorPane.setTopAnchor(pane, 5.0);
+            AnchorPane.setRightAnchor(pane, 0.0);
+            AnchorPane.setBottomAnchor(pane, 0.0);
+            AnchorPane.setLeftAnchor(pane, 0.0);
+        } catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     private void updateLanguage(){

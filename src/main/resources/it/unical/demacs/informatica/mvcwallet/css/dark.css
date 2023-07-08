@@ -1,49 +1,44 @@
 /*
-#03001C Scurissimo
-#301E67 Scuro
-#37306B Chiaro
-#856dcd Chiarissimo
-#FFFFFF Testo
+#B088F9; //Scurissimo
+#301E67; //Scuro
+#37306B; //Chiaro
+#856dcd; //Chiarissimo
+#FFFFFF; //Testo
+#FF4646; //Testo Evidenziato
 */
 /*Colore di background dell'anchorpane*/
 .global-color{
-     -fx-background-color: #03001C;
+     -fx-background-color: #B088F9; //Scurissimo
 }
 /*Barra superiore*/
 .hbox-info{
-    -fx-background-color: #301E67;
-    -fx-margin: 10px;
+    -fx-background-color: #37306B; //Chiaro
 }
-/*Bottoni della barra superiore*/
-.hbox-info-button{
-    -fx-pref-width: 200px;
+/*Etichette dei bottoni*/
+.hbox-info-button .label-class{
+    -fx-text-fill: #FFFFFF; //Testi
 }
+/*Icone dei bottoni*/
+.hbox-info-button .icon{
+    -fx-text-fill: #FFFFFF; //Testi
+}
+/*Bottone al passaggio del mouse*/
 .hbox-info-button:hover{
-   -fx-background-color: #37306B;
+   -fx-background-color: #301E67; //Scuro
    -fx-background-radius: 10;
 }
-.hbox-info-button .label{
-    -fx-text-overrun: ellipsis;
-    -fx-alignment: center;
-    -fx-max-width: 200px;
-    -fx-font-family: "monospace";
-    -fx-text-fill: #FFFFFF;
+/*Etichette dei bottoni al passaggio del mouse*/
+.hbox-info-button:hover .label-class{
+    -fx-text-fill: #FF4646; //Testo Evidenziato
 }
-.hbox-info-button:hover .label{
-   -fx-font-weight: bold;
+/*Icona dei bottoni al passaggio del mouse*/
+.hbox-info-button:hover .icon{
+    -fx-text-fill: #FF4646; //Testo Evidenziato
 }
-/*Accessibility Menu*/
-.access-menu {
-    -fx-background-color: transparent;
-}
-.access-menu:hover {
-   -fx-background-color: #37306B;
-   -fx-background-radius: 10;
-}
+/*Menu a comparsa*/
 .context-menu{
-    -fx-background-color: #301E67;
-    -fx-background-radius: 10;
-    -fx-border-color: #FFFFFF;
+    -fx-background-color: #37306B; //Chiaro
+    -fx-border-color: #856dcd; //Chiarissimo
     -fx-border-radius: 10;
 }
 .menu-button {
@@ -53,33 +48,49 @@
     -fx-background-color: transparent;
 }
 .menu-button .menu-item:hover{
-    -fx-background-color: #37306B;
+    -fx-background-color: #301E67; //Scuro
     -fx-background-radius: 10;
 }
+.menu-button .menu-item:hover .jfx-toggle-button{
+    -fx-text-fill: #FF4646; //Testo Evidenziato
+}
 .jfx-toggle-button {
-    -fx-text-fill: white;
-    -jfx-toggle-color: white;
-    -jfx-toggle-line-color: #856dcd;
-    -jfx-untoggle-color: white;
-    -jfx-untoggle-line-color: #999999;
+    -fx-text-fill: #FFFFFF; //Testi
+    -jfx-toggle-color: #FF4646; //Testo Evidenziato
+    -jfx-toggle-line-color: #B088F9; //Scurissimo
+    -jfx-untoggle-color: #B088F9; //Scurissimo
+    -jfx-untoggle-line-color: #FFFFFF;
 }
 .jfx-toggle-button:hover {
     -fx-background-color: transparent;
 }
 /*Barra laterale*/
 .sidebar{
-    -fx-font-weight: bold;
-    -fx-background-color: #301E67;
+    -fx-background-color: #37306B; //Chiaro
     -fx-background-radius: 10;
 }
-.sidebar .label{
-    -fx-text-fill: #FFFFFF;
+/*Etichette dei bottoni*/
+.sidebar .label-class{
+    -fx-text-fill: #FFFFFF; //Testi
 }
-/*Hover barra laterale*/
+/*Icone dei bottoni*/
+.sidebar .icon{
+    -fx-text-fill: #FFFFFF; //Testi
+}
+/*Bottone al passaggio del mouse*/
 .sidebar-button:hover{
-    -fx-font-weight: bold;
-    -fx-background-color: #37306B;
+    -fx-background-color: #301E67; //Scuro
+    -fx-background-radius: 10;
 }
+/*Etichette dei bottoni al passaggio del mouse*/
+.sidebar-button:hover .label-class{
+    -fx-text-fill: #FF4646; //Testo Evidenziato
+}
+/*Icona dei bottoni al passaggio del mouse*/
+.sidebar-button:hover .icon{
+    -fx-text-fill: #FF4646; //Testo Evidenziato
+}
+
 /* UI Datepicker */
 .datepicker {
     -fx-background-color: #FFFFFF;

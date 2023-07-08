@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -24,39 +23,42 @@
                <children>
                   <HBox fx:id="spotHBox" alignment="CENTER" onMouseClicked="#onSpotClick" prefHeight="100.0" styleClass="sidebar-button">
                      <children>
-                        <Label fx:id="spotLabel" alignment="CENTER" text="Spot" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="spotIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER">
                            <font>
-                              <Font name="MS Outlook" size="15.0" />
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Label fx:id="spotLabel" contentDisplay="CENTER" minWidth="70.0" styleClass="label-class" text="Spot" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </HBox>
                   <HBox fx:id="marketHBox" alignment="CENTER" layoutX="10.0" layoutY="10.0" onMouseClicked="#onMarketClick" prefHeight="100.0" styleClass="sidebar-button">
                      <children>
-                        <Label fx:id="marketLabel" alignment="CENTER" text="Market" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="marketIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER">
                            <font>
-                              <Font name="MS Outlook" size="15.0" />
+                              <Font name="System Bold" size="24.0" />
+                           </font></Label>
+                        <Label fx:id="marketLabel" contentDisplay="CENTER" minWidth="70.0" styleClass="label-class" text="Market" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </HBox>
                   <HBox fx:id="logoutHBox" alignment="CENTER" layoutX="10.0" layoutY="110.0" onMouseClicked="#onLogoutClick" prefHeight="100.0" styleClass="sidebar-button">
                      <children>
-                        <Label fx:id="logoutLabel" alignment="CENTER" text="Logout" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="logoutIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER">
                            <font>
-                              <Font name="MS Outlook" size="15.0" />
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Label fx:id="logoutLabel" contentDisplay="CENTER" minWidth="70.0" styleClass="label-class" text="Logout" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </HBox>
                </children>
             </VBox>
@@ -64,84 +66,110 @@
          <top>
             <HBox fx:id="infoHBox" alignment="CENTER" fillHeight="false" maxHeight="50.0" prefHeight="30.0" styleClass="hbox-info" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" styleClass="hbox-info-button">
+                  <HBox alignment="CENTER_RIGHT" maxWidth="295.0" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="userLabel" maxHeight="50.0" onMouseClicked="#onAccountClick" prefHeight="30.0" text="First Name Last Name" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="userIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" text="A" textAlignment="CENTER">
                            <font>
-                              <Font name="MS Outlook" size="14.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" styleClass="hbox-info-button">
-                     <children>
-                        <Label fx:id="dateLabel" alignment="CENTER" maxHeight="50.0" minWidth="119.0" prefHeight="30.0" text="1970-01-01" textFill="WHITE" HBox.hgrow="ALWAYS">
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label fx:id="userLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="200.0" onMouseClicked="#onAccountClick" styleClass="label-class" text="First Name Second Name Last Name" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="MS Outlook" size="14.0" />
+                              <Font size="16.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
                   </HBox>
                   <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="timeLabel" alignment="CENTER" maxHeight="50.0" minWidth="100.0" prefHeight="30.0" text="00:00:00" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <Label fx:id="dateIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" text="A" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="label-class" text="1970-01-01" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" styleClass="hbox-info-button">
+                     <children>
+                        <Label fx:id="timeIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" text="A" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" styleClass="label-class" text="00:00:00" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <font>
-                              <Font name="MS Outlook" size="14.0" />
+                              <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
                   </HBox>
                   <HBox alignment="CENTER" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="settingsLabel" alignment="CENTER" maxHeight="50.0" minWidth="101.0" onMouseClicked="#onSettingsClick" prefHeight="30.0" text="Settings" textFill="WHITE" HBox.hgrow="ALWAYS">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                        <Label fx:id="settingIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" text="A" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <Label fx:id="settingsLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" onMouseClicked="#onSettingsClick" styleClass="label-class" text="Settings" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
                   </HBox>
-                  <StackPane styleClass="access-menu">
+                  <HBox alignment="CENTER" maxHeight="50.0" maxWidth="50.0" minWidth="30.0" prefHeight="30.0" styleClass="hbox-info-button">
                      <children>
-                        <Label fx:id="accessLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" />
-                        <MenuButton fx:id="accessMenuButton" mnemonicParsing="false" opacity="0.0">
-                          <items>
-                              <MenuItem mnemonicParsing="false">
-                                 <graphic>
-                                    <JFXToggleButton fx:id="highConstrastButton" alignment="CENTER_LEFT" onAction="#onHighContrastClick" size="5.0" text="High Contrast" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
-                                 </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false">
-                                 <graphic>
-                                    <JFXToggleButton fx:id="largeTextButton" alignment="CENTER_LEFT" onAction="#onLargeTextClick" size="5.0" text="Large Text" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
-                                 </graphic>
-                              </MenuItem>
-                              <MenuItem mnemonicParsing="false">
-                                 <graphic>
-                                    <JFXToggleButton fx:id="screenReaderButton" alignment="CENTER_LEFT" onAction="#onScreenReaderClick" size="5.0" text="Screen Reader" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
-                                 </graphic>
-                              </MenuItem>
-                          </items>
-                        </MenuButton>
+                        <StackPane>
+                           <children>
+                              <Label fx:id="accessMenuIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER" />
+                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="40.0" textAlignment="CENTER">
+                                <items>
+                                    <MenuItem mnemonicParsing="false">
+                                       <graphic>
+                                          <JFXToggleButton fx:id="highConstrastButton" alignment="CENTER_LEFT" onAction="#onHighContrastClick" size="5.0" text="High Contrast" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem mnemonicParsing="false">
+                                       <graphic>
+                                          <JFXToggleButton fx:id="largeTextButton" alignment="CENTER_LEFT" onAction="#onLargeTextClick" size="5.0" text="Large Text" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem mnemonicParsing="false">
+                                       <graphic>
+                                          <JFXToggleButton fx:id="screenReaderButton" alignment="CENTER_LEFT" onAction="#onScreenReaderClick" size="5.0" text="Screen Reader" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
+                                       </graphic>
+                                    </MenuItem>
+                                </items>
+                              </MenuButton>
+                           </children>
+                        </StackPane>
                      </children>
-                  </StackPane>
+                  </HBox>
                </children>
                <opaqueInsets>
                   <Insets />
