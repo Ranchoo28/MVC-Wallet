@@ -25,7 +25,11 @@ public class LanguageHandler {
     }
 
     public ResourceBundle getBundle() {
-        return bundle;
+        if(bundle!=null) {
+            return bundle;
+        }
+        updateLanguage("it");
+        return getBundle();
     }
 
 

@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 public class ProfileController {
     @FXML
@@ -162,10 +163,20 @@ public class ProfileController {
     }
 
     private void updateLanguage(){
-        saveButton.setText(LanguageHandler.getInstance().getBundle().getString("applyButton"));
-        cancelButton.setText(LanguageHandler.getInstance().getBundle().getString("backButton"));
-        changePassButton.setText(LanguageHandler.getInstance().getBundle().getString("changePasswordButton"));
-        nameLabel.setText(LanguageHandler.getInstance().getBundle().getString("nameLabel"));
-        surnameLabel.setText(LanguageHandler.getInstance().getBundle().getString("surnameLabel"));
+        ResourceBundle bundle = null;
+        try {
+            bundle = LanguageHandler.getInstance().getBundle();
+        } catch (Exception e){
+            System.out.println("Error in ProfileController.java (rows: 166-171) " + e);
+        }
+        if(bundle!=null) {
+            saveButton.setText(bundle.getString("applyButton"));
+            cancelButton.setText(bundle.getString("backButton"));
+            changePassButton.setText(bundle.getString("changePasswordButton"));
+            nameLabel.setText(bundle.getString("nameLabel"));
+            surnameLabel.setText(bundle.getString("surnameLabel"));
+        } else {
+            System.out.println("MarketController.java: bundle is null");
+        }
     }
 }

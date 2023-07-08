@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.context.aot.AbstractAotProcessor;
 
+import java.util.ResourceBundle;
+
 import static javafx.application.Application.launch;
 
 public class SettingsController {
@@ -239,17 +241,22 @@ public class SettingsController {
     }
 
     private void updateLanguage(){
-        pageLabel.setText(LanguageHandler.getInstance().getBundle().getString("pageLabel"));
-        timeLabel.setText(LanguageHandler.getInstance().getBundle().getString("formatTimeLabel"));
-        currencyLabel.setText(LanguageHandler.getInstance().getBundle().getString("currencyLabel"));
-        languageLabel.setText(LanguageHandler.getInstance().getBundle().getString("languageLabel"));
-        themeLabel.setText(LanguageHandler.getInstance().getBundle().getString("themeLabel"));
-        signedLabel.setText(LanguageHandler.getInstance().getBundle().getString("staySignedLabel"));
-        applyButton.setText(LanguageHandler.getInstance().getBundle().getString("applyButton"));
-        backButton.setText(LanguageHandler.getInstance().getBundle().getString("backButton"));
+        ResourceBundle bundle = null;
+        try {
+            bundle = LanguageHandler.getInstance().getBundle();
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 101-105) " + e);
+        }
+        if(bundle!=null){
+            pageLabel.setText(bundle.getString("pageLabel"));
+            timeLabel.setText(bundle.getString("formatTimeLabel"));
+            currencyLabel.setText(bundle.getString("currencyLabel"));
+            languageLabel.setText(bundle.getString("languageLabel"));
+            themeLabel.setText(bundle.getString("themeLabel"));
+            signedLabel.setText(bundle.getString("staySignedLabel"));
+            applyButton.setText(bundle.getString("applyButton"));
+            backButton.setText(bundle.getString("backButton"));
+        }
     }
-
-
-
 }
 

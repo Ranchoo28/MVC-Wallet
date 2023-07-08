@@ -5,7 +5,6 @@ import it.unical.demacs.informatica.mvcwallet.handler.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
-
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.ResourceBundle;
 
 public class SideBarController {
     @FXML
@@ -179,15 +175,17 @@ public class SideBarController {
     }
 
     private void updateLanguage(){
-        try{
-            settingsLabel.setText(LanguageHandler.getInstance().getBundle().getString("settingsLabel"));
+        ResourceBundle bundle = null;
+        try {
+            bundle = LanguageHandler.getInstance().getBundle();
         } catch (Exception e){
             System.out.println("Error in SideBarController.java (rows: 184-188) " + e);
         }
-        try{
-            logoutLabel.setText(LanguageHandler.getInstance().getBundle().getString("logoutLabel"));
-        }catch (Exception e) {
-            System.out.println("Error in SideBarController.java (rows: 189-193) " + e);
+        if(bundle!=null) {
+            settingsLabel.setText(bundle.getString("settingsLabel"));
+            logoutLabel.setText(bundle.getString("logoutLabel"));
+        } else {
+            System.out.println("SideBarController.java: bundle is null");
         }
     }
 }
