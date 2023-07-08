@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -158,8 +159,6 @@ public class SideBarController {
 
         languageThread.start();
         timeThread.start();
-        languageThread.interrupt();
-
     }
 
     public void loadFXML(String nomeFXML) throws IOException {
@@ -175,14 +174,21 @@ public class SideBarController {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 169-182) " + e);
+            System.out.println("Error in SideBarController.java (rows: 166-178) " + e);
         }
     }
 
     private void updateLanguage(){
-        settingsLabel.setText(LanguageHandler.getInstance().getBundle().getString("settingsLabel"));
-        logoutLabel.setText(LanguageHandler.getInstance().getBundle().getString("logoutLabel"));
-
+        try{
+            settingsLabel.setText(LanguageHandler.getInstance().getBundle().getString("settingsLabel"));
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 184-188) " + e);
+        }
+        try{
+            logoutLabel.setText(LanguageHandler.getInstance().getBundle().getString("logoutLabel"));
+        }catch (Exception e) {
+            System.out.println("Error in SideBarController.java (rows: 189-193) " + e);
+        }
     }
 }
 
