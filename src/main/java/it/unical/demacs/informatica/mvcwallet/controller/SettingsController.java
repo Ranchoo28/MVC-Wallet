@@ -1,10 +1,16 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.MainApplication;
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.springframework.context.aot.AbstractAotProcessor;
+
+import static javafx.application.Application.launch;
 
 public class SettingsController {
 
@@ -73,11 +79,21 @@ public class SettingsController {
                 settings[4],
                 settings[5]);
 
+
         if(settings[2].equals("0")) LoggedHandler.getInstance().stayLoggedWriting("null");
         if(settings[2].equals("1")) LoggedHandler.getInstance().stayLoggedWriting(LoginController.username);
 
-        SettingsHandler.getInstance().updateSettings();
-        SceneHandler.getInstance().createSideBar();
+
+        if(!settings[4].equals(SettingsHandler.getInstance().language) || !settings[3].equals(SettingsHandler.getInstance().theme)){
+            SettingsHandler.getInstance().updateSettings();
+            SceneHandler.getInstance().restartAppAlert();
+        }else{
+            SettingsHandler.getInstance().updateSettings();
+            SceneHandler.getInstance().createSideBar();
+        }
+
+       //MainApplication.restartApplication();
+
     }
 
     @FXML
@@ -232,6 +248,8 @@ public class SettingsController {
         applyButton.setText(LanguageHandler.getInstance().getBundle().getString("applyButton"));
         backButton.setText(LanguageHandler.getInstance().getBundle().getString("backButton"));
     }
+
+
 
 }
 

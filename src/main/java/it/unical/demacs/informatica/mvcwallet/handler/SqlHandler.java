@@ -8,11 +8,12 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class SqlHandler {
 
     private SqlHandler() {}
-    private Connection con;
     private static final SqlHandler instance = new SqlHandler();
     public static SqlHandler getInstance() {
         return instance;
     }
+
+    private Connection con;
 
     public Connection newConnection() {
         try {

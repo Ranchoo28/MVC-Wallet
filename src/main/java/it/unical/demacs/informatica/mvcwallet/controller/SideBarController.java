@@ -87,7 +87,17 @@ public class SideBarController {
 
     @FXML
     void initialize() throws IOException {
-        //Platform.runLater(this::updateLanguage);
+
+        Thread timeThread = new Thread(() -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
+                dateLabel.setText(SettingsHandler.getInstance().getDay());
+                timeLabel.setText(SettingsHandler.getInstance().timeFormatter());
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            timeline.play();
+        });
+
+        Thread languageThread = new Thread(this::updateLanguage);
 
         if (SettingsHandler.getInstance().page.equals("spot")) {
             spotHBox.setDisable(true);
@@ -100,20 +110,10 @@ public class SideBarController {
             loadFXML("market-view.fxml");
         }
 
-        // Gestione dell'ora e della data in tempo reale.
-        Platform.runLater(() -> {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                dateLabel.setText(SettingsHandler.getInstance().getDay());
-                timeLabel.setText(SettingsHandler.getInstance().timeFormatter());
-            }));
-            timeline.setCycleCount(Animation.INDEFINITE);
-            timeline.play();
-        });
-
         String pathFont = PathHandler.getInstance().getPathOfFont();
         Font font = null;
         try {
-            InputStream fileFont = new FileInputStream("/home/rhaegal222/GitHub/MVC-Wallet/src/main/resources/it/unical/demacs/informatica/mvcwallet/font/fa-solid-900.ttf");
+            InputStream fileFont = new FileInputStream("C:\\Users\\savcr\\OneDrive\\Desktop\\Università\\GitHub\\MVC-Wallet\\src\\main\\resources\\it\\unical\\demacs\\informatica\\mvcwallet\\font\\fa-solid-900.ttf");
             font = Font.loadFont(fileFont, 20);
             System.out.println(font.getName());
         } catch (Exception e){
@@ -158,6 +158,10 @@ public class SideBarController {
         logoutIcon.setText("\uF2F5");
         logoutIcon.setFont(font);
 
+        languageThread.start();
+        timeThread.start();
+        languageThread.interrupt();
+
     }
 
     public void loadFXML(String nomeFXML) throws IOException {
@@ -180,6 +184,7 @@ public class SideBarController {
     private void updateLanguage(){
         settingsLabel.setText(LanguageHandler.getInstance().getBundle().getString("settingsLabel"));
         logoutLabel.setText(LanguageHandler.getInstance().getBundle().getString("logoutLabel"));
+
     }
 }
 

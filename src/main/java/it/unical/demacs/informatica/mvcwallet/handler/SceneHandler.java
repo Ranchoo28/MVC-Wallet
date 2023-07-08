@@ -58,6 +58,10 @@ public class SceneHandler {
         }
     }
 
+    public void deleteStage(Stage stage){
+        stage.close();
+    }
+
     public void createSideBar() {
         try {
             stage.setTitle("MVC Wallet");
@@ -269,5 +273,20 @@ public class SceneHandler {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) createLoginScene();
         else if(result.get() == ButtonType.OK) createLoginScene();
+    }
+
+    public void restartAppAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        FontIcon icon = new FontIcon("mdi2e-email-send");
+        icon.getStyleClass().add("icons-color");
+        icon.setIconColor(Paint.valueOf("#4d79ff"));
+        icon.setIconSize(45);
+        alert.setGraphic(icon);
+        alert.setHeaderText("");
+        alert.setTitle("Riavvia applicazione");
+        alert.setContentText("Riavvia l'applicazione per il cambio delle impostazioni");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isEmpty()) System.exit(0);
+        else if(result.get() == ButtonType.OK) System.exit(0);
     }
 }

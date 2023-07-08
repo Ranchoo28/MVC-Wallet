@@ -39,10 +39,11 @@ public class SpotsController {
     @FXML
     private Button withdrawButton;
 
+
     @FXML
     void initialize(){
         //Platform.runLater(() -> updateLanguage());
-        //updateLanguage();
+        updateLanguage();
 
         ObservableList<Coin> A= FXCollections.observableArrayList();
         A.add(new Coin("BTC",0.102));
