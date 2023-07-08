@@ -12,7 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-public class SpotsController {
+import java.util.ResourceBundle;
+
+public class SpotController {
 
 
     @FXML
@@ -54,9 +56,19 @@ public class SpotsController {
     }
 
     private void updateLanguage(){
-        depositButton.setText(LanguageHandler.getInstance().getBundle().getString("depositButton"));
-        withdrawButton.setText(LanguageHandler.getInstance().getBundle().getString("withdrawButton"));
-        totalText.setText(LanguageHandler.getInstance().getBundle().getString("totalLabel"));
+        ResourceBundle bundle = null;
+        try {
+            bundle = LanguageHandler.getInstance().getBundle();
+        } catch (Exception e){
+            System.out.println("Error in SpotController.java (rows: 60-64) " + e);
+        }
+        if(bundle!=null) {
+            depositButton.setText(bundle.getString("depositButton"));
+            withdrawButton.setText(bundle.getString("withdrawButton"));
+            totalText.setText(bundle.getString("totalLabel"));
+        } else {
+            System.out.println("SpotController.java: bundle is null");
+        }
     }
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class MarketController {
     private final List<String> coins = CoinsHandler.getInstance().getCoinNames();
@@ -98,17 +99,18 @@ public class MarketController {
     }
 
     private void updateLanguage(){
+        ResourceBundle bundle = null;
         try {
-            currencyLabel.setText(LanguageHandler.getInstance().getBundle().getString("currencyLabel"));
+            bundle = LanguageHandler.getInstance().getBundle();
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 101-105) " + e);
+            System.out.println("Error in MarketController.java (rows: 103-107) " + e);
         }
-        try {
-            timeLabel.setText(LanguageHandler.getInstance().getBundle().getString("timeLabel"));
-        } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 106-110) " + e);
+        if(bundle!=null) {
+            currencyLabel.setText(bundle.getString("currencyLabel"));
+            timeLabel.setText(bundle.getString("timeLabel"));
+        } else {
+            System.out.println("MarketController.java: bundle is null");
         }
-
     }
 }
 
