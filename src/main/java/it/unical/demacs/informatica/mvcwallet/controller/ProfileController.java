@@ -74,8 +74,7 @@ public class ProfileController {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
         } catch (Exception e){
-            System.out.println(e);
-            System.out.println("L'errore sta qua");
+            System.out.println("Error in ProfileController.java (rows: 78-68) " + e);
         }
     }
 

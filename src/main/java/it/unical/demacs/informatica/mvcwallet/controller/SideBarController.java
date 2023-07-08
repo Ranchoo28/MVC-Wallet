@@ -113,11 +113,11 @@ public class SideBarController {
         String pathFont = PathHandler.getInstance().getPathOfFont();
         Font font = null;
         try {
-            InputStream fileFont = new FileInputStream("C:\\Users\\savcr\\OneDrive\\Desktop\\Università\\GitHub\\MVC-Wallet\\src\\main\\resources\\it\\unical\\demacs\\informatica\\mvcwallet\\font\\fa-solid-900.ttf");
+            FileInputStream fileFont = new FileInputStream(pathFont+"fa-solid-900.ttf");
             font = Font.loadFont(fileFont, 20);
             System.out.println(font.getName());
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println("Error in SideBarController.java (rows: 115-121) " + e);
         }
 
         // Icona per l'utente
@@ -177,7 +177,7 @@ public class SideBarController {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
         } catch (Exception e){
-            System.out.println(e);
+            System.out.println("Error in SideBarController.java (rows: 169-182) " + e);
         }
     }
 

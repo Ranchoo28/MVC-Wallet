@@ -47,8 +47,7 @@ public class LoggedHandler {
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(username.getBytes(StandardCharsets.UTF_8)));
         }catch (Exception e){
-            System.out.println("Error: LoggedHandler.java rows: 44-52");
-            e.printStackTrace();
+            System.out.println("Error in LoggedHandler.java (rows: 44-52) " + e);
         }
         return null;
     }
@@ -61,8 +60,7 @@ public class LoggedHandler {
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(usernameCrypyted)));
         }catch (Exception e){
-            System.out.println("Error: LoggedHandler.java rows: 58-66");
-            e.printStackTrace();
+            System.out.println("Error in LoggedHandler.java (rows: 58-66) "+ e);
         }
         return null;
     }

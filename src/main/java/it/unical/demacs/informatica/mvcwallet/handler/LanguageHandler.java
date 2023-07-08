@@ -10,8 +10,8 @@ public class LanguageHandler {
 
     private ResourceBundle bundle;
     private LanguageHandler(){}
-    private static final LanguageHandler istance = new LanguageHandler();
-    public static LanguageHandler getInstance(){return istance;}
+    private static final LanguageHandler instance = new LanguageHandler();
+    public static LanguageHandler getInstance(){return instance;}
     private Locale locale;
 
     public void updateLanguage(String language){
