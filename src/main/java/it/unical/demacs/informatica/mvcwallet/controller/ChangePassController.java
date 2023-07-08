@@ -4,7 +4,6 @@ import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;

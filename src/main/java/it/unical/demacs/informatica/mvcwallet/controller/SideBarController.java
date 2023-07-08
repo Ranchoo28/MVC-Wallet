@@ -13,7 +13,6 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -91,7 +90,7 @@ public class SideBarController {
     @FXML
     void initialize() throws IOException {
 
-        Platform.runLater(this::updateLanguage);
+        //Platform.runLater(this::updateLanguage);
 
         if (SettingsHandler.getInstance().page.equals("spot")){
             spotHBox.setDisable(true);
@@ -113,6 +112,8 @@ public class SideBarController {
             timeline.play();
         });
 
+        System.out.println(centerPage.getStylesheets());
+
         // Icona per l'utente
         FontIcon iconUsers = new FontIcon("mdi2a-account-circle");
         iconUsers.setIconSize(25);
@@ -126,21 +127,18 @@ public class SideBarController {
         // Icona per l'ora
         FontIcon iconTime = new FontIcon("mdi2c-calendar-today");
         iconTime.setIconSize(25);
-        iconTime.setIconColor(timeLabel.getTextFill());
         dateLabel.setContentDisplay(ContentDisplay.LEFT);
         dateLabel.setGraphic(iconTime);
 
         // Icona per la data
         FontIcon iconDate = new FontIcon("mdi2c-clock");
         iconDate.setIconSize(25);
-        iconDate.setIconColor(dateLabel.getTextFill());
         timeLabel.setContentDisplay(ContentDisplay.LEFT);
         timeLabel.setGraphic(iconDate);
 
         // Icon del bottone dei settings
         FontIcon iconSettings = new FontIcon("mdi2c-cog"); //mid2c-cogs
         iconSettings.setIconSize(25);
-        iconSettings.setIconColor(settingsLabel.getTextFill());
         settingsLabel.setContentDisplay(ContentDisplay.LEFT);
         settingsLabel.setGraphic(iconSettings);
 
@@ -150,7 +148,6 @@ public class SideBarController {
         //label Alto contrasto, Testo largo ecc...
         FontIcon accessIcon = new FontIcon("mdi2h-human");
         accessIcon.setIconSize(25);
-        accessIcon.setIconColor(accessLabel.getTextFill());
         accessLabel.setContentDisplay(ContentDisplay.RIGHT);
         accessLabel.setGraphic(accessIcon);
 
@@ -158,21 +155,18 @@ public class SideBarController {
         // Icona del bottone del logout
         FontIcon iconLogout = new FontIcon("mdi2a-account-off");
         iconLogout.setIconSize(25);
-        iconLogout.setIconColor(logoutLabel.getTextFill());
         logoutLabel.setContentDisplay(ContentDisplay.LEFT);
         logoutLabel.setGraphic(iconLogout);
 
         // Icona del bottone dei soldi
         FontIcon iconMoney = new FontIcon("mdi2c-currency-usd-circle"); //mdi2c-cash-usd
         iconMoney.setIconSize(25);
-        iconMoney.setIconColor(spotLabel.getTextFill());
         spotLabel.setContentDisplay(ContentDisplay.LEFT);
         spotLabel.setGraphic(iconMoney);
 
         // Icona del bottone delle Crypto
         FontIcon iconCrypto = new FontIcon("mdi2b-bitcoin");
         iconCrypto.setIconSize(25);
-        iconCrypto.setIconColor(marketLabel.getTextFill());
         marketLabel.setContentDisplay(ContentDisplay.LEFT);
         marketLabel.setGraphic(iconCrypto);
     }
@@ -180,20 +174,15 @@ public class SideBarController {
     public void loadFXML(String nomeFXML) throws IOException {
         centerPage.getChildren().clear();
 
-        try{
+        String path = PathHandler.getInstance().getPathOfView();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+        AnchorPane pane = fxmlLoader.load();
 
-            String path = PathHandler.getInstance().getPathOfView();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
-            AnchorPane pane = fxmlLoader.load();
-
-            centerPage.getChildren().add(pane);
-            AnchorPane.setTopAnchor(pane, 5.0);
-            AnchorPane.setRightAnchor(pane, 0.0);
-            AnchorPane.setBottomAnchor(pane, 0.0);
-            AnchorPane.setLeftAnchor(pane, 0.0);
-        } catch (Exception e){
-            System.out.println(e);
-        }
+        centerPage.getChildren().add(pane);
+        AnchorPane.setTopAnchor(pane, 5.0);
+        AnchorPane.setRightAnchor(pane, 0.0);
+        AnchorPane.setBottomAnchor(pane, 0.0);
+        AnchorPane.setLeftAnchor(pane, 0.0);
     }
 
     private void updateLanguage(){

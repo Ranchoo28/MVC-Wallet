@@ -243,7 +243,6 @@ public class SceneHandler {
         else if(result.get() == ButtonType.CANCEL) alert.close();
     }
 
-
     public void createChangedAlert(String details){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
