@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class TooltipContent extends GridPane {
 
@@ -40,9 +41,9 @@ public class TooltipContent extends GridPane {
     }
 
     public void update(double open, double close, double high, double low) {
-        openValue.setText(String.valueOf(new BigDecimal(open).setScale(2, BigDecimal.ROUND_HALF_UP)));
-        closeValue.setText(String.valueOf(new BigDecimal(close).setScale(2, BigDecimal.ROUND_HALF_UP)));
-        highValue.setText(String.valueOf(new BigDecimal(high).setScale(2, BigDecimal.ROUND_HALF_UP)));
-        lowValue.setText(String.valueOf(new BigDecimal(low).setScale(2, BigDecimal.ROUND_HALF_UP)));
+        openValue.setText(String.valueOf(new BigDecimal(open).setScale(2, RoundingMode.HALF_UP)));
+        closeValue.setText(String.valueOf(new BigDecimal(close).setScale(2, RoundingMode.HALF_UP)));
+        highValue.setText(String.valueOf(new BigDecimal(high).setScale(2, RoundingMode.HALF_UP)));
+        lowValue.setText(String.valueOf(new BigDecimal(low).setScale(2, RoundingMode.HALF_UP)));
     }
 }
