@@ -41,6 +41,7 @@ public class SpotController {
     @FXML
     private Button withdrawButton;
 
+    private final LanguageHandler languageHandler = LanguageHandler.getInstance();
 
     @FXML
     void initialize(){
@@ -58,7 +59,7 @@ public class SpotController {
     private void updateLanguage(){
         ResourceBundle bundle = null;
         try {
-            bundle = LanguageHandler.getInstance().getBundle();
+            bundle = languageHandler.getBundle();
         } catch (Exception e){
             System.out.println("Error in SpotController.java (rows: 60-64) " + e);
         }

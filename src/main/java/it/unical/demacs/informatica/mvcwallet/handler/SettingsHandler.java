@@ -7,18 +7,18 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+// Classe che serve a gestire le impostazioni
 public class SettingsHandler {
-
-    // Classe che serve a gestire le impostazioni
-
-    private SettingsHandler(){}
-    private static final SettingsHandler instance = new SettingsHandler();
-    public static SettingsHandler getInstance(){ return instance; }
-
     public String username;
     public String [] settings;
     public String format, page, theme, language, currency;
     public boolean logged;
+
+    SqlService sqlService = SqlService.getInstance();
+
+    private SettingsHandler(){}
+    private static final SettingsHandler instance = new SettingsHandler();
+    public static SettingsHandler getInstance(){ return instance; }
 
     public String getDay(){
         return LocalDate.now().toString();
@@ -26,12 +26,8 @@ public class SettingsHandler {
 
     public String timeFormatter(){ return LocalTime.now().format(DateTimeFormatter.ofPattern(format)); }
 
-    public String getTheme(){
-        return theme;
-    }
-
     public void updateSettings(){
-        settings = SqlService.getIstance().serviceSettings(LoginController.username);
+        settings = sqlService.serviceSettings(LoginController.username);
         format = settings[0];
         page = settings[1];
         if(settings[2].equals("0")) logged = false;

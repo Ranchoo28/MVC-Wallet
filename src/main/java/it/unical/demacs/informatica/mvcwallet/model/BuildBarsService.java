@@ -10,17 +10,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class BuildBarsService {
+    private static final BarBuilder barBuilder = BarBuilder.getInstance();
     private BuildBarsService(){}
     private static final BuildBarsService instance = new BuildBarsService();
     public static BuildBarsService getInstance(){return instance;}
 
-    public List<BarData> buildBarsService(String coin, String currency, String timeframe){
+    public List<BarData> buildBars(String coin, String currency, String timeframe){
         var ref = new Object() {
              List<BarData> bars = new ArrayList<>();
         };
 
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> ref.bars = BuildBars.getInstance().buildBars(coin, currency, timeframe));
+        Future<?> future = queryExe.submit(() -> ref.bars = barBuilder.make(coin, currency, timeframe));
 
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}

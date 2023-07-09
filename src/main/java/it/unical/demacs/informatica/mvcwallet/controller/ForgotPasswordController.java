@@ -18,6 +18,8 @@ public class ForgotPasswordController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
+    private final EmailService emailService = EmailService.getInstance();
 
     @FXML
     private TextField fieldMail;
@@ -29,9 +31,9 @@ public class ForgotPasswordController {
         // Una volta premuto il button genera una nuova password, controlla se la mail esiste, manda la nuova password
         // via mail, esegue una query per cambiare password ed infine esce un popup come avviso.
 
-        if(SqlService.getIstance().getEmail(fieldMail.getText())){
+        if(sqlService.getEmail(fieldMail.getText())){
             email = fieldMail.getText();
-            EmailService.getInstance().emailServiceForgotPassword(fieldMail.getText(),
+            emailService.emailServiceForgotPassword(fieldMail.getText(),
                     lanHandler.getBundle().getString("forgotPassEmailTitle"),
                     lanHandler.getBundle().getString("forgotPassEmailText1"), " " + token + " " +
                             lanHandler.getBundle().getString("forgotPassEmailText2"));

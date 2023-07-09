@@ -1,26 +1,18 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
-import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
-import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.IOException;
-import java.util.*;
-
 public class SceneHandler {
-
-
-    private static final String view = PathHandler.getInstance().getPathOfView();
-    private static final String css = PathHandler.getInstance().getPathOfCSS();
     private Stage stage;
     private Scene scene;
+    private static final String view = PathHandler.getInstance().getPathOfView();
+    private static final String css = PathHandler.getInstance().getPathOfCSS();
+    private static final LanguageHandler languageHandler = LanguageHandler.getInstance();
+    private static final SettingsHandler settingsHandler = SettingsHandler.getInstance();
 
     private static final SceneHandler instance = new SceneHandler();
     public static SceneHandler getInstance() {
@@ -34,11 +26,11 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + SettingsHandler.getInstance().theme)));
+        scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
     }
 
     public void uploadLanguage(){
-        LanguageHandler.getInstance().updateLanguage(SettingsHandler.getInstance().language);
+        languageHandler.updateLanguage(settingsHandler.language);
     }
 
     public void init(Stage stage) {
@@ -94,7 +86,7 @@ public class SceneHandler {
             stage.setHeight(350);
 
             //scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
-            LanguageHandler.getInstance().updateLanguage("en");
+            languageHandler.updateLanguage("en");
         } catch (IOException ignored) {
         }
     }

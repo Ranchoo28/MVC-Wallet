@@ -57,8 +57,8 @@ public class TimeStampHandler {
                 dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                 try {
                     calendar.setTime(dateFormat.parse(date));
-                } catch (ParseException e) {
-                    System.out.println("Errore durante l'analisi della data.");
+                } catch (Exception e) {
+                    System.out.println("Error in TimeStampHandler.java (rows: 58-64) " + e);
                 }
                 return calendar;
             }
@@ -66,8 +66,8 @@ public class TimeStampHandler {
                 dateFormat = new SimpleDateFormat("w'W' yyyy");
                 try {
                     calendar.setTime(dateFormat.parse(date));
-                } catch (ParseException e) {
-                    System.out.println("Errore durante l'analisi della data.");
+                } catch (Exception e) {
+                    System.out.println("Error in TimeStampHandler.java (rows: 67-71) " + e);
                 }
                 return calendar;
             }
@@ -75,8 +75,8 @@ public class TimeStampHandler {
                 dateFormat = new SimpleDateFormat("MM-yyyy");
                 try {
                     calendar.setTime(dateFormat.parse(date));
-                } catch (ParseException e) {
-                    System.out.println("Errore durante l'analisi della data.");
+                } catch (Exception e) {
+                    System.out.println("Error in TimeStampHandler.java (rows: 76-80) " + e);
                 }
                 return calendar;
             }
@@ -84,8 +84,8 @@ public class TimeStampHandler {
                 dateFormat = new SimpleDateFormat("yyyy");
                 try {
                     calendar.setTime(dateFormat.parse(date));
-                } catch (ParseException e) {
-                    System.out.println("Errore durante l'analisi della data.");
+                } catch (Exception e) {
+                    System.out.println("Error in TimeStampHandler.java (rows: 85-89) " + e);
                 }
                 return calendar;
             }

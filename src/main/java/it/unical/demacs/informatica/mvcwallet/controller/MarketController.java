@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class MarketController {
+    private final BuildBarsService buildBarsService = BuildBarsService.getInstance();
+    private final LanguageHandler languageHandler = LanguageHandler.getInstance();
     private final List<String> coins = CoinsHandler.getInstance().getCoinNames();
     private final List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
     private final List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
@@ -87,7 +89,7 @@ public class MarketController {
     public void updateChart(){
         this.market.getChildren().clear();
 
-        List<BarData> array = BuildBarsService.getInstance().buildBarsService(this.formattedCoin, this.formattedCurrency, this.timeframe);
+        List<BarData> array = buildBarsService.buildBars(this.formattedCoin, this.formattedCurrency, this.timeframe);
         CandleStickChart chart = new CandleStickChart(array, market.getWidth());
 
         this.market.getChildren().add(chart);
@@ -101,7 +103,7 @@ public class MarketController {
     private void updateLanguage(){
         ResourceBundle bundle = null;
         try {
-            bundle = LanguageHandler.getInstance().getBundle();
+            bundle = languageHandler.getBundle();
         } catch (Exception e){
             System.out.println("Error in MarketController.java (rows: 103-107) " + e);
         }

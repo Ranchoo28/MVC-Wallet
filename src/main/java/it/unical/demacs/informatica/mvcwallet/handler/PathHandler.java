@@ -15,11 +15,9 @@ public class PathHandler {
     public String getPathOfView() {
         return pathOfView;
     }
-
     public String getPathOfCSS() {
         return pathOfCSS;
     }
-
     public String getPathOfLanguage() {
         return pathOfLanguage;
     }

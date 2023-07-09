@@ -21,10 +21,8 @@ public class RegistrationController {
 
     @FXML
     private DatePicker Birthday;
-
     @FXML
     private PasswordField Password;
-
     @FXML
     private TextField Username, Email, Nome, Cognome;
     @FXML
@@ -35,9 +33,12 @@ public class RegistrationController {
     private boolean isGoodPassword;
     private boolean isGoodAge;
 
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final EmailService emailService = EmailService.getInstance();
     private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final RegexHandler regexHandler = RegexHandler.getInstance();
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
 
     @FXML
     void onCancelButtonClick() { sceneHandler.createLoginScene(); }
@@ -47,12 +48,12 @@ public class RegistrationController {
         // Una volta premuto il bottone, effettua la registrazion, manda una mail, effettua una query
         // per la registrazione e poi ti riporta alla schermata del login.
 
-        if(SqlService.getIstance().serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText())){
+        if(sqlService.serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText())){
             sendEmail();
-            AlertHandler.getInstance().createRegistrationAlert();
+            alertHandler.createRegistrationAlert();
         }
 
-        else AlertHandler.getInstance().createErrorAlert(lanHandler.getBundle().getString("registrationErrorText"));
+        else alertHandler.createErrorAlert(lanHandler.getBundle().getString("registrationErrorText"));
     }
 
     @FXML
@@ -81,13 +82,13 @@ public class RegistrationController {
 
         Email.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la mail rispetta il Regex.
-            isGoodEmail = newValue.matches(RegexHandler.getInstance().regexEmail);
+            isGoodEmail = newValue.matches(regexHandler.regexEmail);
             performBinding();
         });
 
         Password.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
-            isGoodPassword = newValue.matches(RegexHandler.getInstance().regexPassword);
+            isGoodPassword = newValue.matches(regexHandler.regexPassword);
 
             performBinding();
         });
@@ -121,7 +122,7 @@ public class RegistrationController {
 
     public void sendEmail() {
         // Manda una mail dopo essersi registrati.
-       EmailService.getInstance().emailServiceSendWelcomeEmail(Email.getText(),
+       emailService.emailServiceSendWelcomeEmail(Email.getText(),
                "MVC Wallet",
                "Ciao " + Nome.getText() + ", ti ringraziamo per aver effettuato la registrazione!");
     }

@@ -23,7 +23,6 @@ public class LanguageHandler {
             System.out.println("Error in LanguageHandler.java (rows: 21-25) " + e);
         }
     }
-
     public ResourceBundle getBundle() {
         if(bundle!=null) {
             return bundle;
@@ -31,6 +30,4 @@ public class LanguageHandler {
         updateLanguage("it");
         return getBundle();
     }
-
-
 }

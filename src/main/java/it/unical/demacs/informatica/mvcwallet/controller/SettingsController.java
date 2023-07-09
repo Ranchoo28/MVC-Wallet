@@ -1,22 +1,19 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.MainApplication;
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.kordamp.ikonli.javafx.FontIcon;
-import org.springframework.context.aot.AbstractAotProcessor;
 
 import java.util.ResourceBundle;
 
-import static javafx.application.Application.launch;
-
 public class SettingsController {
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final LoggedHandler loggedHandler = LoggedHandler.getInstance();
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
 
     @FXML
     private Label accessibilityLabel, accountLabel;
@@ -72,9 +69,9 @@ public class SettingsController {
 
 
     @FXML
-    void onSaveClick() throws InterruptedException {
+    void onSaveClick(){
         String [] settings = changeSettings();
-        SqlService.getIstance().serviceChangeSetting(
+        sqlService.serviceChangeSetting(
                 LoginController.username,
                 settings[0] ,
                 settings[1],
@@ -84,15 +81,15 @@ public class SettingsController {
                 settings[5]);
 
 
-        if(settings[2].equals("0")) LoggedHandler.getInstance().stayLoggedWriting("null");
-        if(settings[2].equals("1")) LoggedHandler.getInstance().stayLoggedWriting(LoginController.username);
+        if(settings[2].equals("0")) loggedHandler.stayLoggedWriting("null");
+        if(settings[2].equals("1")) loggedHandler.stayLoggedWriting(LoginController.username);
 
 
-        if(!settings[4].equals(SettingsHandler.getInstance().language) || !settings[3].equals(SettingsHandler.getInstance().theme)){
-            SettingsHandler.getInstance().updateSettings();
+        if(!settings[4].equals(settingsHandler.language) || !settings[3].equals(settingsHandler.theme)){
+            settingsHandler.updateSettings();
             alertHandler.restartAppAlert();
         }else{
-            SettingsHandler.getInstance().updateSettings();
+            settingsHandler.updateSettings();
             sceneHandler.createSideBar();
         }
 
@@ -108,24 +105,24 @@ public class SettingsController {
     @FXML
     void initialize(){
         updateLanguage();
-        if(SettingsHandler.getInstance().format.equals("HH:mm:ss")) h24Choosen();
-        if(SettingsHandler.getInstance().format.equals("hh:mm:ss a")) h12Choosen();
+        if(settingsHandler.format.equals("HH:mm:ss")) h24Choosen();
+        if(settingsHandler.format.equals("hh:mm:ss a")) h12Choosen();
 
-        if(SettingsHandler.getInstance().page.equals("spot")) spotChoosen();
-        if(SettingsHandler.getInstance().page.equals("market")) marketChoosen();
+        if(settingsHandler.page.equals("spot")) spotChoosen();
+        if(settingsHandler.page.equals("market")) marketChoosen();
 
-        if(SettingsHandler.getInstance().logged) stayLogged();
-        if(!SettingsHandler.getInstance().logged) noStayLogged();
+        if(settingsHandler.logged) stayLogged();
+        if(!settingsHandler.logged) noStayLogged();
 
-        if(SettingsHandler.getInstance().theme.equals("mvc.css")) mvcThemeChoosen();
-        if(SettingsHandler.getInstance().theme.equals("dark.css")) darkThemeChoosen();
-        if(SettingsHandler.getInstance().theme.equals("light.css")) lightThemeChoosen();
+        if(settingsHandler.theme.equals("mvc.css")) mvcThemeChoosen();
+        if(settingsHandler.theme.equals("dark.css")) darkThemeChoosen();
+        if(settingsHandler.theme.equals("light.css")) lightThemeChoosen();
 
-        if(SettingsHandler.getInstance().language.equals("it")) italianLanguageChoosen();
-        if(SettingsHandler.getInstance().language.equals("en")) englishLanguageChoosen();
+        if(settingsHandler.language.equals("it")) italianLanguageChoosen();
+        if(settingsHandler.language.equals("en")) englishLanguageChoosen();
 
-        if(SettingsHandler.getInstance().currency.equals("eur")) eurCurrencyChoosen();
-        if(SettingsHandler.getInstance().currency.equals("usd")) usdCurrencyChoosen();
+        if(settingsHandler.currency.equals("eur")) eurCurrencyChoosen();
+        if(settingsHandler.currency.equals("usd")) usdCurrencyChoosen();
 
         // Icona per i temi
         FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");

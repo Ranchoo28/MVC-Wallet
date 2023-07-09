@@ -16,9 +16,13 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class SideBarController {
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
-    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final LanguageHandler languageHandler = LanguageHandler.getInstance();
+    String pathOfFont = PathHandler.getInstance().getPathOfFont();
+    String pathOfView = PathHandler.getInstance().getPathOfView();
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final SqlHandler sqlHandler = SqlHandler.getInstance();
+    private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     @FXML
     private AnchorPane centerPage;
     @FXML
@@ -46,7 +50,7 @@ public class SideBarController {
     }
     @FXML
     void onLogoutClick() {
-        alertHandler.createLogoutAlert(lanHandler.getBundle().getString("logoutText"));
+        alertHandler.createLogoutAlert(languageHandler.getBundle().getString("logoutText"));
     }
 
     @FXML
@@ -92,28 +96,27 @@ public class SideBarController {
 
         Thread timeThread = new Thread(() -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                dateLabel.setText(SettingsHandler.getInstance().getDay());
-                timeLabel.setText(SettingsHandler.getInstance().timeFormatter());
+                dateLabel.setText(settingsHandler.getDay());
+                timeLabel.setText(settingsHandler.timeFormatter());
             }));
             timeline.setCycleCount(Animation.INDEFINITE);
             timeline.play();
         });
 
-        if (SettingsHandler.getInstance().page.equals("spot")) {
+        if (settingsHandler.page.equals("spot")) {
             spotHBox.setDisable(true);
             marketHBox.setDisable(false);
             loadFXML("spot-view.fxml");
         }
-        if (SettingsHandler.getInstance().page.equals("market")) {
+        if (settingsHandler.page.equals("market")) {
             spotHBox.setDisable(false);
             marketHBox.setDisable(true);
             loadFXML("market-view.fxml");
         }
 
-        String pathFont = PathHandler.getInstance().getPathOfFont();
         Font font = null;
         try {
-            font = Font.loadFont(String.valueOf(getClass().getResource(pathFont+"fa-solid-900.ttf")), 20);
+            font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
         } catch (Exception e){
             System.out.println("Error in SideBarController.java (rows: 115-121) " + e);
         }
@@ -122,7 +125,7 @@ public class SideBarController {
         userIcon.setText("\uF007");
         userIcon.setFont(font);
 
-        String[] nameSurname = SqlHandler.getInstance().getNameSurname(LoginController.username);
+        String[] nameSurname = sqlHandler.getNameSurname(LoginController.username);
         String first = nameSurname[0];
         String last = nameSurname[1];
 
@@ -160,11 +163,10 @@ public class SideBarController {
         timeThread.start();
     }
 
-    public void loadFXML(String nomeFXML) throws IOException {
+    public void loadFXML(String nomeFXML) {
         centerPage.getChildren().clear();
         try {
-            String path = PathHandler.getInstance().getPathOfView();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(pathOfView + nomeFXML));
             AnchorPane pane = fxmlLoader.load();
 
             centerPage.getChildren().add(pane);
@@ -180,7 +182,7 @@ public class SideBarController {
     private void updateLanguage(){
         ResourceBundle bundle = null;
         try {
-            bundle = LanguageHandler.getInstance().getBundle();
+            bundle = languageHandler.getBundle();
         } catch (Exception e){
             System.out.println("Error in SideBarController.java (rows: 184-188) " + e);
         }

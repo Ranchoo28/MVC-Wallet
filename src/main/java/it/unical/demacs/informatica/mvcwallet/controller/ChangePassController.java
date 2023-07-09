@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 public class ChangePassController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final SqlHandler sqlHandler = SqlHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
 
 
     @FXML
@@ -33,13 +35,13 @@ public class ChangePassController {
     }
 
     private boolean isGoodOldPassword(){
-        return (SqlHandler.getInstance().checkPassword(LoginController.username,oldPasswordTextField.getText()));
+        return (sqlHandler.checkPassword(LoginController.username,oldPasswordTextField.getText()));
     }
 
 
     @FXML
     void onSaveClick() {
-        if(SqlService.getIstance().serviceChangePassword(newPasswordTextField.getText(),LoginController.username)){
+        if(sqlService.serviceChangePassword(newPasswordTextField.getText(),LoginController.username)){
             //LoginController. = usernameTextField.getText();
             alertHandler.createChangedAlert("Password");
             sceneHandler.createSideBar();

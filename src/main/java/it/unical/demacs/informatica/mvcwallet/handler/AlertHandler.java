@@ -17,6 +17,8 @@ public class AlertHandler {
 
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final LoggedHandler loggedHandler = LoggedHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
 
     // Creazione dei vari alert
     public void createErrorAlert(String message) {
@@ -88,8 +90,8 @@ public class AlertHandler {
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK){
-            SqlService.getIstance().serviceLogout(LoginController.username);
-            LoggedHandler.getInstance().stayLoggedWriting("null");
+            sqlService.serviceLogout(LoginController.username);
+            loggedHandler.stayLoggedWriting("null");
             sceneHandler.createLoginScene();
         }
         else if(result.get() == ButtonType.CANCEL) alert.close();

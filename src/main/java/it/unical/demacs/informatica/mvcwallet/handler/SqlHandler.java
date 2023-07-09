@@ -6,26 +6,24 @@ import java.time.LocalDate;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class SqlHandler {
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private SqlHandler() {}
     private static final SqlHandler instance = new SqlHandler();
     public static SqlHandler getInstance() {
         return instance;
     }
-
     private Connection con;
 
     public Connection newConnection() {
+        System.out.print("Creating a new connection: ");
         try {
             String url = "jdbc:sqlite:progettouid.db";
-
             // Effettua la connessione al database
             con = DriverManager.getConnection(url);
-            if (con != null) System.out.println("Connessione avvenuta con successo");
+            if (con != null) System.out.println("Connection Succes");
 
         } catch (SQLException e) {
-            System.out.println("Non connesso");
+            System.out.println("Connection failed");
             e.printStackTrace();
         }
         return con;
@@ -69,21 +67,19 @@ public class SqlHandler {
                 PreparedStatement stmt1 = con.prepareStatement("SELECT password FROM users WHERE username = ?");
                 stmt1.setString(1, username);
                 ResultSet rs1 = stmt1.executeQuery();
-                while (rs1.next()) {
-                    if(BCrypt.checkpw(password, rs1.getString(1))) {
-                        closeConnection(con);
-                        return 0;
-                    }
-                    else{
-                        closeConnection(con);
-                        return 2;
-                    }
+                if(BCrypt.checkpw(password, rs1.getString(1))) {
+                    closeConnection(con);
+                    return 0;
                 }
-                closeConnection(con);
+                else {
+                    closeConnection(con);
+                    return 2;
+                }
             }
             closeConnection(con);
             return 2;
         } catch (SQLException e) {
+            closeConnection(con);
             e.printStackTrace();
         }
         closeConnection(con);

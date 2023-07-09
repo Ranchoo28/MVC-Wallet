@@ -27,6 +27,10 @@ public class LoginController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final SqlHandler sqlHandler = SqlHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
+    private final LoggedHandler loggedHandler = LoggedHandler.getInstance();
+    private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
 
     @FXML
     void onLoginButtonClick() throws InterruptedException {
@@ -35,20 +39,20 @@ public class LoginController {
         // in base al risultato apre un popup.
 
 
-        if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 0){
+        if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 0){
             username = Username.getText();
             if(stayLogged.isSelected()){
-                SqlHandler.getInstance().stayLoggedOfLogin(username);
-                LoggedHandler.getInstance().stayLoggedWriting(username);
+                sqlHandler.stayLoggedOfLogin(username);
+                loggedHandler.stayLoggedWriting(username);
             }
-            SettingsHandler.getInstance().updateSettings();
+            settingsHandler.updateSettings();
             alertHandler.createLoginAlert();
-            //for(String i: SettingsHandler.getInstance().settings) System.out.println("ciao" + i);
-        }else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 1)
+            //for(String i: settingsHandler.settings) System.out.println("ciao" + i);
+        }else if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 1)
             alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorUsernameText"));
-        else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 2)
+        else if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 2)
             alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorPassText"));
-        else if (SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 3) {
+        else if (sqlService.serviceLogin(Username.getText(), Password.getText()) == 3) {
             alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorAllText"));
         }
 
@@ -66,11 +70,11 @@ public class LoginController {
     void initialize(){
 
         Platform.runLater(() -> {
-            if (!LoggedHandler.getInstance().stayLoggedReading().equals("null")) {
+            if (!loggedHandler.stayLoggedReading().equals("null")) {
                 // Non capisco perchè bisogna rifare la connessione.
-                username = LoggedHandler.getInstance().stayLoggedReading();
-                SqlHandler.getInstance().newConnection();
-                SettingsHandler.getInstance().updateSettings();
+                username = loggedHandler.stayLoggedReading();
+                sqlHandler.newConnection();
+                settingsHandler.updateSettings();
                 sceneHandler.createSideBar();
             }
         });

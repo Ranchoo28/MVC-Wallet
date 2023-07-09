@@ -9,19 +9,12 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.util.Duration;
-
-import java.lang.ref.PhantomReference;
-import java.security.Provider;
 
 public class ChangePassForgotController {
     @FXML
@@ -37,6 +30,8 @@ public class ChangePassForgotController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final RegexHandler regexHandler = RegexHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
     private boolean isGoodToken, isGoodPassword;
 
     @FXML
@@ -55,7 +50,7 @@ public class ChangePassForgotController {
 
     @FXML
     void onChangeClick(){
-        if(SqlService.getIstance().serviceForgotPassword(ForgotPasswordController.email, passwordField.getText()))
+        if(sqlService.serviceForgotPassword(ForgotPasswordController.email, passwordField.getText()))
             alertHandler.passChangedFromForgot();
         else{
             alertHandler.createErrorAlert(lanHandler.getBundle().getString("changePassErrorText"));
@@ -73,7 +68,7 @@ public class ChangePassForgotController {
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
             if (changeButton.isDisabled() || !changeButton.isDisabled()) {
                 isGoodToken = tokenField.getText().equals(ForgotPasswordController.token);
-                if(passwordField.getText().matches(RegexHandler.getInstance().regexPassword) || passwordText.getText().matches(RegexHandler.getInstance().regexPassword))
+                if(passwordField.getText().matches(regexHandler.regexPassword) || passwordText.getText().matches(regexHandler.regexPassword))
                     isGoodPassword = true;
                 checkTokenAndPassword();
             }

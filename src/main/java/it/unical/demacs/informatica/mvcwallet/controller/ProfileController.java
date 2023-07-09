@@ -9,12 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class ProfileController {
 
-    LanguageHandler lanHandler = LanguageHandler.getInstance();
     @FXML
     AnchorPane centerPage;
     @FXML
@@ -27,11 +25,15 @@ public class ProfileController {
     String [] nameSurnameArray;
     boolean isGoodUsername, isGoodName, isGoodSurname;
 
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final LanguageHandler languageHandler = LanguageHandler.getInstance();
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final SqlHandler sqlHandler = SqlHandler.getInstance();
+    private final SqlService sqlService = SqlService.getInstance();
+    String view = PathHandler.getInstance().getPathOfView();
 
     @FXML
-    void onChangePasswordClick() throws IOException {
+    void onChangePasswordClick(){
         loadFXML("changepass-view.fxml");
     }
     @FXML
@@ -39,33 +41,32 @@ public class ProfileController {
     }
     @FXML
     void onSaveClick() {
-        if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameTextField.getText())) {
+        if (sqlService.serviceChangeUsername(LoginController.username, usernameTextField.getText())) {
             LoginController.username = usernameTextField.getText();
             alertHandler.createChangedAlert("Username");
             sceneHandler.createSideBar();
         } else System.out.println("username non cambiato");
-        if (SqlService.getIstance().serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
-            alertHandler.createChangedAlert(lanHandler.getBundle().getString("nameLabel"));
+        if (sqlService.serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
+            alertHandler.createChangedAlert(languageHandler.getBundle().getString("nameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("nome non cambiato");
-        if (SqlService.getIstance().serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
-            alertHandler.createChangedAlert(lanHandler.getBundle().getString("surnameLabel"));
+        if (sqlService.serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
+            alertHandler.createChangedAlert(languageHandler.getBundle().getString("surnameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("cognome non cambiato");
     }
 
     private boolean isGoodApply(String username,String name, String surname){
-        return (username.length() >= 5 && !SqlHandler.getInstance().checkUsername(username))
+        return (username.length() >= 5 && !sqlHandler.checkUsername(username))
                 && (name.length() >= 1 && !name.equals(firstTextField.getText()))
                 && (surname.length() >= 1 && !surname.equals(lastTextField.getText()));
     }
 
-    public void loadFXML(String nomeFXML) throws IOException {
+    public void loadFXML(String nomeFXML) {
         centerPage.getChildren().clear();
 
-        String path = PathHandler.getInstance().getPathOfView();
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path + nomeFXML));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(view + nomeFXML));
             AnchorPane pane = fxmlLoader.load();
             centerPage.getChildren().add(pane);
             AnchorPane.setTopAnchor(pane, 5.0);
@@ -81,14 +82,14 @@ public class ProfileController {
     void initialize() {
         updateLanguage();
         saveButton.setDisable(true);
-        nameSurnameArray = SqlHandler.getInstance().getNameSurname(LoginController.username);
-        String[] array = SqlHandler.getInstance().getNameSurname(LoginController.username);
+        nameSurnameArray = sqlHandler.getNameSurname(LoginController.username);
+        String[] array = sqlHandler.getNameSurname(LoginController.username);
         firstTextField.setText(array[0]);
         lastTextField.setText(array[1]);
 
         usernameTextField.setText(LoginController.username);
         usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(SqlHandler.getInstance().checkUsername(newValue));
+            System.out.println(sqlHandler.checkUsername(newValue));
             isGoodUsername = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
             checkUsername();
 
@@ -124,7 +125,7 @@ public class ProfileController {
 
         lastTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println(usernameTextField.getText());
-            System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
+            System.out.println(sqlHandler.checkUsername(usernameTextField.getText()));
             isGoodSurname = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
             checkUsername();
             /*
@@ -163,7 +164,7 @@ public class ProfileController {
     private void updateLanguage(){
         ResourceBundle bundle = null;
         try {
-            bundle = LanguageHandler.getInstance().getBundle();
+            bundle = languageHandler.getBundle();
         } catch (Exception e){
             System.out.println("Error in ProfileController.java (rows: 166-171) " + e);
         }

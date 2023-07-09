@@ -12,6 +12,7 @@ import java.util.*;
 import com.google.gson.*;
 
 public class APIsHandler {
+    private static final TimeStampHandler timeStampHandler = TimeStampHandler.getInstance();
 
     private static final APIsHandler instance = new APIsHandler();
 
@@ -86,7 +87,7 @@ public class APIsHandler {
                 for (JsonElement element : prices) {
                     JsonArray priceData = element.getAsJsonArray();
                     long timestamp = priceData.get(0).getAsLong();
-                    String localDate = TimeStampHandler.getInstance().convertToString(timestamp, timeframe);
+                    String localDate = timeStampHandler.convertToString(timestamp, timeframe);
 
                     if (dictionary.containsKey(localDate)) {
                         dictionary.get(localDate).add(priceData.get(1).getAsDouble());

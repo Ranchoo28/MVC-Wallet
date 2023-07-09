@@ -6,19 +6,22 @@ import it.unical.demacs.informatica.mvcwallet.handler.TimeStampHandler;
 import java.net.MalformedURLException;
 import java.util.*;
 
-public class BuildBars {
-    private static final BuildBars instance = new BuildBars();
-    public static BuildBars getInstance() {
+public class BarBuilder {
+    private static final APIsHandler apisHandler = APIsHandler.getInstance();
+    private static final TimeStampHandler timeStampHandler = TimeStampHandler.getInstance();
+
+    private static final BarBuilder instance = new BarBuilder();
+    public static BarBuilder getInstance() {
         return instance;
     }
 
-    public List<BarData> buildBars(String coin, String currency, String timeframe) {
+    public List<BarData> make(String coin, String currency, String timeframe) {
 
         final List<BarData> bars = new ArrayList<>();
         Map<String, ArrayList<Double>> dictionary;
 
         try {
-            dictionary = APIsHandler.getInstance().getHistoricalData(coin, currency, timeframe);
+            dictionary = apisHandler.getHistoricalData(coin, currency, timeframe);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -32,7 +35,7 @@ public class BuildBars {
                 double openPrice = dailyPrices.get(0);
                 double closePrice = dailyPrices.get(dailyPrices.size() - 1);
 
-                GregorianCalendar date = TimeStampHandler.getInstance().convertToGregorianCalendar(key, timeframe);
+                GregorianCalendar date = timeStampHandler.convertToGregorianCalendar(key, timeframe);
 
                 BarData bar = new BarData(key, date, openPrice, highPrice, lowPrice, closePrice, 1);
                 bars.add(bar);
