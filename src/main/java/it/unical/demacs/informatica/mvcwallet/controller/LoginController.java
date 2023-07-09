@@ -1,9 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.LoggedHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -14,6 +11,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
     public static String username;
     private boolean isGoodUsername;
     private boolean isGoodPassword;
@@ -40,14 +39,14 @@ public class LoginController {
                 LoggedHandler.getInstance().stayLoggedWriting(username);
             }
             SettingsHandler.getInstance().updateSettings();
-            SceneHandler.getInstance().createLoginAlert();
+            alertHandler.createLoginAlert();
             //for(String i: SettingsHandler.getInstance().settings) System.out.println("ciao" + i);
         }else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 1)
-            SceneHandler.getInstance().createErrorAlert("Username inesistente. Riprova");
+            alertHandler.createErrorAlert("Username inesistente. Riprova");
         else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 2)
-            SceneHandler.getInstance().createErrorAlert("Password errata. Riprova");
+            alertHandler.createErrorAlert("Password errata. Riprova");
         else if (SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 3) {
-            SceneHandler.getInstance().createErrorAlert("Username o password errati. Riprova");
+            alertHandler.createErrorAlert("Username o password errati. Riprova");
         }
 
         //SceneHandler.getInstance().createSideBar();

@@ -10,11 +10,8 @@ import java.util.Properties;
 @Service
 public class EmailHandler {
     private EmailHandler(){}
-    private static final EmailHandler istance = new EmailHandler();
-    public static EmailHandler getInstance(){return istance;}
-
-    @Autowired
-    private JavaMailSender mailSender;
+    private static final EmailHandler instance = new EmailHandler();
+    public static EmailHandler getInstance(){return instance;}
 
     public void sendEmail(String toEmail, String subject, String body) {
         // Codice per l'invio di una mail

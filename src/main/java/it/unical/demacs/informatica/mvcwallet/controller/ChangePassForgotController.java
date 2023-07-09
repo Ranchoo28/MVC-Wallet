@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.RegexHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
@@ -22,6 +23,8 @@ import java.lang.ref.PhantomReference;
 import java.security.Provider;
 
 public class ChangePassForgotController {
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
     private boolean isGoodToken, isGoodPassword;
     @FXML
     private PasswordField passwordField;
@@ -51,10 +54,10 @@ public class ChangePassForgotController {
     @FXML
     void onChangeClick(){
         if(SqlService.getIstance().serviceForgotPassword(ForgotPasswordController.email, passwordField.getText()))
-            SceneHandler.getInstance().passChangedFromForgot();
+            alertHandler.passChangedFromForgot();
         else{
-            SceneHandler.getInstance().createErrorAlert("Errore nel cambio della password. Riprova");
-            SceneHandler.getInstance().createLoginScene();
+            alertHandler.createErrorAlert("Errore nel cambio della password. Riprova");
+            sceneHandler.createLoginScene();
         }
     }
 

@@ -6,7 +6,8 @@ import java.time.LocalDate;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class SqlHandler {
-
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
     private SqlHandler() {}
     private static final SqlHandler instance = new SqlHandler();
     public static SqlHandler getInstance() {
@@ -103,12 +104,32 @@ public class SqlHandler {
                 stmt.setString(5, nome);
                 stmt.setString(6, cognome);
                 stmt.executeUpdate();
+                createAccountSettings(username);
                 closeConnection(con);
                 return true;
             } catch (SQLException e) {
-                SceneHandler.getInstance().createErrorAlert("Errore nella registrazione");
+                alertHandler.createErrorAlert("Errore nella registrazione");
             }
         return false;
+    }
+
+    private void createAccountSettings(String username) {
+        try{
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement("INSERT INTO settings values (?,?,?,?,?,?,?)");
+            s.setString(1, username);
+            s.setString(2, "it");
+            s.setString(3, "dark.css");
+            s.setString(4, "HH:mm:ss");
+            s.setString(5, "market");
+            s.setInt(6, 0);
+            s.setString(7, "eur");
+
+            s.executeUpdate();
+            closeConnection(con);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean checkUsernameLogin(String username){

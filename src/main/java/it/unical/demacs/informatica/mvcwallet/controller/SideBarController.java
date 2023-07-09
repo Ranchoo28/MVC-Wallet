@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class SideBarController {
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
     @FXML
     private AnchorPane centerPage;
     @FXML
@@ -43,7 +45,7 @@ public class SideBarController {
     }
     @FXML
     void onLogoutClick() {
-        SceneHandler.getInstance().createLogoutAlert("Sei sicuro di voler effettuare il logout?");
+        alertHandler.createLogoutAlert("Sei sicuro di voler effettuare il logout?");
     }
 
     @FXML

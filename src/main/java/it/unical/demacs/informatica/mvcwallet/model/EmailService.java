@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 
 public class EmailService {
     private EmailService(){}
-    private static final EmailService istance = new EmailService();
-    public static EmailService getInstance(){return istance;}
+    private static final EmailService instance = new EmailService();
+    public static EmailService getInstance(){return instance;}
 
     // Service per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
     public void startThreadEmail(String toEmail, String subject, String body){

@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
@@ -10,7 +11,8 @@ import javafx.scene.control.TextField;
 
 
 public class ChangePassController {
-
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
 
     @FXML
@@ -39,7 +41,7 @@ public class ChangePassController {
     void onSaveClick() {
         if(SqlService.getIstance().serviceChangePassword(newPasswordTextField.getText(),LoginController.username)){
             //LoginController. = usernameTextField.getText();
-            SceneHandler.getInstance().createChangedAlert("Password");
+            alertHandler.createChangedAlert("Password");
             SceneHandler.getInstance().createSideBar();
         }
     }

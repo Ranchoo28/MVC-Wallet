@@ -4,6 +4,7 @@ import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
 import it.unical.demacs.informatica.mvcwallet.handler.CoinsHandler;
+import it.unical.demacs.informatica.mvcwallet.model.BuildBarsService;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -87,7 +88,7 @@ public class MarketController {
     public void updateChart(){
         this.market.getChildren().clear();
 
-        List<BarData> array = BuildBars.getInstance().buildBars(this.formattedCoin, this.formattedCurrency, this.timeframe);
+        List<BarData> array = BuildBarsService.getInstance().buildBarsService(this.formattedCoin, this.formattedCurrency, this.timeframe);
         CandleStickChart chart = new CandleStickChart(array, market.getWidth());
 
         this.market.getChildren().add(chart);

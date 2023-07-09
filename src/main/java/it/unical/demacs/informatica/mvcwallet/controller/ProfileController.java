@@ -55,7 +55,6 @@ public class ProfileController {
         } else System.out.println("cognome non cambiato");
     }
 
-
     private boolean isGoodApply(String username,String name, String surname){
         return (username.length() >= 5 && !SqlHandler.getInstance().checkUsername(username))
                 && (name.length() >= 1 && !name.equals(firstTextField.getText()))

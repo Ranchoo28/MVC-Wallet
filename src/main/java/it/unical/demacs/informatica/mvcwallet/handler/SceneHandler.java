@@ -58,10 +58,6 @@ public class SceneHandler {
         }
     }
 
-    public void deleteStage(Stage stage){
-        stage.close();
-    }
-
     public void createSideBar() {
         try {
             stage.setTitle("MVC Wallet");
@@ -81,23 +77,6 @@ public class SceneHandler {
         }
     }
 
-    public void createSettingsScene() {
-        // Crea la scena per la password dimenticata
-        try {
-            if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"settings-view.fxml"));
-            else
-                scene.setRoot(loadRootFromFXML(view+"settings-view.fxml"));
-            stage.setTitle("MVC Wallet impostazioni");
-
-            if(stage.isFullScreen()) stage.setFullScreen(true);
-            else{
-                stage.setWidth(800);
-                stage.setHeight(500);
-            }
-        } catch (IOException ignored) {
-        }
-    }
 
     public void createLoginScene() {
         // Crea la scena del login
@@ -113,7 +92,9 @@ public class SceneHandler {
             stage.setMinHeight(350);
             stage.setWidth(600);
             stage.setHeight(350);
-            //uploadTheme();
+
+            scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
+            LanguageHandler.getInstance().updateLanguage("en");
         } catch (IOException ignored) {
         }
     }
@@ -170,123 +151,5 @@ public class SceneHandler {
         }
     }
 
-    // Creazione dei vari alert
-    public void createErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        FontIcon icon = new FontIcon("mdi2a-alert");
-        icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
-        icon.getStyleClass().add("icons-color");
-        icon.setIconSize(45);
-        alert.setHeaderText("");
-        alert.setGraphic(icon);
-        alert.setTitle("Errore");
-        alert.setContentText(message);
-        alert.show();
-    }
-    public void createLoginAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2c-check-circle-outline");
-        icon.setIconColor(Paint.valueOf("#4d79ff")); // Blu
-        icon.getStyleClass().add("icons-color");
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle("Login eseguito!");
-        alert.setContentText("Accesso avvenuto.");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK) createSideBar();
-    }
 
-    public void createRegistrationAlert(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2s-send-check");
-        icon.setIconColor(Paint.valueOf("blue"));
-        icon.getStyleClass().add("icons-color");
-        icon.setIconSize(45);
-        alert.setHeaderText("");
-        alert.setGraphic(icon);
-        alert.setTitle("Informazione");
-        alert.setContentText("Registrazione effettuata! Ti abbiamo mandato una mail darti alcune info.");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK) createSideBar();
-    }
-
-    public void createForgotPassAlert(String message){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2e-email-send");
-        icon.getStyleClass().add("icons-color");
-        icon.setIconColor(Paint.valueOf("#4d79ff"));
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle("Cambio password");
-        alert.setContentText(message);
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK) createChangePasswordFromForgot();
-    }
-
-    public void createLogoutAlert(String message){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        FontIcon icon = new FontIcon("mdi2p-progress-question");
-        icon.getStyleClass().add("icons-color");
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle("Logut");
-        alert.setContentText(message);
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) alert.close();
-        else if(result.get() == ButtonType.OK){
-            SqlService.getIstance().serviceLogout(LoginController.username);
-            LoggedHandler.getInstance().stayLoggedWriting("null");
-            createLoginScene();
-        }
-        else if(result.get() == ButtonType.CANCEL) alert.close();
-    }
-
-    public void createChangedAlert(String details){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2s-send-check");
-        icon.setIconColor(Paint.valueOf("blue"));
-        icon.getStyleClass().add("icons-color");
-        icon.setIconSize(45);
-        alert.setHeaderText("");
-        alert.setGraphic(icon);
-        alert.setTitle("Cambio "+ details);
-        alert.setContentText(details+ " cambiato con successo!");
-        alert.show();
-    }
-
-    public void passChangedFromForgot() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2e-email-send");
-        icon.getStyleClass().add("icons-color");
-        icon.setIconColor(Paint.valueOf("#4d79ff"));
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle("Cambio password");
-        alert.setContentText("Password cambiata con successo! Ora puoi effettuare il login.");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) createLoginScene();
-        else if(result.get() == ButtonType.OK) createLoginScene();
-    }
-
-    public void restartAppAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2e-email-send");
-        icon.getStyleClass().add("icons-color");
-        icon.setIconColor(Paint.valueOf("#4d79ff"));
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle("Riavvia applicazione");
-        alert.setContentText("Riavvia l'applicazione per il cambio delle impostazioni");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) System.exit(0);
-        else if(result.get() == ButtonType.OK) System.exit(0);
-    }
 }

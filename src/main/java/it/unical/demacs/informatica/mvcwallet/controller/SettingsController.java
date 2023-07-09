@@ -15,6 +15,8 @@ import java.util.ResourceBundle;
 import static javafx.application.Application.launch;
 
 public class SettingsController {
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     @FXML
     private Label accessibilityLabel, accountLabel;
@@ -88,10 +90,10 @@ public class SettingsController {
 
         if(!settings[4].equals(SettingsHandler.getInstance().language) || !settings[3].equals(SettingsHandler.getInstance().theme)){
             SettingsHandler.getInstance().updateSettings();
-            SceneHandler.getInstance().restartAppAlert();
+            alertHandler.restartAppAlert();
         }else{
             SettingsHandler.getInstance().updateSettings();
-            SceneHandler.getInstance().createSideBar();
+            sceneHandler.createSideBar();
         }
 
        //MainApplication.restartApplication();

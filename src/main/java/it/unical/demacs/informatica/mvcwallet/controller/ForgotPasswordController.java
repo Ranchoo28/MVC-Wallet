@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
@@ -14,6 +15,9 @@ import java.util.UUID;
 public class ForgotPasswordController {
     public static String token;
     public static String email;
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
+
     @FXML
     private TextField fieldMail;
 
@@ -31,15 +35,15 @@ public class ForgotPasswordController {
                     "Ecco a te il token da inserire per cambiare la password (scade dopo 5 minuti): ", token  +
                     "\nSe non sei stato tu a richiederlo puoi ignorare questa email.");
 
-            SceneHandler.getInstance().createForgotPassAlert("Ti abbiamo inviato sulla mail un token da inserire per il cambio password" +
+            alertHandler.createForgotPassAlert("Ti abbiamo inviato sulla mail un token da inserire per il cambio password" +
                     ". Scade dopo 5 minuti");
 
-        }else SceneHandler.getInstance().createErrorAlert("Email non presente nel sistema. Riprova");
+        }else alertHandler.createErrorAlert("Email non presente nel sistema. Riprova");
     }
 
     @FXML
     void onCancelButtonClick(){
-        SceneHandler.getInstance().createLoginScene();
+        sceneHandler.createLoginScene();
     }
 
 

@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.RegexHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
@@ -43,10 +44,10 @@ public class RegistrationController {
 
         if(SqlService.getIstance().serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText())){
             sendEmail();
-            SceneHandler.getInstance().createRegistrationAlert();
+            AlertHandler.getInstance().createRegistrationAlert();
         }
 
-        else SceneHandler.getInstance().createErrorAlert("Username o email già presenti nel sistema");
+        else AlertHandler.getInstance().createErrorAlert("Username o email già presenti nel sistema");
     }
 
     @FXML
