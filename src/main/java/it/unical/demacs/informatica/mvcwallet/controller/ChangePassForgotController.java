@@ -23,19 +23,19 @@ import java.lang.ref.PhantomReference;
 import java.security.Provider;
 
 public class ChangePassForgotController {
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
-    private final AlertHandler alertHandler = AlertHandler.getInstance();
-    private boolean isGoodToken, isGoodPassword;
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private TextField tokenField, passwordText;
-
     @FXML
     private Button changeButton;
     @FXML
     private CheckBox showPassBox;
+
+
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private boolean isGoodToken, isGoodPassword;
 
     @FXML
     void onShowClick() {
@@ -63,7 +63,7 @@ public class ChangePassForgotController {
 
     @FXML
     void onCancelClick(){
-        SceneHandler.getInstance().createLoginScene();
+        sceneHandler.createLoginScene();
     }
 
     @FXML

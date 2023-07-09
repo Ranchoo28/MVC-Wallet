@@ -102,7 +102,7 @@ public class SettingsController {
 
     @FXML
     void onCancelClick(){
-        SceneHandler.getInstance().createSideBar();
+        sceneHandler.createSideBar();
     }
 
     @FXML

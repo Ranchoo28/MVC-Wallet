@@ -14,6 +14,7 @@ public class AlertHandler {
     private AlertHandler(){}
     private static final AlertHandler instance = new AlertHandler();
     public static AlertHandler getInstance(){return instance;}
+
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
 
     // Creazione dei vari alert

@@ -1,9 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
@@ -18,19 +15,19 @@ import java.util.ResourceBundle;
 public class ProfileController {
     @FXML
     AnchorPane centerPage;
-
     @FXML
     private Label nameLabel, surnameLabel;
-
     @FXML
     private TextField usernameTextField, firstTextField, lastTextField;
-
     @FXML
     private Button saveButton, cancelButton, changePassButton;
 
     String [] nameSurnameArray;
-
     boolean isGoodUsername, isGoodName, isGoodSurname;
+
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
+
     @FXML
     void onChangePasswordClick() throws IOException {
         loadFXML("changepass-view.fxml");
@@ -42,16 +39,16 @@ public class ProfileController {
     void onSaveClick() {
         if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameTextField.getText())) {
             LoginController.username = usernameTextField.getText();
-            SceneHandler.getInstance().createChangedAlert("username");
-            SceneHandler.getInstance().createSideBar();
+            alertHandler.createChangedAlert("username");
+            sceneHandler.createSideBar();
         } else System.out.println("username non cambiato");
         if (SqlService.getIstance().serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
-            SceneHandler.getInstance().createChangedAlert("nome");
-            SceneHandler.getInstance().createSideBar();
+            alertHandler.createChangedAlert("nome");
+            sceneHandler.createSideBar();
         } else System.out.println("nome non cambiato");
         if (SqlService.getIstance().serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
-            SceneHandler.getInstance().createChangedAlert("cognome");
-            SceneHandler.getInstance().createSideBar();
+            alertHandler.createChangedAlert("cognome");
+            sceneHandler.createSideBar();
         } else System.out.println("cognome non cambiato");
     }
 

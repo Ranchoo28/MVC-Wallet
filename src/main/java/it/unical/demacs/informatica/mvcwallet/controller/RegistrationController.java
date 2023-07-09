@@ -17,10 +17,6 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class RegistrationController {
-    private boolean isGoodUsername;
-    private boolean isGoodEmail;
-    private boolean isGoodPassword;
-    private boolean isGoodAge;
 
     @FXML
     private DatePicker Birthday;
@@ -33,9 +29,16 @@ public class RegistrationController {
     @FXML
     private Button buttonRegisterAccount = new Button();
 
+    private boolean isGoodUsername;
+    private boolean isGoodEmail;
+    private boolean isGoodPassword;
+    private boolean isGoodAge;
+
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     @FXML
-    void onCancelButtonClick() { SceneHandler.getInstance().createLoginScene(); }
+    void onCancelButtonClick() { sceneHandler.createLoginScene(); }
 
     @FXML
     void onRegisterAccountButtonClick() {

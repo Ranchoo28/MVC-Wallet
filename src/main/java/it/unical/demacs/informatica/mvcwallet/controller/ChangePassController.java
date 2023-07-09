@@ -29,7 +29,7 @@ public class ChangePassController {
 
     @FXML
     void onCancelClick(){
-        SceneHandler.getInstance().createSideBar();
+        sceneHandler.createSideBar();
     }
 
     private boolean isGoodOldPassword(){
@@ -42,7 +42,7 @@ public class ChangePassController {
         if(SqlService.getIstance().serviceChangePassword(newPasswordTextField.getText(),LoginController.username)){
             //LoginController. = usernameTextField.getText();
             alertHandler.createChangedAlert("Password");
-            SceneHandler.getInstance().createSideBar();
+            sceneHandler.createSideBar();
         }
     }
 

@@ -11,11 +11,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
-    private final SceneHandler sceneHandler = SceneHandler.getInstance();
-    private final AlertHandler alertHandler = AlertHandler.getInstance();
-    public static String username;
-    private boolean isGoodUsername;
-    private boolean isGoodPassword;
     @FXML
     private TextField Username;
     @FXML
@@ -24,6 +19,13 @@ public class LoginController {
     private Button buttonLogin = new Button();
     @FXML
     private CheckBox stayLogged;
+
+    public static String username;
+    private boolean isGoodUsername;
+    private boolean isGoodPassword;
+
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     @FXML
     void onLoginButtonClick() throws InterruptedException {
@@ -49,15 +51,15 @@ public class LoginController {
             alertHandler.createErrorAlert("Username o password errati. Riprova");
         }
 
-        //SceneHandler.getInstance().createSideBar();
+        //sceneHandler.createSideBar();
     }
 
     @FXML
     void onRegisterButtonClick() {
-        SceneHandler.getInstance().createRegistrationScene();
+        sceneHandler.createRegistrationScene();
     }
     @FXML
-    void onForgotPasswordClick() { SceneHandler.getInstance().createForgotPasswordScene(); }
+    void onForgotPasswordClick() { sceneHandler.createForgotPasswordScene(); }
 
     @FXML
     void initialize(){
@@ -68,7 +70,7 @@ public class LoginController {
                 username = LoggedHandler.getInstance().stayLoggedReading();
                 SqlHandler.getInstance().newConnection();
                 SettingsHandler.getInstance().updateSettings();
-                SceneHandler.getInstance().createSideBar();
+                sceneHandler.createSideBar();
             }
         });
 

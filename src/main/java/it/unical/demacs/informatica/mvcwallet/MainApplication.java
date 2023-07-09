@@ -10,16 +10,16 @@ import java.io.IOException;
 
 public class MainApplication extends Application {
     Stage st = new Stage();
-
+    SceneHandler sceneHandler = SceneHandler.getInstance();
 
     @Override
     public void start(Stage stage) {
         //stage.setResizable(false);
-        SceneHandler.getInstance().init(this.st);
-        SceneHandler.getInstance().createLoginScene();
+        sceneHandler.init(this.st);
+        sceneHandler.createLoginScene();
 
         // Aggiunto solo per i test
-        //SceneHandler.getInstance().createSideBar();
+        //sceneHandler.createSideBar();
     }
 
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class MainApplication extends Application {
     }
 
     public static void restartApplication() {
-        //SceneHandler.getInstance().init(st);
+        //sceneHandler.init(st);
 
         /*
         // Avvia un nuovo processo per avviare un'altra istanza dell'applicazione
