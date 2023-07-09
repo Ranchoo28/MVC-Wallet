@@ -37,7 +37,7 @@ public class ProfileController {
         loadFXML("changepass-view.fxml");
     }
     @FXML
-    void onCancelClick(){
+    void onCancelClick(){SceneHandler.getInstance().createSideBar();
     }
     @FXML
     void onSaveClick() {
