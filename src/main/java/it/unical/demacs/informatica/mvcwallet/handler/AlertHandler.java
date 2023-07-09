@@ -16,6 +16,7 @@ public class AlertHandler {
     public static AlertHandler getInstance(){return instance;}
 
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
 
     // Creazione dei vari alert
     public void createErrorAlert(String message) {
@@ -26,7 +27,7 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle("Errore");
+        alert.setTitle(lanHandler.getBundle().getString("errorTitle"));
         alert.setContentText(message);
         alert.show();
     }
@@ -38,8 +39,8 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle("Login eseguito!");
-        alert.setContentText("Accesso avvenuto.");
+        alert.setTitle("Login");
+        alert.setContentText(lanHandler.getBundle().getString("loginText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK) sceneHandler.createSideBar();
@@ -51,10 +52,10 @@ public class AlertHandler {
         icon.setIconColor(Paint.valueOf("blue"));
         icon.getStyleClass().add("icons-color");
         icon.setIconSize(45);
-        alert.setHeaderText("");
+        alert.setHeaderText(lanHandler.getBundle().getString("informationTitle"));
         alert.setGraphic(icon);
-        alert.setTitle("Informazione");
-        alert.setContentText("Registrazione effettuata! Puoi effettuare il login.");
+        alert.setTitle(lanHandler.getBundle().getString("alertInformationTitle"));
+        alert.setContentText(lanHandler.getBundle().getString("registrationText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK) sceneHandler.createLoginScene();
@@ -68,7 +69,7 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle("Cambio password");
+        alert.setTitle(lanHandler.getBundle().getString("changePasswordTitle"));
         alert.setContentText(message);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
@@ -102,8 +103,8 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle("Cambio "+ details);
-        alert.setContentText(details+ " cambiato con successo!");
+        alert.setTitle(lanHandler.getBundle().getString("changeTitle") + details);
+        alert.setContentText(details + lanHandler.getBundle().getString("changeSuccessfulText"));
         alert.show();
     }
 
@@ -115,8 +116,8 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle("Cambio password");
-        alert.setContentText("Password cambiata con successo! Ora puoi effettuare il login.");
+        alert.setTitle(lanHandler.getBundle().getString("changePasswordTitle"));
+        alert.setContentText(lanHandler.getBundle().getString("changePasswordText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) sceneHandler.createLoginScene();
         else if(result.get() == ButtonType.OK) sceneHandler.createLoginScene();
@@ -130,8 +131,8 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle("Riavvia applicazione");
-        alert.setContentText("Riavvia l'applicazione per il cambio delle impostazioni");
+        alert.setTitle(lanHandler.getBundle().getString("restartAppTitle"));
+        alert.setContentText(lanHandler.getBundle().getString("restartAppText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) System.exit(0);
         else if(result.get() == ButtonType.OK) System.exit(0);

@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class ProfileController {
+
+    LanguageHandler lanHandler = LanguageHandler.getInstance();
     @FXML
     AnchorPane centerPage;
     @FXML
@@ -39,15 +41,15 @@ public class ProfileController {
     void onSaveClick() {
         if (SqlService.getIstance().serviceChangeUsername(LoginController.username, usernameTextField.getText())) {
             LoginController.username = usernameTextField.getText();
-            alertHandler.createChangedAlert("username");
+            alertHandler.createChangedAlert("Username");
             sceneHandler.createSideBar();
         } else System.out.println("username non cambiato");
         if (SqlService.getIstance().serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
-            alertHandler.createChangedAlert("nome");
+            alertHandler.createChangedAlert(lanHandler.getBundle().getString("nameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("nome non cambiato");
         if (SqlService.getIstance().serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
-            alertHandler.createChangedAlert("cognome");
+            alertHandler.createChangedAlert(lanHandler.getBundle().getString("surnameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("cognome non cambiato");
     }

@@ -1,6 +1,7 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.RegexHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
@@ -36,6 +37,7 @@ public class RegistrationController {
 
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
 
     @FXML
     void onCancelButtonClick() { sceneHandler.createLoginScene(); }
@@ -50,7 +52,7 @@ public class RegistrationController {
             AlertHandler.getInstance().createRegistrationAlert();
         }
 
-        else AlertHandler.getInstance().createErrorAlert("Username o email già presenti nel sistema");
+        else AlertHandler.getInstance().createErrorAlert(lanHandler.getBundle().getString("registrationErrorText"));
     }
 
     @FXML
@@ -119,7 +121,7 @@ public class RegistrationController {
 
     public void sendEmail() {
         // Manda una mail dopo essersi registrati.
-       EmailService.getInstance().startThreadEmail(Email.getText(),
+       EmailService.getInstance().emailServiceSendWelcomeEmail(Email.getText(),
                "MVC Wallet",
                "Ciao " + Nome.getText() + ", ti ringraziamo per aver effettuato la registrazione!");
     }

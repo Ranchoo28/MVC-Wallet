@@ -2,7 +2,6 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
-import it.unical.demacs.informatica.mvcwallet.model.BuildBars;
 import it.unical.demacs.informatica.mvcwallet.handler.CoinsHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BuildBarsService;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
@@ -67,7 +66,7 @@ public class MarketController {
 
     @FXML
     void initialize() {
-        Platform.runLater(() -> updateLanguage());
+        Platform.runLater(this::updateLanguage);
         //updateLanguage();
 
         coinChoiceBox.getItems().addAll(coins);

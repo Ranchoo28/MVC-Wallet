@@ -93,7 +93,7 @@ public class SceneHandler {
             stage.setWidth(600);
             stage.setHeight(350);
 
-            scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
+            //scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
             LanguageHandler.getInstance().updateLanguage("en");
         } catch (IOException ignored) {
         }

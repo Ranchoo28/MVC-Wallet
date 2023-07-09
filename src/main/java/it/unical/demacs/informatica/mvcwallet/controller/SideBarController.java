@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class SideBarController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
     @FXML
     private AnchorPane centerPage;
     @FXML
@@ -45,7 +46,7 @@ public class SideBarController {
     }
     @FXML
     void onLogoutClick() {
-        alertHandler.createLogoutAlert("Sei sicuro di voler effettuare il logout?");
+        alertHandler.createLogoutAlert(lanHandler.getBundle().getString("logoutText"));
     }
 
     @FXML

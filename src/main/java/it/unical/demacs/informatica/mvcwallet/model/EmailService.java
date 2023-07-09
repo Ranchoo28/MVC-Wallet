@@ -10,16 +10,16 @@ public class EmailService {
     public static EmailService getInstance(){return instance;}
 
     // Service per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
-    public void startThreadEmail(String toEmail, String subject, String body){
+    public void emailServiceSendWelcomeEmail(String toEmail, String subject, String body){
 
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
         emailExecutor.execute(() -> EmailHandler.getInstance().sendEmail(toEmail, subject, body));
         emailExecutor.shutdown();
     }
 
-    public void startThreadForgotPassword(String toEmail, String subject, String body, String newPassword){
+    public void emailServiceForgotPassword(String toEmail, String subject, String body, String token){
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
-        emailExecutor.execute(() -> EmailHandler.getInstance().sendForgotPasswordEmail(toEmail, subject, body, newPassword));
+        emailExecutor.execute(() -> EmailHandler.getInstance().sendForgotPasswordEmail(toEmail, subject, body, token));
         emailExecutor.shutdown();
     }
 }

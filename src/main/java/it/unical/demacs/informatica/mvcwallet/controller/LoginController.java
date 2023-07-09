@@ -26,6 +26,7 @@ public class LoginController {
 
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
 
     @FXML
     void onLoginButtonClick() throws InterruptedException {
@@ -44,11 +45,11 @@ public class LoginController {
             alertHandler.createLoginAlert();
             //for(String i: SettingsHandler.getInstance().settings) System.out.println("ciao" + i);
         }else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 1)
-            alertHandler.createErrorAlert("Username inesistente. Riprova");
+            alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorUsernameText"));
         else if(SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 2)
-            alertHandler.createErrorAlert("Password errata. Riprova");
+            alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorPassText"));
         else if (SqlService.getIstance().serviceLogin(Username.getText(), Password.getText()) == 3) {
-            alertHandler.createErrorAlert("Username o password errati. Riprova");
+            alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorAllText"));
         }
 
         //sceneHandler.createSideBar();

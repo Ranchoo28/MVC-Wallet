@@ -1,12 +1,12 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,6 +17,7 @@ public class ForgotPasswordController {
     public static String email;
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
 
     @FXML
     private TextField fieldMail;
@@ -30,15 +31,14 @@ public class ForgotPasswordController {
 
         if(SqlService.getIstance().getEmail(fieldMail.getText())){
             email = fieldMail.getText();
-            EmailService.getInstance().startThreadForgotPassword(fieldMail.getText(),
-                    "Password dimenticata",
-                    "Ecco a te il token da inserire per cambiare la password (scade dopo 5 minuti): ", token  +
-                    "\nSe non sei stato tu a richiederlo puoi ignorare questa email.");
+            EmailService.getInstance().emailServiceForgotPassword(fieldMail.getText(),
+                    lanHandler.getBundle().getString("forgotPassEmailTitle"),
+                    lanHandler.getBundle().getString("forgotPassEmailText1"), " " + token + " " +
+                            lanHandler.getBundle().getString("forgotPassEmailText2"));
 
-            alertHandler.createForgotPassAlert("Ti abbiamo inviato sulla mail un token da inserire per il cambio password" +
-                    ". Scade dopo 5 minuti");
+            alertHandler.createForgotPassAlert(lanHandler.getBundle().getString("forgotPassTextEmailSent"));
 
-        }else alertHandler.createErrorAlert("Email non presente nel sistema. Riprova");
+        }else alertHandler.createErrorAlert(lanHandler.getBundle().getString("notExistingEmailText"));
     }
 
     @FXML
