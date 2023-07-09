@@ -15,7 +15,6 @@ public class SqlHandler {
     private Connection con;
 
     public Connection newConnection() {
-        System.out.print("Creating a new connection: ");
         try {
             String url = "jdbc:sqlite:progettouid.db";
             // Effettua la connessione al database
