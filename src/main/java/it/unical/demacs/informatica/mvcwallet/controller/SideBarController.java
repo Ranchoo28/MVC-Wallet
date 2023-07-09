@@ -123,7 +123,6 @@ public class SideBarController {
                 }
             }
         } else {
-            System.out.println(settingsHandler.username);
             System.out.println("settingsHandler.page: null");
             loadFXML("market-view.fxml");
         }
@@ -134,16 +133,19 @@ public class SideBarController {
         } catch (Exception e){
             System.out.println("Error in SideBarController.java (rows: 115-121) " + e);
         }
-
         // Icona per l'utente
         userIcon.setText("\uF007");
         userIcon.setFont(font);
+        try{
+            String[] nameSurname = sqlHandler.getNameSurname(LoginController.username);
+            String first = nameSurname[0];
+            String last = nameSurname[1];
+            userLabel.setText(" " + first + " " + last);
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 139-146) " + e);
+        }
 
-        String[] nameSurname = sqlHandler.getNameSurname(LoginController.username);
-        String first = nameSurname[0];
-        String last = nameSurname[1];
 
-        userLabel.setText(" " + first + " " + last);
 
         // Icona per la data
         dateIcon.setText("\uF073");

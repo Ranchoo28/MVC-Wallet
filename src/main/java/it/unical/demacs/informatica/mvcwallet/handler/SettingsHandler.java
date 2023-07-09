@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class SettingsHandler {
     public String username;
     public String [] settings;
-    public String format, page, theme, language, currency;
+    public String format, page = "market", theme, language, currency;
     public boolean logged;
 
     SqlService sqlService = SqlService.getInstance();
