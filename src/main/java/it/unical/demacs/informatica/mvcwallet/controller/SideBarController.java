@@ -103,14 +103,28 @@ public class SideBarController {
             timeline.play();
         });
 
-        if (settingsHandler.page.equals("spot")) {
-            spotHBox.setDisable(true);
-            marketHBox.setDisable(false);
-            loadFXML("spot-view.fxml");
-        }
-        if (settingsHandler.page.equals("market")) {
-            spotHBox.setDisable(false);
-            marketHBox.setDisable(true);
+        if (settingsHandler.page != null) {
+            if (settingsHandler.page.equals("spot")) {
+                spotHBox.setDisable(true);
+                marketHBox.setDisable(false);
+                try {
+                    loadFXML("spot-view.fxml");
+                } catch (Exception e) {
+                    System.out.println("Error in SideBarController.java (rows: 109-113) " + e);
+                }
+            }
+            if (settingsHandler.page.equals("market")) {
+                spotHBox.setDisable(false);
+                marketHBox.setDisable(true);
+                try {
+                    loadFXML("market-view.fxml");
+                } catch (Exception e) {
+                    System.out.println("Error in SideBarController.java (rows: 119-123) " + e);
+                }
+            }
+        } else {
+            System.out.println(settingsHandler.username);
+            System.out.println("settingsHandler.page: null");
             loadFXML("market-view.fxml");
         }
 
@@ -161,6 +175,7 @@ public class SideBarController {
 
         languageThread.start();
         timeThread.start();
+
     }
 
     public void loadFXML(String nomeFXML) {

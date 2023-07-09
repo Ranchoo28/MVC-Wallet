@@ -19,7 +19,6 @@ public class SettingsHandler {
     private SettingsHandler(){}
     private static final SettingsHandler instance = new SettingsHandler();
     public static SettingsHandler getInstance(){ return instance; }
-
     public String getDay(){
         return LocalDate.now().toString();
     }

@@ -17,7 +17,6 @@ public class MainApplication extends Application {
         Image icon = new Image(Objects.requireNonNull(getClass().getResource(PathOfLogo)).openStream());
         stage.getIcons().add(icon);
         sceneHandler.init(stage);
-        sceneHandler.createLoginScene();
     }
 
     public static void main(String[] args) {

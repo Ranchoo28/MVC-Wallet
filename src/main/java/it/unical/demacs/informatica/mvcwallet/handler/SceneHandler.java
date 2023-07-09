@@ -33,14 +33,13 @@ public class SceneHandler {
         languageHandler.updateLanguage(settingsHandler.language);
     }
 
-    public void init(Stage stage) {
+    public void init(Stage stage) throws IOException {
         // Crea lo stage iniziale
         if (this.stage == null) {
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
+            scene = new Scene(loadRootFromFXML(view + "main-view.fxml"));
             stage.setResizable(true);
-            createLoginScene();
-
             stage.setScene(scene);
             stage.show();
             scene.setOnKeyPressed(key -> {
@@ -52,7 +51,7 @@ public class SceneHandler {
 
     public void createSideBar() {
         try {
-            Parent root = loadRootFromFXML(view + "main-view.fxml");
+            Parent root = loadRootFromFXML(view + "sidebar-view.fxml");
             if (scene == null) scene = new Scene(root);
             else scene.setRoot(root);
 
