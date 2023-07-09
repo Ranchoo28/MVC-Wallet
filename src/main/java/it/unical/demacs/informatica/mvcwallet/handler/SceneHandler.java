@@ -18,7 +18,6 @@ public class SceneHandler {
     public static SceneHandler getInstance() {
         return instance;
     }
-    private SceneHandler() {}
 
     private <T> T loadRootFromFXML(String resourceName) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneHandler.class.getResource(resourceName));

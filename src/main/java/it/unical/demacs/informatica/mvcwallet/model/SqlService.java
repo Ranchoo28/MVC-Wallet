@@ -10,7 +10,6 @@ import java.util.concurrent.Future;
 public class SqlService {
     private static final SqlHandler sqlHandler = SqlHandler.getInstance();
 
-    private SqlService() {}
     private static final SqlService instance = new SqlService();
     public static SqlService getInstance() { return instance; }
 
