@@ -9,10 +9,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="global-color" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="global-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="250.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -47,11 +48,16 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <PasswordField fx:id="Password" prefHeight="26.0" prefWidth="243.0" style="-fx-background-radius: 10;">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </PasswordField>
+                        <StackPane>
+                           <children>
+                              <PasswordField fx:id="Password" prefHeight="27.0" prefWidth="250.0" style="-fx-background-radius: 10;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </PasswordField>
+                              <TextField disable="true" prefHeight="30.0" prefWidth="250.0" style="-fx-background-radius: 10;" />
+                           </children>
+                        </StackPane>
                         <CheckBox fx:id="stayLogged" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Stay signed in" textFill="WHITE">
                            <font>
                               <Font size="14.0" />

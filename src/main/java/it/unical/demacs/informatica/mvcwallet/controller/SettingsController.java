@@ -88,13 +88,11 @@ public class SettingsController {
         if(!settings[4].equals(settingsHandler.language) || !settings[3].equals(settingsHandler.theme)){
             settingsHandler.updateSettings();
             alertHandler.restartAppAlert();
+            sceneHandler.createSideBar();
         }else{
             settingsHandler.updateSettings();
             sceneHandler.createSideBar();
         }
-
-       //MainApplication.restartApplication();
-
     }
 
     @FXML

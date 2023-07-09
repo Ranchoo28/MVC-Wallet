@@ -57,9 +57,8 @@ public class AlertHandler {
         icon.setIconColor(Paint.valueOf("blue"));
         icon.getStyleClass().add("icons-color");
         icon.setIconSize(45);
-        alert.setHeaderText(languageHandler.getBundle().getString("informationTitle"));
         alert.setGraphic(icon);
-        alert.setTitle(languageHandler.getBundle().getString("alertInformationTitle"));
+        alert.setTitle(languageHandler.getBundle().getString("informationTitle"));
         alert.setContentText(languageHandler.getBundle().getString("registrationText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
