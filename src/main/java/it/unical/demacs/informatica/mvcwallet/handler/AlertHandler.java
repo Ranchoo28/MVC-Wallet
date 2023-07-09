@@ -148,4 +148,19 @@ public class AlertHandler {
         if(result.isEmpty()) System.exit(0);
         else if(result.get() == ButtonType.OK) System.exit(0);
     }
+
+    public void createRestartAppAlertLan(String title, String text){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        FontIcon icon = new FontIcon("mdi2e-email-send");
+        icon.getStyleClass().add("icons-color");
+        icon.setIconColor(Paint.valueOf("#4d79ff"));
+        icon.setIconSize(45);
+        alert.setGraphic(icon);
+        alert.setHeaderText("");
+        alert.setTitle(title);
+        alert.setContentText(text);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isEmpty()) System.exit(0);
+        else if(result.get() == ButtonType.OK) System.exit(0);
+    }
 }
