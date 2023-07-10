@@ -93,15 +93,10 @@ public class ProfileController {
                             && usernameTextField.getText().length()>=5
                             &&!usernameTextField.getText().equals(LoginController.username);
             System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
-
-            if (isGoodUsername && isGoodName && isGoodSurname ){
-                saveButton.setDisable(false);
-            } else if (isGoodUsername ){
-                saveButton.setDisable(false);
-            }else if (isGoodName || isGoodSurname){
-                saveButton.setDisable(false);
-            }else{
+            if (!isGoodUsername&&!isGoodName&&!isGoodUsername) {
                 saveButton.setDisable(true);
+            }else{
+                saveButton.setDisable(false);
             }
         });
     }
@@ -109,14 +104,10 @@ public class ProfileController {
         firstTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             isGoodName = firstTextField.getText().length()>=2 && !firstTextField.getText().equals(nameSurnameArray[0]) ;
 
-            if (isGoodUsername && isGoodName && isGoodSurname ){
-                saveButton.setDisable(false);
-            } else if (isGoodUsername ){
-                saveButton.setDisable(false);
-            }else if (isGoodName || isGoodSurname){
-                saveButton.setDisable(false);
-            }else{
+            if (!isGoodUsername&&!isGoodName&&!isGoodUsername) {
                 saveButton.setDisable(true);
+            }else{
+                saveButton.setDisable(false);
             }
         });
     }
@@ -125,14 +116,10 @@ public class ProfileController {
             isGoodSurname = lastTextField.getText().length()>=2 && !lastTextField.getText().equals(nameSurnameArray[1]) ;
 
 
-            if (isGoodUsername && isGoodName && isGoodSurname ){
-                saveButton.setDisable(false);
-            } else if (isGoodUsername ){
-                saveButton.setDisable(false);
-            }else if (isGoodName || isGoodSurname){
-                saveButton.setDisable(false);
-            }else{
+            if (!isGoodUsername&&!isGoodName&&!isGoodSurname) {
                 saveButton.setDisable(true);
+            }else{
+                saveButton.setDisable(false);
             }
         });
     }
