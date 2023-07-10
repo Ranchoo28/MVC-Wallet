@@ -120,6 +120,7 @@ public class SqlService {
 
    public void serviceChangeSetting(String username, String time, String page, String logged, String theme, String language, String currency){
        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+       System.out.println("tema " + theme);
        Future<?> future = queryExe.submit(() -> sqlHandler.setSettingsQuery(username, time, page, logged, theme, language, currency));
 
        try { future.get(); }

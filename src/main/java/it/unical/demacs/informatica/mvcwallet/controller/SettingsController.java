@@ -14,6 +14,7 @@ public class SettingsController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
 
     @FXML
     private Label accessibilityLabel, accountLabel;
@@ -70,21 +71,28 @@ public class SettingsController {
 
     @FXML
     void onSaveClick(){
-        String [] settings = changeSettings();
-        sqlService.serviceChangeSetting(
-                LoginController.username,
-                settings[0] ,
-                settings[1],
-                settings[2],
-                settings[3],
-                settings[4],
-                settings[5]);
+        try{
+            String [] settings = changeSettings();
+            sqlService.serviceChangeSetting(
+                    LoginController.username,
+                    settings[0] ,
+                    settings[1],
+                    settings[2],
+                    settings[3],
+                    settings[4],
+                    settings[5]);
 
-        if(settings[2].equals("0")) loggedHandler.stayLoggedWriting("null");
-        if(settings[2].equals("1")) loggedHandler.stayLoggedWriting(LoginController.username);
+            if(settings[2].equals("0")) loggedHandler.stayLoggedWriting("null");
+            if(settings[2].equals("1")) loggedHandler.stayLoggedWriting(LoginController.username);
 
-        settingsHandler.updateSettings();
-        sceneHandler.createSideBar();
+            settingsHandler.updateSettings();
+            sceneHandler.createSideBar();
+        }catch (Exception e){
+            alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
+            SettingsHandler.getInstance().defaultSettings();
+
+        }
+
     }
 
     @FXML
@@ -123,6 +131,7 @@ public class SettingsController {
         if(settingsHandler.theme.equals("mvc.css")) mvcThemeChoosen();
         if(settingsHandler.theme.equals("dark.css")) darkThemeChoosen();
         if(settingsHandler.theme.equals("light.css")) lightThemeChoosen();
+        if(settingsHandler.theme.equals("blue.css")) blueThemeChoosen();
 
         if(settingsHandler.language.equals("it")) italianLanguageChoosen();
 
@@ -166,52 +175,46 @@ public class SettingsController {
         mvcTheme.setSelected(true);
         darkTheme.setSelected(false);
         lightTheme.setSelected(false);
+        blueTheme.setSelected(false);
         themeMenuButton.setText("MVC");
     }
-
     private void darkThemeChoosen(){
         mvcTheme.setSelected(false);
         darkTheme.setSelected(true);
         lightTheme.setSelected(false);
+        blueTheme.setSelected(false);
         themeMenuButton.setText("Dark");
     }
-
     private void lightThemeChoosen(){
         mvcTheme.setSelected(false);
         darkTheme.setSelected(false);
         lightTheme.setSelected(true);
+        blueTheme.setSelected(false);
         themeMenuButton.setText("Light");
     }
-
     private void italianLanguageChoosen(){
         italianLanguage.setSelected(true);
         englishLanguage.setSelected(false);
-
         languageMenuButton.setText("Italiano");
     }
-
     private void englishLanguageChoosen(){
         italianLanguage.setSelected(false);
         englishLanguage.setSelected(true);
         languageMenuButton.setText("English");
     }
-
     private void eurCurrencyChoosen(){
         eurCurrency.setSelected(true);
         usdCurrency.setSelected(false);
         currencyMenuButton.setText("EUR");
     }
-
     private void usdCurrencyChoosen(){
         eurCurrency.setSelected(false);
         usdCurrency.setSelected(true);
         currencyMenuButton.setText("USD");
     }
-
     private void stayLogged(){
         stayLogged.setSelected(true);
     }
-
     private void noStayLogged(){
         stayLogged.setSelected(false);
     }
@@ -231,6 +234,7 @@ public class SettingsController {
         if(mvcTheme.isSelected()) settings[3] = "mvc.css";
         if(darkTheme.isSelected()) settings[3] = "dark.css";
         if(lightTheme.isSelected()) settings[3] = "light.css";
+        if(blueTheme.isSelected()) settings[3] = "blue.css";
 
         if(italianLanguage.isSelected()) settings[4] = "it";
         if(englishLanguage.isSelected()) settings[4] = "en";

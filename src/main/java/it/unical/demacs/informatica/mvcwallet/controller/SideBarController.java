@@ -74,6 +74,7 @@ public class SideBarController {
 
     @FXML
     void onSettingsClick(){
+        CustomThemeHandler.getInstance().createTheme();
         userLabel.setDisable(false);
         settingsLabel.setDisable(true);
         spotHBox.setDisable(false);

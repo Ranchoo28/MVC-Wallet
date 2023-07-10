@@ -12,7 +12,6 @@ public class LanguageHandler {
     private LanguageHandler(){}
     private static final LanguageHandler instance = new LanguageHandler();
     public static LanguageHandler getInstance(){return instance;}
-    private Locale locale;
 
     public void updateLanguage(String language){
         Locale locale = new Locale(language);
@@ -23,10 +22,12 @@ public class LanguageHandler {
             System.out.println("Error in LanguageHandler.java (rows: 21-25) " + e);
         }
     }
+
     public ResourceBundle getBundle() {
         if(bundle!=null) {
             return bundle;
         }
+        // FIXME
         updateLanguage("it");
         return getBundle();
     }

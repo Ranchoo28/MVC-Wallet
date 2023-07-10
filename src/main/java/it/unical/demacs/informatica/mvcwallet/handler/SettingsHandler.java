@@ -36,4 +36,17 @@ public class SettingsHandler {
         language = settings[4];
         currency = settings[5];
     }
+
+    public void defaultSettings(){
+        sqlService.serviceChangeSetting(
+                LoginController.username,
+                "HH:mm:ss",
+                "spot",
+                String.valueOf(0),
+                "mvc.css",
+                "en",
+                "eur");
+        updateSettings();
+        SceneHandler.getInstance().createSideBar();
+    }
 }

@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.sqlite.SQLiteException;
 
 public class SqlHandler {
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -340,11 +341,11 @@ public class SqlHandler {
                 s.setString(7, username);
                 s.executeUpdate();
                 closeConnection(con);
-            } catch (SQLException e) {
-                System.out.println("Error: ChangeSettingQuery");
-                e.printStackTrace();
-                //Thread.sleep(retryDelayMillis);
+            } catch (Exception e) {
+                System.out.println("Errore nel cambio impostazioni. Verranno resettate quelle di defaut" + e);
+                SettingsHandler.getInstance().defaultSettings();
             }
+
     }
 
     public void setLogutQuery(String username) throws InterruptedException {

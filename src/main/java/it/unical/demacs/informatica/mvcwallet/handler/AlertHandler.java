@@ -33,6 +33,7 @@ public class AlertHandler {
         alert.setContentText(message);
         alert.show();
     }
+
     public void createLoginAlert() {
         sceneHandler = SceneHandler.getInstance();
         languageHandler = LanguageHandler.getInstance();
