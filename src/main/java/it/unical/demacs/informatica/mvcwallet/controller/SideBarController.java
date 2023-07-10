@@ -5,6 +5,7 @@ import it.unical.demacs.informatica.mvcwallet.handler.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SideBarController {
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -23,6 +26,9 @@ public class SideBarController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
+    private final SettingsHandler settingsController = SettingsHandler.getInstance();
+    private final Timer Timer = new Timer();
+
     @FXML
     private AnchorPane centerPage;
     @FXML
@@ -37,24 +43,19 @@ public class SideBarController {
     private VBox sideBar;
 
     @FXML
-    private void onHighContrastClick(ActionEvent event){
-        event.consume(); // Impedisce la chiusura del MenuButton
-    }
-    @FXML
-    private void onLargeTextClick(ActionEvent event){
-        event.consume(); // Impedisce la chiusura del MenuButton
-    }
-    @FXML
-    private void onScreenReaderClick(ActionEvent event){
-        event.consume(); // Impedisce la chiusura del MenuButton
-    }
-    @FXML
-    void onLogoutClick() {
-        alertHandler.createLogoutAlert(languageHandler.getBundle().getString("logoutText"));
-    }
+    private void onHighContrastClick(ActionEvent event){ event.consume();}// Impedisce la chiusura del MenuButton
 
     @FXML
-    void onSpotClick() throws IOException {
+    private void onLargeTextClick(ActionEvent event){ event.consume(); } // Impedisce la chiusura del MenuButton
+
+    @FXML
+    private void onScreenReaderClick(ActionEvent event){ event.consume(); } // Impedisce la chiusura del MenuButton
+
+    @FXML
+    void onLogoutClick(){ alertHandler.createLogoutAlert(languageHandler.getBundle().getString("logoutText")); }
+
+    @FXML
+    void onSpotClick(){
         userLabel.setDisable(false);
         settingsLabel.setDisable(false);
         spotHBox.setDisable(true);
@@ -63,7 +64,7 @@ public class SideBarController {
     }
 
     @FXML
-    void onMarketClick() throws IOException {
+    void onMarketClick(){
         userLabel.setDisable(false);
         settingsLabel.setDisable(false);
         spotHBox.setDisable(false);
@@ -72,7 +73,7 @@ public class SideBarController {
     }
 
     @FXML
-    void onSettingsClick() throws IOException {
+    void onSettingsClick(){
         userLabel.setDisable(false);
         settingsLabel.setDisable(true);
         spotHBox.setDisable(false);
@@ -81,7 +82,7 @@ public class SideBarController {
     }
 
     @FXML
-    void onAccountClick() throws IOException {
+    void onAccountClick(){
         userLabel.setDisable(true);
         settingsLabel.setDisable(false);
         spotHBox.setDisable(false);
@@ -91,42 +92,29 @@ public class SideBarController {
 
     @FXML
     void initialize() throws IOException {
+        updateLanguage();
+        loadPage();
+        loadFont();
+        loadNameUsername();
+        loadTimeDayManager();
+    }
 
-        Thread languageThread = new Thread(this::updateLanguage);
-
-        Thread timeThread = new Thread(() -> {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), event -> {
-                dateLabel.setText(settingsHandler.getDay());
-                timeLabel.setText(settingsHandler.timeFormatter());
-            }));
-            timeline.setCycleCount(Animation.INDEFINITE);
-            timeline.play();
-        });
-
-        if (settingsHandler.page != null) {
-            if (settingsHandler.page.equals("spot")) {
+    public void loadPage(){
+        switch (settingsHandler.page){
+            case "spot" -> {
                 spotHBox.setDisable(true);
                 marketHBox.setDisable(false);
-                try {
-                    loadFXML("spot-view.fxml");
-                } catch (Exception e) {
-                    System.out.println("Error in SideBarController.java (rows: 109-113) " + e);
-                }
+                loadFXML("spot-view.fxml");
             }
-            if (settingsHandler.page.equals("market")) {
+            case "market" -> {
                 spotHBox.setDisable(false);
                 marketHBox.setDisable(true);
-                try {
-                    loadFXML("market-view.fxml");
-                } catch (Exception e) {
-                    System.out.println("Error in SideBarController.java (rows: 119-123) " + e);
-                }
+                loadFXML("market-view.fxml");
             }
-        } else {
-            System.out.println("settingsHandler.page: null");
-            loadFXML("market-view.fxml");
         }
+    }
 
+    private void loadFont(){
         Font font = null;
         try {
             font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
@@ -136,16 +124,6 @@ public class SideBarController {
         // Icona per l'utente
         userIcon.setText("\uF007");
         userIcon.setFont(font);
-        try{
-            String[] nameSurname = sqlHandler.getNameSurname(LoginController.username);
-            String first = nameSurname[0];
-            String last = nameSurname[1];
-            userLabel.setText(" " + first + " " + last);
-        } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 139-146) " + e);
-        }
-
-
 
         // Icona per la data
         dateIcon.setText("\uF073");
@@ -174,10 +152,32 @@ public class SideBarController {
         //Icona del bottone del logout
         logoutIcon.setText("\uF2F5");
         logoutIcon.setFont(font);
+    }
 
-        languageThread.start();
-        timeThread.start();
+    private void loadNameUsername(){
+        try{
+            String[] nameSurname = sqlHandler.getNameSurname(LoginController.username);
+            String first = nameSurname[0];
+            String last = nameSurname[1];
+            userLabel.setText(" " + first + " " + last);
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 139-146) " + e);
+        }
+    }
 
+    private void loadTimeDayManager(){
+        Timer.scheduleAtFixedRate(new TimerTask()
+        {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    String data = settingsHandler.getDay();
+                    if(!data.equals(dateLabel.getText()))
+                        dateLabel.setText(data);
+                    timeLabel.setText(settingsHandler.timeFormatter());
+                });
+            }
+        }, 0, 1000);
     }
 
     public void loadFXML(String nomeFXML) {

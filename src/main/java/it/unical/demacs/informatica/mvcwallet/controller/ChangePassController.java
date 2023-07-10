@@ -56,6 +56,11 @@ public class ChangePassController {
     void initialize() {
         newPasswordTextField.setDisable(true);
         saveButton.setDisable(true);
+        addListenerOldPassword();
+        addListenerNewPassword();
+    }
+
+    private void addListenerOldPassword(){
         oldPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (SqlHandler.getInstance().checkPassword(LoginController.username, oldPasswordTextField.getText())) {
                 isGoodOldPassword = true;
@@ -63,9 +68,11 @@ public class ChangePassController {
             } else {
                 isGoodOldPassword = false;
                 newPasswordTextField.setDisable(true);
-
             }
         });
+    }
+
+    private void addListenerNewPassword(){
         newPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
             isGoodPassword = newValue.matches(regexHandler.regexPassword)&& (!newPasswordTextField.getText().equals(oldPasswordTextField.getText())  );
@@ -74,4 +81,6 @@ public class ChangePassController {
             }
         });
     }
+
+
 }

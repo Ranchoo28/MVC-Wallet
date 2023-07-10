@@ -10,6 +10,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.util.ResourceBundle;
+
 public class LoginController {
     @FXML
     private TextField Username;
@@ -26,10 +28,10 @@ public class LoginController {
 
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
-    private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
-    private final LoggedHandler loggedHandler = LoggedHandler.getInstance();
+    private final LoggedHandler loggedHandler = LoggedHandler.getInstance().;
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
 
     @FXML
@@ -47,16 +49,16 @@ public class LoginController {
             }
             settingsHandler.updateSettings();
             alertHandler.createLoginAlert();
-            //for(String i: settingsHandler.settings) System.out.println("ciao" + i);
-        }else if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 1)
-            alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorUsernameText"));
-        else if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 2)
-            alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorPassText"));
-        else if (sqlService.serviceLogin(Username.getText(), Password.getText()) == 3) {
-            alertHandler.createErrorAlert(lanHandler.getBundle().getString("loginErrorAllText"));
+        }else
+            if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 1)
+                alertHandler.createErrorAlert(bundle.getString("loginErrorUsernameText"));
+        else
+            if(sqlService.serviceLogin(Username.getText(), Password.getText()) == 2)
+                alertHandler.createErrorAlert(bundle.getString("loginErrorPassText"));
+        else
+            if (sqlService.serviceLogin(Username.getText(), Password.getText()) == 3) {
+                alertHandler.createErrorAlert(bundle.getString("loginErrorAllText"));
         }
-
-        //sceneHandler.createSideBar();
     }
 
     @FXML
@@ -68,29 +70,34 @@ public class LoginController {
 
     @FXML
     void initialize(){
+        buttonLogin.setDisable(true);
+        checkLogged();
+        listenerUsername();
+        listenerPassword();
+    }
 
+    private void checkLogged(){
         Platform.runLater(() -> {
             if (!loggedHandler.stayLoggedReading().equals("null")) {
-                // Non capisco perchè bisogna rifare la connessione.
                 username = loggedHandler.stayLoggedReading();
-                sqlHandler.newConnection();
                 settingsHandler.updateSettings();
                 sceneHandler.createSideBar();
             }
         });
+    }
 
-        buttonLogin.setDisable(true);
+    private void listenerUsername(){
         Username.textProperty().addListener((observable, oldValue, newValue) -> {
             isGoodUsername = newValue.length() >= 5;
             performBinding();
         });
+    }
 
+    private void listenerPassword(){
         Password.textProperty().addListener((observable, oldValue, newValue) -> {
-            // cambiare ad 8 (lasciare 4 per i test)
-            isGoodPassword = newValue.length() >= 4;
+            isGoodPassword = newValue.length() >= 8;
             performBinding();
         });
-
     }
 
     private void performBinding() {

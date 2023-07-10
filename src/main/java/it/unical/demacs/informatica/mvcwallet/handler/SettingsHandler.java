@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 // Classe che serve a gestire le impostazioni
 public class SettingsHandler {
+    public String [] themes = {"dark.css","light.css"};
     public String username;
     public String [] settings;
     public String format, page = "market", theme, language, currency;

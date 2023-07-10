@@ -26,6 +26,10 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
+        System.out.println(SceneHandler.class.getResource(css + settingsHandler.theme));
+        for(String i: SettingsHandler.getInstance().themes)
+            scene.getStylesheets().remove(String.valueOf(SceneHandler.class.getResource(css + i)));
+
         scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
     }
 
@@ -38,9 +42,15 @@ public class SceneHandler {
         if (this.stage == null) {
             this.stage = stage;
             this.stage.setTitle("Wallet Login");
-            scene = new Scene(loadRootFromFXML(view + "main-view.fxml"));
+            createLoginScene();
             stage.setResizable(true);
             stage.setScene(scene);
+
+            stage.setMinWidth(800);
+            stage.setMinHeight(600);
+            stage.setWidth(800);
+            stage.setHeight(600);
+
             stage.show();
             scene.setOnKeyPressed(key -> {
                 if(key.getCode().equals(KeyCode.F11))
@@ -54,19 +64,9 @@ public class SceneHandler {
             Parent root = loadRootFromFXML(view + "sidebar-view.fxml");
             if (scene == null) scene = new Scene(root);
             else scene.setRoot(root);
-
             stage.setTitle("MVC Wallet");
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
-            stage.setWidth(800);
-            stage.setHeight(600);
-
             uploadTheme();
             uploadLanguage();
-
-            if (stage.isFullScreen())
-                stage.setFullScreen(true);
-
         } catch (IOException ignored) {
         }
     }
@@ -75,19 +75,13 @@ public class SceneHandler {
     public void createLoginScene() {
         // Crea la scena del login
         try {
+            Parent root = loadRootFromFXML(view+"login-view.fxml");
             if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"login-view.fxml"));
+                scene = new Scene(root);
             else
-                scene.setRoot(loadRootFromFXML(view+"login-view.fxml"));
+                scene.setRoot(root);
             stage.setTitle("MVC Wallet login");
-            if(stage.isFullScreen()) stage.setFullScreen(false);
-
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
-            stage.setWidth(800);
-            stage.setHeight(600);
-
-            //scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "mvc.css")));
+            scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "dark.css")));
             languageHandler.updateLanguage("en");
         } catch (IOException ignored) {
         }
@@ -101,12 +95,7 @@ public class SceneHandler {
             else
                 scene.setRoot(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
-            if(stage.isFullScreen()) stage.setFullScreen(false);
 
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
-            stage.setWidth(800);
-            stage.setHeight(600);
         } catch (IOException ignored) {
         }
     }
@@ -119,10 +108,6 @@ public class SceneHandler {
             else
                 scene.setRoot(loadRootFromFXML(view+"register-view.fxml"));
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("registrationTitleScene"));
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
-            stage.setWidth(800);
-            stage.setHeight(600);
             if(stage.isFullScreen()) stage.setFullScreen(false);
         } catch (IOException ignored) {
         }
@@ -135,12 +120,7 @@ public class SceneHandler {
                 scene = new Scene(loadRootFromFXML(view + "forgot-pass-view.fxml"));
             else
                 scene.setRoot(loadRootFromFXML(view + "forgot-pass-view.fxml"));
-
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
-            stage.setWidth(800);
-            stage.setHeight(600);
             if(stage.isFullScreen()) stage.setFullScreen(false);
         } catch (IOException ignored) {
         }

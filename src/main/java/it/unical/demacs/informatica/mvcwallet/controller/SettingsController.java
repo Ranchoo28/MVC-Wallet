@@ -14,13 +14,11 @@ public class SettingsController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
-    private String oldLanguage;
+
     @FXML
     private Label accessibilityLabel, accountLabel;
-
     @FXML
     private CheckBox stayLogged;
-
     @FXML
     private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel;
     @FXML
@@ -83,20 +81,8 @@ public class SettingsController {
         if(settings[2].equals("0")) loggedHandler.stayLoggedWriting("null");
         if(settings[2].equals("1")) loggedHandler.stayLoggedWriting(LoginController.username);
 
-        if(!settings[4].equals(oldLanguage)){
-            settingsHandler.updateSettings();
-            changeAlertLanguage(settings[4]);
-            sceneHandler.createSideBar();
-        }
-
-        if(!settings[4].equals(settingsHandler.language) || !settings[3].equals(settingsHandler.theme)){
-            settingsHandler.updateSettings();
-            alertHandler.restartAppAlert();
-            sceneHandler.createSideBar();
-        }else{
-            settingsHandler.updateSettings();
-            sceneHandler.createSideBar();
-        }
+        settingsHandler.updateSettings();
+        sceneHandler.createSideBar();
     }
 
     @FXML
@@ -107,6 +93,22 @@ public class SettingsController {
     @FXML
     void initialize(){
         updateLanguage();
+        updateAllSettings();
+
+        // Icona per i temi
+        FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
+        iconThemes.setIconSize(25);
+        themeMenuButton.setContentDisplay(ContentDisplay.RIGHT);
+        themeMenuButton.setGraphic(iconThemes);
+
+        // Icona per la lingua
+        FontIcon iconLanguage = new FontIcon("mdi2e-earth");
+        iconLanguage.setIconSize(25);
+        languageMenuButton.setContentDisplay(ContentDisplay.RIGHT);
+        languageMenuButton.setGraphic(iconLanguage);
+    }
+
+    private void updateAllSettings(){
         if(settingsHandler.format.equals("HH:mm:ss")) h24Choosen();
         if(settingsHandler.format.equals("hh:mm:ss a")) h12Choosen();
 
@@ -120,29 +122,12 @@ public class SettingsController {
         if(settingsHandler.theme.equals("dark.css")) darkThemeChoosen();
         if(settingsHandler.theme.equals("light.css")) lightThemeChoosen();
 
-        if(settingsHandler.language.equals("it")) {
-            oldLanguage = "it";
-            italianLanguageChoosen();
-        }
-        if(settingsHandler.language.equals("en")){
-            oldLanguage = "en";
-            englishLanguageChoosen();
-        }
+        if(settingsHandler.language.equals("it")) italianLanguageChoosen();
+
+        if(settingsHandler.language.equals("en")) englishLanguageChoosen();
 
         if(settingsHandler.currency.equals("eur")) eurCurrencyChoosen();
         if(settingsHandler.currency.equals("usd")) usdCurrencyChoosen();
-
-        // Icona per i temi
-        FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
-        iconThemes.setIconSize(25);
-        themeMenuButton.setContentDisplay(ContentDisplay.RIGHT);
-        themeMenuButton.setGraphic(iconThemes);
-
-        // Icona per la lingua
-        FontIcon iconLanguage = new FontIcon("mdi2e-earth");
-        iconLanguage.setIconSize(25);
-        languageMenuButton.setContentDisplay(ContentDisplay.RIGHT);
-        languageMenuButton.setGraphic(iconLanguage);
     }
 
     private void h12Choosen(){
@@ -265,16 +250,6 @@ public class SettingsController {
             applyButton.setText(bundle.getString("applyButton"));
             backButton.setText(bundle.getString("backButton"));
         }
-    }
-
-    public void changeAlertLanguage(String language){
-        if(language.equals("it"))
-            alertHandler.createRestartAppAlertLan("Cambio impostazioni",
-                    "Le impostazioni saranno rese effettive col prossimo riavvio.");
-        if(language.equals("en"))
-            alertHandler.createRestartAppAlertLan("Change settings",
-                    "The settings will take effect after the next restart.");
-
     }
 }
 
