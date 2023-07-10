@@ -199,22 +199,24 @@ public class SqlHandler {
         return null;
     }
 
-    public boolean checkUsername(String username){
-        try{
+    public boolean checkUsername(String username) {
+        try {
             con = newConnection();
-            PreparedStatement s = con.prepareStatement("select username from users");
-            ResultSet s1 = s.executeQuery();
-            while(s1.next())
-                if(s1.getString(1).equals(username)){
+            PreparedStatement stmt = con.prepareStatement("SELECT username From users");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next())
+                if (rs.getString(1).equals(username)) {
+                    stmt.close();
                     closeConnection(con);
                     return true;
                 }
             closeConnection(con);
-            return false;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.getMessage();
         }
+        return false;
     }
+
 
     public boolean changeUsername(String oldUsername, String newUsername){
         try{
