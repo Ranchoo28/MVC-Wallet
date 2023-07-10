@@ -27,7 +27,7 @@ public class SettingsController {
     @FXML
     private RadioMenuItem italianLanguage, englishLanguage,
             lightTheme, darkTheme, mvcTheme, marketPage, spotPage,
-            h24Time, h12Time,
+            h24Time, h12Time, blueTheme,
             eurCurrency, usdCurrency;
 
     @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
@@ -52,6 +52,8 @@ public class SettingsController {
 
     @FXML
     void onMvcClick() { mvcThemeChoosen(); }
+    @FXML
+    void onBlueClick() { blueThemeChoosen(); }
 
     @FXML
     void onItalianClick(){ italianLanguageChoosen(); }
@@ -153,7 +155,13 @@ public class SettingsController {
         marketPage.setSelected(true);
         mainPageMenuButton.setText("Market");
     }
-
+    private void blueThemeChoosen(){
+        mvcTheme.setSelected(false);
+        darkTheme.setSelected(false);
+        lightTheme.setSelected(false);
+        blueTheme.setSelected(true);
+        themeMenuButton.setText("Blue");
+    }
     private void mvcThemeChoosen(){
         mvcTheme.setSelected(true);
         darkTheme.setSelected(false);

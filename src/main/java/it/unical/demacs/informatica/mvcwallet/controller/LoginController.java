@@ -31,7 +31,7 @@ public class LoginController {
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
-    private final LoggedHandler loggedHandler = LoggedHandler.getInstance().;
+    private final LoggedHandler loggedHandler = LoggedHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
 
     @FXML

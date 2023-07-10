@@ -151,6 +151,11 @@
                                     <Label prefWidth="110.0" text="MVC" />
                                  </graphic>
                               </RadioMenuItem>
+                              <RadioMenuItem fx:id="blueTheme" mnemonicParsing="false" onAction="#onBlueClick">
+                                 <graphic>
+                                    <Label prefWidth="110.0" text="Blue" />
+                                 </graphic>
+                              </RadioMenuItem>
                           </items>
                            <font>
                               <Font size="14.0" />
