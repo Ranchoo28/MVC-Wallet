@@ -1,136 +1,109 @@
-/*
-#1F1F1F; // Sfondo secondario (più scuro)
-#262626; // Sfondo primario
-#333333; // Sfondo di evidenziazione
-#4C4C4C; // Pulsante primario
-#707070; // Bordo
-#CCCCCC; // Testo secondario
-#FFFFFF; // Testo primario
-*/
-/*Colore di background dell'anchorpane*/
 .global-color{
-     -fx-background-color: #F9A825; // Sfondo primario vivace
+     -fx-background-color:
+     #F9A825;
 }
-
-/*Colore di base del testo*/
 .label-class{
-    -fx-text-fill: #FFFFFF; // Testo primario
+    -fx-text-fill:
+    #FFFFFF;
 }
-
-/*Colore di base dei bottoni */
 .button{
-    -fx-background-color: #FF5252; // Pulsante primario vivace
-    -fx-text-fill: #FFFFFF; // Testo primario
+    -fx-background-color:
+    #FF5252;
+    -fx-text-fill:
+    #FFFFFF;
 }
-
-/*Colore di base dei bottoni */
 .button:hover{
-    -fx-background-color: #FF1744; // Sfondo di evidenziazione vivace
-    -fx-text-fill: #CCCCCC; // Testo secondario
+    -fx-background-color:
+    #FF1744;
+    -fx-text-fill:
+    #CCCCCC;
 }
-
-/*Barra superiore*/
 .hbox-info{
-    -fx-background-color: #FF5252; // Sfondo secondario vivace
+    -fx-background-color:
+    #FF5252;
 }
-
-/*Etichette dei bottoni*/
 .hbox-info-button .label-class{
-    -fx-text-fill: #FFFFFF; // Testo primario
+    -fx-text-fill:
+    #FFFFFF;
 }
-
-/*Icone dei bottoni*/
 .hbox-info-button .icon{
-    -fx-text-fill: #FFFFFF; // Testo primario
+    -fx-text-fill:
+    #FFFFFF;
 }
-
-/*Bottone al passaggio del mouse*/
 .hbox-info-button:hover{
-   -fx-background-color: #FF1744; // Sfondo di evidenziazione vivace
+   -fx-background-color:
+   #FF1744;
    -fx-background-radius: 10;
 }
-
-/*Etichette dei bottoni al passaggio del mouse*/
 .hbox-info-button:hover .label-class{
-    -fx-text-fill: #CCCCCC; // Testo secondario
+    -fx-text-fill:
+    #CCCCCC;
 }
-
-/*Icona dei bottoni al passaggio del mouse*/
 .hbox-info-button:hover .icon{
-    -fx-text-fill: #CCCCCC; // Testo secondario
+    -fx-text-fill:
+    #CCCCCC;
 }
-
-/*Menu a comparsa*/
 .context-menu{
-    -fx-background-color: #F9A825; // Sfondo secondario vivace
-    -fx-background-radius: 10;
-    -fx-border-color: #707070; // Bordo
+    -fx-background-color:
+    #F9A825;
+    -fx-border-color:
+    #707070;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
-
 .menu-button {
     -fx-background-color: transparent;
 }
-
 .menu-button .menu-item{
     -fx-background-color: transparent;
 }
-
 .menu-button .menu-item:hover{
-    -fx-background-color: #FF1744; // Sfondo di evidenziazione vivace
+    -fx-background-color:
+    #FF1744;
     -fx-background-radius: 10;
 }
-
 .menu-button .menu-item:hover .jfx-toggle-button{
-    -fx-text-fill: #CCCCCC; // Testo secondario
+    -fx-text-fill:
+    #CCCCCC;
 }
-
-/*
-#FF5252; // Sfondo del toggle spento
-#FFD1DC; // Sfondo del toggle acceso
-#EEEEEE; // Colore del cursore del toggle spento
-#FFD1DC; // Colore del cursore del toggle acceso
-*/
 .jfx-toggle-button {
-    -fx-text-fill: #FFFFFF; // Testo primario
-    -jfx-untoggle-color: #FF5252; // Sfondo del toggle spento vivace
-    -jfx-untoggle-line-color: #EEEEEE; // Colore del cursore del toggle spento
-    -jfx-toggle-color: #DB5959; // Sfondo del toggle acceso vivace
-    -jfx-toggle-line-color: #FFD1DC; // Colore del cursore del toggle acceso
+    -fx-text-fill:
+    #FFFFFF;
+    -jfx-untoggle-color:
+    #FF5252;
+    -jfx-untoggle-line-color:
+    #EEEEEE;
+    -jfx-toggle-color:
+    #DB5959;
+    -jfx-toggle-line-color:
+    #FFD1DC;
 }
-
 .jfx-toggle-button:hover {
     -fx-background-color: transparent;
 }
-
-/*Barra laterale*/
 .sidebar{
-    -fx-background-color: #FF5252; // Sfondo secondario vivace
+    -fx-background-color:
+    #FF5252;
     -fx-background-radius: 10;
 }
-
-/*Etichette dei bottoni*/
 .sidebar .label-class{
-    -fx-text-fill: #FFFFFF; // Testo primario
+    -fx-text-fill:
+    #FFFFFF;
 }
-
-/*Icone dei bottoni*/
 .sidebar .icon{
-    -fx-text-fill: #FFFFFF; // Testo primario
+    -fx-text-fill:
+    #FFFFFF;
 }
-
-/*Bottone al passaggio del mouse*/
 .sidebar-button:hover{
-    -fx-background-color: #FF1744; // Sfondo di evidenziazione vivace
+    -fx-background-color:
+    #FF1744;
     -fx-background-radius: 10;
 }
-
-/*Etichette dei bottoni al passaggio del mouse*/
 .sidebar-button:hover .label-class{
-    -fx-text-fill: #CCCCCC; // Testo secondario
+    -fx-text-fill:
+    #CCCCCC;
 }
-
-/*Icona dei bottoni al passaggio del mouse*/
 .sidebar-button:hover .icon{
-    -fx-text-fill: #CCCCCC; // Testo secondario
+    -fx-text-fill:
+    #CCCCCC;
 }

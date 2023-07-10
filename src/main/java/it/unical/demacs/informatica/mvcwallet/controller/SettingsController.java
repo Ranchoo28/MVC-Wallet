@@ -2,8 +2,11 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.ResourceBundle;
@@ -24,9 +27,11 @@ public class SettingsController {
     private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel;
     @FXML
     private Button applyButton, backButton;
+    @FXML
+    private AnchorPane colorPickerPane;
 
     @FXML
-    private RadioMenuItem italianLanguage, englishLanguage,
+    private MenuItem italianLanguage, englishLanguage,
             lightTheme, darkTheme, mvcTheme, marketPage, spotPage,
             h24Time, h12Time, blueTheme,
             eurCurrency, usdCurrency;
@@ -55,6 +60,13 @@ public class SettingsController {
     void onMvcClick() { mvcThemeChoosen(); }
     @FXML
     void onBlueClick() { blueThemeChoosen(); }
+
+    @FXML
+    void onCustomClick(ActionEvent event) {
+        System.out.println("Ciao");
+        event.consume();
+        customThemeChoosen();
+    }
 
     @FXML
     void onItalianClick(){ italianLanguageChoosen(); }
@@ -142,74 +154,58 @@ public class SettingsController {
     }
 
     private void h12Choosen(){
-        h12Time.setSelected(true);
-        h24Time.setSelected(false);
         timeFormatMenuButton.setText("12H");
     }
 
     private void h24Choosen(){
-        h12Time.setSelected(false);
-        h24Time.setSelected(true);
         timeFormatMenuButton.setText("24H");
     }
 
     private void spotChoosen(){
-        spotPage.setSelected(true);
-        marketPage.setSelected(false);
         mainPageMenuButton.setText("Spot");
     }
 
     private void marketChoosen(){
-        spotPage.setSelected(false);
-        marketPage.setSelected(true);
         mainPageMenuButton.setText("Market");
     }
     private void blueThemeChoosen(){
-        mvcTheme.setSelected(false);
-        darkTheme.setSelected(false);
-        lightTheme.setSelected(false);
-        blueTheme.setSelected(true);
         themeMenuButton.setText("Blue");
     }
     private void mvcThemeChoosen(){
-        mvcTheme.setSelected(true);
-        darkTheme.setSelected(false);
-        lightTheme.setSelected(false);
-        blueTheme.setSelected(false);
         themeMenuButton.setText("MVC");
     }
     private void darkThemeChoosen(){
-        mvcTheme.setSelected(false);
-        darkTheme.setSelected(true);
-        lightTheme.setSelected(false);
-        blueTheme.setSelected(false);
         themeMenuButton.setText("Dark");
     }
     private void lightThemeChoosen(){
-        mvcTheme.setSelected(false);
-        darkTheme.setSelected(false);
-        lightTheme.setSelected(true);
-        blueTheme.setSelected(false);
         themeMenuButton.setText("Light");
     }
+    private void customThemeChoosen(){
+        colorPickerPane.getChildren().clear();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PathHandler.getInstance().getPathOfView() + "color-picker-view.fxml"));
+            AnchorPane pane = fxmlLoader.load();
+
+            colorPickerPane.getChildren().add(pane);
+            AnchorPane.setTopAnchor(pane, 5.0);
+            AnchorPane.setRightAnchor(pane, 0.0);
+            AnchorPane.setBottomAnchor(pane, 0.0);
+            AnchorPane.setLeftAnchor(pane, 0.0);
+        } catch (Exception e){
+            System.out.println("Error in SideBarController.java (rows: 166-178) " + e);
+        }
+
+    }
     private void italianLanguageChoosen(){
-        italianLanguage.setSelected(true);
-        englishLanguage.setSelected(false);
         languageMenuButton.setText("Italiano");
     }
     private void englishLanguageChoosen(){
-        italianLanguage.setSelected(false);
-        englishLanguage.setSelected(true);
         languageMenuButton.setText("English");
     }
     private void eurCurrencyChoosen(){
-        eurCurrency.setSelected(true);
-        usdCurrency.setSelected(false);
         currencyMenuButton.setText("EUR");
     }
     private void usdCurrencyChoosen(){
-        eurCurrency.setSelected(false);
-        usdCurrency.setSelected(true);
         currencyMenuButton.setText("USD");
     }
     private void stayLogged(){
@@ -222,25 +218,25 @@ public class SettingsController {
     private String [] changeSettings(){
         String [] settings = new String[6];
 
-        if(h24Time.isSelected()) settings[0] = "HH:mm:ss";
-        if(h12Time.isSelected()) settings[0] = "hh:mm:ss a";
+        if(timeFormatMenuButton.getText().equals("24H")) settings[0] = "HH:mm:ss";
+        if(timeFormatMenuButton.getText().equals("12H")) settings[0] = "hh:mm:ss a";
 
-        if(marketPage.isSelected()) settings[1] = "market";
-        if(spotPage.isSelected()) settings[1] = "spot";
+        if(mainPageMenuButton.getText().equals("Market")) settings[1] = "market";
+        if(mainPageMenuButton.getText().equals("Spot")) settings[1] = "spot";
 
         if(stayLogged.isSelected()) settings[2] = "1";
         else settings[2] = "0";
 
-        if(mvcTheme.isSelected()) settings[3] = "mvc.css";
-        if(darkTheme.isSelected()) settings[3] = "dark.css";
-        if(lightTheme.isSelected()) settings[3] = "light.css";
-        if(blueTheme.isSelected()) settings[3] = "blue.css";
+        if(themeMenuButton.getText().equals("MVC")) settings[3] = "mvc.css";
+        if(themeMenuButton.getText().equals("Dark")) settings[3] = "dark.css";
+        if(themeMenuButton.getText().equals("Light")) settings[3] = "light.css";
+        if(themeMenuButton.getText().equals("Blue")) settings[3] = "blue.css";
 
-        if(italianLanguage.isSelected()) settings[4] = "it";
-        if(englishLanguage.isSelected()) settings[4] = "en";
+        if(languageMenuButton.getText().equals("Italiano")) settings[4] = "it";
+        if(languageMenuButton.getText().equals("English")) settings[4] = "en";
 
-        if(eurCurrency.isSelected()) settings[5] = "eur";
-        if(usdCurrency.isSelected()) settings[5] = "usd";
+        if(currencyMenuButton.getText().equals("EUR")) settings[5] = "eur";
+        if(currencyMenuButton.getText().equals("USD")) settings[5] = "usd";
 
         return settings;
     }
