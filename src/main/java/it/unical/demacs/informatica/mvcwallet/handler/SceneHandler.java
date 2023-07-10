@@ -130,9 +130,9 @@ public class SceneHandler {
         try {
             uploadLoginLanguage();
             if(scene == null)
-                scene = new Scene(loadRootFromFXML(view + "forgot-pass-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view + "token-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML(view + "forgot-pass-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view + "token-view.fxml"));
 
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
 

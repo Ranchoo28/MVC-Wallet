@@ -65,6 +65,9 @@ public class LoginController {
     }
 
     @FXML
+    void onForgotPasswordClick() { sceneHandler.createForgotPasswordScene(); }
+
+    @FXML
     void onItalianClick(){
         italianLanguageChoosen();
         changeLanguage();
@@ -101,8 +104,7 @@ public class LoginController {
     void onRegisterButtonClick() {
         sceneHandler.createRegistrationScene();
     }
-    @FXML
-    void onForgotPasswordClick() { sceneHandler.createForgotPasswordScene(); }
+
 
     @FXML
     void initialize(){

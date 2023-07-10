@@ -68,6 +68,7 @@ public class AlertHandler {
 
     public void createForgotPassAlert(String message){
         languageHandler = LanguageHandler.getInstance();
+        sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2e-email-send");
         icon.getStyleClass().add("icons-color");

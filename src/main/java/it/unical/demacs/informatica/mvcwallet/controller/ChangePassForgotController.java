@@ -50,7 +50,7 @@ public class ChangePassForgotController {
 
     @FXML
     void onChangeClick(){
-        if(sqlService.serviceForgotPassword(ForgotPasswordController.email, passwordField.getText()))
+        if(sqlService.serviceForgotPassword(TokenController.email, passwordField.getText()))
             alertHandler.passChangedFromForgot();
         else{
             alertHandler.createErrorAlert(lanHandler.getBundle().getString("changePassErrorText"));
@@ -65,17 +65,7 @@ public class ChangePassForgotController {
 
     @FXML
     void initialize(){
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
-            if (changeButton.isDisabled() || !changeButton.isDisabled()) {
-                isGoodToken = tokenField.getText().equals(ForgotPasswordController.token);
-                if(passwordField.getText().matches(regexHandler.regexPassword) || passwordText.getText().matches(regexHandler.regexPassword))
-                    isGoodPassword = true;
-                checkTokenAndPassword();
-            }
-
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        createTimeline();
     }
 
     private void checkTokenAndPassword() {
@@ -95,6 +85,19 @@ public class ChangePassForgotController {
 
             changeButton.disableProperty().bind(bb);
         });
+    }
 
+    private void createTimeline(){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), event -> {
+            if (changeButton.isDisabled() || !changeButton.isDisabled()) {
+                isGoodToken = tokenField.getText().equals(TokenController.token);
+                if(passwordField.getText().matches(regexHandler.regexPassword) || passwordText.getText().matches(regexHandler.regexPassword))
+                    isGoodPassword = true;
+                checkTokenAndPassword();
+            }
+
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 }

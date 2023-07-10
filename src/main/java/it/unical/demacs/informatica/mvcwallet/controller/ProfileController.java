@@ -93,7 +93,7 @@ public class ProfileController {
                             && usernameTextField.getText().length()>=5
                             &&!usernameTextField.getText().equals(LoginController.username);
             System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
-            if (!isGoodUsername&&!isGoodName&&!isGoodUsername) {
+            if (!isGoodUsername && !isGoodName && !isGoodUsername) {
                 saveButton.setDisable(true);
             }else{
                 saveButton.setDisable(false);
@@ -123,8 +123,6 @@ public class ProfileController {
             }
         });
     }
-
-
 
 
     private void updateLanguage(){

@@ -6,10 +6,7 @@ import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -25,6 +22,8 @@ public class RegistrationController {
     private TextField usernameText, emailText, nameText, surnameText;
     @FXML
     private Button buttonRegisterAccount, backButton;
+    @FXML
+    private Label usernamaLabel, birthdayLabel, nameLabel, surnameLabel;
 
     private boolean isGoodUsername;
     private boolean isGoodEmail;
@@ -60,7 +59,7 @@ public class RegistrationController {
         buttonRegisterAccount.setDisable(true);
         updateLanguage();
         addListener();
-        setPromptText();
+        setToolTip();
     }
 
     public void sendEmail() {
@@ -104,8 +103,10 @@ public class RegistrationController {
             });
         }
 
-        private void setPromptText(){
-            usernameText.setPromptText(bundle.getString("promptTextUsername"));
+        private void setToolTip(){
+            usernameText.setTooltip(new Tooltip(bundle.getString("tooltipUsername")));
+            passwordField.setTooltip(new Tooltip(bundle.getString("tooltipPassword")));
+            birthdayPicker.setTooltip(new Tooltip(bundle.getString("tooltipAge")));
         }
 
         private void performBinding() {
@@ -145,6 +146,9 @@ public class RegistrationController {
             if (bundle != null) {
                 buttonRegisterAccount.setText(bundle.getString("registerButton"));
                 backButton.setText(bundle.getString("backButton"));
+                nameLabel.setText(bundle.getString("nameLabel"));
+                surnameLabel.setText(bundle.getString("surnameLabel"));
+                birthdayLabel.setText(bundle.getString("birthdayLabel"));
             } else {
                 System.out.println("SideBarController.java: bundle is null");
             }

@@ -18,7 +18,7 @@
          <children>
             <HBox prefHeight="34.0" prefWidth="463.0" spacing="150.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="95.0" text="Username" textFill="WHITE">
+                  <Label fx:id="usernameLabel" prefHeight="18.0" prefWidth="95.0" text="Username" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
@@ -34,9 +34,9 @@
                   <TextField fx:id="emailText" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                </children>
             </HBox>
-            <HBox prefHeight="36.0" prefWidth="586.0" spacing="150.0">
+            <HBox prefHeight="36.0" prefWidth="586.0" spacing="108.0">
                <children>
-                  <Label prefHeight="19.0" prefWidth="95.0" text="Data di nascita" textFill="WHITE">
+                  <Label fx:id="birthdayLabel" prefHeight="19.0" prefWidth="138.0" text="Data di nascita" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
@@ -45,7 +45,7 @@
             </HBox>
             <HBox prefHeight="31.0" prefWidth="526.0" spacing="150.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="95.0" text="Nome" textFill="WHITE">
+                  <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="95.0" text="Nome" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
@@ -54,7 +54,7 @@
             </HBox>
             <HBox prefHeight="31.0" prefWidth="526.0" spacing="150.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="95.0" text="Cognome" textFill="WHITE">
+                  <Label fx:id="surnameLabel" prefHeight="18.0" prefWidth="95.0" text="Cognome" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font></Label>
