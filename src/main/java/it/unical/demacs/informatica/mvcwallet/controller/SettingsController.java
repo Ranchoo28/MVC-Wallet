@@ -36,7 +36,7 @@ public class SettingsController {
     @FXML
     private MenuItem eurMenuItem, usdMenuItem;
     @FXML
-    private MenuItem itaMenuItem, engMenuItem;
+    private MenuItem itaMenuItem, engMenuItem, freMenuItem, spaMenuItem, cosMenuItem;
     @FXML
     private MenuItem darkMenuItem, lightMenuItem, mvcMenuItem, blueMenuItem, customMenuItem, cpMenuItem;
 
@@ -155,18 +155,6 @@ public class SettingsController {
     void initialize(){
         updateLanguage();
         updateAllSettings();
-
-        // Icona per i temi
-        FontIcon iconThemes = new FontIcon("mdi2t-theme-light-dark");
-        iconThemes.setIconSize(25);
-        themeMenuButton.setContentDisplay(ContentDisplay.RIGHT);
-        themeMenuButton.setGraphic(iconThemes);
-
-        // Icona per la lingua
-        FontIcon iconLanguage = new FontIcon("mdi2e-earth");
-        iconLanguage.setIconSize(25);
-        languageMenuButton.setContentDisplay(ContentDisplay.RIGHT);
-        languageMenuButton.setGraphic(iconLanguage);
     }
 
     private void updateAllSettings(){
@@ -256,13 +244,13 @@ public class SettingsController {
         languageMenuButton.setText("English");
     }
     private void spanishLanguageChoosen(){
-        languageMenuButton.setText("English");
+        languageMenuButton.setText("Español");
     }
     private void frenchLanguageChoosen(){
-        languageMenuButton.setText("English");
+        languageMenuButton.setText("Français");
     }
     private void cosentinoLanguageChoosen(){
-        languageMenuButton.setText("English");
+        languageMenuButton.setText("Cosentino");
     }
 
     private void eurCurrencyChoosen(){
@@ -297,6 +285,9 @@ public class SettingsController {
 
         if(languageMenuButton.getText().equals("Italiano")) settings[4] = "it";
         if(languageMenuButton.getText().equals("English")) settings[4] = "en";
+        if(languageMenuButton.getText().equals("Español")) settings[4] = "es";
+        if(languageMenuButton.getText().equals("Français")) settings[4] = "fr";
+        if(languageMenuButton.getText().equals("Cosentino")) settings[4] = "cs";
 
         if(currencyMenuButton.getText().equals("EUR")) settings[5] = "eur";
         if(currencyMenuButton.getText().equals("USD")) settings[5] = "usd";

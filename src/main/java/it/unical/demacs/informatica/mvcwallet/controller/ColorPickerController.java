@@ -1,16 +1,10 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import com.jfoenix.controls.JFXColorPicker;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.layout.AnchorPane;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class ColorPickerController extends SettingsController{
+public class ColorPickerController{
 
     @FXML
     private ColorPicker bdrColorPicker;
@@ -44,14 +38,14 @@ public class ColorPickerController extends SettingsController{
 
     @FXML
     void onRemoveButton(){
-        themeMenuButton.setText("Dark");
+        //themeMenuButton.setText("Dark");
     }
     @FXML
     void onApplyButton(){
-        themeMenuButton.setText("Dark");
+        //themeMenuButton.setText("Dark");
     }
     @FXML
     void onBackButton(){
-        themeMenuButton.setText("Dark");
+        //themeMenuButton.setText("Dark");
     }
 }

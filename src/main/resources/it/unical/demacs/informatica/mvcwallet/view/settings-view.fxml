@@ -9,7 +9,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -57,14 +56,14 @@
                      <children>
                         <MenuButton fx:id="mainPageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" textAlignment="CENTER">
                            <items>
-                              <MenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick">
+                              <MenuItem fx:id="spotMenuItem" mnemonicParsing="false" onAction="#onSpotClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Spot" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Spot" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick">
+                              <MenuItem fx:id="marketMenuItem" mnemonicParsing="false" onAction="#onMarketClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Market" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Market" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -77,14 +76,14 @@
                         </MenuButton>
                         <MenuButton fx:id="timeFormatMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <MenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick">
+                              <MenuItem fx:id="h12MenuItem" mnemonicParsing="false" onAction="#on12hClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="12H" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="12H" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick">
+                              <MenuItem fx:id="h24MenuItem" mnemonicParsing="false" onAction="#on24hClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="24H" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="24H" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -97,14 +96,14 @@
                         </MenuButton>
                         <MenuButton fx:id="currencyMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <MenuItem fx:id="eurCurrency" mnemonicParsing="false" onAction="#onEurClick">
+                              <MenuItem fx:id="eurMenuItem" mnemonicParsing="false" onAction="#onEurClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="EUR" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="EUR" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="usdCurrency" mnemonicParsing="false">
+                              <MenuItem fx:id="usdMenuItem" mnemonicParsing="false">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="USD" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="USD" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -115,31 +114,31 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </MenuButton>
-                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onUsdClick" prefHeight="25.0" prefWidth="150.0">
+                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <MenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
+                              <MenuItem fx:id="itaMenuItem" mnemonicParsing="false" onAction="#onItalianClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Italiano" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Italiano" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="englishLanguage" mnemonicParsing="false" onAction="#onEnglishClick">
+                              <MenuItem fx:id="engMenuItem" mnemonicParsing="false" onAction="#onEnglishClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="English" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="English" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="frenchLanguage" mnemonicParsing="false" onAction="#onFrenchClick">
+                              <MenuItem fx:id="freMenuItem" mnemonicParsing="false" onAction="#onFrenchClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Français" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Français" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="spanishLanguage" mnemonicParsing="false" onAction="#onSpanishClick">
+                              <MenuItem fx:id="spaMenuItem" mnemonicParsing="false" onAction="#onSpanishClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Español" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Español" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="cosentinoLanguage" mnemonicParsing="false" onAction="#onCosentinoClick">
+                              <MenuItem fx:id="cosMenuItem" mnemonicParsing="false" onAction="#onCosentinoClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Cosentino" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Cosentino" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -152,42 +151,34 @@
                         </MenuButton>
                         <MenuButton fx:id="themeMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#onDarkClick">
+                              <MenuItem fx:id="darkMenuItem" mnemonicParsing="false" onAction="#onDarkClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Dark" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Dark" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem mnemonicParsing="false" onAction="#onLightClick">
+                              <MenuItem fx:id="lightMenuItem" mnemonicParsing="false" onAction="#onLightClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="127.0" text="Light" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Light" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem mnemonicParsing="false" onAction="#onMvcClick">
+                              <MenuItem fx:id="mvcMenuItem" mnemonicParsing="false" onAction="#onMvcClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="MVC" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="MVC" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem mnemonicParsing="false" onAction="#onBlueClick">
+                              <MenuItem fx:id="blueMenuItem" mnemonicParsing="false" onAction="#onBlueClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Blue" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Blue" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem mnemonicParsing="false" onAction="#onCustomClick">
+                              <MenuItem fx:id="customMenuItem" mnemonicParsing="false" onAction="#onCustomClick">
                                  <graphic>
-                                    <StackPane alignment="CENTER_LEFT">
-                                       <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Custom" textAlignment="CENTER" />
-                                          <MenuButton fx:id="colorPickerMenuButton" alignment="CENTER" contentDisplay="CENTER" minWidth="128.0" mnemonicParsing="false" onMouseClicked="#onCustomClick" opacity="0.0" popupSide="RIGHT" prefWidth="128.0" textAlignment="CENTER">
-                                             <items>
-                                              <MenuItem mnemonicParsing="false" onAction="#onColorPickerClick">
-                                                   <graphic>
-                                                      <AnchorPane fx:id="colorPickerPane" prefHeight="200.0" prefWidth="200.0" />
-                                                   </graphic>
-                                                </MenuItem>
-                                             </items>
-                                          </MenuButton>
-                                       </children>
-                                    </StackPane>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="30.0" text="Custom" textAlignment="CENTER" />
+                                 </graphic>
+                              </MenuItem>
+                              <MenuItem fx:id="cpMenuItem" mnemonicParsing="false" onAction="#onCustomClick" visible="false">
+                                 <graphic>
+                                    <AnchorPane fx:id="colorPickerPane" />
                                  </graphic>
                               </MenuItem>
                           </items>
