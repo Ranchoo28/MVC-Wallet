@@ -62,12 +62,18 @@ public class ChangePassController {
 
     private void addListenerOldPassword(){
         oldPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (SqlHandler.getInstance().checkPassword(LoginController.username, oldPasswordTextField.getText())) {
-                isGoodOldPassword = true;
+            isGoodOldPassword = SqlHandler.getInstance().checkPassword(LoginController.username, oldPasswordTextField.getText());
+            System.out.println(isGoodOldPassword);
+            System.out.println(isGoodPassword);
+
+            if (isGoodOldPassword&& isGoodPassword){
                 newPasswordTextField.setDisable(false);
-            } else {
-                isGoodOldPassword = false;
+                saveButton.setDisable(false);
+            } else if (isGoodOldPassword ){
+                newPasswordTextField.setDisable(false);
+            }else{
                 newPasswordTextField.setDisable(true);
+                saveButton.setDisable(true);
             }
         });
     }
@@ -75,9 +81,11 @@ public class ChangePassController {
     private void addListenerNewPassword(){
         newPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
-            isGoodPassword = newValue.matches(regexHandler.regexPassword)&& (!newPasswordTextField.getText().equals(oldPasswordTextField.getText())  );
-            if (isGoodPassword) {
+            isGoodPassword = newValue.matches(regexHandler.regexPassword) && (!newPasswordTextField.getText().equals(oldPasswordTextField.getText())  );
+            if (isGoodPassword && isGoodOldPassword ) {
                 saveButton.setDisable(false);
+            }else{
+                saveButton.setDisable(true);
             }
         });
     }
