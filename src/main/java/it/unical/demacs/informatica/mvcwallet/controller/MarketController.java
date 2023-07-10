@@ -69,20 +69,7 @@ public class MarketController {
     @FXML
     void initialize() {
         Platform.runLater(this::updateLanguage);
-        //updateLanguage();
-
-        coinChoiceBox.getItems().addAll(coins);
-        currencyChoiceBox.getItems().addAll(currencies);
-        timeChoiceBox.getItems().addAll(timeframes);
-
-        coinChoiceBox.setValue(coin);
-        currencyChoiceBox.setValue(currency);
-        timeChoiceBox.setValue(timeframe);
-
-        coinChoiceBox.setOnAction(this::getSelectedtCoin);
-        currencyChoiceBox.setOnAction(this::getSelectedCurrency);
-        timeChoiceBox.setOnAction(this::getSelectedTime);
-
+        setItems();
         updateChart();
     }
 
@@ -113,6 +100,20 @@ public class MarketController {
         } else {
             System.out.println("MarketController.java: bundle is null");
         }
+    }
+
+    private void setItems(){
+        coinChoiceBox.getItems().addAll(coins);
+        currencyChoiceBox.getItems().addAll(currencies);
+        timeChoiceBox.getItems().addAll(timeframes);
+
+        coinChoiceBox.setValue(coin);
+        currencyChoiceBox.setValue(currency);
+        timeChoiceBox.setValue(timeframe);
+
+        coinChoiceBox.setOnAction(this::getSelectedtCoin);
+        currencyChoiceBox.setOnAction(this::getSelectedCurrency);
+        timeChoiceBox.setOnAction(this::getSelectedTime);
     }
 }
 

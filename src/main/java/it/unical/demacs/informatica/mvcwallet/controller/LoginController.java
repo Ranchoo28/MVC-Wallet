@@ -228,7 +228,7 @@ public class LoginController {
         try {
             bundle = LanguageHandler.getInstance().getBundle();
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 101-105) " + e);
+           alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null){
             languageLabel.setText(bundle.getString("languageLabel"));
@@ -238,5 +238,4 @@ public class LoginController {
             registerButton.setText(bundle.getString("registerButton"));
         }
     }
-
 }

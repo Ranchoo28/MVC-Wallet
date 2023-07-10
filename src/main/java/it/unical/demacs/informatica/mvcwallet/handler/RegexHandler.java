@@ -11,9 +11,9 @@ public class RegexHandler {
     public final String regexEmail =
             "^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@(?:gmail\\.com|yahoo\\.com|hotmail\\.com|libero\\.it|icloud\\.com|gmx\\.com|aol\\.com)";
 
-    public final String regexPassword=
-            "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?._\\-*=+^$€;,])[a-zA-Z0-9@!%&£°#'?*=+^$€]{8,}";
+    public final String regexPassword =
+            "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=.])[a-zA-Z0-9@!%&£°#'?*=.]{8,}";
 
-    public final String regexFistLast =
+    public final String regexFirstLast =
             "^(?=.{1,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$";
 }

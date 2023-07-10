@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ChangePassForgotController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ChangePassForgotController">
    <children>
       <HBox layoutX="94.0" layoutY="51.0" prefHeight="12.0" prefWidth="374.0" spacing="105.0">
          <children>
@@ -19,7 +19,7 @@
       </HBox>
       <HBox layoutX="94.0" layoutY="117.0" prefHeight="34.0" prefWidth="374.0" spacing="50.0">
          <children>
-            <Label text="Nuova password" />
+            <Label fx:id="newPassLabel" text="Nuova password" />
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="passwordText" prefHeight="25.0" prefWidth="175.0" />
@@ -31,9 +31,9 @@
       <HBox layoutX="101.0" layoutY="201.0" prefHeight="34.0" prefWidth="297.0" spacing="80.0">
          <children>
             <Button fx:id="changeButton" mnemonicParsing="false" onAction="#onChangeClick" text="Change password" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="26.0" prefWidth="102.0" text="Cancel" />
+            <Button fx:id="backButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="26.0" prefWidth="102.0" text="Cancel" />
          </children>
       </HBox>
-      <CheckBox fx:id="showPassBox" layoutX="242.0" layoutY="151.0" mnemonicParsing="false" onAction="#onShowClick" text="Show pass" />
+      <CheckBox fx:id="showPassBox" layoutX="242.0" layoutY="151.0" mnemonicParsing="false" onAction="#onShowClick" prefHeight="18.0" prefWidth="102.0" text="Show pass" />
    </children>
 </AnchorPane>
