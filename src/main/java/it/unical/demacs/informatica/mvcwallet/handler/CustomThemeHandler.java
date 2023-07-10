@@ -22,8 +22,8 @@ public class CustomThemeHandler {
     String primaryBG, secondaryBG, hoverBG, primaryBT, border, primaryTXT, secondaryTXT ;
 
     public void createTheme(){
-        for(String i: readCssFile())
-            System.out.println(i);
+        //for(String i: readCssFile())
+          //  System.out.println(i);
 
 
     }

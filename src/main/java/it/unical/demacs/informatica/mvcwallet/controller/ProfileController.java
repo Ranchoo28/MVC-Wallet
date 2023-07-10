@@ -56,11 +56,6 @@ public class ProfileController {
         } else System.out.println("cognome non cambiato");
     }
 
-    private boolean isGoodApply(String username,String name, String surname){
-        return (username.length() >= 5 && !sqlHandler.checkUsername(username))
-                && (name.length() >= 1 && !name.equals(firstTextField.getText()))
-                && (surname.length() >= 1 && !surname.equals(lastTextField.getText()));
-    }
 
     public void loadFXML(String nomeFXML) {
         centerPage.getChildren().clear();
@@ -82,84 +77,68 @@ public class ProfileController {
     void initialize() {
         updateLanguage();
         saveButton.setDisable(true);
+        usernameTextField.setText(LoginController.username);
         nameSurnameArray = sqlHandler.getNameSurname(LoginController.username);
         String[] array = sqlHandler.getNameSurname(LoginController.username);
         firstTextField.setText(array[0]);
         lastTextField.setText(array[1]);
+        addListenerUsername();
+        addListenerName();
+        addListenersurname();
+    }
 
-        usernameTextField.setText(LoginController.username);
+    private void addListenerUsername(){
         usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(sqlHandler.checkUsername(newValue));
-            isGoodUsername = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
-            checkUsername();
+            isGoodUsername = !SqlHandler.getInstance().checkUsername(usernameTextField.getText())
+                            && usernameTextField.getText().length()>=5
+                            &&!usernameTextField.getText().equals(LoginController.username);
+            System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
 
-            /*(newValue.length() < 5 || SqlHandler.getIstance().checkUsername(newValue))
-                isGoodUsername = false;
-            else
-                isGoodUsername = true;
-            checkUsername();
-            System.out.println(SqlHandler.getIstance().checkUsername(usernameText.getText()));
-
-             */
+            if (isGoodUsername && isGoodName && isGoodSurname ){
+                saveButton.setDisable(false);
+            } else if (isGoodUsername ){
+                saveButton.setDisable(false);
+            }else if (isGoodName || isGoodSurname){
+                saveButton.setDisable(false);
+            }else{
+                saveButton.setDisable(true);
+            }
         });
-
-
-
-
+    }
+    private void addListenerName(){
         firstTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            isGoodName = firstTextField.getText().length()>=2 && !firstTextField.getText().equals(nameSurnameArray[0]) ;
 
-            isGoodName = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
-            checkUsername();
-
-            /*
-            if(newValue.equals(nameSurnameArray[0]) || newValue.length() < 1 ||
-                    SqlHandler.getIstance().checkUsername(usernameText.getText()) ||
-                    usernameText.getText().length() < 5)
-
-                isGoodName = false;
-            else
-                isGoodName = true;
-
-             */
+            if (isGoodUsername && isGoodName && isGoodSurname ){
+                saveButton.setDisable(false);
+            } else if (isGoodUsername ){
+                saveButton.setDisable(false);
+            }else if (isGoodName || isGoodSurname){
+                saveButton.setDisable(false);
+            }else{
+                saveButton.setDisable(true);
+            }
         });
-
+    }
+    private void addListenersurname(){
         lastTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(usernameTextField.getText());
-            System.out.println(sqlHandler.checkUsername(usernameTextField.getText()));
-            isGoodSurname = isGoodApply(usernameTextField.getText(), firstTextField.getText(), lastTextField.getText());
-            checkUsername();
-            /*
-            if(newValue.equals(nameSurnameArray[1]) || newValue.length() < 1 ||
-                    SqlHandler.getIstance().checkUsername(usernameText.getText())||
-                    usernameText.getText().length() < 5)
-                isGoodSurname = false;
-            else
-                isGoodSurname = true;
-
-             */
-            checkUsername();
-        });
+            isGoodSurname = lastTextField.getText().length()>=2 && !lastTextField.getText().equals(nameSurnameArray[1]) ;
 
 
-    }
-
-    private void checkUsername() {
-        Platform.runLater(() -> {
-            BooleanBinding bb = new BooleanBinding() {
-                {
-                    super.bind(usernameTextField.textProperty()
-                               ,firstTextField.textProperty()
-                               ,lastTextField.textProperty());
-                }
-
-                @Override
-                protected boolean computeValue() {
-                    return  isGoodUsername || isGoodName  || isGoodSurname;
-                }
-            };
-            saveButton.disableProperty().bind(bb);
+            if (isGoodUsername && isGoodName && isGoodSurname ){
+                saveButton.setDisable(false);
+            } else if (isGoodUsername ){
+                saveButton.setDisable(false);
+            }else if (isGoodName || isGoodSurname){
+                saveButton.setDisable(false);
+            }else{
+                saveButton.setDisable(true);
+            }
         });
     }
+
+
+
 
     private void updateLanguage(){
         ResourceBundle bundle = null;

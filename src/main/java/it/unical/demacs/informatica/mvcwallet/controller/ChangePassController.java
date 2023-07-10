@@ -63,8 +63,7 @@ public class ChangePassController {
     private void addListenerOldPassword(){
         oldPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             isGoodOldPassword = SqlHandler.getInstance().checkPassword(LoginController.username, oldPasswordTextField.getText());
-            System.out.println(isGoodOldPassword);
-            System.out.println(isGoodPassword);
+
 
             if (isGoodOldPassword&& isGoodPassword){
                 newPasswordTextField.setDisable(false);
