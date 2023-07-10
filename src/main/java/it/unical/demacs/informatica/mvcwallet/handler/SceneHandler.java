@@ -89,7 +89,7 @@ public class SceneHandler {
             if(scene == null) scene = new Scene(root);
             else scene.setRoot(root);
             stage.setTitle("MVC Wallet login");
-            scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "dark.css")));
+            scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "blue.css")));
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 82-93) " + e);
         }
