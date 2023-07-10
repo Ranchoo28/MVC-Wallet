@@ -6,9 +6,10 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -56,16 +57,16 @@
                      <children>
                         <MenuButton fx:id="mainPageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" textAlignment="CENTER">
                            <items>
-                              <RadioMenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick">
+                              <MenuItem fx:id="spotPage" mnemonicParsing="false" onAction="#onSpotClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Spot" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick">
+                              </MenuItem>
+                              <MenuItem fx:id="marketPage" mnemonicParsing="false" onAction="#onMarketClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Market" />
                                  </graphic>
-                              </RadioMenuItem>
+                              </MenuItem>
                            </items>
                            <font>
                               <Font size="14.0" />
@@ -76,16 +77,16 @@
                         </MenuButton>
                         <MenuButton fx:id="timeFormatMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <RadioMenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick">
+                              <MenuItem fx:id="h12Time" mnemonicParsing="false" onAction="#on12hClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="12H" textAlignment="CENTER" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick">
+                              </MenuItem>
+                              <MenuItem fx:id="h24Time" mnemonicParsing="false" onAction="#on24hClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="24H" />
                                  </graphic>
-                              </RadioMenuItem>
+                              </MenuItem>
                            </items>
                            <font>
                               <Font size="14.0" />
@@ -96,16 +97,16 @@
                         </MenuButton>
                         <MenuButton fx:id="currencyMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <RadioMenuItem fx:id="eurCurrency" mnemonicParsing="false" onAction="#onEurClick">
+                              <MenuItem fx:id="eurCurrency" mnemonicParsing="false" onAction="#onEurClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="EUR" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="usdCurrency" mnemonicParsing="false" onAction="#onUsdClick">
+                              </MenuItem>
+                              <MenuItem fx:id="usdCurrency" mnemonicParsing="false">
                                  <graphic>
                                     <Label prefWidth="110.0" text="USD" />
                                  </graphic>
-                              </RadioMenuItem>
+                              </MenuItem>
                            </items>
                            <font>
                               <Font size="14.0" />
@@ -114,33 +115,33 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </MenuButton>
-                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
+                        <MenuButton fx:id="languageMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onUsdClick" prefHeight="25.0" prefWidth="150.0">
                            <items>
-                              <RadioMenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
+                              <MenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Italiano" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="englishLanguage" mnemonicParsing="false" onAction="#onEnglishClick">
+                              </MenuItem>
+                              <MenuItem fx:id="englishLanguage" mnemonicParsing="false" onAction="#onEnglishClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="English" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="frenchLanguage" mnemonicParsing="false" onAction="#onFrenchClick">
+                              </MenuItem>
+                              <MenuItem fx:id="frenchLanguage" mnemonicParsing="false" onAction="#onFrenchClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Français" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="spanishLanguage" mnemonicParsing="false" onAction="#onSpanishClick">
+                              </MenuItem>
+                              <MenuItem fx:id="spanishLanguage" mnemonicParsing="false" onAction="#onSpanishClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Español" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="cosentinoLanguage" mnemonicParsing="false" onAction="#onCosentinoClick">
+                              </MenuItem>
+                              <MenuItem fx:id="cosentinoLanguage" mnemonicParsing="false" onAction="#onCosentinoClick">
                                  <graphic>
                                     <Label prefWidth="110.0" text="Cosentino" />
                                  </graphic>
-                              </RadioMenuItem>
+                              </MenuItem>
                            </items>
                            <font>
                               <Font size="14.0" />
@@ -151,26 +152,44 @@
                         </MenuButton>
                         <MenuButton fx:id="themeMenuButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                           <items>
-                              <RadioMenuItem fx:id="darkTheme" mnemonicParsing="false" onAction="#onDarkClick">
+                              <MenuItem mnemonicParsing="false" onAction="#onDarkClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Dark" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Dark" textAlignment="CENTER" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="lightTheme" mnemonicParsing="false" onAction="#onLightClick">
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#onLightClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Light" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefWidth="127.0" text="Light" textAlignment="CENTER" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="mvcTheme" mnemonicParsing="false" onAction="#onMvcClick">
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#onMvcClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="MVC" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="MVC" textAlignment="CENTER" />
                                  </graphic>
-                              </RadioMenuItem>
-                              <RadioMenuItem fx:id="blueTheme" mnemonicParsing="false" onAction="#onBlueClick">
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#onBlueClick">
                                  <graphic>
-                                    <Label prefWidth="110.0" text="Blue" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Blue" textAlignment="CENTER" />
                                  </graphic>
-                              </RadioMenuItem>
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#onCustomClick">
+                                 <graphic>
+                                    <StackPane alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Custom" textAlignment="CENTER" />
+                                          <MenuButton fx:id="colorPickerMenuButton" alignment="CENTER" contentDisplay="CENTER" minWidth="128.0" mnemonicParsing="false" onMouseClicked="#onCustomClick" opacity="0.0" popupSide="RIGHT" prefWidth="128.0" textAlignment="CENTER">
+                                             <items>
+                                              <MenuItem mnemonicParsing="false" onAction="#onColorPickerClick">
+                                                   <graphic>
+                                                      <AnchorPane fx:id="colorPickerPane" prefHeight="200.0" prefWidth="200.0" />
+                                                   </graphic>
+                                                </MenuItem>
+                                             </items>
+                                          </MenuButton>
+                                       </children>
+                                    </StackPane>
+                                 </graphic>
+                              </MenuItem>
                           </items>
                            <font>
                               <Font size="14.0" />

@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ColorPickerController {
+public class ColorPickerController extends SettingsController{
 
     @FXML
     private ColorPicker bdrColorPicker;
@@ -32,9 +32,26 @@ public class ColorPickerController {
 
     @FXML
     private ColorPicker sntColorPicker;
+
     @FXML
     private Button backButton;
 
     @FXML
     private Button applyButton;
+
+    @FXML
+    private Button removeButton;
+
+    @FXML
+    void onRemoveButton(){
+        themeMenuButton.setText("Dark");
+    }
+    @FXML
+    void onApplyButton(){
+        themeMenuButton.setText("Dark");
+    }
+    @FXML
+    void onBackButton(){
+        themeMenuButton.setText("Dark");
+    }
 }
