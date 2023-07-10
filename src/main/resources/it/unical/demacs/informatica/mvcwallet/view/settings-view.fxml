@@ -162,14 +162,14 @@
                                     <StackPane alignment="CENTER_LEFT">
                                        <children>
                                           <Label alignment="CENTER" contentDisplay="CENTER" minWidth="125.0" prefWidth="125.0" text="Custom" textAlignment="CENTER" />
-                                          <MenuButton alignment="CENTER" contentDisplay="CENTER" minWidth="128.0" mnemonicParsing="false" opacity="0.0" popupSide="RIGHT" prefWidth="128.0" textAlignment="CENTER">
-                                            <items>
-                                              <MenuItem mnemonicParsing="false">
+                                          <MenuButton fx:id="colorPickerMenuButton" alignment="CENTER" contentDisplay="CENTER" minWidth="128.0" mnemonicParsing="false" onMouseClicked="#onCustomClick" opacity="0.0" popupSide="RIGHT" prefWidth="128.0" textAlignment="CENTER">
+                                             <items>
+                                              <MenuItem mnemonicParsing="false" onAction="#onColorPickerClick">
                                                    <graphic>
                                                       <AnchorPane fx:id="colorPickerPane" prefHeight="200.0" prefWidth="200.0" />
                                                    </graphic>
                                                 </MenuItem>
-                                            </items>
+                                             </items>
                                           </MenuButton>
                                        </children>
                                     </StackPane>

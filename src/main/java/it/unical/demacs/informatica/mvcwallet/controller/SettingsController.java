@@ -37,7 +37,7 @@ public class SettingsController {
             eurCurrency, usdCurrency;
 
     @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
-            currencyMenuButton, languageMenuButton, themeMenuButton;
+            currencyMenuButton, languageMenuButton, themeMenuButton, colorPickerMenuButton;
     @FXML
     void on12hClick() { h12Choosen(); }
 
@@ -60,12 +60,13 @@ public class SettingsController {
     void onMvcClick() { mvcThemeChoosen(); }
     @FXML
     void onBlueClick() { blueThemeChoosen(); }
-
     @FXML
-    void onCustomClick(ActionEvent event) {
-        System.out.println("Ciao");
-        event.consume();
+    void onCustomClick() {
         customThemeChoosen();
+    }
+    @FXML
+    void onColorPickerClick(ActionEvent event) {
+        event.consume();
     }
 
     @FXML
@@ -187,12 +188,13 @@ public class SettingsController {
             AnchorPane pane = fxmlLoader.load();
 
             colorPickerPane.getChildren().add(pane);
-            AnchorPane.setTopAnchor(pane, 5.0);
+            AnchorPane.setTopAnchor(pane, 0.0);
             AnchorPane.setRightAnchor(pane, 0.0);
             AnchorPane.setBottomAnchor(pane, 0.0);
-            AnchorPane.setLeftAnchor(pane, 0.0);
+
+            colorPickerPane.setFocusTraversable(true);
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 166-178) " + e);
+            System.out.println("Error in SideBarController.java (rows: 185-196) " + e);
         }
 
     }
