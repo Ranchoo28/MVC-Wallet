@@ -39,23 +39,27 @@ public class SceneHandler {
 
     public void init(Stage stage) throws IOException {
         // Crea lo stage iniziale
-        if (this.stage == null) {
-            this.stage = stage;
-            this.stage.setTitle("Wallet Login");
-            createLoginScene();
-            stage.setResizable(true);
-            stage.setScene(scene);
+        try {
+            if (this.stage == null) {
+                this.stage = stage;
+                this.stage.setTitle("Wallet Login");
+                createLoginScene();
+                stage.setResizable(true);
+                stage.setScene(scene);
 
-            stage.setMinWidth(800);
-            stage.setMinHeight(600);
-            stage.setWidth(800);
-            stage.setHeight(600);
+                stage.setMinWidth(800);
+                stage.setMinHeight(600);
+                stage.setWidth(800);
+                stage.setHeight(600);
 
-            stage.show();
-            scene.setOnKeyPressed(key -> {
-                if(key.getCode().equals(KeyCode.F11))
-                    stage.setFullScreen(!stage.isFullScreen());
-            });
+                stage.show();
+                scene.setOnKeyPressed(key -> {
+                    if (key.getCode().equals(KeyCode.F11))
+                        stage.setFullScreen(!stage.isFullScreen());
+                });
+            }
+        } catch (Exception e){
+            System.out.println("Error in SceneHandler.java (rows: 42-63) " + e);
         }
     }
 
@@ -67,7 +71,8 @@ public class SceneHandler {
             stage.setTitle("MVC Wallet");
             uploadTheme();
             uploadLanguage();
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.println("Error in SceneHandler.java (rows: 67-76) " + e);
         }
     }
 
@@ -83,7 +88,8 @@ public class SceneHandler {
             stage.setTitle("MVC Wallet login");
             scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "dark.css")));
             languageHandler.updateLanguage("en");
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.println("Error in SceneHandler.java (rows: 82-93) " + e);
         }
     }
 
@@ -96,7 +102,8 @@ public class SceneHandler {
                 scene.setRoot(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
 
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.println("Error in SceneHandler.java (rows: 98-107) " + e);
         }
     }
 
@@ -109,7 +116,8 @@ public class SceneHandler {
                 scene.setRoot(loadRootFromFXML(view+"register-view.fxml"));
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("registrationTitleScene"));
             if(stage.isFullScreen()) stage.setFullScreen(false);
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.println("Error in SceneHandler.java (rows: 112-121) " + e);
         }
     }
 
@@ -122,9 +130,8 @@ public class SceneHandler {
                 scene.setRoot(loadRootFromFXML(view + "forgot-pass-view.fxml"));
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
             if(stage.isFullScreen()) stage.setFullScreen(false);
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.println("Error in SceneHandler.java (rows: 126-135) " + e);
         }
     }
-
-
 }
