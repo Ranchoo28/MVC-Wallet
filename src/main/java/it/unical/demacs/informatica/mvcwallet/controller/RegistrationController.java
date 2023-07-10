@@ -1,9 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.RegexHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.EmailService;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
@@ -16,17 +13,18 @@ import javafx.scene.control.TextField;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ResourceBundle;
 
 public class RegistrationController {
 
     @FXML
-    private DatePicker Birthday;
+    private DatePicker birthdayPicker;
     @FXML
-    private PasswordField Password;
+    private PasswordField passwordField;
     @FXML
-    private TextField Username, Email, Nome, Cognome;
+    private TextField usernameText, emailText, nameText, surnameText;
     @FXML
-    private Button buttonRegisterAccount = new Button();
+    private Button buttonRegisterAccount, backButton;
 
     private boolean isGoodUsername;
     private boolean isGoodEmail;
@@ -39,6 +37,7 @@ public class RegistrationController {
     private final RegexHandler regexHandler = RegexHandler.getInstance();
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
 
     @FXML
     void onCancelButtonClick() { sceneHandler.createLoginScene(); }
@@ -48,7 +47,7 @@ public class RegistrationController {
         // Una volta premuto il bottone, effettua la registrazion, manda una mail, effettua una query
         // per la registrazione e poi ti riporta alla schermata del login.
 
-        if(sqlService.serviceRegister(Email.getText(), Username.getText(), Password.getText(), Birthday.getValue(), Nome.getText(), Cognome.getText())){
+        if(sqlService.serviceRegister(emailText.getText(), usernameText.getText(), passwordField.getText(), birthdayPicker.getValue(), nameText.getText(), surnameText.getText())){
             sendEmail();
             alertHandler.createRegistrationAlert();
         }
@@ -58,72 +57,96 @@ public class RegistrationController {
 
     @FXML
     void initialize() {
-
         buttonRegisterAccount.setDisable(true);
+        updateLanguage();
+        addListener();
+        setPromptText();
+    }
 
-        Username.textProperty().addListener((observable, oldValue, newValue) -> {
+    public void sendEmail() {
+        // Manda una mail dopo essersi registrati.
+       emailService.emailServiceSendWelcomeEmail(emailText.getText(),
+               "MVC Wallet",
+               "Ciao " + usernameText.getText() + ", ti ringraziamo per aver effettuato la registrazione!");
+    }
+
+    private void addListener(){
+        usernameText.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se il nickname è formato da almeno 5 caratteri.
             isGoodUsername = newValue.length() > 5;
 
             performBinding();
         });
 
-        Birthday.valueProperty().addListener((observable, oldValue, newValue) -> {
-            // Per vedere se un utente è maggiorenne, usiamo la classe Period che permette di calcolare il tempo
-            // che passa fra una data e un'altra.
-            LocalDate today = LocalDate.now();
-            LocalDate birthday = LocalDate.of(newValue.getYear(), newValue.getMonth(), newValue.getDayOfMonth());
-            Period p = Period.between(birthday, today);
+            birthdayPicker.valueProperty().addListener((observable, oldValue, newValue) -> {
+                // Per vedere se un utente è maggiorenne, usiamo la classe Period che permette di calcolare il tempo
+                // che passa fra una data e un'altra.
+                LocalDate today = LocalDate.now();
+                LocalDate birthday = LocalDate.of(newValue.getYear(), newValue.getMonth(), newValue.getDayOfMonth());
+                Period p = Period.between(birthday, today);
 
-            isGoodAge = p.getYears() > 18;
+                isGoodAge = p.getYears() > 18;
 
-            performBinding();
-        });
+                performBinding();
+            });
 
-        Email.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Controlla se la mail rispetta il Regex.
-            isGoodEmail = newValue.matches(regexHandler.regexEmail);
-            performBinding();
-        });
+            emailText.textProperty().addListener((observable, oldValue, newValue) -> {
+                // Controlla se la mail rispetta il Regex.
+                isGoodEmail = newValue.matches(regexHandler.regexEmail);
+                performBinding();
+            });
 
-        Password.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Controlla se la password rispetta il Regex
-            isGoodPassword = newValue.matches(regexHandler.regexPassword);
+            passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+                // Controlla se la password rispetta il Regex
+                isGoodPassword = newValue.matches(regexHandler.regexPassword);
 
-            performBinding();
-        });
-    }
+                performBinding();
+            });
+        }
 
-    private void performBinding() {
-        // Serve a disabilitare il button della registrazione qualora non venissero introdotte credenziali
-        // valide durante la registrazione. Il runLater() serve ad assicuraci che questo codice venga eseguito
-        // solamente dopo aver scritto nei vari textField.
+        private void setPromptText(){
+            usernameText.setPromptText(bundle.getString("promptTextUsername"));
+        }
 
-        Platform.runLater(() -> {
-            BooleanBinding bb = new BooleanBinding() {
-                {
-                    super.bind(
-                            Email.textProperty(),
-                            Username.textProperty(),
-                            Password.textProperty(),
-                            Birthday.valueProperty()
-                    );
-                }
+        private void performBinding() {
+            // Serve a disabilitare il button della registrazione qualora non venissero introdotte credenziali
+            // valide durante la registrazione. Il runLater() serve ad assicuraci che questo codice venga eseguito
+            // solamente dopo aver scritto nei vari textField.
 
-                @Override
-                protected boolean computeValue() {
-                    return !(isGoodEmail && isGoodAge && isGoodUsername && isGoodPassword);
-                }
-            };
+            Platform.runLater(() -> {
+                BooleanBinding bb = new BooleanBinding() {
+                    {
+                        super.bind(
+                                emailText.textProperty(),
+                                usernameText.textProperty(),
+                                passwordField.textProperty(),
+                                birthdayPicker.valueProperty()
+                        );
+                    }
 
-            buttonRegisterAccount.disableProperty().bind(bb);
-        });
-    }
+                    @Override
+                    protected boolean computeValue() {
+                        return !(isGoodEmail && isGoodAge && isGoodUsername && isGoodPassword);
+                    }
+                };
 
-    public void sendEmail() {
-        // Manda una mail dopo essersi registrati.
-       emailService.emailServiceSendWelcomeEmail(Email.getText(),
-               "MVC Wallet",
-               "Ciao " + Nome.getText() + ", ti ringraziamo per aver effettuato la registrazione!");
-    }
+                buttonRegisterAccount.disableProperty().bind(bb);
+            });
+        }
+
+        private void updateLanguage() {
+            ResourceBundle bundle = null;
+            try {
+                System.out.println(SettingsHandler.getInstance().loginLanguage);
+                bundle = lanHandler.getBundle();
+            } catch (Exception e) {
+                System.out.println("Error in SideBarController.java (rows: 184-188) " + e);
+            }
+            if (bundle != null) {
+                buttonRegisterAccount.setText(bundle.getString("registerButton"));
+                backButton.setText(bundle.getString("backButton"));
+            } else {
+                System.out.println("SideBarController.java: bundle is null");
+            }
+        }
 }

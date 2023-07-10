@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="600.0" styleClass="global-color" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="600.0" styleClass="global-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.RegistrationController">
    <children>
       <VBox layoutX="7.0" layoutY="56.0" prefHeight="301.0" prefWidth="586.0" spacing="10.0">
          <children>
@@ -22,7 +22,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <TextField fx:id="Username" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="usernameText" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                </children>
             </HBox>
             <HBox prefHeight="34.0" prefWidth="463.0" spacing="150.0">
@@ -31,7 +31,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <TextField fx:id="Email" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="emailText" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                </children>
             </HBox>
             <HBox prefHeight="36.0" prefWidth="586.0" spacing="150.0">
@@ -40,7 +40,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <DatePicker fx:id="Birthday" prefHeight="26.0" prefWidth="200.0" styleClass="datepicker" />
+                  <DatePicker fx:id="birthdayPicker" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 5;" styleClass="datepicker" />
                </children>
             </HBox>
             <HBox prefHeight="31.0" prefWidth="526.0" spacing="150.0">
@@ -49,7 +49,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <TextField fx:id="Nome" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="nameText" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                </children>
             </HBox>
             <HBox prefHeight="31.0" prefWidth="526.0" spacing="150.0">
@@ -58,7 +58,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <TextField fx:id="Cognome" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                  <TextField fx:id="surnameText" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                </children>
             </HBox>
             <HBox prefHeight="0.0" prefWidth="209.0" spacing="150.0">
@@ -67,7 +67,7 @@
                      <font>
                         <Font size="13.0" />
                      </font></Label>
-                  <PasswordField fx:id="Password" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+                  <PasswordField fx:id="passwordField" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
                </children>
             </HBox>
          </children>
@@ -77,12 +77,12 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="97.0" layoutY="358.0" prefHeight="46.0" prefWidth="442.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="358.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCancelButtonClick" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #ffa31a; -fx-background-radius: 15;" text="Indietro" textFill="#fffbfb">
+            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#onCancelButtonClick" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #ffa31a; -fx-background-radius: 15;" textFill="#fffbfb">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="buttonRegisterAccount" mnemonicParsing="false" onAction="#onRegisterAccountButtonClick" style="-fx-background-color: #e60000; -fx-background-radius: 15;" text="Registra account" textFill="WHITE">
+            <Button fx:id="buttonRegisterAccount" mnemonicParsing="false" onAction="#onRegisterAccountButtonClick" style="-fx-background-color: #e60000; -fx-background-radius: 15;" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

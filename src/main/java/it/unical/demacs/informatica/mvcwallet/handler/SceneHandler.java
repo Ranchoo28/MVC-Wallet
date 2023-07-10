@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import java.io.IOException;
+
 public class SceneHandler {
     private Stage stage;
     private Scene scene;
@@ -26,7 +27,7 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        System.out.println(SceneHandler.class.getResource(css + settingsHandler.theme));
+        //System.out.println(SceneHandler.class.getResource(css + settingsHandler.theme));
         for(String i: SettingsHandler.getInstance().themes)
             scene.getStylesheets().remove(String.valueOf(SceneHandler.class.getResource(css + i)));
 
@@ -36,14 +37,16 @@ public class SceneHandler {
     public void uploadLanguage(){
         languageHandler.updateLanguage(settingsHandler.language);
     }
+    public void uploadLoginLanguage(){ languageHandler.updateLanguage(settingsHandler.loginLanguage); }
 
-    public void init(Stage stage) throws IOException {
+    public void init(Stage stage){
         // Crea lo stage iniziale
         try {
             if (this.stage == null) {
                 this.stage = stage;
                 this.stage.setTitle("Wallet Login");
                 createLoginScene();
+
                 stage.setResizable(true);
                 stage.setScene(scene);
 
@@ -57,6 +60,7 @@ public class SceneHandler {
                     if (key.getCode().equals(KeyCode.F11))
                         stage.setFullScreen(!stage.isFullScreen());
                 });
+
             }
         } catch (Exception e){
             System.out.println("Error in SceneHandler.java (rows: 42-63) " + e);
@@ -65,29 +69,27 @@ public class SceneHandler {
 
     public void createSideBar() {
         try {
+            uploadLanguage();
             Parent root = loadRootFromFXML(view + "sidebar-view.fxml");
             if (scene == null) scene = new Scene(root);
             else scene.setRoot(root);
             stage.setTitle("MVC Wallet");
             uploadTheme();
-            uploadLanguage();
+
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 67-76) " + e);
         }
     }
 
-
     public void createLoginScene() {
         // Crea la scena del login
         try {
-            Parent root = loadRootFromFXML(view+"login-view.fxml");
-            if(scene == null)
-                scene = new Scene(root);
-            else
-                scene.setRoot(root);
+            uploadLoginLanguage();
+            Parent root = loadRootFromFXML(view + "login-view.fxml");
+            if(scene == null) scene = new Scene(root);
+            else scene.setRoot(root);
             stage.setTitle("MVC Wallet login");
             scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + "dark.css")));
-            languageHandler.updateLanguage("en");
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 82-93) " + e);
         }
@@ -96,12 +98,13 @@ public class SceneHandler {
     public void createChangePasswordFromForgot() {
         // Crea la scena del cambio password dal forgot
         try {
+            uploadLoginLanguage();
             if(scene == null)
                 scene = new Scene(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
             else
                 scene.setRoot(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
-            stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
 
+            stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 98-107) " + e);
         }
@@ -110,12 +113,13 @@ public class SceneHandler {
     public void createRegistrationScene() {
         // Crea la scena della registrazione
         try {
+            uploadLoginLanguage();
             if(scene == null)
                 scene = new Scene(loadRootFromFXML(view+"register-view.fxml"));
             else
                 scene.setRoot(loadRootFromFXML(view+"register-view.fxml"));
+
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("registrationTitleScene"));
-            if(stage.isFullScreen()) stage.setFullScreen(false);
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 112-121) " + e);
         }
@@ -124,12 +128,14 @@ public class SceneHandler {
     public void createForgotPasswordScene() {
         // Crea la scena per la password dimenticata
         try {
+            uploadLoginLanguage();
             if(scene == null)
                 scene = new Scene(loadRootFromFXML(view + "forgot-pass-view.fxml"));
             else
                 scene.setRoot(loadRootFromFXML(view + "forgot-pass-view.fxml"));
+
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
-            if(stage.isFullScreen()) stage.setFullScreen(false);
+
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 126-135) " + e);
         }

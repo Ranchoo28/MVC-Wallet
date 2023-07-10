@@ -1,8 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -24,11 +21,6 @@ public class LanguageHandler {
     }
 
     public ResourceBundle getBundle() {
-        if(bundle!=null) {
-            return bundle;
-        }
-        // FIXME
-        updateLanguage("it");
-        return getBundle();
+        return bundle;
     }
 }

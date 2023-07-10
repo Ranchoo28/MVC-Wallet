@@ -12,7 +12,7 @@ public class SettingsHandler {
     public String [] themes = {"dark.css","light.css"};
     public String username;
     public String [] settings;
-    public String format, page = "market", theme, language, currency;
+    public String format, page = "market", theme, language, currency, loginLanguage = "it";
     public boolean logged;
 
     SqlService sqlService = SqlService.getInstance();
@@ -30,8 +30,10 @@ public class SettingsHandler {
         settings = sqlService.serviceSettings(LoginController.username);
         format = settings[0];
         page = settings[1];
-        if(settings[2].equals("0")) logged = false;
-        if(settings[2].equals("1")) logged = true;
+        switch (settings[2]){
+            case "0" -> logged = false;
+            case "1" -> logged = true;
+        }
         theme = settings[3];
         language = settings[4];
         currency = settings[5];

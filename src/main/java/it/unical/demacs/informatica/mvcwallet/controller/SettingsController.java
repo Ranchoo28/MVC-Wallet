@@ -2,11 +2,8 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.ResourceBundle;
@@ -27,17 +24,15 @@ public class SettingsController {
     private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel;
     @FXML
     private Button applyButton, backButton;
-    @FXML
-    private AnchorPane colorPickerPane;
 
     @FXML
-    private MenuItem italianLanguage, englishLanguage,
+    private RadioMenuItem italianLanguage, englishLanguage, frenchLanguage, spanishLanguage, cosentinoLanguage,
             lightTheme, darkTheme, mvcTheme, marketPage, spotPage,
             h24Time, h12Time, blueTheme,
             eurCurrency, usdCurrency;
 
     @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
-            currencyMenuButton, languageMenuButton, themeMenuButton, colorPickerMenuButton;
+            currencyMenuButton, languageMenuButton, themeMenuButton;
     @FXML
     void on12hClick() { h12Choosen(); }
 
@@ -60,20 +55,17 @@ public class SettingsController {
     void onMvcClick() { mvcThemeChoosen(); }
     @FXML
     void onBlueClick() { blueThemeChoosen(); }
-    @FXML
-    void onCustomClick() {
-        customThemeChoosen();
-    }
-    @FXML
-    void onColorPickerClick(ActionEvent event) {
-        event.consume();
-    }
 
     @FXML
     void onItalianClick(){ italianLanguageChoosen(); }
-
     @FXML
     void onEnglishClick(){ englishLanguageChoosen(); }
+    @FXML
+    void onFrenchClick() { frenchLanguageChoosen(); }
+    @FXML
+    void onSpanishClick() { spanishLanguageChoosen(); }
+    @FXML
+    void onCosentinoClick() { cosentinoLanguageChoosen(); }
 
     @FXML
     void onEurClick(){ eurCurrencyChoosen(); }
@@ -103,9 +95,7 @@ public class SettingsController {
         }catch (Exception e){
             alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
             SettingsHandler.getInstance().defaultSettings();
-
         }
-
     }
 
     @FXML
@@ -132,82 +122,142 @@ public class SettingsController {
     }
 
     private void updateAllSettings(){
-        if(settingsHandler.format.equals("HH:mm:ss")) h24Choosen();
-        if(settingsHandler.format.equals("hh:mm:ss a")) h12Choosen();
+        switch (settingsHandler.format){
+            case "HH:mm:ss" -> h24Choosen();
+            case "hh:mm:ss a" -> h12Choosen();
+        }
 
-        if(settingsHandler.page.equals("spot")) spotChoosen();
-        if(settingsHandler.page.equals("market")) marketChoosen();
+        switch (settingsHandler.page){
+            case "spot" -> spotChoosen();
+            case "hh:mm:ss a" -> marketChoosen();
+        }
 
         if(settingsHandler.logged) stayLogged();
         if(!settingsHandler.logged) noStayLogged();
 
-        if(settingsHandler.theme.equals("mvc.css")) mvcThemeChoosen();
-        if(settingsHandler.theme.equals("dark.css")) darkThemeChoosen();
-        if(settingsHandler.theme.equals("light.css")) lightThemeChoosen();
-        if(settingsHandler.theme.equals("blue.css")) blueThemeChoosen();
+        switch(settingsHandler.theme){
+            case "mvc.css" -> mvcThemeChoosen();
+            case "dark.css" -> darkThemeChoosen();
+            case "light.css" -> lightThemeChoosen();
+            case "blue.css" -> blueThemeChoosen();
+        }
 
-        if(settingsHandler.language.equals("it")) italianLanguageChoosen();
+        switch(settingsHandler.language){
+            case "it" -> italianLanguageChoosen();
+            case "en" -> englishLanguageChoosen();
+            case "fr" -> frenchLanguageChoosen();
+            case "es" -> spanishLanguageChoosen();
+            case "cs" -> cosentinoLanguageChoosen();
+        }
 
-        if(settingsHandler.language.equals("en")) englishLanguageChoosen();
-
-        if(settingsHandler.currency.equals("eur")) eurCurrencyChoosen();
-        if(settingsHandler.currency.equals("usd")) usdCurrencyChoosen();
+        switch(settingsHandler.currency){
+            case "eur" -> eurCurrencyChoosen();
+            case "usd" -> usdCurrencyChoosen();
+        }
     }
 
     private void h12Choosen(){
+        h12Time.setSelected(true);
+        h24Time.setSelected(false);
         timeFormatMenuButton.setText("12H");
     }
 
     private void h24Choosen(){
+        h12Time.setSelected(false);
+        h24Time.setSelected(true);
         timeFormatMenuButton.setText("24H");
     }
 
     private void spotChoosen(){
+        spotPage.setSelected(true);
+        marketPage.setSelected(false);
         mainPageMenuButton.setText("Spot");
     }
 
     private void marketChoosen(){
+        spotPage.setSelected(false);
+        marketPage.setSelected(true);
         mainPageMenuButton.setText("Market");
     }
     private void blueThemeChoosen(){
+        mvcTheme.setSelected(false);
+        darkTheme.setSelected(false);
+        lightTheme.setSelected(false);
+        blueTheme.setSelected(true);
         themeMenuButton.setText("Blue");
     }
     private void mvcThemeChoosen(){
+        mvcTheme.setSelected(true);
+        darkTheme.setSelected(false);
+        lightTheme.setSelected(false);
+        blueTheme.setSelected(false);
         themeMenuButton.setText("MVC");
     }
     private void darkThemeChoosen(){
+        mvcTheme.setSelected(false);
+        darkTheme.setSelected(true);
+        lightTheme.setSelected(false);
+        blueTheme.setSelected(false);
         themeMenuButton.setText("Dark");
     }
     private void lightThemeChoosen(){
+        mvcTheme.setSelected(false);
+        darkTheme.setSelected(false);
+        lightTheme.setSelected(true);
+        blueTheme.setSelected(false);
         themeMenuButton.setText("Light");
     }
-    private void customThemeChoosen(){
-        colorPickerPane.getChildren().clear();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PathHandler.getInstance().getPathOfView() + "color-picker-view.fxml"));
-            AnchorPane pane = fxmlLoader.load();
-
-            colorPickerPane.getChildren().add(pane);
-            AnchorPane.setTopAnchor(pane, 0.0);
-            AnchorPane.setRightAnchor(pane, 0.0);
-            AnchorPane.setBottomAnchor(pane, 0.0);
-
-            colorPickerPane.setFocusTraversable(true);
-        } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 185-196) " + e);
-        }
-
-    }
     private void italianLanguageChoosen(){
+        italianLanguage.setSelected(true);
+        englishLanguage.setSelected(false);
+        frenchLanguage.setSelected(false);
+        spanishLanguage.setSelected(false);
+        cosentinoLanguage.setSelected(false);
         languageMenuButton.setText("Italiano");
     }
     private void englishLanguageChoosen(){
+        italianLanguage.setSelected(false);
+        englishLanguage.setSelected(true);
+        frenchLanguage.setSelected(false);
+        spanishLanguage.setSelected(false);
+        cosentinoLanguage.setSelected(false);
         languageMenuButton.setText("English");
     }
+    private void frenchLanguageChoosen(){
+        italianLanguage.setSelected(false);
+        englishLanguage.setSelected(false);
+        frenchLanguage.setSelected(true);
+        spanishLanguage.setSelected(false);
+        cosentinoLanguage.setSelected(false);
+        languageMenuButton.setText("Français");
+    }
+
+    private void spanishLanguageChoosen(){
+        italianLanguage.setSelected(false);
+        englishLanguage.setSelected(false);
+        frenchLanguage.setSelected(false);
+        spanishLanguage.setSelected(true);
+        cosentinoLanguage.setSelected(false);
+        languageMenuButton.setText("Español");
+    }
+
+    private void cosentinoLanguageChoosen(){
+        italianLanguage.setSelected(false);
+        englishLanguage.setSelected(false);
+        frenchLanguage.setSelected(false);
+        spanishLanguage.setSelected(false);
+        cosentinoLanguage.setSelected(true);
+        languageMenuButton.setText("Cosentino");
+
+    }
     private void eurCurrencyChoosen(){
+        eurCurrency.setSelected(true);
+        usdCurrency.setSelected(false);
         currencyMenuButton.setText("EUR");
     }
     private void usdCurrencyChoosen(){
+        eurCurrency.setSelected(false);
+        usdCurrency.setSelected(true);
         currencyMenuButton.setText("USD");
     }
     private void stayLogged(){
@@ -220,25 +270,28 @@ public class SettingsController {
     private String [] changeSettings(){
         String [] settings = new String[6];
 
-        if(timeFormatMenuButton.getText().equals("24H")) settings[0] = "HH:mm:ss";
-        if(timeFormatMenuButton.getText().equals("12H")) settings[0] = "hh:mm:ss a";
+        if(h24Time.isSelected()) settings[0] = "HH:mm:ss";
+        if(h12Time.isSelected()) settings[0] = "hh:mm:ss a";
 
-        if(mainPageMenuButton.getText().equals("Market")) settings[1] = "market";
-        if(mainPageMenuButton.getText().equals("Spot")) settings[1] = "spot";
+        if(marketPage.isSelected()) settings[1] = "market";
+        if(spotPage.isSelected()) settings[1] = "spot";
 
         if(stayLogged.isSelected()) settings[2] = "1";
         else settings[2] = "0";
 
-        if(themeMenuButton.getText().equals("MVC")) settings[3] = "mvc.css";
-        if(themeMenuButton.getText().equals("Dark")) settings[3] = "dark.css";
-        if(themeMenuButton.getText().equals("Light")) settings[3] = "light.css";
-        if(themeMenuButton.getText().equals("Blue")) settings[3] = "blue.css";
+        if(mvcTheme.isSelected()) settings[3] = "mvc.css";
+        if(darkTheme.isSelected()) settings[3] = "dark.css";
+        if(lightTheme.isSelected()) settings[3] = "light.css";
+        if(blueTheme.isSelected()) settings[3] = "blue.css";
 
-        if(languageMenuButton.getText().equals("Italiano")) settings[4] = "it";
-        if(languageMenuButton.getText().equals("English")) settings[4] = "en";
+        if(italianLanguage.isSelected()) settings[4] = "it";
+        if(englishLanguage.isSelected()) settings[4] = "en";
+        if(frenchLanguage.isSelected()) settings[4] = "fr";
+        if(spanishLanguage.isSelected()) settings[4] = "es";
+        if(cosentinoLanguage.isSelected()) settings[4] = "cs";
 
-        if(currencyMenuButton.getText().equals("EUR")) settings[5] = "eur";
-        if(currencyMenuButton.getText().equals("USD")) settings[5] = "usd";
+        if(eurCurrency.isSelected()) settings[5] = "eur";
+        if(usdCurrency.isSelected()) settings[5] = "usd";
 
         return settings;
     }
