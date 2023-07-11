@@ -1,9 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.RegexHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,6 +8,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.util.ResourceBundle;
@@ -33,6 +31,7 @@ public class ChangePassForgotController {
     private final RegexHandler regexHandler = RegexHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
+    private final String pathOfFont = PathHandler.getInstance().getPathOfFont();
     private boolean isGoodToken, isGoodPassword;
 
     @FXML
@@ -67,6 +66,9 @@ public class ChangePassForgotController {
 
     @FXML
     void initialize(){
+        Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 16);
+        eyeIcon.setText("\uF070");
+        eyeIcon.setFont(font);
         updloadLanguage();
         createTimeline();
     }
