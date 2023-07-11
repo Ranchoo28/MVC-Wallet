@@ -4,8 +4,6 @@ import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
@@ -14,7 +12,7 @@ import java.util.ResourceBundle;
 
 public class LoginController {
     @FXML
-    private Label showPassword;
+    private Label eyeIcon;
     @FXML
     private TextField usernameText, passwordText;
     @FXML
@@ -89,7 +87,6 @@ public class LoginController {
         SceneHandler.getInstance().createLoginScene();
 
     }
-
     @FXML
     void onSpanishClick(){
         languageMenuButton.setText("Español");
@@ -112,14 +109,14 @@ public class LoginController {
 
     @FXML
     void showPassword() {
-        showPassword.setText("\uF06E");
+        eyeIcon.setText("\uF06E");
         passwordText.setText(passwordField.getText());
         passwordField.setVisible(false);
         passwordText.setVisible(true);
     }
     @FXML
     void hidePassword(){
-        showPassword.setText("\uF070");
+        eyeIcon.setText("\uF070");
         passwordField.setText(passwordText.getText());
         passwordField.setVisible(true);
         passwordText.setVisible(false);
@@ -128,8 +125,8 @@ public class LoginController {
     @FXML
     void initialize(){
         Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 16);
-        showPassword.setText("\uF070");
-        showPassword.setFont(font);
+        eyeIcon.setText("\uF070");
+        eyeIcon.setFont(font);
         loginButton.setDisable(true);
         uploadLanguage();
         updateLanguage();

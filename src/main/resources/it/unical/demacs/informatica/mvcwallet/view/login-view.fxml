@@ -6,8 +6,8 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="global-color" stylesheets="@../css/mvc.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.LoginController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="global-color" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.LoginController">
    <children>
-      <HBox alignment="TOP_RIGHT" pickOnBounds="false" stylesheets="@../css/mvc.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="TOP_RIGHT" pickOnBounds="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuButton fx:id="languageMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="button" stylesheets="@../css/mvc.css">
+            <MenuButton fx:id="languageMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="button">
                <items>
                   <MenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
                      <graphic>
@@ -59,9 +59,9 @@
             <Insets right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <VBox alignment="CENTER" focusTraversable="true" pickOnBounds="false" stylesheets="@../css/mvc.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" focusTraversable="true" pickOnBounds="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" spacing="50.0" stylesheets="@../css/mvc.css">
+            <HBox alignment="CENTER" spacing="50.0">
                <children>
                   <VBox alignment="CENTER" spacing="30.0" stylesheets="@../css/mvc.css">
                      <children>
@@ -102,7 +102,7 @@
                               </PasswordField>
                               <HBox alignment="CENTER_RIGHT" focusTraversable="true" pickOnBounds="false">
                                  <children>
-                                    <Label fx:id="showPassword" alignment="CENTER" onMousePressed="#showPassword" onMouseReleased="#hidePassword" style="-fx-text-fill: grey;" text="A" textAlignment="CENTER">
+                                    <Label fx:id="eyeIcon" alignment="CENTER" onMousePressed="#showPassword" onMouseReleased="#hidePassword" style="-fx-text-fill: grey;" text="A" textAlignment="CENTER">
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>
@@ -130,7 +130,7 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <HBox alignment="TOP_CENTER" spacing="50.0" stylesheets="@../css/mvc.css">
+            <HBox alignment="TOP_CENTER" spacing="50.0">
                <children>
                   <Button fx:id="forgotPassButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onForgotPasswordClick" style="-fx-background-radius: 15;" textAlignment="CENTER" textFill="#fff9f9">
                      <cursor>

@@ -2,7 +2,6 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -30,7 +29,7 @@ public class ProfileController {
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
     String view = PathHandler.getInstance().getPathOfView();
-    String [] profileInfoArray =sqlHandler.getProfileInfo(LoginController.username);
+    String [] profileInfoArray = sqlHandler.getProfileInfo(LoginController.username);
 
 
     @FXML

@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 
 public class ChangePassForgotController {
     @FXML
+    private Label eyeIcon;
+    @FXML
     private Label newPassLabel;
     @FXML
     private PasswordField passwordField;
@@ -24,9 +26,6 @@ public class ChangePassForgotController {
     private TextField tokenField, passwordText;
     @FXML
     private Button changeButton, backButton;
-    @FXML
-    private CheckBox showPassBox;
-
 
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -37,22 +36,22 @@ public class ChangePassForgotController {
     private boolean isGoodToken, isGoodPassword;
 
     @FXML
-    void onShowClick() {
-        if(showPassBox.isSelected()){
-            passwordText.setText(passwordField.getText());
-            passwordField.setVisible(false);
-            passwordText.setVisible(true);
-        }
-        else {
-            passwordField.setText(passwordText.getText());
-            passwordField.setVisible(false);
-            passwordField.setVisible(true);
-        }
+    void showPassword() {
+        eyeIcon.setText("\uF06E");
+        passwordText.setText(passwordField.getText());
+        passwordField.setVisible(false);
+        passwordText.setVisible(true);
+    }
+    @FXML
+    void hidePassword(){
+        eyeIcon.setText("\uF070");
+        passwordField.setText(passwordText.getText());
+        passwordField.setVisible(true);
+        passwordText.setVisible(false);
     }
 
     @FXML
     void onChangeClick(){
-        if(showPassBox.isSelected()) passwordField.setText(passwordText.getText());
         if(sqlService.serviceForgotPassword(TokenController.email, passwordField.getText()))
             alertHandler.passChangedFromForgot();
         else{
@@ -121,7 +120,6 @@ public class ChangePassForgotController {
             changeButton.setText(bundle.getString("changePasswordButton"));
             newPassLabel.setText(bundle.getString("newPassLabel"));
             backButton.setText(bundle.getString("backButton"));
-            showPassBox.setText(bundle.getString("showPassLabel"));
         }
     }
 }
