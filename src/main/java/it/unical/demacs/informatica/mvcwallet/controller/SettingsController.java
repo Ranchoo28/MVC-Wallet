@@ -88,14 +88,7 @@ public class SettingsController {
     void onSaveClick(){
         try{
             String [] settings = changeSettings();
-            sqlService.serviceChangeSetting(
-                    LoginController.username,
-                    settings[0] ,
-                    settings[1],
-                    settings[2],
-                    settings[3],
-                    settings[4],
-                    settings[5]);
+            settingsHandler.uploadSettingOnDB(settings[0], settings[1], settings[2], settings[3], settings[4], settings[5]);
 
             if(settings[2].equals("0")) loggedHandler.stayLoggedWriting("null");
             if(settings[2].equals("1")) loggedHandler.stayLoggedWriting(LoginController.username);
@@ -211,9 +204,10 @@ public class SettingsController {
 
     private String [] changeSettings(){
         String [] settings = new String[6];
-
-        if(timeFormatMenuButton.getText().equals("24H")) settings[0] = "HH:mm:ss";
-        if(timeFormatMenuButton.getText().equals("12H")) settings[0] = "hh:mm:ss a";
+        switch (timeFormatMenuButton.getText()){
+            case "24H" -> settings[0] = "HH:mm:ss";
+            case "12H" -> settings[0] = "hh:mm:ss a";
+        }
 
         if(mainPageMenuButton.getText().equals("Market")) settings[1] = "market";
         if(mainPageMenuButton.getText().equals("Spot")) settings[1] = "spot";

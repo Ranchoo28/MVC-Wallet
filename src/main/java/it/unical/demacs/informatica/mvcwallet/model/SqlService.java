@@ -1,6 +1,8 @@
 package it.unical.demacs.informatica.mvcwallet.model;
 
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
+import javafx.scene.paint.Color;
+
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -137,5 +139,19 @@ public class SqlService {
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
         finally { queryExe.shutdown(); }
         return res[0];
+    }
+
+    public String [] serviceGetCustomTheme(String username) {
+        var ref = new Object() {
+            String[] colors = new String[7];
+        };
+
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> ref.colors = SqlHandler.getInstance().getCustomTheme(username));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return ref.colors;
     }
 }

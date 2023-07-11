@@ -51,4 +51,8 @@ public class SettingsHandler {
         updateSettings();
         SceneHandler.getInstance().createSideBar();
     }
+
+    public void uploadSettingOnDB(String time, String page, String logged, String theme, String language, String currency) {
+        sqlService.serviceChangeSetting(LoginController.username, time, page, logged, theme, language, currency);
+    }
 }

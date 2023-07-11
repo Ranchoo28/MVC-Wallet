@@ -443,4 +443,30 @@ public class SqlHandler {
         return false;
     }
 
+    public String [] getCustomTheme(String username){
+        try{
+            String [] colors = new String[7];
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "SELECT mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor FROM customTheme WHERE username = ?");
+            s.setString(1, username);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                colors[0] = rs.getString(1);
+                colors[1] = rs.getString(2);
+                colors[2] = rs.getString(3);
+                colors[3] = rs.getString(4);
+                colors[4] = rs.getString(5);
+                colors[5] = rs.getString(6);
+                colors[6] = rs.getString(7);
+            }
+            rs.close();
+            s.close();
+            closeConnection(con);
+            return colors;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

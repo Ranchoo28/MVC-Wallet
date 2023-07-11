@@ -1,9 +1,12 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
+import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.net.URISyntaxException;
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +15,7 @@ public class CustomThemeHandler {
    private CustomThemeHandler(){}
     private static final CustomThemeHandler instance = new CustomThemeHandler();
     public static CustomThemeHandler getInstance(){return instance;}
+    private final SqlService sqlService = SqlService.getInstance();
     private static final String pathOfCSS = PathHandler.getInstance().pathOfCSS;
     private final List<String > cssArray = new ArrayList<>();
 
@@ -24,6 +28,17 @@ public class CustomThemeHandler {
     public Color[] getColorsFromFile(){
         readCssFile();
         return new Color[]{mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor};
+    }
+
+    public void assigneColorsFromDB(){
+        String [] colors = sqlService.serviceGetCustomTheme(LoginController.username);
+        this.mainBgc = Color.valueOf(colors[0]);
+        this.secondBgc = Color.valueOf(colors[1]);
+        this.hoverColor = Color.valueOf(colors[2]);
+        this.buttonColor = Color.valueOf(colors[3]);
+        this.borderColor = Color.valueOf(colors[4]);
+        this.mainTxtColor = Color.valueOf(colors[5]);
+        this.secondTxtColor = Color.valueOf(colors[6]);
     }
 
     public void assignColorsFromFile(String mainBgc, String secondBgc, String hoverColor, String buttonColor, String borderColor, String mainTxtColor, String secondTxtColor) {

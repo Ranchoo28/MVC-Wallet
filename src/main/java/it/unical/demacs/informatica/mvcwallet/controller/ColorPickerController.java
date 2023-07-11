@@ -66,10 +66,12 @@ public class ColorPickerController{
     }
     @FXML
     void onApplyButton(){
+
         getColorsFromColorPicker();
         customThemeHandler.setTheme();
         settingsHandler.theme = "custom";
         sceneHandler.closeCAT();
+
     }
     @FXML
     void onCancButton(){
