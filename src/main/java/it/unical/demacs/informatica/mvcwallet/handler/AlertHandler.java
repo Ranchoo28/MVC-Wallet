@@ -53,6 +53,7 @@ public class AlertHandler {
 
     public void createRegistrationAlert(){
         languageHandler = LanguageHandler.getInstance();
+        sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
         icon.setIconColor(Paint.valueOf("blue"));
@@ -79,7 +80,7 @@ public class AlertHandler {
         alert.setTitle(languageHandler.getBundle().getString("changePasswordTitle"));
         alert.setContentText(message);
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) alert.close();
+        if(result.isEmpty()) sceneHandler.createChangePasswordFromForgot();
         else if(result.get() == ButtonType.OK) sceneHandler.createChangePasswordFromForgot();
     }
 
@@ -135,34 +136,4 @@ public class AlertHandler {
         else if(result.get() == ButtonType.OK) sceneHandler.createLoginScene();
     }
 
-    public void restartAppAlert() {
-        languageHandler = LanguageHandler.getInstance();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2e-email-send");
-        icon.getStyleClass().add("icons-color");
-        icon.setIconColor(Paint.valueOf("#4d79ff"));
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle(languageHandler.getBundle().getString("restartAppTitle"));
-        alert.setContentText(languageHandler.getBundle().getString("restartAppText"));
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) System.exit(0);
-        else if(result.get() == ButtonType.OK) System.exit(0);
-    }
-
-    public void createRestartAppAlertLan(String title, String text){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        FontIcon icon = new FontIcon("mdi2e-email-send");
-        icon.getStyleClass().add("icons-color");
-        icon.setIconColor(Paint.valueOf("#4d79ff"));
-        icon.setIconSize(45);
-        alert.setGraphic(icon);
-        alert.setHeaderText("");
-        alert.setTitle(title);
-        alert.setContentText(text);
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isEmpty()) System.exit(0);
-        else if(result.get() == ButtonType.OK) System.exit(0);
-    }
 }

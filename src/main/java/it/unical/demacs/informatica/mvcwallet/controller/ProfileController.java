@@ -30,6 +30,7 @@ public class ProfileController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
+    private final LoggedHandler logHandler = LoggedHandler.getInstance();
     String view = PathHandler.getInstance().getPathOfView();
 
     @FXML
@@ -54,6 +55,10 @@ public class ProfileController {
             alertHandler.createChangedAlert(languageHandler.getBundle().getString("surnameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("cognome non cambiato");
+
+        System.out.println(usernameTextField.getText());
+        logHandler.stayLoggedWriting(usernameTextField.getText());
+
     }
 
 
@@ -93,7 +98,7 @@ public class ProfileController {
                             && usernameTextField.getText().length()>=5
                             &&!usernameTextField.getText().equals(LoginController.username);
             System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
-            if (!isGoodUsername && !isGoodName && !isGoodUsername) {
+            if (!isGoodUsername && !isGoodName && !isGoodSurname) {
                 saveButton.setDisable(true);
             }else{
                 saveButton.setDisable(false);
@@ -104,7 +109,7 @@ public class ProfileController {
         firstTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             isGoodName = firstTextField.getText().length()>=2 && !firstTextField.getText().equals(nameSurnameArray[0]) ;
 
-            if (!isGoodUsername&&!isGoodName&&!isGoodUsername) {
+            if (!isGoodUsername && !isGoodName&& ! isGoodSurname) {
                 saveButton.setDisable(true);
             }else{
                 saveButton.setDisable(false);
@@ -116,7 +121,7 @@ public class ProfileController {
             isGoodSurname = lastTextField.getText().length()>=2 && !lastTextField.getText().equals(nameSurnameArray[1]) ;
 
 
-            if (!isGoodUsername&&!isGoodName&&!isGoodSurname) {
+            if (!isGoodUsername && !isGoodName && !isGoodSurname) {
                 saveButton.setDisable(true);
             }else{
                 saveButton.setDisable(false);

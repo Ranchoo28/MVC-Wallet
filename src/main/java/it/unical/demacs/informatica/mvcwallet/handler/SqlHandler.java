@@ -20,11 +20,11 @@ public class SqlHandler {
             String url = "jdbc:sqlite:progettouid.db";
             // Effettua la connessione al database
             con = DriverManager.getConnection(url);
-            if (con != null) System.out.println("Connection Succes");
+            //if (con != null) System.out.println("Connection Succes");
 
         } catch (SQLException e) {
-            System.out.println("Connection failed");
-            e.printStackTrace();
+            //System.out.println("Connection failed");
+            alertHandler.createErrorAlert("connessione fallita");
         }
         return con;
     }
@@ -32,11 +32,12 @@ public class SqlHandler {
     public void closeConnection(Connection con){
         try {
             con.close();
-            System.out.println("Connessione chiusa");
+            //System.out.println("Connessione chiusa");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     public boolean checkPassword(String username,String password) {
         try {
             con = newConnection();
@@ -44,18 +45,19 @@ public class SqlHandler {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (BCrypt.checkpw(password, rs.getString(1))) {
+                rs.close();
+                stmt.close();
                 closeConnection(con);
                 return true;
-            }else{
+            } else {
+                rs.close();
+                stmt.close();
                 closeConnection(con);
                 return false;
             }
-
-        }catch(SQLException e){
-                e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException();
         }
-        closeConnection(con);
-        return false;
     }
 
 
@@ -68,22 +70,24 @@ public class SqlHandler {
                 stmt1.setString(1, username);
                 ResultSet rs1 = stmt1.executeQuery();
                 if(BCrypt.checkpw(password, rs1.getString(1))) {
+                    rs1.close();
+                    stmt1.close();
                     closeConnection(con);
                     return 0;
                 }
                 else {
+                    rs1.close();
+                    stmt1.close();
                     closeConnection(con);
                     return 2;
                 }
+            }else{
+                closeConnection(con);
+                return 1;
             }
-            closeConnection(con);
-            return 2;
         } catch (SQLException e) {
-            closeConnection(con);
-            e.printStackTrace();
+            throw new RuntimeException();
         }
-        closeConnection(con);
-        return 3;
     }
 
     public boolean registerAccount(String email, String username, String password, LocalDate birthday, String nome, String cognome) {
@@ -101,27 +105,30 @@ public class SqlHandler {
                 stmt.setString(6, cognome);
                 stmt.executeUpdate();
                 createAccountSettings(username);
+
+                stmt.close();
                 closeConnection(con);
                 return true;
             } catch (SQLException e) {
-                alertHandler.createErrorAlert("Errore nella registrazione");
+                throw new RuntimeException();
             }
-        return false;
     }
 
     private void createAccountSettings(String username) {
         try{
             con = newConnection();
-            PreparedStatement s = con.prepareStatement("INSERT INTO settings values (?,?,?,?,?,?,?)");
+            PreparedStatement s = con.prepareStatement(
+                    "INSERT INTO settings (username, language, theme, time, page, logged, currency) VALUES (?,?,?,?,?,?,?)");
             s.setString(1, username);
             s.setString(2, "it");
-            s.setString(3, "dark.css");
+            s.setString(3, "mvc.css");
             s.setString(4, "HH:mm:ss");
             s.setString(5, "market");
             s.setInt(6, 0);
             s.setString(7, "eur");
-
             s.executeUpdate();
+
+            s.close();
             closeConnection(con);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -135,12 +142,17 @@ public class SqlHandler {
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
                 if (rs.getString(1).equals(username)){
+                    rs.close();
                     stmt.close();
                     closeConnection(con);
                     return true;
                 }
+            rs.close();
+            stmt.close();
             closeConnection(con);
-        }catch(SQLException e){ e.getMessage(); }
+        }catch(SQLException e){
+            throw new RuntimeException();
+        }
         return false;
     }
 
@@ -154,11 +166,18 @@ public class SqlHandler {
             ResultSet rs = stmt.executeQuery();
             while (rs.next())
                 if (rs.getString(1).equals(email)){
+                    stmt.close();
+                    rs.close();
                     closeConnection(con);
                     return true;
                 }
+
+            rs.close();
+            stmt.close();
             closeConnection(con);
-        }catch(SQLException e){ e.getMessage(); }
+        }catch(SQLException e){
+            throw new RuntimeException();
+        }
         return false;
     }
 
@@ -171,9 +190,13 @@ public class SqlHandler {
                 stmt1.setString(1,BCrypt.hashpw(newPassword, BCrypt.gensalt(12)));
                 stmt1.setString(2,email);
                 stmt1.executeUpdate();
+
+                stmt1.close();
                 closeConnection(con);
                 return true;
-            }catch(SQLException e){ e.getMessage(); }
+            }catch(SQLException e){
+                throw new RuntimeException();
+            }
         }
         return false;
     }
@@ -185,18 +208,21 @@ public class SqlHandler {
             PreparedStatement stmt = con.prepareStatement("SELECT name, surname FROM users WHERE username = ?");
             stmt.setString(1,username);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
+
+            while(rs.next()){
                 array[0] = rs.getString(1);
                 array[1] = rs.getString(2);
-                closeConnection(con);
-                return array;
             }
+
+
+            rs.close();
+            stmt.close();
             closeConnection(con);
+            return array;
+
         }catch(SQLException e){
-            e.getMessage();
+            throw new RuntimeException();
         }
-        closeConnection(con);
-        return null;
     }
 
     public boolean checkUsername(String username) {
@@ -207,12 +233,16 @@ public class SqlHandler {
             while (rs.next())
                 if (rs.getString(1).equals(username)) {
                     stmt.close();
+                    rs.close();
                     closeConnection(con);
                     return true;
                 }
+
+            stmt.close();
+            rs.close();
             closeConnection(con);
         } catch (SQLException e) {
-            e.getMessage();
+            throw new RuntimeException();
         }
         return false;
     }
@@ -225,14 +255,17 @@ public class SqlHandler {
             stm.setString(1, newUsername );
             stm.setString(2, oldUsername);
             if(stm.executeUpdate() == 1){
+                stm.close();
                 closeConnection(con);
                 return true;
             }
 
            if(stm.executeUpdate() == 0){
+               stm.close();
                closeConnection(con);
                return false;
            }
+            stm.close();
             closeConnection(con);
             return true;
         } catch (SQLException e) {
@@ -247,14 +280,17 @@ public class SqlHandler {
             stm.setString(1, newName );
             stm.setString(2,username);
             if(stm.executeUpdate() == 1){
+                stm.close();
                 closeConnection(con);
                 return true;
             }
 
             if(stm.executeUpdate() == 0){
+                stm.close();
                 closeConnection(con);
                 return false;
             }
+            stm.close();
             closeConnection(con);
             return true;
         } catch (SQLException e) {
@@ -268,15 +304,17 @@ public class SqlHandler {
             stm.setString(1, surname );
             stm.setString(2,username);
             if(stm.executeUpdate() == 1){
+                stm.close();
                 closeConnection(con);
                 return true;
             }
 
             if(stm.executeUpdate() == 0){
+                stm.close();
                 closeConnection(con);
                 return false;
             }
-
+            stm.close();
             closeConnection(con);
             return true;
         } catch (SQLException e) {
@@ -292,14 +330,16 @@ public class SqlHandler {
             stm.setString(2,username);
             if(stm.executeUpdate() == 1){
                 closeConnection(con);
+                stm.close();
                 return true;
             }
 
             if(stm.executeUpdate() == 0){
                 closeConnection(con);
+                stm.close();
                 return false;
             }
-
+            stm.close();
             closeConnection(con);
             return true;
         } catch (SQLException e) {
@@ -315,13 +355,17 @@ public class SqlHandler {
             s.setString(1, username);
 
             ResultSet rs = s.executeQuery();
-            settings[0] = rs.getString(1);
-            settings[1] = rs.getString(2);
-            settings[2] = rs.getString(3);
-            settings[3] = rs.getString(4);
-            settings[4] = rs.getString(5);
-            settings[5] = rs.getString(6);
+            while(rs.next()){
+                settings[0] = rs.getString(1);
+                settings[1] = rs.getString(2);
+                settings[2] = rs.getString(3);
+                settings[3] = rs.getString(4);
+                settings[4] = rs.getString(5);
+                settings[5] = rs.getString(6);
+            }
 
+
+            rs.close();
             closeConnection(con);
             return settings;
         } catch (SQLException e) {
@@ -360,7 +404,7 @@ public class SqlHandler {
             closeConnection(con);
             } catch (SQLException e) {
                 System.out.println("Error: Logout");
-                e.printStackTrace();
+                throw new RuntimeException();
             }
     }
 
@@ -373,7 +417,9 @@ public class SqlHandler {
             s.executeUpdate();
             closeConnection(con);
         } catch (SQLException e) {
+            closeConnection(con);
             System.out.println("Error: SqlHandler.java rows: 334-345");
+            throw new RuntimeException();
 
         }
     }
@@ -390,6 +436,7 @@ public class SqlHandler {
                 }
             }
         } catch (SQLException e) {
+            closeConnection(con);
             throw new RuntimeException(e);
         }
         closeConnection(con);
