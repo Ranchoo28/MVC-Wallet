@@ -3,13 +3,14 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SettingsController {
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -38,7 +39,7 @@ public class SettingsController {
     @FXML
     private MenuItem itaMenuItem, engMenuItem, freMenuItem, spaMenuItem, cosMenuItem;
     @FXML
-    private MenuItem darkMenuItem, lightMenuItem, mvcMenuItem, blueMenuItem, customMenuItem, cpMenuItem;
+    private MenuItem backMenuItem, darkMenuItem, lightMenuItem, mvcMenuItem, blueMenuItem, customMenuItem, cpMenuItem;
 
     @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
             currencyMenuButton, languageMenuButton;
@@ -67,20 +68,17 @@ public class SettingsController {
     @FXML
     void onBlueClick() { blueThemeChoosen(); }
     @FXML
-    void onTmbClick(){
-        System.out.println("CISO");
-        if(!themeMenuButton.getText().equals("Custom"))
-            themeChooser();
+    void onBackClick(){
+        themeChooser();
     }
     @FXML
     void onCustomClick() {
-        if(!themeMenuButton.getText().equals("Custom"))
-            themeEditor();
-        else
-            themeChooser();
+        themeEditor();
     }
     void themeChooser(){
+        themeMenuButton.setText(settingsHandler.theme);
         cpMenuItem.setVisible(false);
+        backMenuItem.setVisible(cpMenuItem.isVisible());
         darkMenuItem.setVisible(!cpMenuItem.isVisible());
         lightMenuItem.setVisible(!cpMenuItem.isVisible());
         mvcMenuItem.setVisible(!cpMenuItem.isVisible());
@@ -95,6 +93,7 @@ public class SettingsController {
         blueMenuItem.setVisible(cpMenuItem.isVisible());
         customMenuItem.setVisible(cpMenuItem.isVisible());
         cpMenuItem.setVisible(true);
+        backMenuItem.setVisible(cpMenuItem.isVisible());
         customThemeChoosen();
     }
     @FXML
@@ -103,7 +102,7 @@ public class SettingsController {
     }
 
     @FXML
-    void onItalianClick(){ italianLanguageChoosen(); }
+    void onItalianClick(){italianLanguageChoosen();}
     @FXML
     void onEnglishClick(){ englishLanguageChoosen(); }
     @FXML
@@ -117,8 +116,9 @@ public class SettingsController {
     void onEurClick(){ eurCurrencyChoosen(); }
 
     @FXML
-    void onUsdClick(){ usdCurrencyChoosen(); }
-
+    void handleMenuValidation(ActionEvent event) {
+        timeFormatMenuButton.show();
+    }
 
     @FXML
     void onSaveClick(){
@@ -150,7 +150,6 @@ public class SettingsController {
     void onCancelClick(){
         sceneHandler.createSideBar();
     }
-
     @FXML
     void initialize(){
         updateLanguage();
@@ -215,6 +214,7 @@ public class SettingsController {
     }
     private void darkThemeChoosen(){
         themeMenuButton.setText("Dark");
+
     }
     private void lightThemeChoosen(){
         themeMenuButton.setText("Light");

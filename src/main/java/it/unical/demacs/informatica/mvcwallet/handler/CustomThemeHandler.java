@@ -23,15 +23,21 @@ public class CustomThemeHandler {
         for(String i: cssArray)
             System.out.println(i);
     }
+    public String[] getColorsFromFile(){
+        readCssFile();
+        return new String[]{mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor};
+    }
 
-    private void assignColors(String mainBgc, String secondBgc, String hoverColor, String buttonColor, String borderColor, String mainTxtColor, String secondTxtColor){
-        this.mainBgc = "#"+mainBgc+";";
-        this.secondBgc = "#"+secondBgc+";";
-        this.hoverColor = "#"+hoverColor+";";
-        this.buttonColor = "#"+buttonColor+";";
-        this.borderColor = "#"+borderColor+";";
-        this.mainTxtColor = "#"+mainTxtColor+";";
-        this.secondTxtColor = "#"+secondTxtColor+";";
+    public void assignColors(String mainBgc, String secondBgc, String hoverColor, String buttonColor, String borderColor, String mainTxtColor, String secondTxtColor){
+        this.mainBgc = mainBgc.replace(" ", "").replace(";","");
+        this.secondBgc = secondBgc.replace(" ", "").replace(";","");
+        this.hoverColor = hoverColor.replace(" ", "").replace(";","");
+        this.buttonColor = buttonColor.replace(" ", "").replace(";","");
+        this.borderColor = borderColor.replace(" ", "").replace(";","");
+        this.mainTxtColor = mainTxtColor.replace(" ", "").replace(";","");
+        this.secondTxtColor = secondTxtColor.replace(" ", "").replace(";","");
+        changeColors();
+
     }
     private void changeColors(){
         if(!cssArray.isEmpty()){
@@ -39,17 +45,17 @@ public class CustomThemeHandler {
             cssArray.add(6, mainTxtColor); // Testo primario
             cssArray.add(10, buttonColor); // Pulsante primario
             cssArray.add(12, mainTxtColor); // Testo Primario
-            cssArray.add(16, secondBgc); // Sfondo di evidenziazione
+            cssArray.add(16, hoverColor); // Sfondo di evidenziazione
             cssArray.add(18, secondTxtColor); // Testo secondario
             cssArray.add(22, secondBgc); // Sfondo secondario
             cssArray.add(26, mainTxtColor); // Testo primario
             cssArray.add(30, mainTxtColor); // Testo primario
-            cssArray.add(34, secondBgc); // Sfondo di evidenziazione
+            cssArray.add(34, hoverColor); // Sfondo di evidenziazione
             cssArray.add(39, secondTxtColor); // Testo secondario
             cssArray.add(43, secondTxtColor); // Testo secondario
             cssArray.add(47, secondBgc); // Sfondo secondario
             cssArray.add(49, borderColor); // Bordo
-            cssArray.add(61, secondBgc); // Sfondo di evidenziazione
+            cssArray.add(61, hoverColor); // Sfondo di evidenziazione
             cssArray.add(66, secondTxtColor); // Testo secondario
             cssArray.add(70, mainTxtColor); // Testo primario
             /*
@@ -61,7 +67,7 @@ public class CustomThemeHandler {
             cssArray.add(85, secondBgc); // Sfondo secondario
             cssArray.add(90, mainTxtColor); // Testo primario
             cssArray.add(94, mainTxtColor); // Testo primario
-            cssArray.add(98, secondBgc); // Sfondo di evidenziazione
+            cssArray.add(98, hoverColor); // Sfondo di evidenziazione
             cssArray.add(103, secondTxtColor); // Testo secondario
             cssArray.add(107, secondTxtColor); // Testo secondario
         }
@@ -79,8 +85,9 @@ public class CustomThemeHandler {
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
+        assignColors(cssArray.get(2),cssArray.get(22),cssArray.get(16),cssArray.get(10),cssArray.get(49),cssArray.get(6),cssArray.get(18));
     }
-    private void writeCssFile(){
+    public void writeCssFile(){
         try {
             File file = new File(Objects.requireNonNull(getClass().getResource(pathOfCSS + "custom.css")).toURI());
             FileReader stream = new FileReader(file);
