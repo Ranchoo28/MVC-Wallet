@@ -418,7 +418,7 @@ public class SqlHandler {
             closeConnection(con);
         } catch (SQLException e) {
             closeConnection(con);
-            System.out.println("Error: SqlHandler.java rows: 334-345");
+            System.out.println("Error: SqlHandler.java rows: 334-345 " + e);
             throw new RuntimeException();
 
         }
