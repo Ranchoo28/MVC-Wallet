@@ -13,12 +13,13 @@ import com.google.gson.*;
 
 public class APIsHandler {
     private static final TimeStampHandler timeStampHandler = TimeStampHandler.getInstance();
-
     private static final APIsHandler instance = new APIsHandler();
-
     public static APIsHandler getInstance() {
         return instance;
     }
+
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
 
     /*Coingecko API*/
     String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/";
@@ -60,7 +61,7 @@ public class APIsHandler {
             connection.setRequestMethod("GET");
             responseCode = connection.getResponseCode();
         } catch (Exception e) {
-            System.out.println("Connessione fallita");
+            alertHandler.createErrorAlert(bundle.getString("connectionErrorAlert"));
         }
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -74,7 +75,7 @@ public class APIsHandler {
                 }
                 reader.close();
             } catch (Exception e) {
-                System.out.println("Risposta dall'API non valida");
+                alertHandler.createErrorAlert(bundle.getString("connectionErrorAlert"));
             }
 
             try {
@@ -103,7 +104,7 @@ public class APIsHandler {
         } else if(responseCode == HttpURLConnection.HTTP_NOT_FOUND){
             System.out.println("ERROR "+responseCode+": Coin not found");
         } else if(responseCode == 429){
-            System.out.println("ERROR "+responseCode+": The API received an excessive number of requests. Please wait some minutes and restart MVC Wallet.");
+            alertHandler.createErrorAlert(bundle.getString("requestErrorAlert"));
         }
         return dictionary;
     }

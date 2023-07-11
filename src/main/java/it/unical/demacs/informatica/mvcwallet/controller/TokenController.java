@@ -8,6 +8,7 @@ import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -73,8 +74,16 @@ public class TokenController {
     }
 
     private void updateLanguage(){
-        submitButton.setText(bundle.getString("submitButton"));
-        backButton.setText(bundle.getString("backButton"));
+        ResourceBundle bundle = null;
+        try {
+            bundle = lanHandler.getBundle();
+        } catch (Exception e){
+            alertHandler.createErrorAlert("Error in loading the language");
+        }
+        if(bundle!=null) {
+            submitButton.setText(bundle.getString("submitButton"));
+            backButton.setText(bundle.getString("backButton"));
+        }
     }
 
 }

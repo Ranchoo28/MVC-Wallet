@@ -110,14 +110,12 @@ public class ProfileController {
     }
 
 
-
-
     private void updateLanguage(){
         ResourceBundle bundle = null;
         try {
             bundle = languageHandler.getBundle();
         } catch (Exception e){
-            System.out.println("Error in ProfileController.java (rows: 166-171) " + e);
+            alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null) {
             saveButton.setText(bundle.getString("applyButton"));
@@ -125,9 +123,6 @@ public class ProfileController {
             changePassButton.setText(bundle.getString("changePasswordButton"));
             nameLabel.setText(bundle.getString("nameLabel"));
             surnameLabel.setText(bundle.getString("surnameLabel"));
-        } else {
-            System.out.println("MarketController.java: bundle is null");
         }
-
     }
 }

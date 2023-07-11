@@ -23,6 +23,7 @@ public class SideBarController {
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final SettingsHandler settingsController = SettingsHandler.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
     private final Timer Timer = new Timer();
 
     @FXML
@@ -116,7 +117,7 @@ public class SideBarController {
         try {
             font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 115-121) " + e);
+            alertHandler.createErrorAlert(bundle.getString("sidebarErrorAlert"));
         }
         // Icona per l'utente
         userIcon.setText("\uF007");
@@ -158,7 +159,7 @@ public class SideBarController {
             String last = nameSurname[1];
             userLabel.setText(" " + first + " " + last);
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 139-146) " + e);
+            throw new RuntimeException();
         }
     }
 
@@ -189,7 +190,7 @@ public class SideBarController {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 166-178) " + e);
+            alertHandler.createErrorAlert(bundle.getString("menuErrorAlert"));
         }
     }
 
@@ -198,7 +199,7 @@ public class SideBarController {
         try {
             bundle = languageHandler.getBundle();
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 184-188) " + e);
+            alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null) {
             settingsLabel.setText(bundle.getString("settingsLabel"));

@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import it.unical.demacs.informatica.mvcwallet.handler.CoinsHandler;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
 public class MarketController {
     private final BuildBarsService buildBarsService = BuildBarsService.getInstance();
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final List<String> coins = CoinsHandler.getInstance().getCoinNames();
     private final List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
     private final List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
@@ -92,13 +94,11 @@ public class MarketController {
         try {
             bundle = languageHandler.getBundle();
         } catch (Exception e){
-            System.out.println("Error in MarketController.java (rows: 103-107) " + e);
+            alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null) {
             currencyLabel.setText(bundle.getString("currencyLabel"));
             timeLabel.setText(bundle.getString("timeLabel"));
-        } else {
-            System.out.println("MarketController.java: bundle is null");
         }
     }
 

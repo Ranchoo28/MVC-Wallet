@@ -3,19 +3,18 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.scene.paint.Color;
-
 import java.io.*;
 import java.net.URISyntaxException;
-import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class CustomThemeHandler {
-   private CustomThemeHandler(){}
+    private CustomThemeHandler(){}
     private static final CustomThemeHandler instance = new CustomThemeHandler();
     public static CustomThemeHandler getInstance(){return instance;}
     private final SqlService sqlService = SqlService.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
     private static final String pathOfCSS = PathHandler.getInstance().pathOfCSS;
     private final List<String > cssArray = new ArrayList<>();
 
@@ -102,6 +101,8 @@ public class CustomThemeHandler {
             while(buff.ready()){
                cssArray.add(buff.readLine());
             }
+            buff.close();
+            stream.close();
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
@@ -117,8 +118,9 @@ public class CustomThemeHandler {
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
+            stream.close();
         } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
+            alertHandler.createErrorAlert("customCssErrorAlert");
         }
     }
     public static String colorToHexString(Color color) {

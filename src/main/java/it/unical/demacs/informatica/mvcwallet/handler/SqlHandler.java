@@ -19,11 +19,10 @@ public class SqlHandler {
             String url = "jdbc:sqlite:progettouid.db";
             // Effettua la connessione al database
             con = DriverManager.getConnection(url);
-            //if (con != null) System.out.println("Connection Succes");
+            if (con != null) System.out.println("Connection Succes");
 
         } catch (SQLException e) {
-            //System.out.println("Connection failed");
-            alertHandler.createErrorAlert("connessione fallita");
+            System.out.println("Connection failed");
         }
         return con;
     }
@@ -31,7 +30,7 @@ public class SqlHandler {
     public void closeConnection(Connection con){
         try {
             con.close();
-            //System.out.println("Connessione chiusa");
+            System.out.println("Connessione chiusa");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

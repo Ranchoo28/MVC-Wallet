@@ -9,6 +9,7 @@ public class LanguageHandler {
     private LanguageHandler(){}
     private static final LanguageHandler instance = new LanguageHandler();
     public static LanguageHandler getInstance(){return instance;}
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     public void updateLanguage(String language){
         Locale locale = new Locale(language);
@@ -16,7 +17,7 @@ public class LanguageHandler {
         try {
             bundle = ResourceBundle.getBundle(path + locale);
         } catch (Exception e){
-            System.out.println("Error in LanguageHandler.java (rows: 21-25) " + e);
+            alertHandler.createErrorAlert("Error in loading the language");
         }
     }
 

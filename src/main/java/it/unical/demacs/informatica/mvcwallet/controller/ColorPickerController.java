@@ -1,12 +1,12 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
-import it.unical.demacs.informatica.mvcwallet.handler.CustomThemeHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
-import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.paint.Color;
+
+import java.util.ResourceBundle;
 
 public class ColorPickerController{
 
@@ -39,6 +39,8 @@ public class ColorPickerController{
     final static CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
     final static SceneHandler sceneHandler = SceneHandler.getInstance();
     final static SettingsHandler settingsHandler = SettingsHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
 
     void getColorsFromColorPicker(){
         Color mainBgc = mbgColorPicker.getValue();
@@ -61,18 +63,18 @@ public class ColorPickerController{
             mntColorPicker.setValue(colors[5]);
             sntColorPicker.setValue(colors[6]);
         } catch (Exception e){
-            System.out.println("Error in ColorPickerController.java (rows: 47-58) " + e);
+            alertHandler.createErrorAlert(bundle.getString("colorPickerErrorAlert"));
         }
     }
     @FXML
     void onApplyButton(){
-
         getColorsFromColorPicker();
         customThemeHandler.setTheme();
         settingsHandler.theme = "custom";
         sceneHandler.closeCAT();
 
     }
+
     @FXML
     void onCancButton(){
         sceneHandler.closeCAT();

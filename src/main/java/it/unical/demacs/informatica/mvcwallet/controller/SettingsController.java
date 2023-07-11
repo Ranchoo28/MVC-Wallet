@@ -169,10 +169,8 @@ public class SettingsController {
     private void mvcThemeChoosen(){
         themeMenuButton.setText("MVC");
     }
-    private void blueThemeChoosen(){
-        themeMenuButton.setText("Blue");
-    }
-    private void setCustomTheme() { themeMenuButton.setText("Custom");}
+    private void blueThemeChoosen(){ themeMenuButton.setText("Blue"); }
+    private void setCustomTheme() { themeMenuButton.setText("Custom"); }
     private void customThemeChoosen() throws IOException { sceneHandler.openCAT(); }
     private void italianLanguageChoosen(){
         languageMenuButton.setText("Italiano");
@@ -204,31 +202,40 @@ public class SettingsController {
 
     private String [] changeSettings(){
         String [] settings = new String[6];
+
         switch (timeFormatMenuButton.getText()){
             case "24H" -> settings[0] = "HH:mm:ss";
             case "12H" -> settings[0] = "hh:mm:ss a";
         }
 
-        if(mainPageMenuButton.getText().equals("Market")) settings[1] = "market";
-        if(mainPageMenuButton.getText().equals("Spot")) settings[1] = "spot";
+        switch (mainPageMenuButton.getText()){
+            case "Market" -> settings[1] = "market";
+            case "Spot" -> settings[1] = "spot";
+        }
 
         if(stayLogged.isSelected()) settings[2] = "1";
         else settings[2] = "0";
 
-        if(themeMenuButton.getText().equals("MVC")) settings[3] = "mvc.css";
-        if(themeMenuButton.getText().equals("Dark")) settings[3] = "dark.css";
-        if(themeMenuButton.getText().equals("Light")) settings[3] = "light.css";
-        if(themeMenuButton.getText().equals("Blue")) settings[3] = "blue.css";
-        if(themeMenuButton.getText().equals("Custom")) settings[3] = "custom.css";
+        switch (themeMenuButton.getText()){
+            case "MVC" -> settings[3] = "mvc.css";
+            case "Dark" -> settings[3] = "dark.css";
+            case "Light" -> settings[3] = "light.css";
+            case "Blue" -> settings[3] = "blue.css";
+            case "Custom" -> settings[3] = "custom.css";
+        }
 
-        if(languageMenuButton.getText().equals("Italiano")) settings[4] = "it";
-        if(languageMenuButton.getText().equals("English")) settings[4] = "en";
-        if(languageMenuButton.getText().equals("Español")) settings[4] = "es";
-        if(languageMenuButton.getText().equals("Français")) settings[4] = "fr";
-        if(languageMenuButton.getText().equals("Cosentino")) settings[4] = "cs";
+        switch (languageMenuButton.getText()){
+            case "Italiano" -> settings[4] = "it";
+            case "English" -> settings[4] = "en";
+            case "Español" -> settings[4] = "es";
+            case "Français" -> settings[4] = "fr";
+            case "Cosentino" -> settings[4] = "cs";
+        }
 
-        if(currencyMenuButton.getText().equals("EUR")) settings[5] = "eur";
-        if(currencyMenuButton.getText().equals("USD")) settings[5] = "usd";
+        switch(currencyMenuButton.getText()){
+            case "EUR" -> settings[5] = "eur";
+            case "USD" -> settings[5] = "usd";
+        }
 
         return settings;
     }
@@ -238,7 +245,7 @@ public class SettingsController {
         try {
             bundle = LanguageHandler.getInstance().getBundle();
         } catch (Exception e){
-            System.out.println("Error in SideBarController.java (rows: 101-105) " + e);
+            alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null){
             pageLabel.setText(bundle.getString("pageLabel"));

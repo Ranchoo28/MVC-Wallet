@@ -71,8 +71,17 @@ public class LoggedHandler {
             FileReader stream = new FileReader("stayLogged.txt");
             BufferedReader buff = new BufferedReader(stream);
             String username = buff.readLine();
-            if(username.equals("null")) return username;
-            else return decryptUsername(username, myKey);
+            if(username.equals("null")) {
+                stream.close();
+                buff.close();
+                return username;
+            }
+            else {
+                stream.close();
+                buff.close();
+                return decryptUsername(username, myKey);
+            }
+
         }catch (IOException e){
             System.out.println("Error in LoggedHandler.java (rows: 70-76) "+ e);
         }
@@ -86,9 +95,8 @@ public class LoggedHandler {
             PrintWriter file = new PrintWriter(stream);
             if(username.equals("null")) file.println(username);
             else file.println(encryptUsername(username, myKey));
-
-            file.close();
             stream.close();
+            file.close();
         }catch (IOException e){
             System.out.println("Error in LoggedHandler.java (rows: 82-91) " + e);
         }

@@ -141,7 +141,7 @@ public class RegistrationController {
                 System.out.println(SettingsHandler.getInstance().loginLanguage);
                 bundle = lanHandler.getBundle();
             } catch (Exception e) {
-                System.out.println("Error in SideBarController.java (rows: 184-188) " + e);
+                alertHandler.createErrorAlert("Error in loading the language");
             }
             if (bundle != null) {
                 buttonRegisterAccount.setText(bundle.getString("registerButton"));
@@ -149,8 +149,6 @@ public class RegistrationController {
                 nameLabel.setText(bundle.getString("nameLabel"));
                 surnameLabel.setText(bundle.getString("surnameLabel"));
                 birthdayLabel.setText(bundle.getString("birthdayLabel"));
-            } else {
-                System.out.println("SideBarController.java: bundle is null");
             }
         }
 }

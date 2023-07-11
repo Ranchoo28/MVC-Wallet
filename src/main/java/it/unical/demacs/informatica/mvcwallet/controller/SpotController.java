@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
+import it.unical.demacs.informatica.mvcwallet.handler.AlertHandler;
 import it.unical.demacs.informatica.mvcwallet.handler.LanguageHandler;
 import it.unical.demacs.informatica.mvcwallet.model.Coin;
 import javafx.collections.FXCollections;
@@ -15,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import java.util.ResourceBundle;
 
 public class SpotController {
-
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     @FXML
     private TableColumn<Coin, Double> allColumn;
@@ -56,21 +57,18 @@ public class SpotController {
         tableCoins.setItems(A);
     }
 
-    private void updateLanguage(){
+    private void updateLanguage() {
         ResourceBundle bundle = null;
         try {
             bundle = languageHandler.getBundle();
-        } catch (Exception e){
-            System.out.println("Error in SpotController.java (rows: 60-64) " + e);
+        } catch (Exception e) {
+            alertHandler.createErrorAlert("Error in loading the language");
         }
-        if(bundle!=null) {
+        if (bundle != null) {
             depositButton.setText(bundle.getString("depositButton"));
             withdrawButton.setText(bundle.getString("withdrawButton"));
             totalText.setText(bundle.getString("totalLabel"));
-        } else {
-            System.out.println("SpotController.java: bundle is null");
         }
     }
-
 }
 

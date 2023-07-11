@@ -1,7 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.model;
 
-import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -22,7 +20,6 @@ public class BuildBarsService {
 
         ExecutorService queryExe = Executors.newSingleThreadExecutor();
         Future<?> future = queryExe.submit(() -> ref.bars = barBuilder.make(coin, currency, timeframe));
-
         try { future.get(); }
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
         finally { queryExe.shutdown(); }

@@ -59,12 +59,4 @@ public class BarData implements Serializable {
                 " Low: " + low +
                 " Close: " + close;
     }
-
-
-
-
-
-
-
-
 }
