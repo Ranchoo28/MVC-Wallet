@@ -28,17 +28,15 @@ public class SceneHandler {
         return fxmlLoader.load();
     }
 
-    public void uploadTheme(){
+    public void setTheme(){
         //System.out.println(SceneHandler.class.getResource(css + settingsHandler.theme));
         for(String i: SettingsHandler.getInstance().themes)
             scene.getStylesheets().remove(String.valueOf(SceneHandler.class.getResource(css + i)));
         scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
     }
 
-    public void uploadLanguage(){
-        languageHandler.updateLanguage(settingsHandler.language);
-    }
-    public void uploadLoginLanguage(){ languageHandler.updateLanguage(settingsHandler.loginLanguage); }
+    public void setLanguage(){ languageHandler.updateLanguage(settingsHandler.language); }
+    public void setLoginLanguage(){ languageHandler.updateLanguage(settingsHandler.loginLanguage); }
 
     public void init(Stage stage){
         // Crea lo stage iniziale
@@ -83,13 +81,12 @@ public class SceneHandler {
 
     public void createSideBar() {
         try {
-            uploadLanguage();
+            setLanguage();
             Parent root = loadRootFromFXML(view + "sidebar-view.fxml");
             if (scene == null) scene = new Scene(root);
             else scene.setRoot(root);
             stage.setTitle("MVC Wallet");
-            uploadTheme();
-
+            setTheme();
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 67-76) " + e);
         }
@@ -98,7 +95,7 @@ public class SceneHandler {
     public void createLoginScene() {
         // Crea la scena del login
         try {
-            uploadLoginLanguage();
+            setLoginLanguage();
             Parent root = loadRootFromFXML(view + "login-view.fxml");
             if(scene == null) scene = new Scene(root);
             else scene.setRoot(root);
@@ -112,7 +109,7 @@ public class SceneHandler {
     public void createChangePasswordFromForgot() {
         // Crea la scena del cambio password dal forgot
         try {
-            uploadLoginLanguage();
+            setLoginLanguage();
             if(scene == null)
                 scene = new Scene(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
             else
@@ -127,7 +124,7 @@ public class SceneHandler {
     public void createRegistrationScene() {
         // Crea la scena della registrazione
         try {
-            uploadLoginLanguage();
+            setLoginLanguage();
             if(scene == null)
                 scene = new Scene(loadRootFromFXML(view+"register-view.fxml"));
             else
@@ -142,7 +139,7 @@ public class SceneHandler {
     public void createForgotPasswordScene() {
         // Crea la scena per la password dimenticata
         try {
-            uploadLoginLanguage();
+            setLoginLanguage();
             if(scene == null)
                 scene = new Scene(loadRootFromFXML(view + "token-view.fxml"));
             else

@@ -1,7 +1,8 @@
 package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.CustomThemeHandler;
-import javafx.event.Event;
+import it.unical.demacs.informatica.mvcwallet.handler.SceneHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -32,30 +33,33 @@ public class ColorPickerController{
 
     @FXML
     private Button applyButton;
+    @FXML
+    private Button cancelButton;
 
     final static CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
+    final static SceneHandler sceneHandler = SceneHandler.getInstance();
+    final static SettingsHandler settingsHandler = SettingsHandler.getInstance();
 
     void getColorsFromColorPicker(){
-        String mainBgc = mbgColorPicker.getCustomColors().toString();
-        System.out.println(mainBgc);
-        String secondBgc = sbgColorPicker.getCustomColors().toString();
-        String hoverColor = hovColorPicker.getCustomColors().toString();
-        String buttonColor = btnColorPicker.getCustomColors().toString();
-        String borderColor = bdrColorPicker.getCustomColors().toString();
-        String mainTxtColor = mntColorPicker.getCustomColors().toString();
-        String secondTxtColor = sntColorPicker.getCustomColors().toString();
-        customThemeHandler.assignColors(mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor);
+        Color mainBgc = mbgColorPicker.getValue();
+        Color secondBgc = sbgColorPicker.getValue();
+        Color hoverColor = hovColorPicker.getValue();
+        Color buttonColor = btnColorPicker.getValue();
+        Color borderColor = bdrColorPicker.getValue();
+        Color mainTxtColor = mntColorPicker.getValue();
+        Color secondTxtColor = sntColorPicker.getValue();
+        customThemeHandler.assignColorsFromColorPicker(mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor);
     }
     void setColorsInColorPicker(){
         try {
-            String[] colors = customThemeHandler.getColorsFromFile();
-            mbgColorPicker.setValue(Color.valueOf(colors[0]));
-            sbgColorPicker.setValue(Color.valueOf(colors[1]));
-            hovColorPicker.setValue(Color.valueOf(colors[2]));
-            btnColorPicker.setValue(Color.valueOf(colors[3]));
-            bdrColorPicker.setValue(Color.valueOf(colors[4]));
-            mntColorPicker.setValue(Color.valueOf(colors[5]));
-            sntColorPicker.setValue(Color.valueOf(colors[6]));
+            Color[] colors = customThemeHandler.getColorsFromFile();
+            mbgColorPicker.setValue(colors[0]);
+            sbgColorPicker.setValue(colors[1]);
+            hovColorPicker.setValue(colors[2]);
+            btnColorPicker.setValue(colors[3]);
+            bdrColorPicker.setValue(colors[4]);
+            mntColorPicker.setValue(colors[5]);
+            sntColorPicker.setValue(colors[6]);
         } catch (Exception e){
             System.out.println("Error in ColorPickerController.java (rows: 47-58) " + e);
         }
@@ -63,12 +67,16 @@ public class ColorPickerController{
     @FXML
     void onApplyButton(){
         getColorsFromColorPicker();
-        customThemeHandler.writeCssFile();
+        customThemeHandler.setTheme();
+        settingsHandler.theme = "custom";
+        sceneHandler.closeCAT();
+    }
+    @FXML
+    void onCancButton(){
+        sceneHandler.closeCAT();
     }
     @FXML
     void initialize(){
-        // Annulla l'evento di chiusura
-        mbgColorPicker.setOnHiding(Event::consume);
         setColorsInColorPicker();
     }
 }
