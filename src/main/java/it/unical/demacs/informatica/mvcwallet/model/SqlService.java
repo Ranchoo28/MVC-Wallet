@@ -1,8 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.model;
 
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
-import javafx.scene.paint.Color;
-
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -64,16 +62,6 @@ public class SqlService {
         finally { queryExe.shutdown(); }
     }
 
-    public boolean serviceChangeUsername(String oldUsername, String newUsername){
-        boolean[] res = new boolean[1];
-        ExecutorService queryExe = Executors.newSingleThreadExecutor();
-        Future<?> future = queryExe.submit(() -> res[0] = sqlHandler.changeUsername(oldUsername, newUsername));
-
-        try { future.get(); }
-        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
-        finally { queryExe.shutdown(); }
-        return res[0];
-    }
     public boolean serviceChangeName( String newName,String username){
         boolean[] res = new boolean[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();

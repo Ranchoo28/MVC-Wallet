@@ -106,7 +106,7 @@ public class AlertHandler {
         else if(result.get() == ButtonType.CANCEL) alert.close();
     }
 
-    public void createChangedAlert(String details){
+    public void createChangedAlert(){
         languageHandler = LanguageHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
@@ -115,8 +115,8 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle(languageHandler.getBundle().getString("changeTitle") + details);
-        alert.setContentText(details + languageHandler.getBundle().getString("changeSuccessfulText"));
+        alert.setTitle(languageHandler.getBundle().getString("changeTitle"));
+        alert.setContentText(languageHandler.getBundle().getString("changeSuccessfulText"));
         alert.show();
     }
 

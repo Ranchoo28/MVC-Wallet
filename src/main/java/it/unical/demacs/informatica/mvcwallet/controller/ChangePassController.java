@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 public class ChangePassController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
-    private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
     private final RegexHandler regexHandler = RegexHandler.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
@@ -41,16 +40,14 @@ public class ChangePassController {
         sceneHandler.createSideBar();
     }
 
-    private boolean isGoodOldPassword() {
-        return (sqlHandler.checkPassword(LoginController.username, oldPasswordTextField.getText()));
-    }
+
 
 
     @FXML
     void onSaveClick() {
         if (sqlService.serviceChangePassword(newPasswordTextField.getText(), LoginController.username)) {
             //LoginController. = usernameTextField.getText();
-            alertHandler.createChangedAlert("Password");
+            alertHandler.createChangedAlert();
             sceneHandler.createSideBar();
         }
     }
@@ -85,11 +82,7 @@ public class ChangePassController {
         newPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
             isGoodPassword = newValue.matches(regexHandler.regexPassword) && (!newPasswordTextField.getText().equals(oldPasswordTextField.getText())  );
-            if (isGoodPassword && isGoodOldPassword ) {
-                saveButton.setDisable(false);
-            }else{
-                saveButton.setDisable(true);
-            }
+            saveButton.setDisable(!isGoodPassword || !isGoodOldPassword);
         });
     }
 

@@ -4,7 +4,6 @@ import java.sql.*;
 import java.time.LocalDate;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.sqlite.SQLiteException;
 
 public class SqlHandler {
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -248,30 +247,7 @@ public class SqlHandler {
     }
 
 
-    public boolean changeUsername(String oldUsername, String newUsername){
-        try{
-            con = newConnection();
-            PreparedStatement stm = con.prepareStatement("UPDATE users SET username = ? WHERE username = ?");
-            stm.setString(1, newUsername );
-            stm.setString(2, oldUsername);
-            if(stm.executeUpdate() == 1){
-                stm.close();
-                closeConnection(con);
-                return true;
-            }
 
-           if(stm.executeUpdate() == 0){
-               stm.close();
-               closeConnection(con);
-               return false;
-           }
-            stm.close();
-            closeConnection(con);
-            return true;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public boolean changeName(String newName,String username){
         try{
@@ -466,6 +442,27 @@ public class SqlHandler {
             return colors;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public String[] getProfileInfo(String username){
+        try{
+            con = newConnection();
+            String [] array = new String[4];
+            PreparedStatement stmt = con.prepareStatement("SELECT name, surname, email, birthday FROM users WHERE username = ?");
+            stmt.setString(1,username);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                array[0] = rs.getString(1);
+                array[1] = rs.getString(2);
+                array[2] = rs.getString(3);
+                array[3] = rs.getString(4);
+            }
+            rs.close();
+            stmt.close();
+            closeConnection(con);
+            return array;
+        }catch(SQLException e){
+            throw new RuntimeException();
         }
     }
 

@@ -2,12 +2,12 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
-import javafx.application.Platform;
-import javafx.beans.binding.BooleanBinding;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+
 
 import java.util.ResourceBundle;
 
@@ -18,20 +18,20 @@ public class ProfileController {
     @FXML
     private Label nameLabel, surnameLabel;
     @FXML
-    private TextField usernameTextField, firstTextField, lastTextField;
+    private TextField usernameTextField, firstTextField, lastTextField,emailTextField,birthdayTextField;
     @FXML
     private Button saveButton, cancelButton, changePassButton;
 
-    String [] nameSurnameArray;
-    boolean isGoodUsername, isGoodName, isGoodSurname;
-
+    boolean  isGoodName, isGoodSurname;
+    private final RegexHandler regexHandler = RegexHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
-    private final LoggedHandler logHandler = LoggedHandler.getInstance();
     String view = PathHandler.getInstance().getPathOfView();
+    String [] profileInfoArray =sqlHandler.getProfileInfo(LoginController.username);
+
 
     @FXML
     void onChangePasswordClick(){
@@ -42,22 +42,14 @@ public class ProfileController {
     }
     @FXML
     void onSaveClick() {
-        if (sqlService.serviceChangeUsername(LoginController.username, usernameTextField.getText())) {
-            LoginController.username = usernameTextField.getText();
-            alertHandler.createChangedAlert("Username");
-            sceneHandler.createSideBar();
-        } else System.out.println("username non cambiato");
+
         if (sqlService.serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
-            alertHandler.createChangedAlert(languageHandler.getBundle().getString("nameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("nome non cambiato");
         if (sqlService.serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
-            alertHandler.createChangedAlert(languageHandler.getBundle().getString("surnameLabel"));
             sceneHandler.createSideBar();
         } else System.out.println("cognome non cambiato");
-
-        System.out.println(usernameTextField.getText());
-        logHandler.stayLoggedWriting(usernameTextField.getText());
+        alertHandler.createChangedAlert();
 
     }
 
@@ -82,52 +74,42 @@ public class ProfileController {
     void initialize() {
         updateLanguage();
         saveButton.setDisable(true);
+        birthdayTextField.setDisable(true);
+        emailTextField.setDisable(true);
+        usernameTextField.setDisable(true);
         usernameTextField.setText(LoginController.username);
-        nameSurnameArray = sqlHandler.getNameSurname(LoginController.username);
-        String[] array = sqlHandler.getNameSurname(LoginController.username);
-        firstTextField.setText(array[0]);
-        lastTextField.setText(array[1]);
-        addListenerUsername();
+        firstTextField.setText(profileInfoArray[0]);
+        lastTextField.setText(profileInfoArray[1]);
+        emailTextField.setText(profileInfoArray[2]);
+        birthdayTextField.setText(profileInfoArray[3]);
         addListenerName();
-        addListenersurname();
+        addListenerSurname();
     }
 
-    private void addListenerUsername(){
-        usernameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            isGoodUsername = !SqlHandler.getInstance().checkUsername(usernameTextField.getText())
-                            && usernameTextField.getText().length()>=5
-                            &&!usernameTextField.getText().equals(LoginController.username);
-            System.out.println(SqlHandler.getInstance().checkUsername(usernameTextField.getText()));
-            if (!isGoodUsername && !isGoodName && !isGoodSurname) {
-                saveButton.setDisable(true);
-            }else{
-                saveButton.setDisable(false);
-            }
-        });
-    }
+
     private void addListenerName(){
         firstTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            isGoodName = firstTextField.getText().length()>=2 && !firstTextField.getText().equals(nameSurnameArray[0]) ;
-
-            if (!isGoodUsername && !isGoodName&& ! isGoodSurname) {
-                saveButton.setDisable(true);
+            isGoodName =  newValue.matches(regexHandler.regexFirstLast) && !firstTextField.getText().equals(profileInfoArray[0]) ;
+            if(firstTextField.getText().length()>=2 && lastTextField.getText().length()>=2) {
+                saveButton.setDisable(!isGoodName && !isGoodSurname);
             }else{
-                saveButton.setDisable(false);
+                saveButton.setDisable(true);
             }
         });
     }
-    private void addListenersurname(){
+    private void addListenerSurname(){
         lastTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            isGoodSurname = lastTextField.getText().length()>=2 && !lastTextField.getText().equals(nameSurnameArray[1]) ;
+            isGoodSurname = newValue.matches(regexHandler.regexFirstLast) && !lastTextField.getText().equals(profileInfoArray[1]) ;
+            if(firstTextField.getText().length()>=2 && lastTextField.getText().length()>=2) {
 
-
-            if (!isGoodUsername && !isGoodName && !isGoodSurname) {
-                saveButton.setDisable(true);
+                saveButton.setDisable(!isGoodName && !isGoodSurname);
             }else{
-                saveButton.setDisable(false);
+                saveButton.setDisable(true);
             }
         });
     }
+
+
 
 
     private void updateLanguage(){
@@ -146,5 +128,6 @@ public class ProfileController {
         } else {
             System.out.println("MarketController.java: bundle is null");
         }
+
     }
 }

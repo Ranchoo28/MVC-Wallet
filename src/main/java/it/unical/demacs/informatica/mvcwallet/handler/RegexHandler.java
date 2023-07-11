@@ -15,5 +15,5 @@ public class RegexHandler {
             "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=.])[a-zA-Z0-9@!%&£°#'?*=.]{8,}";
 
     public final String regexFirstLast =
-            "^(?=.{1,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$";
+            "^(?=.{2,20}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$";
 }
