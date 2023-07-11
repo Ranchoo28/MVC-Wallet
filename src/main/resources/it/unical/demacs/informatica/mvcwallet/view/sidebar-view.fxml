@@ -147,7 +147,7 @@
                         <StackPane>
                            <children>
                               <Label fx:id="accessMenuIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER" />
-                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="40.0" textAlignment="CENTER" onMenuValidation="#handleMenuValidation">
+                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="40.0" textAlignment="CENTER">
                                 <items>
                                     <MenuItem mnemonicParsing="false">
                                        <graphic>
