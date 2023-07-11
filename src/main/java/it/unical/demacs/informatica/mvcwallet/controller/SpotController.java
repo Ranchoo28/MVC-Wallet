@@ -15,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ResourceBundle;
 
 public class SpotController {
-    //private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     @FXML
     private TableColumn<Coin, Double> allColumn;
@@ -59,7 +59,7 @@ public class SpotController {
         try {
             bundle = languageHandler.getBundle();
         } catch (Exception e) {
-            //alertHandler.createErrorAlert("Error in loading the language");
+            alertHandler.createErrorAlert("Error in loading the language");
         }
         if (bundle != null) {
             depositButton.setText(bundle.getString("depositButton"));

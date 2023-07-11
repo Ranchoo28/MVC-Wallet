@@ -62,6 +62,7 @@ public class SceneHandler {
                     if (key.getCode().equals(KeyCode.F11))
                         stage.setFullScreen(!stage.isFullScreen());
                 });
+
                 stage.setOnCloseRequest(event -> {
                     event.consume();
                     alertHandler.exitClickAlert();
