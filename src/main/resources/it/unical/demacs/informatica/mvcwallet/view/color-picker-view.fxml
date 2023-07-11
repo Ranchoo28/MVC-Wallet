@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ColorPickerController">
+<AnchorPane style="-fx-background-color: trasparent; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ColorPickerController">
    <children>
-      <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" spacing="15.0" styleClass="context-menu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" spacing="30.0">
                <children>
@@ -25,15 +25,15 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Testo secondario" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
                      <children>
-                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
-                        <ColorPicker fx:id="sbgColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
-                        <ColorPicker fx:id="hovColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
-                        <ColorPicker fx:id="btnColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
-                        <ColorPicker fx:id="bdrColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
-                        <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
-                        <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" />
+                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="sbgColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="hovColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="btnColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="bdrColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" prefWidth="200.0" styleClass="button" />
                      </children>
                   </VBox>
                </children>
@@ -41,6 +41,7 @@
             <HBox alignment="CENTER" spacing="20.0">
                <children>
                   <Button fx:id="applyButton" mnemonicParsing="false" onAction="#onApplyButton" text="Applica" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancButton" text="Annulla" />
                </children>
             </HBox>
          </children>

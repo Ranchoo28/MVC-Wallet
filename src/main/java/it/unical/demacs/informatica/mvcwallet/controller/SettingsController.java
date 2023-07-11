@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -68,37 +69,8 @@ public class SettingsController {
     @FXML
     void onBlueClick() { blueThemeChoosen(); }
     @FXML
-    void onBackClick(){
-        themeChooser();
-    }
-    @FXML
-    void onCustomClick() {
-        themeEditor();
-    }
-    void themeChooser(){
-        themeMenuButton.setText(settingsHandler.theme);
-        cpMenuItem.setVisible(false);
-        backMenuItem.setVisible(cpMenuItem.isVisible());
-        darkMenuItem.setVisible(!cpMenuItem.isVisible());
-        lightMenuItem.setVisible(!cpMenuItem.isVisible());
-        mvcMenuItem.setVisible(!cpMenuItem.isVisible());
-        blueMenuItem.setVisible(!cpMenuItem.isVisible());
-        customMenuItem.setVisible(!cpMenuItem.isVisible());
-    }
-    void themeEditor(){
-        themeMenuButton.setText("Custom");
-        darkMenuItem.setVisible(cpMenuItem.isVisible());
-        lightMenuItem.setVisible(cpMenuItem.isVisible());
-        mvcMenuItem.setVisible(cpMenuItem.isVisible());
-        blueMenuItem.setVisible(cpMenuItem.isVisible());
-        customMenuItem.setVisible(cpMenuItem.isVisible());
-        cpMenuItem.setVisible(true);
-        backMenuItem.setVisible(cpMenuItem.isVisible());
-        customThemeChoosen();
-    }
-    @FXML
-    void onColorPickerClick(ActionEvent event) {
-        event.consume();
+    void onCustomClick() throws IOException {
+        sceneHandler.openCAT();
     }
 
     @FXML
@@ -114,11 +86,6 @@ public class SettingsController {
 
     @FXML
     void onEurClick(){ eurCurrencyChoosen(); }
-
-    @FXML
-    void handleMenuValidation(ActionEvent event) {
-        timeFormatMenuButton.show();
-    }
 
     @FXML
     void onSaveClick(){
@@ -214,28 +181,9 @@ public class SettingsController {
     }
     private void darkThemeChoosen(){
         themeMenuButton.setText("Dark");
-
     }
     private void lightThemeChoosen(){
         themeMenuButton.setText("Light");
-    }
-    private void customThemeChoosen(){
-        colorPickerPane.getChildren().clear();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PathHandler.getInstance().getPathOfView() + "color-picker-view.fxml"));
-            AnchorPane pane = fxmlLoader.load();
-
-            colorPickerPane.getChildren().add(pane);
-
-            AnchorPane.setTopAnchor(pane, 0.0);
-            AnchorPane.setRightAnchor(pane, 0.0);
-            AnchorPane.setLeftAnchor(pane, 0.0);
-            AnchorPane.setBottomAnchor(pane, 0.0);
-
-        } catch (Exception e){
-            System.out.println("Error in SettingsController.java (rows: 203-216) " + e);
-        }
-
     }
     private void italianLanguageChoosen(){
         languageMenuButton.setText("Italiano");

@@ -5,10 +5,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 
 public class SceneHandler {
-    private Stage stage;
+    private Stage stage, stage1;
     private Scene scene;
     private static final String view = PathHandler.getInstance().getPathOfView();
     private static final String css = PathHandler.getInstance().getPathOfCSS();
@@ -30,7 +32,6 @@ public class SceneHandler {
         //System.out.println(SceneHandler.class.getResource(css + settingsHandler.theme));
         for(String i: SettingsHandler.getInstance().themes)
             scene.getStylesheets().remove(String.valueOf(SceneHandler.class.getResource(css + i)));
-
         scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
     }
 
@@ -65,6 +66,19 @@ public class SceneHandler {
         } catch (Exception e){
             System.out.println("Error in SceneHandler.java (rows: 42-63) " + e);
         }
+    }
+
+    public void openCAT() throws IOException {
+        stage1 = new Stage();
+        Scene scene1 = new Scene(loadRootFromFXML(view + "color-picker-view.fxml"));
+        scene1.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
+        stage1.initStyle(StageStyle.UNDECORATED);
+        stage1.setScene(scene1);
+        stage1.setResizable(false);
+        stage1.show();
+    }
+    public void closeCAT(){
+        stage1.close();
     }
 
     public void createSideBar() {
