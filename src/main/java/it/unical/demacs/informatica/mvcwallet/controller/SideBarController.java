@@ -190,6 +190,7 @@ public class SideBarController {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
         } catch (Exception e){
+            e.printStackTrace();
             alertHandler.createErrorAlert(bundle.getString("menuErrorAlert"));
         }
     }

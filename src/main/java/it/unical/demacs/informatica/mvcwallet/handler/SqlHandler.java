@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class SqlHandler {
-    private final AlertHandler alertHandler = AlertHandler.getInstance();
     private SqlHandler() {}
     private static final SqlHandler instance = new SqlHandler();
     public static SqlHandler getInstance() {
@@ -90,7 +89,7 @@ public class SqlHandler {
 
     public boolean registerAccount(String email, String username, String password, LocalDate birthday, String nome, String cognome) {
         // Esegue una query per la registrazione di un utente.
-        if(checkEmail(email) && checkUsername(username)) return false;
+        if(checkEmail(email) || checkUsername(username)) return false;
         else
             try {
                 con = newConnection();
@@ -102,8 +101,9 @@ public class SqlHandler {
                 stmt.setString(5, nome);
                 stmt.setString(6, cognome);
                 stmt.executeUpdate();
-                createAccountSettings(username);
-
+                insertAccountSettings(username);
+                insertAccountSpots(username);
+                insertCustomTheme(username);
                 stmt.close();
                 closeConnection(con);
                 return true;
@@ -112,7 +112,7 @@ public class SqlHandler {
             }
     }
 
-    private void createAccountSettings(String username) {
+    private void insertAccountSettings(String username) {
         try{
             con = newConnection();
             PreparedStatement s = con.prepareStatement(
@@ -124,6 +124,70 @@ public class SqlHandler {
             s.setString(5, "market");
             s.setInt(6, 0);
             s.setString(7, "eur");
+            s.executeUpdate();
+
+            s.close();
+            closeConnection(con);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void insertAccountSpots(String username) {
+        try{
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "INSERT INTO spots (username,BTC, Ethereum, Solana, binance_coin) VALUES (?,?,?,?,?)");
+            s.setString(1, username);
+            s.setDouble(2, 0.00);
+            s.setDouble(3,0.00  );
+            s.setDouble(4,0.00  );
+            s.setDouble(5,0.00  );
+            s.executeUpdate();
+
+            s.close();
+            closeConnection(con);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public double [] getSpots(String username){
+        try{
+            double [] coins = new double[7];
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "SELECT BTC, Ethereum, Solana, Binance_coin FROM spots WHERE username = ?");
+            s.setString(1, username);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                coins[0] = rs.getDouble(1);
+                coins[1] = rs.getDouble(2);
+                coins[2] = rs.getDouble(3);
+                coins[3] = rs.getDouble(4);
+            }
+            rs.close();
+            s.close();
+            closeConnection(con);
+            return coins;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void insertCustomTheme(String username) {
+        try{
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "INSERT INTO customTheme(mainBgc, secondBgc,hoverColor,buttonColor,borderColor,mainTxtColor,secondTxtColor,username) VALUES (?,?,?,?,?,?,?,?)");
+            s.setString(1, "#ffffff");
+            s.setString(2, "#ffffff");
+            s.setString(3, "#ffffff");
+            s.setString(4, "#ffffff");
+            s.setString(5, "#ffffff");
+            s.setString(6, "#ffffff");
+            s.setString(7, "#ffffff");
+            s.setString(8, username);
+
+
             s.executeUpdate();
 
             s.close();
@@ -383,7 +447,7 @@ public class SqlHandler {
             }
     }
 
-    public void stayLoggedOfLogin(String username) throws InterruptedException {
+    public void stayLoggedOfLogin(String username) {
         try{
             con = newConnection();
             PreparedStatement s = con.prepareStatement("UPDATE settings SET logged = ? WHERE username = ? ");
@@ -464,5 +528,6 @@ public class SqlHandler {
             throw new RuntimeException();
         }
     }
+
 
 }
