@@ -151,19 +151,6 @@
                         </MenuButton>
                         <MenuButton fx:id="themeMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0">
                           <items>
-                              <MenuItem fx:id="backMenuItem" mnemonicParsing="false" visible="false">
-                                 <graphic>
-                                    <AnchorPane prefWidth="290.0">
-                                       <children>
-                                          <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBackClick" text="Indietro" textAlignment="CENTER" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </AnchorPane>
-                                 </graphic>
-                              </MenuItem>
                               <MenuItem fx:id="darkMenuItem" mnemonicParsing="false" onAction="#onDarkClick">
                                  <graphic>
                                     <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Dark" textAlignment="CENTER" />
@@ -187,11 +174,6 @@
                               <MenuItem fx:id="customMenuItem" mnemonicParsing="false" onAction="#onCustomClick">
                                  <graphic>
                                     <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Custom" textAlignment="CENTER" />
-                                 </graphic>
-                              </MenuItem>
-                              <MenuItem fx:id="cpMenuItem" mnemonicParsing="false" onAction="#onCustomClick" visible="false">
-                                 <graphic>
-                                    <AnchorPane fx:id="colorPickerPane" />
                                  </graphic>
                               </MenuItem>
                           </items>
