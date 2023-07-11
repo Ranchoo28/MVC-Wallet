@@ -53,7 +53,7 @@ public class ChangePassForgotController {
     @FXML
     void onChangeClick(){
         if(sqlService.serviceForgotPassword(TokenController.email, passwordField.getText()))
-            alertHandler.passChangedFromForgot();
+            alertHandler.passChangedFromForgotAlert();
         else{
             alertHandler.createErrorAlert(lanHandler.getBundle().getString("changePassErrorText"));
             sceneHandler.createLoginScene();

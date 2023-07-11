@@ -4,6 +4,8 @@ import it.unical.demacs.informatica.mvcwallet.handler.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
 
 import java.util.ResourceBundle;
@@ -11,30 +13,18 @@ import java.util.ResourceBundle;
 public class ColorPickerController{
 
     @FXML
-    private ColorPicker bdrColorPicker;
+    private Label primaryBgLabel, secondaryBgLabel,
+            hoverLabel, buttonLabel,
+            borderLabel, primaryFontLabel, secondaryFontLabel;
 
     @FXML
-    private ColorPicker btnColorPicker;
+    private ColorPicker bdrColorPicker, btnColorPicker,
+            hovColorPicker, mbgColorPicker,
+            mntColorPicker, sbgColorPicker, sntColorPicker;
 
     @FXML
-    private ColorPicker hovColorPicker;
+    private Button applyButton, cancelButton;
 
-    @FXML
-    private ColorPicker mbgColorPicker;
-
-    @FXML
-    private ColorPicker mntColorPicker;
-
-    @FXML
-    private ColorPicker sbgColorPicker;
-
-    @FXML
-    private ColorPicker sntColorPicker;
-
-    @FXML
-    private Button applyButton;
-    @FXML
-    private Button cancelButton;
 
     final static CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
     final static SceneHandler sceneHandler = SceneHandler.getInstance();
@@ -72,7 +62,6 @@ public class ColorPickerController{
         customThemeHandler.setTheme();
         settingsHandler.theme = "custom";
         sceneHandler.closeCAT();
-
     }
 
     @FXML
@@ -81,6 +70,27 @@ public class ColorPickerController{
     }
     @FXML
     void initialize(){
+        updateLanguage();
         setColorsInColorPicker();
+    }
+
+    private void updateLanguage(){
+        ResourceBundle bundle = null;
+        try {
+            bundle = LanguageHandler.getInstance().getBundle();
+        } catch (Exception e){
+            alertHandler.createErrorAlert("Error in loading the language");
+        }
+        if(bundle!=null){
+           applyButton.setText(bundle.getString("applyButton"));
+           cancelButton.setText(bundle.getString("backButton"));
+           primaryBgLabel.setText(bundle.getString("primaryBgLabel"));
+           secondaryBgLabel.setText(bundle.getString("secondaryBgLabel"));
+           hoverLabel.setText(bundle.getString("hoverLabel"));
+           buttonLabel.setText(bundle.getString("buttonLabel"));
+           borderLabel.setText(bundle.getString("borderLabel"));
+           primaryFontLabel.setText(bundle.getString("primaryFontLabel"));
+           secondaryFontLabel.setText(bundle.getString("secondaryFontLabel"));
+        }
     }
 }
