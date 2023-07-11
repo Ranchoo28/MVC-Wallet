@@ -43,24 +43,20 @@ public class LoginController {
 
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
-
-        if(sqlService.serviceLogin(usernameText.getText(), passwordField.getText()) == 0){
-            username = usernameText.getText();
-            if(stayLogged.isSelected()){
-                sqlHandler.stayLoggedOfLogin(username);
-                loggedHandler.stayLoggedWriting(username);
+        switch(sqlService.serviceLogin(usernameText.getText(), passwordField.getText())){
+            case 0 -> {
+                username = usernameText.getText();
+                if(stayLogged.isSelected()){
+                    sqlHandler.stayLoggedOfLogin(username);
+                    loggedHandler.stayLoggedWriting(username);
+                }
+                settingsHandler.updateSettings();
+                alertHandler.createLoginAlert();
             }
-            settingsHandler.updateSettings();
-            alertHandler.createLoginAlert();
-        }else
-            if(sqlService.serviceLogin(usernameText.getText(), passwordField.getText()) == 1)
-                alertHandler.createErrorAlert(bundle.getString("loginErrorUsernameText"));
-        else
-            if(sqlService.serviceLogin(usernameText.getText(), passwordField.getText()) == 2)
-                alertHandler.createErrorAlert(bundle.getString("loginErrorPassText"));
-        else
-            if (sqlService.serviceLogin(usernameText.getText(), passwordField.getText()) == 3) {
-                alertHandler.createErrorAlert(bundle.getString("loginErrorAllText"));
+
+            case 1 -> alertHandler.createErrorAlert(bundle.getString("loginErrorUsernameText"));
+            case 2 ->  alertHandler.createErrorAlert(bundle.getString("loginErrorPassText"));
+            default ->  alertHandler.createErrorAlert(bundle.getString("loginErrorAllText"));
         }
     }
 
