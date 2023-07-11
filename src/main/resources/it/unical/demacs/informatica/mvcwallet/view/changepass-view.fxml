@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -35,7 +36,7 @@
                      <children>
                         <StackPane>
                            <children>
-                              <TextField fx:id="oldPasswordTextField" minHeight="30.0" style="-fx-background-radius: 10;" visible="false" />
+                              <TextField fx:id="oldPasswordTextField" editable="false" minHeight="30.0" style="-fx-background-radius: 10;" />
                               <PasswordField fx:id="oldPassPasswordField" minHeight="30.0" style="-fx-background-radius: 10;">
                                  <font>
                                     <Font size="14.0" />
@@ -43,31 +44,37 @@
                               </PasswordField>
                               <HBox alignment="CENTER_RIGHT" focusTraversable="true" pickOnBounds="false">
                                  <children>
-                                    <Label fx:id="eyeIconOldPassword" alignment="CENTER" onMousePressed="#showOldPassword" onMouseReleased="#hideOldPassword" styleClass="label-class" text="A" textAlignment="CENTER">
+                                    <Label fx:id="eyeIconOldPassword" alignment="CENTER" onMousePressed="#showOldPassword" onMouseReleased="#hideOldPassword" style="-fx-text-fill: grey;" text="A" textAlignment="CENTER">
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </HBox>
                            </children>
                         </StackPane>
                         <StackPane>
                            <children>
-                              <TextField fx:id="newPasswordTextField" minHeight="30.0" style="-fx-background-radius: 10;" visible="false" />
-                              <PasswordField fx:id="newPassPasswordField" minHeight="30.0" style="-fx-background-radius: 10;">
+                              <TextField fx:id="newPasswordTextField" editable="false" minHeight="30.0" style="-fx-background-radius: 10;" />
+                              <PasswordField fx:id="newPassPasswordField" disable="true" minHeight="30.0" style="-fx-background-radius: 10;">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </PasswordField>
                               <HBox alignment="CENTER_RIGHT" focusTraversable="true" pickOnBounds="false">
                                  <children>
-                                    <Label fx:id="eyeIconNewPassword" alignment="CENTER" onMousePressed="#showNewPassword" onMouseReleased="#hideNewPassword" styleClass="label-class" text="A" textAlignment="CENTER">
+                                    <Label fx:id="eyeIconNewPassword" alignment="CENTER" disable="true" onMousePressed="#showNewPassword" onMouseReleased="#hideNewPassword" style="-fx-text-fill: grey;" text="A" textAlignment="CENTER">
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>
                                     </Label>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </HBox>
                            </children>
                         </StackPane>

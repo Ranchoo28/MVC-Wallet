@@ -44,7 +44,7 @@
                               </PasswordField>
                               <HBox alignment="CENTER_RIGHT" focusTraversable="true" pickOnBounds="false">
                                  <children>
-                                    <Label fx:id="eyeIcon" alignment="CENTER" onMousePressed="#showPassword" onMouseReleased="#hidePassword" styleClass="label-class" text="A" textAlignment="CENTER">
+                                    <Label fx:id="eyeIcon" alignment="CENTER" onMousePressed="#showPassword" onMouseReleased="#hidePassword" style="-fx-text-fill: grey;" text="A" textAlignment="CENTER">
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>

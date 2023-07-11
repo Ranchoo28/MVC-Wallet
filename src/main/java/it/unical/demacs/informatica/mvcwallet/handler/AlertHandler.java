@@ -2,26 +2,29 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 
 import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.paint.Paint;
 import org.kordamp.ikonli.javafx.FontIcon;
+import org.springframework.boot.availability.ReadinessState;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class AlertHandler {
 
     private SceneHandler sceneHandler;
-    private LanguageHandler languageHandler;
+    private ResourceBundle bundle;
 
     private AlertHandler(){}
     private static final AlertHandler instance = new AlertHandler();
-    public static AlertHandler getInstance(){return instance;}
+    public static AlertHandler getInstance(){ return instance; }
 
 
     // Creazione dei vari alert
     public void createErrorAlert(String message) {
-        languageHandler = LanguageHandler.getInstance();
+        LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         FontIcon icon = new FontIcon("mdi2a-alert");
         icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
@@ -29,14 +32,14 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle(languageHandler.getBundle().getString("errorTitle"));
+        alert.setTitle(bundle.getString("errorTitle"));
         alert.setContentText(message);
         alert.show();
     }
 
     public void createLoginAlert() {
         sceneHandler = SceneHandler.getInstance();
-        languageHandler = LanguageHandler.getInstance();
+        bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2c-check-circle-outline");
         icon.setIconColor(Paint.valueOf("#4d79ff")); // Blu
@@ -45,14 +48,14 @@ public class AlertHandler {
         alert.setGraphic(icon);
         alert.setHeaderText("");
         alert.setTitle("Login");
-        alert.setContentText(languageHandler.getBundle().getString("loginText"));
+        alert.setContentText(bundle.getString("loginText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK) sceneHandler.createSideBar();
     }
 
     public void createRegistrationAlert(){
-        languageHandler = LanguageHandler.getInstance();
+        bundle = LanguageHandler.getInstance().getBundle();
         sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
@@ -60,15 +63,15 @@ public class AlertHandler {
         icon.getStyleClass().add("icons-color");
         icon.setIconSize(45);
         alert.setGraphic(icon);
-        alert.setTitle(languageHandler.getBundle().getString("informationTitle"));
-        alert.setContentText(languageHandler.getBundle().getString("registrationText"));
+        alert.setTitle(bundle.getString("informationTitle"));
+        alert.setContentText(bundle.getString("registrationText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) alert.close();
         else if(result.get() == ButtonType.OK) sceneHandler.createLoginScene();
     }
 
     public void createForgotPassAlert(String message){
-        languageHandler = LanguageHandler.getInstance();
+        bundle = LanguageHandler.getInstance().getBundle();
         sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2e-email-send");
@@ -77,7 +80,7 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle(languageHandler.getBundle().getString("changePasswordTitle"));
+        alert.setTitle(bundle.getString("changePasswordTitle"));
         alert.setContentText(message);
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) sceneHandler.createChangePasswordFromForgot();
@@ -107,7 +110,7 @@ public class AlertHandler {
     }
 
     public void createChangedAlert(){
-        languageHandler = LanguageHandler.getInstance();
+        bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2s-send-check");
         icon.setIconColor(Paint.valueOf("blue"));
@@ -115,13 +118,13 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setHeaderText("");
         alert.setGraphic(icon);
-        alert.setTitle(languageHandler.getBundle().getString("changeTitle"));
-        alert.setContentText(languageHandler.getBundle().getString("changeSuccessfulText"));
+        alert.setTitle(bundle.getString("changeTitle"));
+        alert.setContentText(bundle.getString("changeSuccessfulText"));
         alert.show();
     }
 
-    public void passChangedFromForgot() {
-        languageHandler = LanguageHandler.getInstance();
+    public void passChangedFromForgotAlert() {
+        bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         FontIcon icon = new FontIcon("mdi2e-email-send");
         icon.getStyleClass().add("icons-color");
@@ -129,11 +132,33 @@ public class AlertHandler {
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
-        alert.setTitle(languageHandler.getBundle().getString("changePasswordTitle"));
-        alert.setContentText(languageHandler.getBundle().getString("changePasswordText"));
+        alert.setTitle(bundle.getString("changePasswordTitle"));
+        alert.setContentText(bundle.getString("changePasswordText"));
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isEmpty()) sceneHandler.createLoginScene();
         else if(result.get() == ButtonType.OK) sceneHandler.createLoginScene();
+    }
+
+    public void exitClickAlert(){
+        bundle = LanguageHandler.getInstance().getBundle();
+        ButtonType exitB = new ButtonType(bundle.getString("yesButton"));
+        ButtonType stayB = new ButtonType(bundle.getString("noButton"));
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", exitB, stayB);
+        FontIcon icon = new FontIcon("mdi2e-email-send");
+        icon.getStyleClass().add("icons-color");
+        icon.setIconColor(Paint.valueOf("#4d79ff"));
+        icon.setIconSize(45);
+        alert.setGraphic(icon);
+        alert.setHeaderText("");
+        alert.setTitle(bundle.getString("exitAppTitle"));
+        alert.setContentText(bundle.getString("exitAppText"));
+        alert.showAndWait();
+        ButtonType result = alert.getResult();
+        if (result != null && result.equals(exitB)) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
 }

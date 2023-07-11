@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 
 import java.util.ResourceBundle;
 
-
 public class ChangePassController {
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -33,14 +32,10 @@ public class ChangePassController {
     @FXML
     private TextField oldPasswordTextField, newPasswordTextField;
 
-
     @FXML
     void onCancelClick() {
         sceneHandler.createSideBar();
     }
-
-
-
 
     @FXML
     void onChangeClick() {
@@ -54,7 +49,6 @@ public class ChangePassController {
     @FXML
     void initialize() {
         uploadLanguage();
-        newPasswordTextField.setDisable(true);
         changeButton.setDisable(true);
         addListenerOldPassword();
         addListenerNewPassword();
@@ -70,51 +64,51 @@ public class ChangePassController {
         eyeIconNewPassword.setText("\uF06E");
         newPasswordTextField.setText(newPassPasswordField.getText());
         newPassPasswordField.setVisible(false);
-        newPasswordTextField.setVisible(true);
     }
     @FXML
     void hideNewPassword(){
         eyeIconNewPassword.setText("\uF070");
         newPasswordTextField.setText(newPassPasswordField.getText());
         newPassPasswordField.setVisible(true);
-        newPasswordTextField.setVisible(false);
     }
     @FXML
     void showOldPassword() {
         eyeIconOldPassword.setText("\uF06E");
         oldPasswordTextField.setText(oldPassPasswordField.getText());
         oldPassPasswordField.setVisible(false);
-        oldPasswordTextField.setVisible(true);
     }
     @FXML
     void hideOldPassword(){
         eyeIconOldPassword.setText("\uF070");
         oldPasswordTextField.setText(oldPassPasswordField.getText());
         oldPassPasswordField.setVisible(true);
-        oldPasswordTextField.setVisible(false);
     }
 
     private void addListenerOldPassword(){
-        oldPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            isGoodOldPassword = SqlHandler.getInstance().checkPassword(LoginController.username, oldPasswordTextField.getText());
-
-
+        oldPassPasswordField.textProperty().addListener((observable, oldValue, newValue) -> {
+            isGoodOldPassword = SqlHandler.getInstance().checkPassword(LoginController.username, oldPassPasswordField.getText());
             if (isGoodOldPassword && isGoodPassword){
-                newPasswordTextField.setDisable(false);
+                newPassPasswordField.setDisable(false);
+                eyeIconNewPassword.setDisable(false);
                 changeButton.setDisable(false);
-            } else if (isGoodOldPassword ){
-                newPasswordTextField.setDisable(false);
-            }else{
-                newPasswordTextField.setDisable(true);
+            } else if (isGoodOldPassword){
+                newPassPasswordField.setDisable(false);
+                eyeIconNewPassword.setDisable(false);
+                changeButton.setDisable(true);
+            } else {
+                newPassPasswordField.setText("");
+                newPasswordTextField.setText("");
+                newPassPasswordField.setDisable(true);
+                eyeIconNewPassword.setDisable(true);
                 changeButton.setDisable(true);
             }
         });
     }
 
     private void addListenerNewPassword(){
-        newPasswordTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+        newPassPasswordField.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se la password rispetta il Regex
-            isGoodPassword = newValue.matches(regexHandler.regexPassword) && (!newPasswordTextField.getText().equals(oldPasswordTextField.getText())  );
+            isGoodPassword = newValue.matches(regexHandler.regexPassword) && (!newPassPasswordField.getText().equals(oldPassPasswordField.getText()));
             changeButton.setDisable(!isGoodPassword || !isGoodOldPassword);
         });
     }

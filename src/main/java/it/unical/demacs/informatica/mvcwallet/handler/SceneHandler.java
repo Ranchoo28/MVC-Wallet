@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,9 +15,9 @@ public class SceneHandler {
     private Scene scene;
     private static final String view = PathHandler.getInstance().getPathOfView();
     private static final String css = PathHandler.getInstance().getPathOfCSS();
-    private static final LanguageHandler languageHandler = LanguageHandler.getInstance();
-    private static final SettingsHandler settingsHandler = SettingsHandler.getInstance();
-    private static final LoggedHandler loggedHandler = LoggedHandler.getInstance();
+    private final LanguageHandler languageHandler = LanguageHandler.getInstance();
+    private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
 
     private static final SceneHandler instance = new SceneHandler();
     public static SceneHandler getInstance() {
@@ -61,7 +62,10 @@ public class SceneHandler {
                     if (key.getCode().equals(KeyCode.F11))
                         stage.setFullScreen(!stage.isFullScreen());
                 });
-
+                stage.setOnCloseRequest(event -> {
+                    event.consume();
+                    alertHandler.exitClickAlert();
+                });
             }
         } catch (Exception e){
             System.out.println("Error in SceneHandler.java (rows: 42-63) " + e);
@@ -69,6 +73,7 @@ public class SceneHandler {
     }
 
     public void openCAT() throws IOException {
+        uploadLanguage();
         stage1 = new Stage();
         Scene scene1 = new Scene(loadRootFromFXML(view + "color-picker-view.fxml"));
         scene1.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));

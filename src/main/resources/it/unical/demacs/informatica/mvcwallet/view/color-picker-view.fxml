@@ -16,13 +16,13 @@
                <children>
                   <VBox alignment="CENTER_LEFT" spacing="15.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Sfondo primario" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Sfondo secondario" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Elemento selezionato" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Bottoni" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Bordi" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Testo primario" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Testo secondario" />
+                        <Label fx:id="primaryBgLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Sfondo primario" />
+                        <Label fx:id="secondaryBgLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Sfondo secondario" />
+                        <Label fx:id="hoverLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Elemento selezionato" />
+                        <Label fx:id="buttonLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Bottoni" />
+                        <Label fx:id="borderLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Bordi" />
+                        <Label fx:id="primaryFontLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Testo primario" />
+                        <Label fx:id="secondaryFontLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="50.0" minHeight="25.0" prefHeight="25.0" text="Testo secondario" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
