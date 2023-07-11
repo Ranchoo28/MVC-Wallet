@@ -177,7 +177,7 @@ public class SettingsController {
         themeMenuButton.setText("MVC");
     }
     private void blueThemeChoosen(){
-        themeMenuButton.setText("Light");
+        themeMenuButton.setText("Blue");
     }
     private void setCustomTheme() { themeMenuButton.setText("Custom");}
     private void customThemeChoosen() throws IOException { sceneHandler.openCAT(); }

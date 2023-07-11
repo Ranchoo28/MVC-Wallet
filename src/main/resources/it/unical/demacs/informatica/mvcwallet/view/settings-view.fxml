@@ -101,7 +101,7 @@
                                     <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="EUR" textAlignment="CENTER" />
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="usdMenuItem" mnemonicParsing="false" onAction="#onUsdClick">
+                              <MenuItem fx:id="usdMenuItem" mnemonicParsing="false">
                                  <graphic>
                                     <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="USD" textAlignment="CENTER" />
                                  </graphic>
