@@ -8,12 +8,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Font;
 
 import java.util.ResourceBundle;
 
 public class LoginController {
     @FXML
-    private Label languageLabel;
+    private Label showPassword;
     @FXML
     private TextField usernameText, passwordText;
     @FXML
@@ -21,11 +22,11 @@ public class LoginController {
     @FXML
     private Button loginButton = new Button(), forgotPassButton = new Button(), registerButton = new Button();
     @FXML
-    private CheckBox stayLogged, showPass;
+    private CheckBox stayLogged;
     @FXML
     private MenuButton languageMenuButton;
     @FXML
-    private RadioMenuItem italianLanguage, englishLanguage, frenchLanguage, spanishLanguage, cosentinoLanguage;
+    private MenuItem italianLanguage, englishLanguage, frenchLanguage, spanishLanguage, cosentinoLanguage;
 
     public static String username;
     private boolean isGoodUsername;
@@ -39,10 +40,10 @@ public class LoginController {
     private final LoggedHandler loggedHandler = LoggedHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final LanguageHandler lanHandler = LanguageHandler.getInstance();
+    private final String pathOfFont = PathHandler.getInstance().getPathOfFont();
 
     @FXML
     void onLoginButtonClick() throws InterruptedException {
-        if(showPass.isSelected()) passwordField.setText(passwordText.getText());
 
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
@@ -68,34 +69,39 @@ public class LoginController {
 
     @FXML
     void onItalianClick(){
+        languageMenuButton.setText("Italiano");
         italianLanguageChoosen();
-        changeLanguage();
+        settingsHandler.loginLanguage = "it";
         SceneHandler.getInstance().createLoginScene();
     }
     @FXML
     void onEnglishClick(){
+        languageMenuButton.setText("English");
         englishLanguageChoosen();
-        changeLanguage();
+        settingsHandler.loginLanguage = "en";
         SceneHandler.getInstance().createLoginScene();
     }
     @FXML
     void onFrenchClick(){
+        languageMenuButton.setText("Français");
         frenchLanguageChoosen();
-        changeLanguage();
+        settingsHandler.loginLanguage  = "fr";
         SceneHandler.getInstance().createLoginScene();
 
     }
 
     @FXML
     void onSpanishClick(){
+        languageMenuButton.setText("Español");
         spanishLanguageChoosen();
-        changeLanguage();
+        settingsHandler.loginLanguage  = "es";
         SceneHandler.getInstance().createLoginScene();
     }
     @FXML
     void onCosentinoClick(){
+        languageMenuButton.setText("Cosentino");
         cosentinoLanguageChoosen();
-        changeLanguage();
+        settingsHandler.loginLanguage  = "cs";
         SceneHandler.getInstance().createLoginScene();
     }
 
@@ -105,21 +111,25 @@ public class LoginController {
     }
 
     @FXML
-    void onShowClick() {
-        if(showPass.isSelected()){
-            passwordText.setText(passwordField.getText());
-            passwordField.setVisible(false);
-            passwordText.setVisible(true);
-        }
-        else {
-            passwordField.setText(passwordText.getText());
-            passwordField.setVisible(true);
-            passwordText.setVisible(false);
-        }
+    void showPassword() {
+        showPassword.setText("\uF06E");
+        passwordText.setText(passwordField.getText());
+        passwordField.setVisible(false);
+        passwordText.setVisible(true);
+    }
+    @FXML
+    void hidePassword(){
+        showPassword.setText("\uF070");
+        passwordField.setText(passwordText.getText());
+        passwordField.setVisible(true);
+        passwordText.setVisible(false);
     }
 
     @FXML
     void initialize(){
+        Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 16);
+        showPassword.setText("\uF070");
+        showPassword.setFont(font);
         loginButton.setDisable(true);
         uploadLanguage();
         updateLanguage();
@@ -183,45 +193,20 @@ public class LoginController {
     }
 
     private void italianLanguageChoosen(){
-        italianLanguage.setSelected(true);
-        englishLanguage.setSelected(false);
-        frenchLanguage.setSelected(false);
-        spanishLanguage.setSelected(false);
-        cosentinoLanguage.setSelected(false);
         languageMenuButton.setText("Italiano");
     }
     private void englishLanguageChoosen(){
-        italianLanguage.setSelected(false);
-        englishLanguage.setSelected(true);
-        frenchLanguage.setSelected(false);
-        spanishLanguage.setSelected(false);
-        cosentinoLanguage.setSelected(false);
         languageMenuButton.setText("English");
     }
     private void frenchLanguageChoosen(){
-        italianLanguage.setSelected(false);
-        englishLanguage.setSelected(false);
-        frenchLanguage.setSelected(true);
-        spanishLanguage.setSelected(false);
-        cosentinoLanguage.setSelected(false);
         languageMenuButton.setText("Français");
     }
 
     private void spanishLanguageChoosen(){
-        italianLanguage.setSelected(false);
-        englishLanguage.setSelected(false);
-        frenchLanguage.setSelected(false);
-        spanishLanguage.setSelected(true);
-        cosentinoLanguage.setSelected(false);
         languageMenuButton.setText("Español");
     }
 
     private void cosentinoLanguageChoosen(){
-        italianLanguage.setSelected(false);
-        englishLanguage.setSelected(false);
-        frenchLanguage.setSelected(false);
-        spanishLanguage.setSelected(false);
-        cosentinoLanguage.setSelected(true);
         languageMenuButton.setText("Cosentino");
     }
 
@@ -235,14 +220,6 @@ public class LoginController {
         }
     }
 
-    private void changeLanguage(){
-        if(italianLanguage.isSelected()) settingsHandler.loginLanguage = "it";
-        if(englishLanguage.isSelected()) settingsHandler.loginLanguage = "en";
-        if(frenchLanguage.isSelected()) settingsHandler.loginLanguage  = "fr";
-        if(spanishLanguage.isSelected()) settingsHandler.loginLanguage  = "es";
-        if(cosentinoLanguage.isSelected()) settingsHandler.loginLanguage  = "cs";
-    }
-
     private void updateLanguage(){
         ResourceBundle bundle = null;
         try {
@@ -251,9 +228,7 @@ public class LoginController {
            alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null){
-            languageLabel.setText(bundle.getString("languageLabel"));
             stayLogged.setText(bundle.getString("staySignedLabel"));
-            showPass.setText(bundle.getString("showPassLabel"));
             loginButton.setText(bundle.getString("loginButton"));
             forgotPassButton.setText(bundle.getString("forgotPassButton"));
             registerButton.setText(bundle.getString("registerButton"));
