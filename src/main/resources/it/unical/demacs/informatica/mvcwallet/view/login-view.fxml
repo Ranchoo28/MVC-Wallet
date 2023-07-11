@@ -101,7 +101,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </PasswordField>
-                              <TextField fx:id="passwordText" disable="true" minHeight="30.0" style="-fx-background-radius: 10;" />
+                              <TextField fx:id="passwordText" minHeight="30.0" style="-fx-background-radius: 10;" visible="false" />
                            </children>
                         </StackPane>
                         <CheckBox fx:id="stayLogged" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="19.0" prefWidth="140.0" textFill="WHITE">
@@ -121,6 +121,21 @@
                         </CheckBox>
                      </children>
                   </VBox>
+                  <CheckBox fx:id="showPass" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onShowClick" prefHeight="22.0" prefWidth="140.0" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <Label styleClass="label-class" textAlignment="CENTER">
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                     </graphic>
+                  </CheckBox>
                </children>
                <padding>
                   <Insets top="30.0" />

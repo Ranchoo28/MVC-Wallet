@@ -4,6 +4,8 @@ import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -19,7 +21,7 @@ public class LoginController {
     @FXML
     private Button loginButton = new Button(), forgotPassButton = new Button(), registerButton = new Button();
     @FXML
-    private CheckBox stayLogged;
+    private CheckBox stayLogged, showPass;
     @FXML
     private MenuButton languageMenuButton;
     @FXML
@@ -40,6 +42,7 @@ public class LoginController {
 
     @FXML
     void onLoginButtonClick() throws InterruptedException {
+        if(showPass.isSelected()) passwordField.setText(passwordText.getText());
 
         // Una volta premuto il button, esegue il login tramite una query al database e
         // in base al risultato apre un popup.
@@ -101,6 +104,19 @@ public class LoginController {
         sceneHandler.createRegistrationScene();
     }
 
+    @FXML
+    void onShowClick() {
+        if(showPass.isSelected()){
+            passwordText.setText(passwordField.getText());
+            passwordField.setVisible(false);
+            passwordText.setVisible(true);
+        }
+        else {
+            passwordField.setText(passwordText.getText());
+            passwordField.setVisible(true);
+            passwordText.setVisible(false);
+        }
+    }
 
     @FXML
     void initialize(){
@@ -132,7 +148,12 @@ public class LoginController {
 
     private void listenerPassword(){
         passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
-            isGoodPassword = newValue.length() >= 8;
+            isGoodPassword = newValue.length() >= 8 || passwordText.getText().length() >= 8;
+            performBinding();
+        });
+
+        passwordText.textProperty().addListener((observable, oldValue, newValue) -> {
+            isGoodPassword = newValue.length() >= 8 || passwordField.getText().length() >= 8;
             performBinding();
         });
     }
@@ -146,7 +167,8 @@ public class LoginController {
                 {
                     super.bind(
                             usernameText.textProperty(),
-                            passwordText.textProperty()
+                            passwordText.textProperty(),
+                            passwordField.textProperty()
                     );
                 }
 
@@ -204,11 +226,13 @@ public class LoginController {
     }
 
     private void uploadLanguage(){
-        if(settingsHandler.loginLanguage.equals("it")) italianLanguageChoosen();
-        if(settingsHandler.loginLanguage.equals("en")) englishLanguageChoosen();
-        if(settingsHandler.loginLanguage.equals("fr")) frenchLanguageChoosen();
-        if(settingsHandler.loginLanguage.equals("es")) spanishLanguageChoosen();
-        if(settingsHandler.loginLanguage.equals("cs")) cosentinoLanguageChoosen();
+        switch(settingsHandler.loginLanguage){
+            case "it" -> italianLanguageChoosen();
+            case "en" -> englishLanguageChoosen();
+            case "fr" -> frenchLanguageChoosen();
+            case "es" -> spanishLanguageChoosen();
+            case "cs" -> cosentinoLanguageChoosen();
+        }
     }
 
     private void changeLanguage(){
@@ -229,6 +253,7 @@ public class LoginController {
         if(bundle!=null){
             languageLabel.setText(bundle.getString("languageLabel"));
             stayLogged.setText(bundle.getString("staySignedLabel"));
+            showPass.setText(bundle.getString("showPassLabel"));
             loginButton.setText(bundle.getString("loginButton"));
             forgotPassButton.setText(bundle.getString("forgotPassButton"));
             registerButton.setText(bundle.getString("registerButton"));

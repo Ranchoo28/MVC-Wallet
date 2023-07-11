@@ -52,6 +52,7 @@ public class ChangePassForgotController {
 
     @FXML
     void onChangeClick(){
+        if(showPassBox.isSelected()) passwordField.setText(passwordText.getText());
         if(sqlService.serviceForgotPassword(TokenController.email, passwordField.getText()))
             alertHandler.passChangedFromForgot();
         else{
