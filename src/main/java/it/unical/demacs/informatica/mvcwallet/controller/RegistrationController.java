@@ -164,13 +164,16 @@ public class RegistrationController {
         }
     }
     private void addYear(){
-        for (int i = LocalDate.now().getYear(); i >= 1900; i--) {
+        int year = today.getYear();
+        for (int i = year; i >= year-118; i--) {
             MenuItem item = new MenuItem(String.valueOf(i));
             item.setOnAction(event -> {
                 yyMenuButton.setText(item.getText());
             });
             yyMenuButton.getItems().add(item);
         }
+        System.out.println("PRONTO");
+
     }
 
     private boolean checkBirthDate(){
@@ -191,12 +194,13 @@ public class RegistrationController {
 
    @FXML
    void initialize() {
+        addYear();
+        addMonth();
+        addDay();
         Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 16);
         eyeIcon.setText("\uF070");
         eyeIcon.setFont(font);
-        addDay();
-        addMonth();
-        addYear();
+
         updateLanguage();
         addListener();
         setToolTip();
