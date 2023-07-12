@@ -76,7 +76,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="buttonRegisterAccount" mnemonicParsing="false" onAction="#onRegisterAccountButtonClick" stylesheets="@../css/blue.css" textFill="WHITE">
+                  <Button fx:id="buttonRegisterAccount" disable="true" mnemonicParsing="false" onAction="#onRegisterAccountButtonClick" stylesheets="@../css/blue.css" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

@@ -7,17 +7,11 @@ import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.EventListener;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -91,7 +85,7 @@ public class RegistrationController {
 
     void addDay() {
         String month = mmMenuButton.getText();
-        String year = yyMenuButton.getText();
+        String year = yyMenuButton.getText().trim();
 
         ddMenuButton.getItems().clear();
 
@@ -201,12 +195,9 @@ public class RegistrationController {
             }
         };
 
-        ChangeListener<String> dateOfBirth = new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                isGoodAge = checkBirthDate();
-                performBinding();
-            }
+        ChangeListener<String> dateOfBirth = (observable, oldValue, newValue) -> {
+            isGoodAge = checkBirthDate();
+            performBinding();
         };
 
         ddMenuButton.textProperty().addListener(dateOfBirth);
@@ -220,7 +211,6 @@ public class RegistrationController {
        usernameText.textProperty().addListener((observable, oldValue, newValue) -> {
            // Controlla se il nickname è formato da almeno CINQUE caratteri.
            isGoodUsername = newValue.length() >= 5;
-
            performBinding();
        });
 
@@ -233,7 +223,6 @@ public class RegistrationController {
        passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
            // Controlla se la password rispetta il Regex
            isGoodPassword = newValue.matches(regexHandler.regexPassword);
-
            performBinding();
        });
    }
@@ -243,44 +232,39 @@ public class RegistrationController {
        passwordField.setTooltip(new Tooltip(bundle.getString("tooltipPassword")));
    }
 
-   private void performBinding() {
-       // Serve a disabilitare il button della registrazione qualora non venissero introdotte credenziali
-       // valide durante la registrazione. Il runLater() serve ad assicuraci che questo codice venga eseguito
-       // solamente dopo aver scritto nei vari textField.
+    private void performBinding() {
+        Platform.runLater(() -> {
+            BooleanBinding bb = new BooleanBinding() {
+                {
+                    super.bind(
+                            emailText.textProperty(),
+                            usernameText.textProperty(),
+                            passwordField.textProperty()
+                    );
+                }
+                @Override
+                protected boolean computeValue() {
+                    return !(isGoodEmail && isGoodAge && isGoodUsername && isGoodPassword);
+                }
+            };
+            buttonRegisterAccount.disableProperty().bind(bb);
+        });
+    }
 
-       Platform.runLater(() -> {
-           BooleanBinding bb = new BooleanBinding() {
-               {
-                   super.bind(
-                       emailText.textProperty(),
-                       usernameText.textProperty(),
-                       passwordField.textProperty()
-                   );
-               }
-
-               @Override
-               protected boolean computeValue() {
-                   return !(isGoodEmail && isGoodAge && isGoodUsername && isGoodPassword);
-               }
-           };
-           buttonRegisterAccount.disableProperty().bind(bb);
-       });
-   }
-
-       private void updateLanguage() {
-           ResourceBundle bundle = null;
-           try {
-               System.out.println(SettingsHandler.getInstance().loginLanguage);
-               bundle = lanHandler.getBundle();
-           } catch (Exception e) {
-               alertHandler.createErrorAlert("Error in loading the language");
-           }
-           if (bundle != null) {
-               buttonRegisterAccount.setText(bundle.getString("registerButton"));
-               backButton.setText(bundle.getString("backButton"));
-               nameLabel.setText(bundle.getString("nameLabel"));
-               surnameLabel.setText(bundle.getString("surnameLabel"));
-               birthdayLabel.setText(bundle.getString("birthdayLabel"));
-           }
+   private void updateLanguage() {
+       ResourceBundle bundle = null;
+       try {
+           System.out.println(SettingsHandler.getInstance().loginLanguage);
+           bundle = lanHandler.getBundle();
+       } catch (Exception e) {
+           alertHandler.createErrorAlert("Error in loading the language");
        }
+       if (bundle != null) {
+           buttonRegisterAccount.setText(bundle.getString("registerButton"));
+           backButton.setText(bundle.getString("backButton"));
+           nameLabel.setText(bundle.getString("nameLabel"));
+           surnameLabel.setText(bundle.getString("surnameLabel"));
+           birthdayLabel.setText(bundle.getString("birthdayLabel"));
+       }
+   }
 }
