@@ -15,7 +15,7 @@ public class ProfileController {
     @FXML
     AnchorPane centerPage;
     @FXML
-    private Label nameLabel, surnameLabel;
+    private Label nameLabel, surnameLabel, birthdayLabel;
     @FXML
     private TextField usernameTextField, firstTextField, lastTextField,emailTextField,birthdayTextField;
     @FXML
@@ -122,6 +122,7 @@ public class ProfileController {
             changePassButton.setText(bundle.getString("changePasswordButton"));
             nameLabel.setText(bundle.getString("nameLabel"));
             surnameLabel.setText(bundle.getString("surnameLabel"));
+            birthdayLabel.setText(bundle.getString("birthdayLabel"));
         }
     }
 }

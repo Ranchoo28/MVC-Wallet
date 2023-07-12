@@ -75,16 +75,20 @@ public class SceneHandler {
 
     public void openCAT() throws IOException {
         uploadLanguage();
-        stage1 = new Stage();
-        Scene scene1 = new Scene(loadRootFromFXML(view + "color-picker-view.fxml"));
-        scene1.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
-        stage1.initStyle(StageStyle.UNDECORATED);
-        stage1.setScene(scene1);
-        stage1.setResizable(false);
-        stage1.show();
+        if(stage1 == null) {
+            stage1 = new Stage();
+            Scene scene1 = new Scene(loadRootFromFXML(view + "color-picker-view.fxml"));
+            scene1.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
+            stage1.initStyle(StageStyle.UNDECORATED);
+            stage1.setScene(scene1);
+            stage1.setResizable(false);
+            stage1.show();
+        }
     }
     public void closeCAT(){
         stage1.close();
+        stage1 = null;
+        createSideBar();
     }
 
     public void createSideBar() {

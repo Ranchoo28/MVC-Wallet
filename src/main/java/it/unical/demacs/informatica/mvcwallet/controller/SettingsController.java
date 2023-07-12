@@ -112,15 +112,36 @@ public class SettingsController {
         updateAllSettings();
     }
 
+    String setMainPage(String page){
+        System.out.println(page);
+        try{
+            if(page!=null)
+                switch (page){
+                    case "spot" -> {
+                        return "spot";
+                    }
+                    case "market" -> {
+                        return "market";
+                    }
+                    case "settings" -> {
+                        return setMainPage(settingsHandler.old);
+                    }
+                }
+        } catch (Exception e){
+            System.out.println("Error in Settings Controller (rows: 116-124) " + e);
+        }
+        return "market";
+    }
+
     private void updateAllSettings(){
+        switch (setMainPage(settingsHandler.page)){
+            case "spot" -> spotChoosen();
+            case "market" -> marketChoosen();
+        }
+
         switch (settingsHandler.format){
             case "HH:mm:ss" -> h24Choosen();
             case "hh:mm:ss a" -> h12Choosen();
-        }
-
-        switch (settingsHandler.page){
-            case "spot" -> spotChoosen();
-            case "market" -> marketChoosen();
         }
 
         if(settingsHandler.logged) stayLogged();

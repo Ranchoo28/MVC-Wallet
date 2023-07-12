@@ -12,7 +12,7 @@ public class SettingsHandler {
     public String [] themes = {"dark.css","light.css","mvc.css","blue.css","custom.css"};
     public String username;
     public String [] settings;
-    public String format, page, theme, language, currency, loginLanguage = "it";
+    public String format, page = "market", theme, language, currency, loginLanguage = "it", old;
     public boolean logged;
 
     SqlService sqlService = SqlService.getInstance();
