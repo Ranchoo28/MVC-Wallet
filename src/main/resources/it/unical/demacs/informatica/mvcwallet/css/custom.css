@@ -30,7 +30,7 @@
 #CCCCCC;
     }.hbox-info-button:hover .icon{-fx-text-fill:
 #CCCCCC;
-    }.context-menu {-fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color:
+    }.context-menu {-fx-border-radius: 10; -fx-background-radius: 15; -fx-pref-height: 200; -fx-background-color:
 #1565C0;
     -fx-border-color:
 #707070;

@@ -19,7 +19,7 @@
    <children>
       <HBox alignment="TOP_RIGHT" pickOnBounds="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuButton fx:id="languageMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
+            <MenuButton fx:id="languageMenuButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0">
                <items>
                   <MenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
                      <graphic>

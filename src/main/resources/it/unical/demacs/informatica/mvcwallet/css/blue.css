@@ -75,8 +75,7 @@
     -fx-border-color: #707070; /* Bordo */
     -fx-border-radius: 10;
     -fx-background-radius: 15;
-    -fx-max-height: 400;
-    -fx-pref-height: 300;
+    -fx-pref-height: 200;
 }
 /* Menu Item */
 .menu-button .menu-item {
