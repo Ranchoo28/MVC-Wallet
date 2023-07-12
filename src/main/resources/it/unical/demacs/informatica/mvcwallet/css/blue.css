@@ -75,7 +75,6 @@
     -fx-border-color: #707070; /* Bordo */
     -fx-border-radius: 10;
     -fx-background-radius: 15;
-    -fx-pref-height: 200;
 }
 /* Menu Item */
 .menu-button .menu-item {
@@ -139,6 +138,7 @@
     -fx-text-fill: #CCCCCC; /* Testo secondario */
 }
 /* Date Picker */
-.mfx-date-picker{
-    -fx-alignment: center;
+.hbox-date-picker .context-menu {
+    -fx-pref-height: 200;
+    -fx-max-height: 300;
 }

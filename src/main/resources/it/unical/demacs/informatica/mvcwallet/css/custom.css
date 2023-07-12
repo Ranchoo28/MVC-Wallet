@@ -66,4 +66,4 @@
 #CCCCCC;
     }.sidebar-button:hover .icon {-fx-text-fill:
 #CCCCCC;
-    }.date-picker-item .label{-fx-alignment: center;}
+    }.hbox-date-picker .context-menu { -fx-pref-height: 200; -fx-max-height: 300;}
