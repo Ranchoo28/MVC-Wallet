@@ -9,6 +9,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Font;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -19,11 +20,11 @@ public class RegistrationController {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private TextField usernameText, emailText, nameText, surnameText;
+    private TextField usernameText, emailText, nameText, surnameText, passwordText;
     @FXML
     private Button buttonRegisterAccount, backButton;
     @FXML
-    private Label usernameLabel, birthdayLabel, nameLabel, surnameLabel;
+    private Label usernameLabel, birthdayLabel, nameLabel, surnameLabel, eyeIcon;
     @FXML
     private MenuButton ddMenuButton, mmMenuButton, yyMenuButton;
 
@@ -38,9 +39,25 @@ public class RegistrationController {
     private final RegexHandler regexHandler = RegexHandler.getInstance();
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
+    private final String pathOfFont = PathHandler.getInstance().getPathOfFont();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
 
     LocalDate today = LocalDate.now();
+
+    @FXML
+    void showPassword() {
+        eyeIcon.setText("\uF06E");
+        passwordText.setText(passwordField.getText());
+        passwordField.setVisible(false);
+        passwordText.setVisible(true);
+    }
+    @FXML
+    void hidePassword(){
+        eyeIcon.setText("\uF070");
+        passwordField.setText(passwordText.getText());
+        passwordField.setVisible(true);
+        passwordText.setVisible(false);
+    }
     @FXML
    void onCancelButtonClick() { sceneHandler.createLoginScene(); }
 
@@ -174,6 +191,9 @@ public class RegistrationController {
 
    @FXML
    void initialize() {
+        Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 16);
+        eyeIcon.setText("\uF070");
+        eyeIcon.setFont(font);
         addDay();
         addMonth();
         addYear();
