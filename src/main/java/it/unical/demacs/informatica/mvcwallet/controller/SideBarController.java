@@ -205,8 +205,6 @@ public class SideBarController {
         if(bundle!=null) {
             settingsLabel.setText(bundle.getString("settingsLabel"));
             logoutLabel.setText(bundle.getString("logoutLabel"));
-        } else {
-            System.out.println("SideBarController.java: bundle is null");
         }
     }
 }

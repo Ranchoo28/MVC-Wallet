@@ -147,7 +147,7 @@ public class AlertHandler {
         ButtonType exitB = new ButtonType(bundle.getString("yesButton"));
         ButtonType stayB = new ButtonType(bundle.getString("noButton"));
 
-        Alert alert = new Alert(Alert.AlertType.ERROR, "", exitB, stayB);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", exitB, stayB);
         FontIcon icon = new FontIcon("mdi2e-email-send");
         icon.getStyleClass().add("icons-color");
         icon.setIconColor(Paint.valueOf("#4d79ff"));
@@ -166,10 +166,6 @@ public class AlertHandler {
             else if(buttonType.equals(stayB)){
                 alert.close();
             }
-        });
-        alert.setOnCloseRequest(event -> {
-            event.consume();
-            alert.close();
         });
     }
 
