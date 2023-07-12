@@ -148,15 +148,15 @@ public class AlertHandler {
         ButtonType stayB = new ButtonType(bundle.getString("noButton"));
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", exitB, stayB);
-        FontIcon icon = new FontIcon("mdi2e-email-send");
+        FontIcon icon = new FontIcon("mdi2p-progress-question");
         icon.getStyleClass().add("icons-color");
-        icon.setIconColor(Paint.valueOf("#4d79ff"));
+        icon.setIconColor(Paint.valueOf("#ff3333"));
         icon.setIconSize(45);
         alert.setGraphic(icon);
         alert.setHeaderText("");
         alert.setTitle(bundle.getString("exitAppTitle"));
         alert.setContentText(bundle.getString("exitAppText"));
-        alert.setOnCloseRequest(e -> alert.hide());
+        alert.getDialogPane().getScene().getWindow().setOnCloseRequest(e -> alert.hide());
         Optional<ButtonType> result = alert.showAndWait();
         result.ifPresent(buttonType -> {
             if(buttonType.equals(exitB)){
@@ -167,6 +167,34 @@ public class AlertHandler {
                 alert.close();
             }
         });
+    }
+
+    public void createConnectionErrorAlert() {
+        bundle = LanguageHandler.getInstance().getBundle();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        FontIcon icon = new FontIcon("mdi2a-alert");
+        icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
+        icon.getStyleClass().add("icons-color");
+        icon.setIconSize(45);
+        alert.setHeaderText("");
+        alert.setGraphic(icon);
+        alert.setTitle(bundle.getString("errorTitle"));
+        alert.setContentText(bundle.getString("connectionErrorAlert"));
+        alert.show();
+    }
+
+    public void createRequestErrorAlert() {
+        bundle = LanguageHandler.getInstance().getBundle();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        FontIcon icon = new FontIcon("mdi2a-alert");
+        icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
+        icon.getStyleClass().add("icons-color");
+        icon.setIconSize(45);
+        alert.setHeaderText("");
+        alert.setGraphic(icon);
+        alert.setTitle(bundle.getString("errorTitle"));
+        alert.setContentText(bundle.getString("requestErrorAlert"));
+        alert.show();
     }
 
 }

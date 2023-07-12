@@ -95,7 +95,6 @@ public class SceneHandler {
             else scene.setRoot(root);
             stage.setTitle("MVC Wallet");
             uploadTheme();
-
         } catch (Exception e) {
             System.out.println("Error in SceneHandler.java (rows: 67-76) " + e);
         }

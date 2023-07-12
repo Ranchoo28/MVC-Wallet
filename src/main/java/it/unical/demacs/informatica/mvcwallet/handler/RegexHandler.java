@@ -12,7 +12,7 @@ public class RegexHandler {
             "^[a-zA-Z0-9.!#$%&’*+/=?^_{|}~-]+@(?:gmail\\.com|yahoo\\.com|hotmail\\.com|libero\\.it|icloud\\.com|gmx\\.com|aol\\.com)";
 
     public final String regexPassword =
-            "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%&£°#'?*=.])[a-zA-Z0-9@!%&£°#'?*=.]{8,}";
+            "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@!%~&£°#'?*=.])[a-zA-Z0-9@!%&£°#'?*=.]{8,}";
 
     public final String regexFirstLast =
             "^(?=.{2,20}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$";

@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import com.google.gson.*;
+import javafx.application.Platform;
 
 public class APIsHandler {
     private static final TimeStampHandler timeStampHandler = TimeStampHandler.getInstance();
@@ -61,7 +62,7 @@ public class APIsHandler {
             connection.setRequestMethod("GET");
             responseCode = connection.getResponseCode();
         } catch (Exception e) {
-            alertHandler.createErrorAlert(bundle.getString("connectionErrorAlert"));
+            Platform.runLater(alertHandler::createConnectionErrorAlert);
         }
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -75,7 +76,7 @@ public class APIsHandler {
                 }
                 reader.close();
             } catch (Exception e) {
-                alertHandler.createErrorAlert(bundle.getString("connectionErrorAlert"));
+                Platform.runLater(alertHandler::createConnectionErrorAlert);
             }
 
             try {
@@ -104,7 +105,7 @@ public class APIsHandler {
         } else if(responseCode == HttpURLConnection.HTTP_NOT_FOUND){
             System.out.println("ERROR "+responseCode+": Coin not found");
         } else if(responseCode == 429){
-            alertHandler.createErrorAlert(bundle.getString("requestErrorAlert"));
+            Platform.runLater(alertHandler::createRequestErrorAlert);
         }
         return dictionary;
     }
