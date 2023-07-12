@@ -87,8 +87,6 @@ public class RegistrationController {
         String month = mmMenuButton.getText();
         String year = yyMenuButton.getText().trim();
 
-        System.out.println(month+ " " +year);
-
         ddMenuButton.getItems().clear();
 
         if (Objects.equals(month, "MM")) {
@@ -163,10 +161,11 @@ public class RegistrationController {
             int year = Integer.parseInt(yyMenuButton.getText());
             int month = Integer.parseInt(mmMenuButton.getText());
             int day = Integer.parseInt(ddMenuButton.getText());
+            System.out.println(day+" "+month+ " " +year);
             LocalDate birthday = LocalDate.of(year, month, day);
             Period p = Period.between(birthday, today);
 
-            return p.getYears() > 18;
+            return p.getYears() >= 18;
 
         } catch (Exception ignored){
             return false;
@@ -203,8 +202,8 @@ public class RegistrationController {
         };
 
         ddMenuButton.textProperty().addListener(dateOfBirth);
-        ddMenuButton.textProperty().addListener(dateOfBirth);
-        ddMenuButton.textProperty().addListener(dateOfBirth);
+        mmMenuButton.textProperty().addListener(dateOfBirth);
+        yyMenuButton.textProperty().addListener(dateOfBirth);
 
         ddMenuButton.textProperty().addListener(listener);
         mmMenuButton.textProperty().addListener(listener);
