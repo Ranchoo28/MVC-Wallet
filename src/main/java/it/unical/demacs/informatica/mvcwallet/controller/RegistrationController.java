@@ -87,6 +87,8 @@ public class RegistrationController {
         String month = mmMenuButton.getText();
         String year = yyMenuButton.getText().trim();
 
+        System.out.println(month+ " " +year);
+
         ddMenuButton.getItems().clear();
 
         if (Objects.equals(month, "MM")) {
@@ -101,7 +103,7 @@ public class RegistrationController {
             }
         } else if (Objects.equals(month, "02")) {
             // Mese di febbraio
-            if (isLeapYear(Integer.parseInt(year))) {
+            if (!year.equals("YYYY") && isLeapYear(Integer.parseInt(year))) {
                 // Anno bisestile, aggiungi 29 giorni
                 for (int i = 1; i <= 29; i++) {
                     String day = String.format("%02d", i);
