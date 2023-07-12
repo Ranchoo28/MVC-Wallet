@@ -5,6 +5,7 @@
 /* #707070; /* Bordo */
 /* #CCCCCC; /* Testo secondario */
 /* #FFFFFF; /* Testo primario */
+
 /* Colore dell'anchorpane */
 .global-color{
      -fx-background-color: #1565C0; /* Sfondo primario */
@@ -74,10 +75,12 @@
     -fx-border-color: #707070; /* Bordo */
     -fx-border-radius: 10;
     -fx-background-radius: 15;
+    -fx-max-height: 400;
+    -fx-pref-height: 300;
 }
 /* Menu Item */
 .menu-button .menu-item {
-    -fx-background-color: transparent; //Il colore é dato da context-menu
+    -fx-background-color: transparent; /* Il colore é dato da context-menu */
 }
 .menu-button .menu-item:hover {
     -fx-background-color: #1976D2; /* Sfondo di evidenziazione */
@@ -100,18 +103,12 @@
 .menu-button .menu-item:hover .bgnull .jfx-toggle-button{
     -fx-text-fill: #CCCCCC; /* Testo secondario */
 }
-/*
-#1565C0; // Sfondo del toggle spento
-#1E88E5; // Sfondo del toggle acceso
-#EEEEEE; // Colore del cursore del toggle spento
-#FFD1DC; // Colore del cursore del toggle acceso
-*/
 .jfx-toggle-button {
     -fx-text-fill: #FFFFFF; /* Testo primario */
-    -jfx-untoggle-color: #1565C0; /* Sfondo del toggle spento */
+    -jfx-untoggle-color: #1565C0; /* Sfondo del toggle spento - Sfondo Primario */
     -jfx-untoggle-line-color: #EEEEEE; /* Colore del cursore del toggle spento */
     -jfx-toggle-color: #1E88E5; /* Sfondo del toggle acceso */
-    -jfx-toggle-line-color: #FFD1DC; /* Colore del cursore del toggle acceso */
+    -jfx-toggle-line-color: #2196F3; /* Colore del cursore del toggle acceso */
 }
 .jfx-toggle-button:hover {
     -fx-background-color: transparent;
@@ -143,6 +140,6 @@
     -fx-text-fill: #CCCCCC; /* Testo secondario */
 }
 /* Date Picker */
-.date-picker-item .label{
+.mfx-date-picker{
     -fx-alignment: center;
 }
