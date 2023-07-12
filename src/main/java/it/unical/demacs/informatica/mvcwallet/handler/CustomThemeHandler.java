@@ -104,6 +104,8 @@ public class CustomThemeHandler {
     }
 
     private void readCssFile(){
+        if(!cssArray.isEmpty())
+            cssArray.clear();
         try {
             File file = new File(Objects.requireNonNull(getClass().getResource(pathOfCSS + "custom.css")).toURI());
             FileReader stream = new FileReader(file);
