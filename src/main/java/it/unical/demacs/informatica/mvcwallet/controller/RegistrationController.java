@@ -162,6 +162,21 @@ public class RegistrationController {
         }
     }
 
+    private boolean checkBirthDate(){
+        try {
+            int year = Integer.parseInt(yyMenuButton.getText());
+            int month = Integer.parseInt(mmMenuButton.getText());
+            int day = Integer.parseInt(ddMenuButton.getText());
+            LocalDate birthday = LocalDate.of(year, month, day);
+            Period p = Period.between(birthday, today);
+
+            return p.getYears() > 18;
+
+        } catch (Exception ignored){
+            return false;
+        }
+    }
+
    @FXML
    void initialize() {
         addDay();
@@ -179,13 +194,24 @@ public class RegistrationController {
     }
 
     private void addListener(){
-
         ChangeListener<String> listener = new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 addDay();
             }
         };
+
+        ChangeListener<String> dateOfBirth = new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                isGoodAge = checkBirthDate();
+                performBinding();
+            }
+        };
+
+        ddMenuButton.textProperty().addListener(dateOfBirth);
+        ddMenuButton.textProperty().addListener(dateOfBirth);
+        ddMenuButton.textProperty().addListener(dateOfBirth);
 
         ddMenuButton.textProperty().addListener(listener);
         mmMenuButton.textProperty().addListener(listener);
@@ -194,20 +220,6 @@ public class RegistrationController {
        usernameText.textProperty().addListener((observable, oldValue, newValue) -> {
            // Controlla se il nickname è formato da almeno CINQUE caratteri.
            isGoodUsername = newValue.length() >= 5;
-
-           performBinding();
-       });
-
-       ddMenuButton.textProperty().addListener((observable, oldValue, newValue) -> {
-           // Per vedere se un utente è maggiorenne, usiamo la classe Period che permette di calcolare il tempo
-           // che passa fra una data e un'altra.
-           int year = Integer.parseInt(yyMenuButton.getText());
-           int month = Integer.parseInt(mmMenuButton.getText());
-           int day = Integer.parseInt(ddMenuButton.getText());
-           LocalDate birthday = LocalDate.of(year, month, day);
-           Period p = Period.between(birthday, today);
-
-           isGoodAge = p.getYears() > 18;
 
            performBinding();
        });
@@ -242,8 +254,7 @@ public class RegistrationController {
                    super.bind(
                        emailText.textProperty(),
                        usernameText.textProperty(),
-                       passwordField.textProperty(),
-                       yyMenuButton.textProperty()
+                       passwordField.textProperty()
                    );
                }
 
@@ -252,7 +263,6 @@ public class RegistrationController {
                    return !(isGoodEmail && isGoodAge && isGoodUsername && isGoodPassword);
                }
            };
-
            buttonRegisterAccount.disableProperty().bind(bb);
        });
    }
