@@ -109,6 +109,11 @@ public class SideBarController {
                 marketHBox.setDisable(true);
                 loadFXML("market-view.fxml");
             }
+            case "settings" -> {
+                spotHBox.setDisable(true);
+                marketHBox.setDisable(true);
+                loadFXML("settings-view.fxml");
+            }
         }
     }
 

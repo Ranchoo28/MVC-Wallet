@@ -29,7 +29,7 @@ public class CustomThemeHandler {
         return new Color[]{mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor};
     }
 
-    public void assigneColorsFromDB(){
+    public void assignColorsFromDB(){
         String [] colors = sqlService.serviceGetCustomTheme(LoginController.username);
         this.mainBgc = Color.valueOf(colors[0]);
         this.secondBgc = Color.valueOf(colors[1]);
@@ -60,35 +60,46 @@ public class CustomThemeHandler {
     }
     private void changeColorsInFile(){
         if(!cssArray.isEmpty()){
-            cssArray.set(2, colorToHexString(mainBgc)); // Sfondo primario
-            cssArray.set(6, colorToHexString(mainTxtColor)); // Testo primario
-            cssArray.set(10, colorToHexString(buttonColor)); // Pulsante primario
-            cssArray.set(12, colorToHexString(mainTxtColor)); // Testo Primario
-            cssArray.set(16, colorToHexString(hoverColor)); // Sfondo di evidenziazione
-            cssArray.set(18, colorToHexString(secondTxtColor)); // Testo secondario
-            cssArray.set(22, colorToHexString(secondBgc)); // Sfondo secondario
-            cssArray.set(26, colorToHexString(mainTxtColor)); // Testo primario
-            cssArray.set(30, colorToHexString(mainTxtColor)); // Testo primario
-            cssArray.set(34, colorToHexString(hoverColor)); // Sfondo di evidenziazione
-            cssArray.set(39, colorToHexString(secondTxtColor)); // Testo secondario
-            cssArray.set(43, colorToHexString(secondTxtColor)); // Testo secondario
-            cssArray.set(47, colorToHexString(secondBgc)); // Sfondo secondario
-            cssArray.set(49, colorToHexString(borderColor)); // Bordo
-            cssArray.set(61, colorToHexString(hoverColor)); // Sfondo di evidenziazione
-            cssArray.set(66, colorToHexString(secondTxtColor)); // Testo secondario
-            cssArray.set(70, colorToHexString(mainTxtColor)); // Testo primario
-            /*
-            cssArray.set(72, primaryBG); // Sfondo del toggle spento
-            cssArray.set(74, primaryBG); // Cursore del toggle spento
-            cssArray.set(76, primaryBG); // Sfondo del toggle acceso
-            cssArray.set(78, primaryBG); // Cursore del toggle spento
-             */
-            cssArray.set(85, colorToHexString(secondBgc)); // Sfondo secondario
-            cssArray.set(90, colorToHexString(mainTxtColor)); // Testo primario
-            cssArray.set(94, colorToHexString(mainTxtColor)); // Testo primario
-            cssArray.set(98, colorToHexString(hoverColor)); // Sfondo di evidenziazione
-            cssArray.set(103, colorToHexString(secondTxtColor)); // Testo secondario
-            cssArray.set(107, colorToHexString(secondTxtColor)); // Testo secondario
+            cssArray.set(1, colorToHexString(mainBgc));         /* Sfondo primario */
+            cssArray.set(3, colorToHexString(mainTxtColor));    /* Testo primario */
+            cssArray.set(5, colorToHexString(buttonColor));     /* Pulsante */
+            cssArray.set(7, colorToHexString(mainTxtColor));    /* Testo Primario */
+            cssArray.set(9, colorToHexString(hoverColor));      /* Sfondo di evidenziazione */
+
+            cssArray.set(11, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(13, colorToHexString(buttonColor));    /* Pulsante */
+            cssArray.set(15, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
+            cssArray.set(17, colorToHexString(mainTxtColor));   /* Testo primario */
+            cssArray.set(19, colorToHexString(secondTxtColor)); /* Testo secondario */
+
+            cssArray.set(21, colorToHexString(secondTxtColor)); /* Sfondo secondario */
+            cssArray.set(23, colorToHexString(mainTxtColor));   /* Testo primario */
+            cssArray.set(25, colorToHexString(mainTxtColor));   /* Testo primario */
+            cssArray.set(27, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
+            cssArray.set(29, colorToHexString(secondTxtColor)); /* Testo secondario */
+
+            cssArray.set(31, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(33, colorToHexString(mainBgc));        /* Sfondo primario */
+            cssArray.set(35, colorToHexString(mainBgc));        /* Bordo */
+            cssArray.set(37, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
+            cssArray.set(39, colorToHexString(mainTxtColor));   /* Testo primario */
+
+            cssArray.set(41, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(43, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
+            cssArray.set(45, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(47, colorToHexString(mainTxtColor));   /* Testo primario */
+            cssArray.set(49, colorToHexString(secondTxtColor)); /* Sfondo del toggle spento */
+
+            cssArray.set(51, colorToHexString(secondTxtColor)); /* Colore del cursore del toggle spento */
+            cssArray.set(53, colorToHexString(secondTxtColor)); /* Sfondo del toggle acceso */
+            cssArray.set(55, colorToHexString(secondTxtColor)); /* Colore del cursore del toggle acceso */
+            cssArray.set(57, colorToHexString(secondBgc));      /* Sfondo secondario */
+            cssArray.set(59, colorToHexString(mainTxtColor));   /* Testo primario */
+
+            cssArray.set(61, colorToHexString(mainTxtColor));   /* Testo primario */
+            cssArray.set(63, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
+            cssArray.set(65, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(67, colorToHexString(secondTxtColor)); /* Testo secondario */
         }
     }
 
@@ -106,12 +117,12 @@ public class CustomThemeHandler {
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }
-        assignColorsFromFile(cssArray.get(2),cssArray.get(22),cssArray.get(16),cssArray.get(10),cssArray.get(49),cssArray.get(6),cssArray.get(18));
+        assignColorsFromFile(cssArray.get(1),cssArray.get(23),cssArray.get(9),cssArray.get(5),cssArray.get(49),cssArray.get(3),cssArray.get(11));
     }
     public void writeCssFile(){
         try {
             File file = new File(Objects.requireNonNull(getClass().getResource(pathOfCSS + "custom.css")).toURI());
-            FileWriter stream = new FileWriter(file);
+            FileWriter stream = new FileWriter(file, false);
             BufferedWriter bufferedWriter = new BufferedWriter(stream);
             for(String cssLine : cssArray){
                 bufferedWriter.write(cssLine);

@@ -16,7 +16,6 @@
 /* Colore di base del bottoni */
 .button{
     -fx-background-color: #2196F3; /* Pulsante */
-    -fx-background-radius: 15; /* Pulsante */
 }
 .button .label{
     -fx-text-fill: #FFFFFF; /* Testo primario */
@@ -33,7 +32,7 @@
 .menu-button {
     -fx-background-color: #2196F3; /* Pulsante */
     -fx-border-color: transparent;
-    -fx-border-radius: 15;
+    -fx-background-radius: 15;
 }
 .menu-button:hover {
     -fx-background-color: #1976D2; /* Sfondo di evidenziazione */
@@ -72,7 +71,7 @@
 /* Menu a comparsa */
 .context-menu {
     -fx-background-color: #1565C0; /* Sfondo primario */
-    -fx-border-color: #707070; // Bordo
+    -fx-border-color: #707070; /* Bordo */
     -fx-border-radius: 10;
     -fx-background-radius: 15;
 }
@@ -142,4 +141,8 @@
 /*Icona dei bottoni al passaggio del mouse */
 .sidebar-button:hover .icon {
     -fx-text-fill: #CCCCCC; /* Testo secondario */
+}
+/* Date Picker */
+.date-picker-item .label{
+    -fx-alignment: center;
 }

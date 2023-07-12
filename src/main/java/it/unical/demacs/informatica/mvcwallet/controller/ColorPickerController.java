@@ -25,9 +25,9 @@ public class ColorPickerController{
     private Button applyButton, cancelButton;
 
 
-    final static CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
-    final static SceneHandler sceneHandler = SceneHandler.getInstance();
-    final static SettingsHandler settingsHandler = SettingsHandler.getInstance();
+    private final CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
+    private final SceneHandler sceneHandler = SceneHandler.getInstance();
+    private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
 
@@ -59,7 +59,10 @@ public class ColorPickerController{
     void onApplyButton(){
         getColorsFromColorPicker();
         customThemeHandler.setTheme();
-        settingsHandler.theme = "custom";
+        settingsHandler.theme = "custom.css";
+        if(!settingsHandler.page.equals("settings"))
+            settingsHandler.old = settingsHandler.page;
+        settingsHandler.page = "settings";
         sceneHandler.closeCAT();
     }
 
