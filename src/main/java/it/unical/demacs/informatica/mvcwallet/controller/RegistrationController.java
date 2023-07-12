@@ -72,7 +72,7 @@ public class RegistrationController {
     private void addListener(){
         usernameText.textProperty().addListener((observable, oldValue, newValue) -> {
             // Controlla se il nickname è formato da almeno 5 caratteri.
-            isGoodUsername = newValue.length() > 5;
+            isGoodUsername = newValue.length() >= 5;
 
             performBinding();
         });

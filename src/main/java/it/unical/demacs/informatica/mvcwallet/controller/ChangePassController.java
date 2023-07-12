@@ -64,12 +64,14 @@ public class ChangePassController {
         eyeIconNewPassword.setText("\uF06E");
         newPasswordTextField.setText(newPassPasswordField.getText());
         newPassPasswordField.setVisible(false);
+        newPasswordTextField.setDisable(false);
     }
     @FXML
     void hideNewPassword(){
         eyeIconNewPassword.setText("\uF070");
         newPasswordTextField.setText(newPassPasswordField.getText());
         newPassPasswordField.setVisible(true);
+        newPasswordTextField.setDisable(true);
     }
     @FXML
     void showOldPassword() {

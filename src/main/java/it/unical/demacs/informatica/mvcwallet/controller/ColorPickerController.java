@@ -15,7 +15,7 @@ public class ColorPickerController{
     @FXML
     private Label primaryBgLabel, secondaryBgLabel,
             hoverLabel, buttonLabel,
-            borderLabel, primaryFontLabel, secondaryFontLabel;
+            borderLabel, primaryFontLabel, secondaryFontLabel, applyLabel, cancLabel;
 
     @FXML
     private ColorPicker bdrColorPicker, btnColorPicker,
@@ -82,8 +82,8 @@ public class ColorPickerController{
             alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null){
-           applyButton.setText(bundle.getString("applyButton"));
-           cancelButton.setText(bundle.getString("backButton"));
+           applyLabel.setText(bundle.getString("applyButton"));
+           cancLabel.setText(bundle.getString("backButton"));
            primaryBgLabel.setText(bundle.getString("primaryBgLabel"));
            secondaryBgLabel.setText(bundle.getString("secondaryBgLabel"));
            hoverLabel.setText(bundle.getString("hoverLabel"));

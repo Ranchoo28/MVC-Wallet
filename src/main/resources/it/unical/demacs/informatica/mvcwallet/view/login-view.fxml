@@ -19,31 +19,31 @@
    <children>
       <HBox alignment="TOP_RIGHT" pickOnBounds="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuButton fx:id="languageMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="button">
+            <MenuButton fx:id="languageMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0">
                <items>
                   <MenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
                      <graphic>
-                        <Label prefWidth="110.0" text="Italiano" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Italiano" textAlignment="CENTER" />
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="englishLanguage" mnemonicParsing="false" onAction="#onEnglishClick">
                      <graphic>
-                        <Label prefWidth="110.0" text="English" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="English" textAlignment="CENTER" />
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="frenchLanguage" mnemonicParsing="false" onAction="#onFrenchClick">
                      <graphic>
-                        <Label prefWidth="110.0" text="Français" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Français" textAlignment="CENTER" />
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="spanishLanguage" mnemonicParsing="false" onAction="#onSpanishClick">
                      <graphic>
-                        <Label prefWidth="110.0" text="Español" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Español" textAlignment="CENTER" />
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="cosentinoLanguage" mnemonicParsing="false" onAction="#onCosentinoClick">
                      <graphic>
-                        <Label prefWidth="110.0" text="Cosentino" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Cosentino" textAlignment="CENTER" />
                      </graphic>
                   </MenuItem>
                </items>
@@ -106,6 +106,9 @@
                                        <padding>
                                           <Insets right="10.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Label>
                                  </children>
                               </HBox>

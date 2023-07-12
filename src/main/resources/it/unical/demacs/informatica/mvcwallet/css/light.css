@@ -1,47 +1,47 @@
 /*
-#1F1F1F; // Sfondo secondario (più scuro)
-#262626; // Sfondo primario
+#1F1F1F; /* Sfondo primario */
+#262626; /* Sfondo primario */
 #333333; // Sfondo di evidenziazione
 #4C4C4C; // Pulsante primario
 #707070; // Bordo
-#CCCCCC; // Testo secondario
-#FFFFFF; // Testo primario
+#CCCCCC; /* Testo secondario */
+#FFFFFF; /* Testo primario */
 */
 /* Colore di background dell'anchorpane */
 .global-color {
-    -fx-background-color: #F5F5F5; // Sfondo primario
+    -fx-background-color: #F5F5F5; /* Sfondo primario */
 }
 
 /* Colore di base del testo */
 .label-class {
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
 }
 
 /* Colore di base dei bottoni */
 .button {
     -fx-background-color: #E0E0E0; // Pulsante primario
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
 }
 
 /* Colore di base dei bottoni al passaggio del mouse */
 .button:hover {
     -fx-background-color: #D0D0D0; // Sfondo di evidenziazione
-    -fx-text-fill: #666666; // Testo secondario
+    -fx-text-fill: #666666; /* Testo secondario */
 }
 
 /* Barra superiore */
 .hbox-info {
-    -fx-background-color: #E0E0E0; // Sfondo secondario
+    -fx-background-color: #E0E0E0; /* Sfondo primario */
 }
 
 /* Etichette dei bottoni */
 .hbox-info-button .label-class {
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
 }
 
 /* Icone dei bottoni */
 .hbox-info-button .icon {
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
 }
 
 /* Bottone al passaggio del mouse */
@@ -52,17 +52,17 @@
 
 /* Etichette dei bottoni al passaggio del mouse */
 .hbox-info-button:hover .label-class {
-    -fx-text-fill: #666666; // Testo secondario
+    -fx-text-fill: #666666; /* Testo secondario */
 }
 
 /* Icona dei bottoni al passaggio del mouse */
 .hbox-info-button:hover .icon {
-    -fx-text-fill: #666666; // Testo secondario
+    -fx-text-fill: #666666; /* Testo secondario */
 }
 
 /* Menu a comparsa */
 .context-menu {
-    -fx-background-color: #E0E0E0; // Sfondo secondario
+    -fx-background-color: #E0E0E0; /* Sfondo primario */
     -fx-background-radius: 10;
     -fx-border-color: #707070; // Bordo
     -fx-border-radius: 10;
@@ -82,7 +82,7 @@
 }
 
 .menu-button .menu-item:hover .jfx-toggle-button {
-    -fx-text-fill: #666666; // Testo secondario
+    -fx-text-fill: #666666; /* Testo secondario */
 }
 
 /*
@@ -92,7 +92,7 @@
 #999999; // Colore del cursore del toggle acceso
 */
 .jfx-toggle-button {
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
     -jfx-untoggle-color: #4C4C4C; // Sfondo del toggle spento
     -jfx-untoggle-line-color: #BFBFBF; // Colore del cursore del toggle spento
     -jfx-toggle-color: #262626; // Sfondo del toggle acceso
@@ -105,18 +105,18 @@
 
 /* Barra laterale */
 .sidebar {
-    -fx-background-color: #E0E0E0; // Sfondo secondario
+    -fx-background-color: #E0E0E0; /* Sfondo primario */
     -fx-background-radius: 10;
 }
 
 /* Etichette dei bottoni */
 .sidebar .label-class {
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
 }
 
 /* Icone dei bottoni */
 .sidebar .icon {
-    -fx-text-fill: #262626; // Testo primario
+    -fx-text-fill: #262626; /* Testo primario */
 }
 
 /* Bottone al passaggio del mouse */
@@ -127,10 +127,10 @@
 
 /* Etichette dei bottoni al passaggio del mouse */
 .sidebar-button:hover .label-class {
-    -fx-text-fill: #666666; // Testo secondario
+    -fx-text-fill: #666666; /* Testo secondario */
 }
 
 /* Icona dei bottoni al passaggio del mouse */
 .sidebar-button:hover .icon {
-    -fx-text-fill: #666666; // Testo secondario
+    -fx-text-fill: #666666; /* Testo secondario */
 }
