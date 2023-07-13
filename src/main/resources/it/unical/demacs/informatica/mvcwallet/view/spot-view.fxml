@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
    <children>
       <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" spacing="30.0">
+            <HBox alignment="CENTER" spacing="30.0">
                <children>
                   <Label fx:id="balanceLabel" contentDisplay="RIGHT" style="-fx-font-size: 16;" styleClass="label-class" text="Balance">
                      <graphic>
@@ -33,9 +34,6 @@
                            </padding>
                         </Label>
                      </graphic>
-                     <padding>
-                        <Insets right="150.0" />
-                     </padding>
                   </Label>
                   <Button fx:id="depositButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDepositClick" prefHeight="30.0" textAlignment="CENTER">
                      <HBox.margin>
@@ -63,13 +61,10 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <padding>
-                  <Insets right="40.0" />
-               </padding>
             </HBox>
             <HBox fx:id="makeTransfer" alignment="CENTER" spacing="30.0" visible="false">
                <children>
-                  <Label fx:id="operationLabel" alignment="CENTER" maxWidth="200.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-font-size: 16;" styleClass="label-class" />
+                  <Label fx:id="operationLabel" maxWidth="200.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" styleClass="label-class" />
                   <TextField fx:id="amountTextField" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
                   <MenuButton fx:id="coinMenuButton" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" text="Coin" />
                   <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" textAlignment="CENTER">
@@ -91,25 +86,27 @@
                      </graphic>
                   </Button>
                </children>
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="272.0" prefWidth="600.0">
+            <HBox alignment="CENTER">
                <children>
-                  <TableView fx:id="coinTable" prefHeight="272.0" prefWidth="600.0">
-                    <columns>
-                      <TableColumn fx:id="coinColmun" prefWidth="206.0" text="COINS" />
-                      <TableColumn fx:id="amountColumn" prefWidth="179.0" text="AMOUNT" />
-                        <TableColumn fx:id="equivalentColumn" prefWidth="214.0" text="EQUIVALENT" />
-                    </columns>
-                  </TableView>
+                  <ScrollPane fitToHeight="true" fitToWidth="true">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <TableView fx:id="coinTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                  <TableColumn fx:id="coinColmun" maxWidth="500.0" minWidth="-1.0" prefWidth="200.0" resizable="false" text="COINS" />
+                                  <TableColumn fx:id="amountColumn" maxWidth="500.0" minWidth="-1.0" prefWidth="200.0" resizable="false" text="AMOUNT" />
+                                    <TableColumn fx:id="equivalentColumn" maxWidth="500.0" minWidth="-1.0" prefWidth="200.0" resizable="false" text="EQUIVALENT" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </HBox>
          </children>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
 </AnchorPane>

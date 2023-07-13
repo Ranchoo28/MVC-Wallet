@@ -1,7 +1,9 @@
-    .global-color{ -fx-background-color:
-#1565C0;
-    }.label-class{-fx-font-size: 16px;-fx-text-fill:
+    .label-class{-fx-font-size:
+16px;
+    -fx-text-fill:
 #FFFFFF;
+    }.global-color{ -fx-background-color:
+#1565C0;
     }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-font-size: 16px;-fx-background-color:
 #2196F3;
     -fx-background-radius: 15 }.button .label{-fx-font-size: 16;-fx-text-fill:

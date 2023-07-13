@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -23,6 +24,7 @@
                         <Label fx:id="borderLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Bordi" />
                         <Label fx:id="primaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Testo primario" />
                         <Label fx:id="secondaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Testo secondario" />
+                        <Label fx:id="secondaryFontLabel1" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Dimensione Testo" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
@@ -34,17 +36,22 @@
                         <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <MenuButton maxHeight="50.0" minHeight="30.0" minWidth="55.0" mnemonicParsing="false" prefHeight="30.0" text="12" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" spacing="20.0">
                <children>
-                  <Button fx:id="applyButton" mnemonicParsing="false" onAction="#onApplyButton">
+                  <Button fx:id="applyButton" minHeight="30.0" mnemonicParsing="false" onAction="#onApplyButton">
                      <graphic>
                         <Label fx:id="applyLabel" text="Applica" />
                      </graphic></Button>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancButton">
+                  <Button fx:id="cancelButton" minHeight="30.0" mnemonicParsing="false" onAction="#onCancButton">
                      <graphic>
                         <Label fx:id="cancLabel" text="Annulla" />
                      </graphic></Button>
