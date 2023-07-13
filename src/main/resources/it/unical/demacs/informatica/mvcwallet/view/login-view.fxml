@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -23,27 +24,47 @@
                <items>
                   <MenuItem fx:id="italianLanguage" mnemonicParsing="false" onAction="#onItalianClick">
                      <graphic>
-                        <Label alignment="CENTER" prefWidth="126.0" text="Italiano" textAlignment="CENTER" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Italiano" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="englishLanguage" mnemonicParsing="false" onAction="#onEnglishClick">
                      <graphic>
-                        <Label alignment="CENTER" prefWidth="126.0" text="English" textAlignment="CENTER" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="English" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="frenchLanguage" mnemonicParsing="false" onAction="#onFrenchClick">
                      <graphic>
-                        <Label alignment="CENTER" prefWidth="126.0" text="Français" textAlignment="CENTER" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Français" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="spanishLanguage" mnemonicParsing="false" onAction="#onSpanishClick">
                      <graphic>
-                        <Label alignment="CENTER" prefWidth="126.0" text="Español" textAlignment="CENTER" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Español" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </MenuItem>
                   <MenuItem fx:id="cosentinoLanguage" mnemonicParsing="false" onAction="#onCosentinoClick">
                      <graphic>
-                        <Label alignment="CENTER" prefWidth="126.0" text="Cosentino" textAlignment="CENTER" />
+                        <Label alignment="CENTER" prefWidth="126.0" text="Cosentino" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </MenuItem>
                </items>
@@ -65,15 +86,23 @@
                <children>
                   <VBox alignment="CENTER" spacing="30.0" stylesheets="@../css/mvc.css">
                      <children>
-                        <Label prefHeight="30.0" styleClass="label-class" text="Username" textFill="WHITE">
+                        <Label prefHeight="30.0" text="Username" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass>
                         </Label>
-                        <Label prefHeight="30.0" styleClass="label-class" text="Password" textFill="WHITE">
+                        <Label prefHeight="30.0" text="Password" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass>
                         </Label>
                         <Label disable="true" opacity="0.0">
                            <font>
@@ -142,6 +171,14 @@
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <graphic>
+                        <Label fx:id="forgotPassLabel">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass>
+                        </Label>
+                     </graphic>
                   </Button>
                   <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onLoginButtonClick" style="-fx-background-radius: 15;" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                      <cursor>
@@ -150,6 +187,14 @@
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <graphic>
+                        <Label fx:id="loginLabel">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass>
+                        </Label>
+                     </graphic>
                   </Button>
                   <Button fx:id="registerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onRegisterButtonClick" style="-fx-background-radius: 15;" textAlignment="CENTER" textFill="WHITE">
                      <cursor>
@@ -158,6 +203,14 @@
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <graphic>
+                        <Label fx:id="registerLabel">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass>
+                        </Label>
+                     </graphic>
                   </Button>
                </children>
                <padding>
