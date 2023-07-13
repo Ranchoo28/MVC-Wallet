@@ -22,6 +22,8 @@ public class CustomThemeHandler {
     Color mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor ;
 
     public void setTheme(){
+        cssArray.clear();
+        readCssFile();
         changeColorsInFile();
         writeCssFile();
     }
@@ -34,7 +36,7 @@ public class CustomThemeHandler {
     }
 
     protected void assignFontSizeFromBD(){
-        this.fontSize = "";
+        this.fontSize = sqlService.serviceGetCustomThemeFontSize();
     }
 
     public Color[] getColorFromDB(){
@@ -50,17 +52,13 @@ public class CustomThemeHandler {
         this.buttonColor = Color.valueOf(colors[3].replace(";",""));
         this.borderColor = Color.valueOf(colors[4].replace(";",""));
         this.mainTxtColor = Color.valueOf(colors[5].replace(";",""));
-        changeColorsInFile();
+        this.secondTxtColor = Color.valueOf(colors[6].replace(";",""));
+        System.out.println(this.mainBgc);
     }
 
     /* From file */
-    public String getFontSizeFromFile(){
-        readCssFile();
-        return this.fontSize;
-    }
+    public void assignFontSizeInColorPickerFromFile(){
 
-    private void assignFontFromFile(String fontSize){
-        this.fontSize = fontSize;
     }
 
     public Color[] getColorsFromFile(){
@@ -91,8 +89,8 @@ public class CustomThemeHandler {
 
     private void changeColorsInFile(){
         if(!cssArray.isEmpty()){
-            cssArray.set(3, colorToHexString(mainBgc));         /* Sfondo primario */
-            cssArray.set(5, colorToHexString(mainTxtColor));    /* Testo primario */
+            cssArray.set(3, colorToHexString(mainTxtColor));    /* Testo primario */
+            cssArray.set(5, colorToHexString(mainBgc));         /* Sfondo primario */
             cssArray.set(7, colorToHexString(buttonColor));     /* Pulsante */
             cssArray.set(9, colorToHexString(mainTxtColor));    /* Testo Primario */
 
@@ -132,11 +130,10 @@ public class CustomThemeHandler {
             cssArray.set(67, colorToHexString(secondTxtColor)); /* Testo secondario */
             cssArray.set(69, colorToHexString(secondTxtColor)); /* Testo secondario */
         }
+        writeCssFile();
     }
 
     void readCssFile(){
-        if(!cssArray.isEmpty())
-            cssArray.clear();
         try {
             File file = new File(Objects.requireNonNull(getClass().getResource(pathOfCSS + "custom.css")).toURI());
             FileReader stream = new FileReader(file);
@@ -147,11 +144,11 @@ public class CustomThemeHandler {
             }
             buff.close();
             stream.close();
-        } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
+
+        } catch (Exception e) {
+            System.out.println("Error in CustomThemeHandler.java (rows 141-157) ");
+            e.printStackTrace();
         }
-        assignFontFromFile(cssArray.get(1));
-        assignColorsFromFile(cssArray.get(3),cssArray.get(25),cssArray.get(11),cssArray.get(7),cssArray.get(51),cssArray.get(5),cssArray.get(13));
     }
 
     public void writeCssFile(){

@@ -560,6 +560,21 @@ public class SqlHandler {
         }
     }
 
-
+    public String getCustomThemeFontSize(){
+        try{
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "SELECT fontSize FROM customTheme WHERE username = ?");
+            s.setString(1, LoginController.username);
+            ResultSet rs = s.executeQuery();
+            String size = rs.getString(1);
+            rs.close();
+            s.close();
+            closeConnection(con);
+            return size;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

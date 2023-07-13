@@ -151,4 +151,16 @@ public class SqlService {
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
         finally { queryExe.shutdown(); }
     }
+
+    public String serviceGetCustomThemeFontSize(){
+        final String[] fontSize = new String[1];
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> fontSize[0] = SqlHandler.getInstance().getCustomThemeFontSize());
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+
+        return fontSize[0];
+    }
 }

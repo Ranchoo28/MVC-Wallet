@@ -44,7 +44,7 @@ public class ColorPickerController{
 
     boolean clicked = false;
 
-    void setFontSizeInColorPicker(){
+    void addItemsFontSizeMenuButton(){
         for(int i = 10; i <= 16; i++){
             MenuItem item = new MenuItem(String.valueOf(i));
             item.setOnAction(event -> {
@@ -75,10 +75,9 @@ public class ColorPickerController{
         }
     }
 
-    void setColorsInColorPicker(){
+    void setColorsInColorPickerFromFile(){
         try {
             Color[] colors = customThemeHandler.getColorsFromFile();
-            //Color [] colors = customThemeHandler.getColorFromDB();
             mbgColorPicker.setValue(colors[0]);
             sbgColorPicker.setValue(colors[1]);
             hovColorPicker.setValue(colors[2]);
@@ -89,6 +88,25 @@ public class ColorPickerController{
         } catch (Exception e){
             alertHandler.createErrorAlert(bundle.getString("colorPickerErrorAlert"));
         }
+    }
+
+    void setColorsFromBD(){
+        try {
+            Color [] colors = customThemeHandler.getColorFromDB();
+            mbgColorPicker.setValue(colors[0]);
+            sbgColorPicker.setValue(colors[1]);
+            hovColorPicker.setValue(colors[2]);
+            btnColorPicker.setValue(colors[3]);
+            bdrColorPicker.setValue(colors[4]);
+            mntColorPicker.setValue(colors[5]);
+            sntColorPicker.setValue(colors[6]);
+        } catch (Exception e){
+            alertHandler.createErrorAlert(bundle.getString("colorPickerErrorAlert"));
+        }
+    }
+
+    void setFontSizeFromDB(){
+        fontMenuButton.setText(customThemeHandler.getFontSizeFromDB());
     }
     @FXML
     void onApplyButton(){
@@ -108,8 +126,13 @@ public class ColorPickerController{
     @FXML
     void initialize(){
         updateLanguage();
-        setColorsInColorPicker();
-        setFontSizeInColorPicker();
+        setColorsFromBD();
+        setFontSizeFromDB();
+        addItemsFontSizeMenuButton();
+        addListener();
+    }
+
+    private void addListener(){
         fontMenuButton.setOnMouseClicked(mouseEvent -> {
             if(!clicked) {
                 fontMenuButton.hide();

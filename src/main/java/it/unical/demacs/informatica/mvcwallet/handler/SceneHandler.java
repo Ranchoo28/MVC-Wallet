@@ -33,9 +33,6 @@ public class SceneHandler {
         for(String i: SettingsHandler.getInstance().themes)
             scene.getStylesheets().remove(String.valueOf(SceneHandler.class.getResource(css + i)));
         if(settingsHandler.theme.equals("custom.css")){
-            customThemeHandler.readCssFile();
-            customThemeHandler.assignColorsFromDB();
-            customThemeHandler.writeCssFile();
             scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
         }else scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
     }
