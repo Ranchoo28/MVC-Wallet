@@ -42,6 +42,10 @@ public class ColorPickerController{
         customThemeHandler.assignColorsFromColorPicker(mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor);
     }
 
+    void getFontSizeFromColorPicker(){
+        customThemeHandler.assignColorsFromColorPicker(fontMenuButton.getText());
+    }
+
     boolean clicked = false;
 
     void addItemsFontSizeMenuButton(){
@@ -111,6 +115,7 @@ public class ColorPickerController{
     @FXML
     void onApplyButton(){
         getColorsFromColorPicker();
+        getFontSizeFromColorPicker();
         customThemeHandler.setTheme();
         settingsHandler.theme = "custom.css";
         if(!settingsHandler.page.equals("settings"))

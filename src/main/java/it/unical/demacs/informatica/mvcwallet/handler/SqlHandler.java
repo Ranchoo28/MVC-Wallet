@@ -581,4 +581,21 @@ public class SqlHandler {
             throw new RuntimeException(e);
         }
     }
+
+    public void setCustomThemeFontSize(String fontSize){
+        try{
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "UPDATE customTheme SET fontSize = ? WHERE username = ?");
+            s.setString(1, fontSize);
+            s.setString(2, LoginController.username);
+            s.executeUpdate();
+
+            s.close();
+            closeConnection(con);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

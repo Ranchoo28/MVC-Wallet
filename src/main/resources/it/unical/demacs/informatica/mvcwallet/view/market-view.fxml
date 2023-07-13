@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,19 +20,28 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="coinMenuButton" mnemonicParsing="false" />
+                  <MenuButton fx:id="coinMenuButton" mnemonicParsing="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
                   <Label fx:id="currencyLabel" styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="currencyMenuButton" mnemonicParsing="false" />
+                  <MenuButton fx:id="currencyMenuButton" mnemonicParsing="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
                   <Label fx:id="timeLabel" styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="timeMenuButton" mnemonicParsing="false" />
+                  <MenuButton fx:id="timeMenuButton" mnemonicParsing="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
                </children>
                <VBox.margin>
                   <Insets />

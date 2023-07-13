@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
@@ -62,16 +63,40 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
                      <children>
-                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="sbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="hovColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="btnColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="bdrColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
+                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="sbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="hovColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="btnColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="bdrColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="hbox-date-picker">
                            <children>
-                              <MenuButton fx:id="fontMenuButton" maxHeight="50.0" minHeight="30.0" minWidth="55.0" mnemonicParsing="false" prefHeight="30.0" text="12" />
+                              <MenuButton fx:id="fontMenuButton" maxHeight="50.0" minHeight="30.0" minWidth="55.0" mnemonicParsing="false" prefHeight="30.0" text="12">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></MenuButton>
                            </children>
                         </HBox>
                      </children>
@@ -87,14 +112,20 @@
                               <String fx:value="label-class" />
                               <String fx:value="label-dsa" />
                            </styleClass></Label>
-                     </graphic></Button>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <Button fx:id="cancelButton" minHeight="30.0" mnemonicParsing="false" onAction="#onCancButton">
                      <graphic>
                         <Label fx:id="cancLabel" text="Annulla">
                            <styleClass>
                               <String fx:value="label-class" />
                               <String fx:value="label-dsa" />
-                           </styleClass></Label>
+                           </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Label>
                      </graphic></Button>
                </children>
             </HBox>

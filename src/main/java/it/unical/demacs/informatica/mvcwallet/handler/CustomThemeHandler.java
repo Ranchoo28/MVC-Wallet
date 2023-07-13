@@ -53,7 +53,6 @@ public class CustomThemeHandler {
         this.borderColor = Color.valueOf(colors[4].replace(";",""));
         this.mainTxtColor = Color.valueOf(colors[5].replace(";",""));
         this.secondTxtColor = Color.valueOf(colors[6].replace(";",""));
-        System.out.println(this.mainBgc);
     }
 
     /* From file */
@@ -84,11 +83,17 @@ public class CustomThemeHandler {
         this.borderColor = borderColor;
         this.mainTxtColor = mainTxtColor;
         this.secondTxtColor = secondTxtColor;
-        sqlService.seriveCustomThemeOnDB(colorToHexString(mainTxtColor),colorToHexString(secondBgc),colorToHexString(hoverColor), colorToHexString(buttonColor),colorToHexString(borderColor), colorToHexString(mainTxtColor),colorToHexString(secondTxtColor));
+        sqlService.serviceCustomThemeOnDB(colorToHexString(mainTxtColor),colorToHexString(secondBgc),colorToHexString(hoverColor), colorToHexString(buttonColor),colorToHexString(borderColor), colorToHexString(mainTxtColor),colorToHexString(secondTxtColor));
+    }
+
+    public void assignColorsFromColorPicker(String fontSize){
+        this.fontSize = fontSize;
+        sqlService.serviceSetCustomThemeFontSize(this.fontSize);
     }
 
     private void changeColorsInFile(){
         if(!cssArray.isEmpty()){
+            cssArray.set(1, this.fontSize+"px;");
             cssArray.set(3, colorToHexString(mainTxtColor));    /* Testo primario */
             cssArray.set(5, colorToHexString(mainBgc));         /* Sfondo primario */
             cssArray.set(7, colorToHexString(buttonColor));     /* Pulsante */
