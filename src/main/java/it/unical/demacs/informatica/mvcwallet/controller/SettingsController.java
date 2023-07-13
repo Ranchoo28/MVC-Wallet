@@ -5,6 +5,7 @@ import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -16,13 +17,14 @@ public class SettingsController {
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
+    String pathOfFont = PathHandler.getInstance().getPathOfFont();
 
     @FXML
     private Label accessibilityLabel, accountLabel;
     @FXML
     private CheckBox stayLogged;
     @FXML
-    private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel;
+    private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel, aboutLabel;
     @FXML
     private Label applyLabel, cancelLabel;
     @FXML
@@ -114,6 +116,10 @@ public class SettingsController {
     void initialize(){
         updateLanguage();
         updateAllSettings();
+        aboutLabel.setText("\uF129");
+        Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
+        aboutLabel.setFont(font);
+
     }
 
     String setMainPage(String page){

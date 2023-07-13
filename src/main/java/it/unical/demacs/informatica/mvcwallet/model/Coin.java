@@ -7,21 +7,11 @@ public class Coin {
     private String name;
     private final String code;
     private double amount;
-    private double equivalent;
 
-    public Coin(String name, double amount, String code,double equivalent){
+    public Coin(String name, double amount, String code){
         this.name = name;
         this.amount = amount;
         this.code = code;
-        this.equivalent=equivalent;
-    }
-
-    public double getEquivalent() {
-        return equivalent;
-    }
-
-    public void setEquivalent(double equivalent) {
-        this.equivalent = equivalent;
     }
 
     public String getName() {

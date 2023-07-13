@@ -290,6 +290,15 @@
                            </styleClass></Label>
                      </graphic>
                   </Button>
+                  <Label fx:id="aboutLabel">
+                     <styleClass>
+                        <String fx:value="icon" />
+                        <String fx:value="label-class" />
+                        <String fx:value="button" />
+                     </styleClass>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Label>
                </children>
                <VBox.margin>
                   <Insets top="30.0" />
