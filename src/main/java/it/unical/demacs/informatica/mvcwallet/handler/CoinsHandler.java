@@ -12,10 +12,10 @@ public class CoinsHandler {
         return instance;
     }
 
-    private static final Coin btc = new Coin("Bitcoin", 0, "BTC");
-    private static final Coin eth = new Coin("Ethereum", 0, "ETH");
-    private static final Coin sol = new Coin("Solana", 0, "SOL");
-    private static final Coin bnb = new Coin("Binance Coin", 0, "BNB");
+    private static final Coin btc = new Coin("Bitcoin", 0, "BTC",0.0);
+    private static final Coin eth = new Coin("Ethereum", 0, "ETH",0.0);
+    private static final Coin sol = new Coin("Solana", 0, "SOL",0.0);
+    private static final Coin bnb = new Coin("Binance Coin", 0, "BNB",0.0);
 
     private final static Map<String, Coin> coins;
 
