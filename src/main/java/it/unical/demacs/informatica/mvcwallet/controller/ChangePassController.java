@@ -26,7 +26,7 @@ public class ChangePassController {
     @FXML
     private Label eyeIconOldPassword, eyeIconNewPassword;
     @FXML
-    private Label newPasswordLabel, oldPasswordLabel;
+    private Label newPasswordLabel, oldPasswordLabel, changeButtonLabel, backButtonLabel;
     @FXML
     private PasswordField oldPassPasswordField, newPassPasswordField;
     @FXML
@@ -40,10 +40,10 @@ public class ChangePassController {
     @FXML
     void onChangeClick() {
         if (sqlService.serviceChangePassword(newPasswordTextField.getText(), LoginController.username)) {
-            //LoginController. = usernameTextField.getText();
             alertHandler.createChangedAlert();
             sceneHandler.createSideBar();
-        }
+        }else
+            alertHandler.createErrorAlert(bundle.getString("changePassErrorText"));
     }
 
     @FXML
@@ -116,8 +116,8 @@ public class ChangePassController {
     }
 
     private void uploadLanguage(){
-        changeButton.setText(bundle.getString("applyButton"));
-        cancelButton.setText(bundle.getString("backButton"));
+        backButtonLabel.setText(bundle.getString("backButton"));
+        changeButtonLabel.setText(bundle.getString("applyButton"));
         oldPasswordLabel.setText(bundle.getString("oldPassLabel"));
         newPasswordLabel.setText(bundle.getString("newPassLabel"));
         newPasswordTextField.setTooltip(new Tooltip(bundle.getString("tooltipPassword")));

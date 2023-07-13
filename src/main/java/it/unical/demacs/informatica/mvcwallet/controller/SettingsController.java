@@ -99,7 +99,6 @@ public class SettingsController {
             settingsHandler.updateSettings();
             sceneHandler.createSideBar();
         }catch (Exception e){
-            //e.printStackTrace();
             alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
             SettingsHandler.getInstance().defaultSettings();
         }
@@ -118,7 +117,6 @@ public class SettingsController {
     }
 
     String setMainPage(String page){
-        System.out.println(page);
         try{
             if(page!=null)
                 switch (page){
@@ -133,7 +131,7 @@ public class SettingsController {
                     }
                 }
         } catch (Exception e){
-            System.out.println("Error in Settings Controller (rows: 116-124) " + e);
+          alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
         }
         return "market";
     }

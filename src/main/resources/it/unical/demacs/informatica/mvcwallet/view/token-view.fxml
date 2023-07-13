@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -31,12 +32,20 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <graphic>
-                        <Label fx:id="submitLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="label-class" textAlignment="CENTER" />
+                        <Label fx:id="submitLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </Button>
                   <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCancelButtonClick" prefHeight="30.0" textAlignment="CENTER" textFill="WHITE">
                      <graphic>
-                        <Label fx:id="cancelLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="label-class" textAlignment="CENTER" />
+                        <Label fx:id="cancelLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </Button>
                </children>

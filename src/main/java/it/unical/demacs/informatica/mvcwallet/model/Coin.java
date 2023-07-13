@@ -2,6 +2,7 @@ package it.unical.demacs.informatica.mvcwallet.model;
 
 import java.util.Objects;
 
+// Classe utilizza per la gestione e creazione dei coin
 public class Coin {
     private String name;
     private final String code;

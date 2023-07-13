@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.mvcwallet.model;
 import java.io.Serializable;
 import java.util.*;
 
+// Classe per mettere i dati nelle barre del grafico
 public class BarData implements Serializable {
 
     protected double open;

@@ -11,7 +11,7 @@ public class PathHandler {
     String pathOfCSS = "/it/unical/demacs/informatica/mvcwallet/css/";
     String pathOfFont = "/it/unical/demacs/informatica/mvcwallet/font/";
     String pathOfLanguage = "/it/unical/demacs/informatica/mvcwallet/language/LAN_";
-    String pathOfLogo = "/it/unical/demacs/informatica/mvcwallet/Logo/MvcWhite.png";
+    String pathOfLogo = "/it/unical/demacs/informatica/mvcwallet/Logo/MVC-NOBG.png"; //MVC.png"; //MvcWhite.png";
 
     public String getPathOfView() {
         return pathOfView;

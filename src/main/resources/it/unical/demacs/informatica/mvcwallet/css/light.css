@@ -81,7 +81,7 @@
     -fx-background-radius: 10;
 }
 
-.menu-button .menu-item:hover .jfx-toggle-button {
+.menu-button .menu-item:hover .jfxjfx-toggle-button {
     -fx-text-fill: #666666; /* Testo secondario */
 }
 

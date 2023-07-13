@@ -43,10 +43,10 @@ public class ProfileController {
 
         if (sqlService.serviceChangeName(firstTextField.getText(), usernameTextField.getText())) {
             sceneHandler.createSideBar();
-        } else System.out.println("nome non cambiato");
+        } else  alertHandler.createErrorAlert(languageHandler.getBundle().getString("changeErrorAlert"));
         if (sqlService.serviceChangeSurName(lastTextField.getText(), usernameTextField.getText())) {
             sceneHandler.createSideBar();
-        } else System.out.println("cognome non cambiato");
+        } else  alertHandler.createErrorAlert(languageHandler.getBundle().getString("changeErrorAlert"));
         alertHandler.createChangedAlert();
 
     }
@@ -64,7 +64,8 @@ public class ProfileController {
             AnchorPane.setBottomAnchor(pane, 0.0);
             AnchorPane.setLeftAnchor(pane, 0.0);
         } catch (Exception e){
-            System.out.println("Error in ProfileController.java (rows: 78-68) " + e);
+            e.printStackTrace();
+            alertHandler.createErrorAlert(languageHandler.getBundle().getString("menuErrorAlert"));
         }
     }
 

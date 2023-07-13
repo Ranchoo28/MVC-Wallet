@@ -14,7 +14,7 @@
          <children>
             <HBox alignment="CENTER" spacing="40.0">
                <children>
-                  <Label styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="coinLabel" styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>

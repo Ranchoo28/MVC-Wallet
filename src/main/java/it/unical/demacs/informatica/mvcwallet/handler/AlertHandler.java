@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogEvent;
+import javafx.scene.control.DialogPane;
 import javafx.scene.paint.Paint;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.boot.availability.ReadinessState;
@@ -29,6 +30,9 @@ public class AlertHandler {
     public void createErrorAlert(String message) {
         bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2a-alert");
         icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
         icon.getStyleClass().add("icons-color");
@@ -44,6 +48,9 @@ public class AlertHandler {
         sceneHandler = SceneHandler.getInstance();
         bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2c-check-circle-outline");
         icon.setIconColor(Paint.valueOf("#4d79ff")); // Blu
         icon.getStyleClass().add("icons-color");
@@ -61,6 +68,9 @@ public class AlertHandler {
         bundle = LanguageHandler.getInstance().getBundle();
         sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2s-send-check");
         icon.setIconColor(Paint.valueOf("blue"));
         icon.getStyleClass().add("icons-color");
@@ -77,6 +87,9 @@ public class AlertHandler {
         bundle = LanguageHandler.getInstance().getBundle();
         sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2e-email-send");
         icon.getStyleClass().add("icons-color");
         icon.setIconColor(Paint.valueOf("#4d79ff"));
@@ -95,6 +108,9 @@ public class AlertHandler {
         LoggedHandler loggedHandler = LoggedHandler.getInstance();
         sceneHandler = SceneHandler.getInstance();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2p-progress-question");
         icon.getStyleClass().add("icons-color");
         icon.setIconSize(45);
@@ -115,6 +131,9 @@ public class AlertHandler {
     public void createChangedAlert(){
         bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2s-send-check");
         icon.setIconColor(Paint.valueOf("blue"));
         icon.getStyleClass().add("icons-color");
@@ -128,7 +147,11 @@ public class AlertHandler {
 
     public void passChangedFromForgotAlert() {
         bundle = LanguageHandler.getInstance().getBundle();
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2e-email-send");
         icon.getStyleClass().add("icons-color");
         icon.setIconColor(Paint.valueOf("#4d79ff"));
@@ -148,6 +171,9 @@ public class AlertHandler {
         ButtonType stayB = new ButtonType(bundle.getString("noButton"));
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "", exitB, stayB);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2p-progress-question");
         icon.getStyleClass().add("icons-color");
         icon.setIconColor(Paint.valueOf("#ff3333"));

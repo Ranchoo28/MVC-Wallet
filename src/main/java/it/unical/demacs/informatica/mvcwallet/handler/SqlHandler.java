@@ -2,16 +2,22 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
+import javafx.application.Platform;
+import org.springframework.boot.origin.TextResourceOrigin;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+// Classe per le query al database
 public class SqlHandler {
     private SqlHandler() {}
     private static final SqlHandler instance = new SqlHandler();
     public static SqlHandler getInstance() {
         return instance;
     }
+    private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
     private Connection con;
 
     public Connection newConnection() {
@@ -19,10 +25,10 @@ public class SqlHandler {
             String url = "jdbc:sqlite:progettouid.db";
             // Effettua la connessione al database
             con = DriverManager.getConnection(url);
-            if (con != null) System.out.println("Connection Succes");
+            //if (con != null) System.out.println("Connection Succes");
 
         } catch (SQLException e) {
-            System.out.println("Connection failed");
+            Platform.runLater(() -> alertHandler.createErrorAlert(bundle.getString("connectionErrorAlert")));
         }
         return con;
     }
@@ -30,7 +36,6 @@ public class SqlHandler {
     public void closeConnection(Connection con){
         try {
             con.close();
-            System.out.println("Connessione chiusa");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -410,23 +415,23 @@ public class SqlHandler {
     }
 
     public void setSettingsQuery(String username, String time, String page, String logged, String theme, String language, String currency)  {
-            try {
-                con = newConnection();
-                PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, " +
-                        "logged = ?, theme = ?, language = ?, currency = ? WHERE username = ? ");
-                s.setString(1, time);
-                s.setString(2, page);
-                s.setString(3, logged);
-                s.setString(4, theme);
-                s.setString(5, language);
-                s.setString(6, currency);
-                s.setString(7, username);
-                s.executeUpdate();
-                closeConnection(con);
-            } catch (Exception e) {
-                System.out.println("Errore nel cambio impostazioni. Verranno resettate quelle di defaut" + e);
-                SettingsHandler.getInstance().defaultSettings();
-            }
+        try {
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement("UPDATE settings SET time = ?,page = ?, " +
+                    "logged = ?, theme = ?, language = ?, currency = ? WHERE username = ? ");
+            s.setString(1, time);
+            s.setString(2, page);
+            s.setString(3, logged);
+            s.setString(4, theme);
+            s.setString(5, language);
+            s.setString(6, currency);
+            s.setString(7, username);
+            s.executeUpdate();
+            closeConnection(con);
+        } catch (Exception e) {
+            System.out.println("Errore nel cambio impostazioni. Verranno resettate quelle di defaut" + e);
+            SettingsHandler.getInstance().defaultSettings();
+        }
 
     }
 
@@ -438,10 +443,10 @@ public class SqlHandler {
             s.setString(2, username);
             s.executeUpdate();
             closeConnection(con);
-            } catch (SQLException e) {
-                System.out.println("Error: Logout");
-                throw new RuntimeException();
-            }
+        } catch (SQLException e) {
+            System.out.println("Error: Logout");
+            throw new RuntimeException();
+        }
     }
 
     public void stayLoggedOfLogin(String username) {
@@ -512,14 +517,14 @@ public class SqlHandler {
             con = newConnection();
             PreparedStatement s = con.prepareStatement(
                     "UPDATE customTheme "
-                         + "SET mainBgc = ?, "
-                         + "secondBgc = ?,"
-                         + "hoverColor = ?,"
-                         + "buttonColor = ?,"
-                         + "borderColor = ?,"
-                         + "mainTxtColor = ?, "
-                         + "secondTxtColor = ? "
-                         + "WHERE username = ?");
+                            + "SET mainBgc = ?, "
+                            + "secondBgc = ?,"
+                            + "hoverColor = ?,"
+                            + "buttonColor = ?,"
+                            + "borderColor = ?,"
+                            + "mainTxtColor = ?, "
+                            + "secondTxtColor = ? "
+                            + "WHERE username = ?");
 
             s.setString(1, mainBgc);
             s.setString(2, secondBgc);
@@ -576,5 +581,4 @@ public class SqlHandler {
             throw new RuntimeException(e);
         }
     }
-
 }

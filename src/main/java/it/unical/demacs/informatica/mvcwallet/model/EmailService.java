@@ -10,7 +10,7 @@ public class EmailService {
     private static final EmailService instance = new EmailService();
     public static EmailService getInstance(){return instance;}
 
-    // Service per l'invio di una mail. Senza questo l'app si bloccherebbe finchè l'invio della mail non viene completato.
+    // Service per l'invio delle mail.
     public void emailServiceSendWelcomeEmail(String toEmail, String subject, String body){
 
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();

@@ -1,6 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -8,6 +7,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.GregorianCalendar;
 
+// Classe che serve a gestire la data in diversi formati
 public class TimeStampHandler {
     private static final TimeStampHandler instance = new TimeStampHandler();
 

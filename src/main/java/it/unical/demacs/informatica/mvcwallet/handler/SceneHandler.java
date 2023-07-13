@@ -9,6 +9,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
+// Classe per la gestione delle scene
 public class SceneHandler {
     private Stage stage, stage1;
     private Scene scene;
@@ -17,7 +18,6 @@ public class SceneHandler {
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
-    private final CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
 
     private static final SceneHandler instance = new SceneHandler();
     public static SceneHandler getInstance() {

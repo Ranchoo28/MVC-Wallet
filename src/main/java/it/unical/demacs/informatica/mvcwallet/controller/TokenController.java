@@ -8,7 +8,6 @@ import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -28,7 +27,7 @@ public class TokenController {
     private Button backButton, submitButton;
 
     @FXML
-    private TextField fieldMail;
+    private TextField emailTextField;
 
     @FXML
     void onNewPasswordClick() {
@@ -37,11 +36,11 @@ public class TokenController {
         // Una volta premuto il button genera una nuova password, controlla se la mail esiste, manda la nuova password
         // via mail, esegue una query per cambiare password ed infine esce un popup come avviso.
 
-        if(sqlService.getEmail(fieldMail.getText())){
-            email = fieldMail.getText();
-            emailService.emailServiceForgotPassword(fieldMail.getText(),
+        if(sqlService.getEmail(emailTextField.getText())){
+            email = emailTextField.getText();
+            emailService.emailServiceForgotPassword(emailTextField.getText(),
                     lanHandler.getBundle().getString("forgotPassEmailTitle"),
-                    lanHandler.getBundle().getString("forgotPassEmailText1"), " " + token + " " +
+                    lanHandler.getBundle().getString("forgotPassEmailText1"), " " + token + " \n" +
                             lanHandler.getBundle().getString("forgotPassEmailText2"));
 
             alertHandler.createForgotPassAlert(lanHandler.getBundle().getString("forgotPassTextEmailSent"));

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -58,12 +59,20 @@
                            <items>
                               <MenuItem fx:id="spotMenuItem" mnemonicParsing="false" onAction="#onSpotClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Spot" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Spot" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="marketMenuItem" mnemonicParsing="false" onAction="#onMarketClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Market" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Market" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -78,12 +87,20 @@
                            <items>
                               <MenuItem fx:id="h12MenuItem" mnemonicParsing="false" onAction="#on12hClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="12H" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="12H" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="h24MenuItem" mnemonicParsing="false" onAction="#on24hClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="24H" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="24H" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -98,12 +115,20 @@
                            <items>
                               <MenuItem fx:id="eurMenuItem" mnemonicParsing="false" onAction="#onEurClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="EUR" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="EUR" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
-                              <MenuItem fx:id="usdMenuItem" mnemonicParsing="false">
+                              <MenuItem fx:id="usdMenuItem" mnemonicParsing="false" onAction="#onUsdClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="USD" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="USD" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -118,27 +143,47 @@
                            <items>
                               <MenuItem fx:id="itaMenuItem" mnemonicParsing="false" onAction="#onItalianClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Italiano" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Italiano" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="engMenuItem" mnemonicParsing="false" onAction="#onEnglishClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="English" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="English" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="freMenuItem" mnemonicParsing="false" onAction="#onFrenchClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Français" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Français" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="spaMenuItem" mnemonicParsing="false" onAction="#onSpanishClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Español" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Español" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="cosMenuItem" mnemonicParsing="false" onAction="#onCosentinoClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Cosentino" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Cosentino" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                            </items>
@@ -153,27 +198,47 @@
                           <items>
                               <MenuItem fx:id="darkMenuItem" mnemonicParsing="false" onAction="#onDarkClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Dark" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Dark" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="lightMenuItem" mnemonicParsing="false" onAction="#onLightClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Light" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Light" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="mvcMenuItem" mnemonicParsing="false" onAction="#onMvcClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="MVC" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="MVC" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="blueMenuItem" mnemonicParsing="false" onAction="#onBlueClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Blue" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Blue" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                               <MenuItem fx:id="customMenuItem" mnemonicParsing="false" onAction="#onCustomClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Custom" textAlignment="CENTER" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Custom" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass></Label>
                                  </graphic>
                               </MenuItem>
                           </items>
@@ -184,7 +249,11 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </MenuButton>
-                        <CheckBox fx:id="stayLogged" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" textAlignment="CENTER" />
+                        <CheckBox fx:id="stayLogged" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></CheckBox>
                      </children>
                   </VBox>
                </children>
@@ -199,7 +268,11 @@
                         <Font size="16.0" />
                      </font>
                      <graphic>
-                        <Label fx:id="applyLabel" styleClass="label-class" />
+                        <Label fx:id="applyLabel">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </Button>
                   <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" textFill="WHITE">
@@ -210,7 +283,11 @@
                         <Font size="16.0" />
                      </font>
                      <graphic>
-                        <Label fx:id="cancelLabel" styleClass="label-class" />
+                        <Label fx:id="cancelLabel">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic>
                   </Button>
                </children>

@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+// Classe utilizzata per la costruzione del grafico tramite service
 public class BuildBarsService {
     private static final BarBuilder barBuilder = BarBuilder.getInstance();
     private BuildBarsService(){}

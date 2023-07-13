@@ -6,6 +6,7 @@ import it.unical.demacs.informatica.mvcwallet.handler.TimeStampHandler;
 import java.net.MalformedURLException;
 import java.util.*;
 
+// Classe usata per costruire il grafico
 public class BarBuilder {
     private static final APIsHandler apisHandler = APIsHandler.getInstance();
     private static final TimeStampHandler timeStampHandler = TimeStampHandler.getInstance();

@@ -1,71 +1,70 @@
     .label-class{-fx-font-size:
 16px;
     -fx-text-fill:
-#FFFFFF;
+#000080;
     }.global-color{ -fx-background-color:
-#1565C0;
+#000080;
     }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-font-size: 16px;-fx-background-color:
-#2196F3;
+#FF00FF;
     -fx-background-radius: 15 }.button .label{-fx-font-size: 16;-fx-text-fill:
-#FFFFFF;
+#000080;
     -fx-alignment: center;}.button:hover{-fx-background-color:
-#1976D2;
+#FF00FF;
     }.button:hover .label{-fx-text-fill:
-#CCCCCC;
+#0000FF;
     }.menu-button{-fx-background-color:
-#2196F3;
+#FF00FF;
     -fx-border-color: transparent;-fx-background-radius: 15;}.menu-button:hover {-fx-background-color:
-#1976D2;
+#FF00FF;
     }.menu-button .label{-fx-text-fill:
-#FFFFFF;
+#000080;
     }.menu-button:hover .label{-fx-text-fill:
-#CCCCCC;
+#0000FF;
     }.hbox-info{-fx-background-color:
-#124280;
+#0000FF;
     }.hbox-info-button .label-class{-fx-text-fill:
-#FFFFFF;
+#000080;
     }.hbox-info-button .icon{-fx-text-fill:
-#FFFFFF;
+#000080;
     }.hbox-info-button:hover{-fx-background-color:
-#1976D2;
+#FF00FF;
    -fx-background-radius: 10;}.hbox-info-button:hover .label-class{-fx-text-fill:
-#CCCCCC;
+#0000FF;
     }.hbox-info-button:hover .icon{-fx-text-fill:
-#CCCCCC;
+#0000FF;
     }.context-menu {-fx-font-size: 14px;-fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color:
-#1565C0;
+#000080;
     -fx-border-color:
-#707070;
+#000080;
     }.menu-button .menu-item {-fx-background-color: transparent;-fx-font-size: 14px;}.menu-button .menu-item:hover {-fx-background-color:
-#1976D2;
+#FF00FF;
     -fx-background-radius: 15;}.menu-button .menu-item .label{-fx-text-fill:
-#FFFFFF;
+#000080;
     }.menu-button .menu-item:hover .label{-fx-text-fill:
-#CCCCCC;
+#0000FF;
     }.menu-button .bgnull{-fx-background-color: transparent;}.menu-button .menu-item:hover .bgnull{-fx-background-color:
-#1976D2;
+#FF00FF;
     -fx-background-radius: 10;}.menu-button .menu-item:hover .bgnull .jfx-toggle-button{-fx-text-fill:
-#CCCCCC;
+#0000FF;
     }.jfx-toggle-button {-fx-text-fill:
-#FFFFFF;
+#000080;
     -jfx-untoggle-color:
-#1565C0;
+#0000FF;
     -jfx-untoggle-line-color:
-#EEEEEE;
+#0000FF;
     -jfx-toggle-color:
-#1E88E5;
+#0000FF;
     -jfx-toggle-line-color:
-#FFD1DC;
+#0000FF;
     }.jfx-toggle-button:hover {-fx-background-color: transparent;}.sidebar {-fx-background-color:
-#124280;
+#FF00FF;
     -fx-background-radius: 10;}.sidebar .label-class {-fx-text-fill:
-#FFFFFF;
+#000080;
     }.sidebar .icon {-fx-text-fill:
-#FFFFFF;
+#000080;
     }.sidebar-button:hover {-fx-background-color:
-#1976D2;
+#FF00FF;
     -fx-background-radius: 10;}.sidebar-button:hover .label-class {-fx-text-fill:
-#CCCCCC;
-    }.sidebar-button:hover .icon {-fx-text-fill:
-#CCCCCC;
-    }.hbox-date-picker .context-menu { -fx-pref-height: 200; -fx-max-height: 300;}
+#0000FF;
+    }
+

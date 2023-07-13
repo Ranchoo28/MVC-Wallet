@@ -31,7 +31,7 @@ public class MarketController {
     private String timeframe = timeframes.get(0);
 
     @FXML
-    private Label currencyLabel, timeLabel;
+    private Label coinLabel, currencyLabel, timeLabel;
 
     @FXML
     private MenuButton coinMenuButton, currencyMenuButton, timeMenuButton;
@@ -109,6 +109,7 @@ public class MarketController {
             alertHandler.createErrorAlert("Error in loading the language");
         }
         if(bundle!=null) {
+            coinLabel.setText("Crypto");
             currencyLabel.setText(bundle.getString("currencyLabel"));
             timeLabel.setText(bundle.getString("timeLabel"));
         }

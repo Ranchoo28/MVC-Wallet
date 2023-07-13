@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ColorPicker?>
@@ -17,14 +18,46 @@
                <children>
                   <VBox alignment="CENTER_LEFT" spacing="15.0">
                      <children>
-                        <Label fx:id="primaryBgLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Sfondo primario" />
-                        <Label fx:id="secondaryBgLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Sfondo secondario" />
-                        <Label fx:id="hoverLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Elemento selezionato" />
-                        <Label fx:id="buttonLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Bottoni" />
-                        <Label fx:id="borderLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Bordi" />
-                        <Label fx:id="primaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Testo primario" />
-                        <Label fx:id="secondaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Testo secondario" />
-                        <Label fx:id="secondaryFontLabel1" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" styleClass="label-class" text="Dimensione Testo" />
+                        <Label fx:id="primaryBgLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Sfondo primario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="secondaryBgLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Sfondo secondario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="hoverLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Elemento selezionato">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="buttonLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Bottoni">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="borderLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Bordi">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="primaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Testo primario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="secondaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Testo secondario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="secondaryFontLabel1" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Dimensione Testo">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
@@ -49,11 +82,19 @@
                <children>
                   <Button fx:id="applyButton" minHeight="30.0" mnemonicParsing="false" onAction="#onApplyButton">
                      <graphic>
-                        <Label fx:id="applyLabel" text="Applica" />
+                        <Label fx:id="applyLabel" text="Applica">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic></Button>
                   <Button fx:id="cancelButton" minHeight="30.0" mnemonicParsing="false" onAction="#onCancButton">
                      <graphic>
-                        <Label fx:id="cancLabel" text="Annulla" />
+                        <Label fx:id="cancLabel" text="Annulla">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
                      </graphic></Button>
                </children>
             </HBox>
