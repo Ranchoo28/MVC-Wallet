@@ -300,15 +300,19 @@
                            </styleClass></Label>
                      </graphic>
                   </Button>
-                  <Label fx:id="aboutLabel" onMouseClicked="#onCreditsClick">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" textAlignment="CENTER">
+                     <graphic>
+                        <Label fx:id="aboutLabel" onMouseClicked="#onCreditsClick">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </graphic>
                      <styleClass>
                         <String fx:value="icon" />
                         <String fx:value="label-class" />
-                        <String fx:value="button" />
                      </styleClass>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Label>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets top="30.0" />

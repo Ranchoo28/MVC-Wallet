@@ -1,4 +1,4 @@
-    .chart{-fx-background-radius:15;}.label-class{-fx-font-size:
+    .chart{-fx-background-radius:15;}.label-class, .label, .menu-button .label{-fx-font-size:
 16px;
     -fx-text-fill:
 #000080;
@@ -42,11 +42,16 @@
 #000080;
     }.menu-button .menu-item:hover .label{-fx-text-fill:
 #0000FF;
+    .sidebar {-fx-background-color:
+#124280;
+    -fx-background-radius: 10;} .sidebar .label-class { -fx-text-fill:
+#FFFFFF;
     }.sidebar .icon {-fx-text-fill:
 #000080;
     }.sidebar-button:hover {-fx-background-color:
 #FF00FF;
-    -fx-background-radius: 10;}.sidebar-button:hover .label-class {-fx-text-fill:
+    .sidebar-button:hover .icon {-fx-text-fill:
+#CCCCCC;
+    }-fx-background-radius: 10;}.sidebar-button:hover .label-class {-fx-text-fill:
 #0000FF;
     }.hbox-date-picker .context-menu {-fx-pref-height: 200; -fx-max-height: 300; }
-

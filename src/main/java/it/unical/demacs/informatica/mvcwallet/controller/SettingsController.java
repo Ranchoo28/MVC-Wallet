@@ -105,6 +105,8 @@ public class SettingsController {
     void initialize(){
         updateLanguage();
         updateAllSettings();
+        aboutLabel.setFont(Font.font(pathOfFont+"fa-solid-900.ttf"));
+        aboutLabel.setText("\uf05a");
     }
 
     String setMainPage(String page){
