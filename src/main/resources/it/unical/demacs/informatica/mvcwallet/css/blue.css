@@ -96,17 +96,7 @@
 .menu-button .menu-item:hover .label{
     -fx-text-fill: #CCCCCC; /* Testo secondario */
 }
-/* Con sfondo trasparente */
-.menu-button .bgnull{
-    -fx-background-color: transparent;
-}
-.menu-button .menu-item:hover .bgnull{
-    -fx-background-color: #1976D2; /* Sfondo di evidenziazione */
-    -fx-background-radius: 10;
-}
-.menu-button .menu-item:hover .bgnull .jfx-toggle-button{
-    -fx-text-fill: #CCCCCC; /* Testo secondario */
-}
+/* Toggle Menu Button */
 .jfx-toggle-button {
     -fx-text-fill: #FFFFFF; /* Testo primario */
     -jfx-untoggle-color: #1565C0; /* Sfondo del toggle spento - Sfondo Primario */
