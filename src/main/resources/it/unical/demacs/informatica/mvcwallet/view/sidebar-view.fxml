@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXToggleButton?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -189,37 +185,6 @@
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </HBox>
-                  <HBox alignment="CENTER" maxHeight="50.0" maxWidth="50.0" minWidth="30.0" prefHeight="30.0" styleClass="hbox-info-button">
-                     <children>
-                        <StackPane>
-                           <children>
-                              <Label fx:id="accessMenuIcon" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" minWidth="30.0" styleClass="icon" textAlignment="CENTER" />
-                              <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="40.0" prefWidth="40.0" textAlignment="CENTER">
-                                <items>
-                                    <MenuItem mnemonicParsing="false">
-                                       <graphic>
-                                          <JFXToggleButton fx:id="highConstrastButton" alignment="CENTER_LEFT" onAction="#onHighContrastClick" size="5.0" text="High Contrast" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false">
-                                       <graphic>
-                                          <JFXToggleButton fx:id="largeTextButton" alignment="CENTER_LEFT" onAction="#onLargeTextClick" size="5.0" text="Large Text" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem mnemonicParsing="false">
-                                       <graphic>
-                                          <JFXToggleButton fx:id="screenReaderButton" alignment="CENTER_LEFT" onAction="#onScreenReaderClick" size="5.0" text="Screen Reader" toggleColor="WHITE" toggleLineColor="#856dcd" unToggleColor="WHITE" />
-                                       </graphic>
-                                    </MenuItem>
-                                </items>
-                              </MenuButton>
-                           </children>
-                        </StackPane>
-                     </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

@@ -36,7 +36,7 @@ public class SideBarController {
     @FXML
     private Label dateLabel, logoutLabel, marketLabel, settingsLabel, spotLabel, timeLabel, userLabel;
     @FXML
-    private Label dateIcon, logoutIcon, marketIcon, settingIcon, spotIcon, timeIcon, userIcon, accessMenuIcon;
+    private Label dateIcon, logoutIcon, marketIcon, settingIcon, spotIcon, timeIcon, userIcon;
     @FXML
     private VBox sideBar;
 
@@ -134,10 +134,6 @@ public class SideBarController {
         // Icona del bottone dei settings
         settingIcon.setText("\uF013");
         settingIcon.setFont(font);
-
-        // Icona dell'accessibilitá uF183 uF256
-        accessMenuIcon.setText("\uF183");
-        accessMenuIcon.setFont(font);
 
         // Icona dello spot
         spotIcon.setText("\uF555");
