@@ -191,21 +191,27 @@
             </HBox>
             <HBox alignment="CENTER" spacing="50.0">
                <children>
-                  <Button fx:id="applyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" textFill="WHITE">
+                  <Button fx:id="applyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaveClick" prefWidth="100.0" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <graphic>
+                        <Label fx:id="applyLabel" />
+                     </graphic>
                   </Button>
-                  <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" style="-fx-background-color: #ffa31a;" textFill="WHITE">
+                  <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="28.0" mnemonicParsing="false" onAction="#onCancelClick" prefWidth="100.0" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <graphic>
+                        <Label fx:id="cancelLabel" />
+                     </graphic>
                   </Button>
                </children>
                <VBox.margin>

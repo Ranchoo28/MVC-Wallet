@@ -24,6 +24,8 @@ public class SettingsController {
     @FXML
     private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel;
     @FXML
+    private Label applyLabel, cancelLabel;
+    @FXML
     private Button applyButton, backButton;
     @FXML
     private AnchorPane colorPickerPane;
@@ -275,8 +277,8 @@ public class SettingsController {
             languageLabel.setText(bundle.getString("languageLabel"));
             themeLabel.setText(bundle.getString("themeLabel"));
             signedLabel.setText(bundle.getString("staySignedLabel"));
-            applyButton.setText(bundle.getString("applyButton"));
-            backButton.setText(bundle.getString("backButton"));
+            applyLabel.setText(bundle.getString("applyButton"));
+            cancelLabel.setText(bundle.getString("backButton"));
         }
     }
 }
