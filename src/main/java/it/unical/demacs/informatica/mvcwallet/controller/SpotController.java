@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import java.util.ResourceBundle;
 
 public class SpotController {
+    private final RegexHandler regexHandler = RegexHandler.getInstance();
     private final SettingsHandler settingsHandler= SettingsHandler.getInstance();
     private final APIsHandler apisHandler = APIsHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
@@ -29,7 +30,7 @@ public class SpotController {
     @FXML
     private HBox makeTransfer;
     @FXML
-    private Label balanceLabel, operationLabel, totalLabel, currencyLabel, depositLabel, withdrawLabel, confirmLabel, cancelLabel;
+    private Label balanceLabel, operationLabel, totalLabel, currencyLabel, depositLabel, withdrawLabel, confirmLable, cancelLable;
     @FXML
     private MenuButton coinMenuButton;
     @FXML
@@ -41,22 +42,21 @@ public class SpotController {
     @FXML
     private TableView<Coin> coinTable;
     private int x=0;
+    boolean isGoodAmount=false;
 
     @FXML
     void onDepositClick() {
-        ResourceBundle bundle = languageHandler.getBundle();
         makeTransfer.setVisible(true);
         amountTextField.clear();
-        operationLabel.setText(bundle.getString("depositButton"));
+        operationLabel.setText("Deposit");
         x=1;
     }
 
     @FXML
     void onWithdrawClick() {
-        ResourceBundle bundle = languageHandler.getBundle();
         makeTransfer.setVisible(true);
         amountTextField.clear();
-        operationLabel.setText(bundle.getString("withdrawButton"));
+        operationLabel.setText("Withdraw");
         x=-1;
     }
 
@@ -99,7 +99,7 @@ public class SpotController {
                 if (checkNegativity(newAmount)) {
                     sqlService.serviceSpotBNB(LoginController.username,newAmount);
                 }else{
-                    alertHandler.createErrorAlert("ERROR: The amount of coins that you are trying to withdraw are higher than your current amount");
+                    alertHandler.createErrorAlert("ERROR: the amount of coins that you are trying to withdraw are higher than your current amount");
                 }
             }
         }
@@ -123,7 +123,7 @@ public class SpotController {
         SOL.setEquivalent(SOL.getAmount()*getCurrentPriceSpot(SOL.getCode(),settingsHandler.getCurrency()));
         BNB.setEquivalent(BNB.getAmount()*getCurrentPriceSpot(BNB.getCode(),settingsHandler.getCurrency()));
         double total=BTC.getEquivalent()+ETH.getEquivalent()+SOL.getEquivalent()+BNB.getEquivalent();
-        totalLabel.setText(String.valueOf((float) total));
+        totalLabel.setText(String.valueOf(Float.valueOf((float) total)));
 
         A = FXCollections.observableArrayList();
         A.addAll(BTC,ETH,SOL,BNB);
@@ -138,11 +138,20 @@ public class SpotController {
         }
         amountTextField.setDisable(true);
         addListenerCoin();
+        confirmButton.setDisable(true);
+        addListenerAmount();
         coinColmun.setCellValueFactory(new PropertyValueFactory<>("Name"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("Amount"));
         equivalentColumn.setCellValueFactory(new PropertyValueFactory<>("Equivalent"));
     }
-
+    private void addListenerAmount(){
+        amountTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Controlla se la password rispetta il Regex
+            isGoodAmount = !newValue.matches(regexHandler.regexAmount);
+            confirmButton.setDisable(false);
+            ;
+        });
+    }
     private void addListenerCoin(){
         coinMenuButton.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!coinMenuButton.getText().equals("Coin"))
@@ -159,9 +168,6 @@ public class SpotController {
         if (bundle != null) {
             depositLabel.setText(bundle.getString("depositButton"));
             withdrawLabel.setText(bundle.getString("withdrawButton"));
-            balanceLabel.setText(bundle.getString("balanceLabel"));
-            confirmLabel.setText(bundle.getString("confirmButton"));
-            cancelLabel.setText(bundle.getString("backButton"));
         }
     }
     private boolean checkNegativity(double newAmount){
@@ -169,5 +175,5 @@ public class SpotController {
             return false;
         return true;
     }
-}
+    }
 
