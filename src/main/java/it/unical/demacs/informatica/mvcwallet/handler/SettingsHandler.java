@@ -12,7 +12,8 @@ public class SettingsHandler {
     public String [] themes = {"dark.css","light.css","mvc.css","blue.css","custom.css"};
     public String username;
     public String [] settings;
-    public String format, page = "market", theme, language, currency, loginLanguage = "it", old;
+    public String format, page = "market", theme, language, currency="EUR", loginLanguage = "it", old;
+
     public boolean logged;
 
     SqlService sqlService = SqlService.getInstance();
@@ -50,6 +51,10 @@ public class SettingsHandler {
                 "eur");
         updateSettings();
         SceneHandler.getInstance().createSideBar();
+    }
+
+    public String getCurrency() {
+        return currency.toUpperCase();
     }
 
     public void uploadSettingOnDB(String time, String page, String logged, String theme, String language, String currency) {

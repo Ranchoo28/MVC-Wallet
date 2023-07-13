@@ -52,7 +52,7 @@
                   </Button>
                   <Label fx:id="balanceLabel" contentDisplay="RIGHT" style="-fx-font-size: 16;" text="Balance">
                      <graphic>
-                        <Label fx:id="totalLable" contentDisplay="RIGHT" prefHeight="30.0" style="-fx-font-size: 30;" styleClass="label-class" text="0">
+                        <Label fx:id="totalLabel" contentDisplay="RIGHT" prefHeight="30.0" style="-fx-font-size: 30;" styleClass="label-class" text="0">
                            <graphic>
                               <Label fx:id="currencyLabel" text="USD">
                                  <padding>

@@ -43,7 +43,6 @@ public class APIsHandler {
             if (responseBody != null) {
                 String jsonData = responseBody.string();
                 String priceString = jsonData.split("\"price\":\"")[1].split("\"")[0];
-                System.out.println(priceString);
                 return Double.parseDouble(priceString);
 
                 // Parse the JSON response to get the price

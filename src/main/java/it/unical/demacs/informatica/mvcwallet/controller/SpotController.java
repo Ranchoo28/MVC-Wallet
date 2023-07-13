@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import java.util.ResourceBundle;
 
 public class SpotController {
+    private final SettingsHandler settingsHandler= SettingsHandler.getInstance();
     private final APIsHandler apisHandler = APIsHandler.getInstance();
     private final SqlService sqlService = SqlService.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
@@ -110,14 +111,21 @@ public class SpotController {
     @FXML
     void initialize(){
         updateLanguage();
-        BTC = new Coin("Bitcoin",spots[0], "BTC",(spots[0]*getCurrentPriceSpot(BTC.getCode(), SettingsHandler.getInstance().currency)));
-        ETH = new Coin("Ethereum",spots[1], "ETH",(spots[1]*getCurrentPriceSpot(BTC.getCode(), SettingsHandler.getInstance().currency)));
-        SOL = new Coin("Solana",spots[2], "SOL",(spots[2]*getCurrentPriceSpot(BTC.getCode(), SettingsHandler.getInstance().currency)));
-        BNB = new Coin("Binance Coin",spots[3], "BNB",(spots[3]*getCurrentPriceSpot(BTC.getCode(), SettingsHandler.getInstance().currency)));
+        currencyLabel.setText(settingsHandler.getCurrency());
+        BTC = new Coin("Bitcoin",spots[0], "BTC",0);
+        ETH = new Coin("Ethereum",spots[1], "ETH",0);
+        SOL = new Coin("Solana",spots[2], "SOL",0);
+        BNB = new Coin("Binance Coin",spots[3], "BNB",0);
+        BTC.setEquivalent(BTC.getAmount()*getCurrentPriceSpot(BTC.getCode(),settingsHandler.getCurrency()));
+        ETH.setEquivalent(ETH.getAmount()*getCurrentPriceSpot(ETH.getCode(),settingsHandler.getCurrency()));
+        SOL.setEquivalent(SOL.getAmount()*getCurrentPriceSpot(SOL.getCode(),settingsHandler.getCurrency()));
+        BNB.setEquivalent(BNB.getAmount()*getCurrentPriceSpot(BNB.getCode(),settingsHandler.getCurrency()));
+        double total=BTC.getEquivalent()+ETH.getEquivalent()+SOL.getEquivalent()+BNB.getEquivalent();
+        totalLabel.setText(String.valueOf(Float.valueOf((float) total)));
+
         A = FXCollections.observableArrayList();
         A.addAll(BTC,ETH,SOL,BNB);
         coinTable.setItems(A);
-        System.out.println(getCurrentPriceSpot("BTC","EUR"));
 
         for(Coin i: A){
             MenuItem item = new MenuItem(i.getCode());
