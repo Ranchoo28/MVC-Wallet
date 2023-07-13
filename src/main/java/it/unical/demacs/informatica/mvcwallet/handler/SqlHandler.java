@@ -141,7 +141,7 @@ public class SqlHandler {
         try{
             con = newConnection();
             PreparedStatement s = con.prepareStatement(
-                    "INSERT INTO spots (username,BTC, Ethereum, Solana, binance_coin) VALUES (?,?,?,?,?)");
+                    "INSERT INTO spots (username,BTC, ETH, SOL, BNB) VALUES (?,?,?,?,?)");
             s.setString(1, username);
             s.setDouble(2, 0.00);
             s.setDouble(3,0.00  );
