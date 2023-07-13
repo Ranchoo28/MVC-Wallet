@@ -243,12 +243,7 @@ public class RegistrationController {
             }
         });
 
-        ChangeListener<String> listener = new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                addDay();
-            }
-        };
+        ChangeListener<String> listener = (observable, oldValue, newValue) -> addDay();
 
         ChangeListener<String> dateOfBirth = (observable, oldValue, newValue) -> {
             isGoodAge = checkBirthDate();
