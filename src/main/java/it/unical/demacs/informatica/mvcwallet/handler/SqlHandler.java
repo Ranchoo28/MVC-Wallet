@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 
 import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import javafx.application.Platform;
-import org.springframework.boot.origin.TextResourceOrigin;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 // Classe per le query al database
@@ -161,7 +160,7 @@ public class SqlHandler {
             double [] coins = new double[7];
             con = newConnection();
             PreparedStatement s = con.prepareStatement(
-                    "SELECT BTC, Ethereum, Solana, Binance_coin FROM spots WHERE username = ?");
+                    "SELECT BTC, ETH, SOL, BNB FROM spots WHERE username = ?");
             s.setString(1, username);
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
@@ -593,6 +592,102 @@ public class SqlHandler {
 
             s.close();
             closeConnection(con);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean setNewBTC(String username, double amount) {
+        try{
+            con = newConnection();
+            PreparedStatement stm = con.prepareStatement("UPDATE spots SET BTC = ? WHERE username = ?");
+            stm.setDouble(1, amount );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                closeConnection(con);
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                closeConnection(con);
+                return false;
+            }
+            stm.close();
+            closeConnection(con);
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean setNewETH(String username, double amount) {
+        try{
+            con = newConnection();
+            PreparedStatement stm = con.prepareStatement("UPDATE spots SET ETH = ? WHERE username = ?");
+            stm.setDouble(1, amount );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                closeConnection(con);
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                closeConnection(con);
+                return false;
+            }
+            stm.close();
+            closeConnection(con);
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean setNewSOL(String username, double amount) {
+        try{
+            con = newConnection();
+            PreparedStatement stm = con.prepareStatement("UPDATE spots SET SOL = ? WHERE username = ?");
+            stm.setDouble(1, amount );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                closeConnection(con);
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                closeConnection(con);
+                return false;
+            }
+            stm.close();
+            closeConnection(con);
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public boolean setNewBNB(String username, double amount) {
+        try{
+            con = newConnection();
+            PreparedStatement stm = con.prepareStatement("UPDATE spots SET BNB = ? WHERE username = ?");
+            stm.setDouble(1, amount );
+            stm.setString(2,username);
+            if(stm.executeUpdate() == 1){
+                stm.close();
+                closeConnection(con);
+                return true;
+            }
+
+            if(stm.executeUpdate() == 0){
+                stm.close();
+                closeConnection(con);
+                return false;
+            }
+            stm.close();
+            closeConnection(con);
+            return true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

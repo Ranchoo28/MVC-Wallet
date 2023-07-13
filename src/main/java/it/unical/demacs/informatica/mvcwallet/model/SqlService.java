@@ -172,4 +172,37 @@ public class SqlService {
         catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
         finally { queryExe.shutdown(); }
     }
+    public void serviceSpotBTC(String username,double amount){
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> sqlHandler.setNewBTC(username,amount));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+    }
+    public void serviceSpotETH(String username,double amount){
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> sqlHandler.setNewETH(username,amount));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+    }
+    public void serviceSpotSOL(String username,double amount){
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> sqlHandler.setNewSOL(username,amount));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+    }
+    public void serviceSpotBNB(String username,double amount){
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> sqlHandler.setNewBNB(username,amount));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+    }
+
 }

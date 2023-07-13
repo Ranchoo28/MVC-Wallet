@@ -19,6 +19,7 @@ module it.unical.demacs.informatica.mvcwallet {
     requires org.xerial.sqlitejdbc;
     requires com.fasterxml.jackson.databind;
     requires com.google.gson;
+    requires okhttp3;
 
     exports it.unical.demacs.informatica.mvcwallet.controller;
     opens it.unical.demacs.informatica.mvcwallet.controller to javafx.fxml;

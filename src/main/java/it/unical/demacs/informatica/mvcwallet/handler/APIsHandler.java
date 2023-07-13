@@ -9,6 +9,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
 import com.google.gson.*;
 import javafx.application.Platform;
 
@@ -21,6 +26,36 @@ public class APIsHandler {
 
     private final AlertHandler alertHandler = AlertHandler.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
+
+    /*Binance API*/
+    public double getCurrentPrice(String code,String currency){
+
+        OkHttpClient client = new OkHttpClient();
+        Request request =null;
+        if (currency.equals("USD")) {
+            request = new Request.Builder().url("https://api.binance.com/api/v3/ticker/price?symbol=" + code + "USDT").build();
+        }else if(currency.equals("EUR")){
+            request = new Request.Builder().url("https://api.binance.com/api/v3/ticker/price?symbol=" + code + currency).build();
+        }
+        try {
+            Response response = client.newCall(request).execute();
+            ResponseBody responseBody = response.body();
+            if (responseBody != null) {
+                String jsonData = responseBody.string();
+                String priceString = jsonData.split("\"price\":\"")[1].split("\"")[0];
+                System.out.println(priceString);
+                return Double.parseDouble(priceString);
+
+                // Parse the JSON response to get the price
+                // Assuming the response is in the format {"symbol":"BTCUSDT","price":"XXXXX"}
+            } else {
+                System.out.println("Empty response body");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1.0;
+    }
 
     /*Coingecko API*/
     String coingeckoAPI = "https://api.coingecko.com/api/v3/coins/";
