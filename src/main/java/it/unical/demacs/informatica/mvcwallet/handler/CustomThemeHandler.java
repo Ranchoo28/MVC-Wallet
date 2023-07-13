@@ -24,20 +24,26 @@ public class CustomThemeHandler {
         changeColorsInFile();
         writeCssFile();
     }
+
     public Color[] getColorsFromFile(){
         readCssFile();
         return new Color[]{mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor};
     }
 
-    public void assignColorsFromDB(){
+    protected void assignColorsFromDB(){
         String [] colors = sqlService.serviceGetCustomTheme(LoginController.username);
-        this.mainBgc = Color.valueOf(colors[0]);
-        this.secondBgc = Color.valueOf(colors[1]);
-        this.hoverColor = Color.valueOf(colors[2]);
-        this.buttonColor = Color.valueOf(colors[3]);
-        this.borderColor = Color.valueOf(colors[4]);
-        this.mainTxtColor = Color.valueOf(colors[5]);
-        this.secondTxtColor = Color.valueOf(colors[6]);
+        this.mainBgc = Color.valueOf(colors[0].replace(";",""));
+        this.secondBgc = Color.valueOf(colors[1].replace(";",""));
+        this.hoverColor = Color.valueOf(colors[2].replace(";",""));
+        this.buttonColor = Color.valueOf(colors[3].replace(";",""));
+        this.borderColor = Color.valueOf(colors[4].replace(";",""));
+        this.mainTxtColor = Color.valueOf(colors[5].replace(";",""));
+        changeColorsInFile();
+    }
+
+    public Color[] getColorFromDB(){
+        assignColorsFromDB();
+        return new Color[]{mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor};
     }
 
     public void assignColorsFromFile(String mainBgc, String secondBgc, String hoverColor, String buttonColor, String borderColor, String mainTxtColor, String secondTxtColor) {
@@ -49,6 +55,7 @@ public class CustomThemeHandler {
         this.mainTxtColor = Color.valueOf(mainTxtColor.replace(" ", "").replace(";", ""));
         this.secondTxtColor = Color.valueOf(secondTxtColor.replace(" ", "").replace(";", ""));
     }
+
     public void assignColorsFromColorPicker(Color mainBgc, Color secondBgc, Color hoverColor, Color buttonColor, Color borderColor, Color mainTxtColor, Color secondTxtColor){
         this.mainBgc = mainBgc;
         this.secondBgc = secondBgc;
@@ -57,7 +64,9 @@ public class CustomThemeHandler {
         this.borderColor = borderColor;
         this.mainTxtColor = mainTxtColor;
         this.secondTxtColor = secondTxtColor;
+        sqlService.seriveCustomThemeOnDB(colorToHexString(mainTxtColor),colorToHexString(secondBgc),colorToHexString(hoverColor), colorToHexString(buttonColor),colorToHexString(borderColor), colorToHexString(mainTxtColor),colorToHexString(secondTxtColor));
     }
+
     private void changeColorsInFile(){
         if(!cssArray.isEmpty()){
             cssArray.set(1, colorToHexString(mainBgc));         /* Sfondo primario */
@@ -103,7 +112,7 @@ public class CustomThemeHandler {
         }
     }
 
-    private void readCssFile(){
+    void readCssFile(){
         if(!cssArray.isEmpty())
             cssArray.clear();
         try {
@@ -112,7 +121,7 @@ public class CustomThemeHandler {
             BufferedReader buff = new BufferedReader(stream);
 
             while(buff.ready()){
-               cssArray.add(buff.readLine());
+                cssArray.add(buff.readLine());
             }
             buff.close();
             stream.close();
@@ -121,6 +130,7 @@ public class CustomThemeHandler {
         }
         assignColorsFromFile(cssArray.get(1),cssArray.get(23),cssArray.get(9),cssArray.get(5),cssArray.get(49),cssArray.get(3),cssArray.get(11));
     }
+
     public void writeCssFile(){
         try {
             File file = new File(Objects.requireNonNull(getClass().getResource(pathOfCSS + "custom.css")).toURI());
@@ -144,4 +154,3 @@ public class CustomThemeHandler {
         return String.format("#%02X%02X%02X;", r, g, b);
     }
 }
-

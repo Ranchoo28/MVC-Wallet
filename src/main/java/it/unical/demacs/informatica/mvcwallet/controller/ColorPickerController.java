@@ -43,7 +43,8 @@ public class ColorPickerController{
     }
     void setColorsInColorPicker(){
         try {
-            Color[] colors = customThemeHandler.getColorsFromFile();
+            //Color[] colors = customThemeHandler.getColorsFromFile();
+            Color [] colors = customThemeHandler.getColorFromDB();
             mbgColorPicker.setValue(colors[0]);
             sbgColorPicker.setValue(colors[1]);
             hovColorPicker.setValue(colors[2]);

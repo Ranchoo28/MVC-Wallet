@@ -95,10 +95,11 @@ public class SettingsController {
             if(settings[2].equals("0")) loggedHandler.stayLoggedWriting("null");
             if(settings[2].equals("1")) loggedHandler.stayLoggedWriting(LoginController.username);
 
+            sceneHandler.closeCAT();
             settingsHandler.updateSettings();
             sceneHandler.createSideBar();
         }catch (Exception e){
-            System.out.println(e);
+            //e.printStackTrace();
             alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
             SettingsHandler.getInstance().defaultSettings();
         }
@@ -106,8 +107,10 @@ public class SettingsController {
 
     @FXML
     void onCancelClick(){
+        sceneHandler.closeCAT();
         sceneHandler.createSideBar();
     }
+
     @FXML
     void initialize(){
         updateLanguage();
@@ -171,9 +174,7 @@ public class SettingsController {
         }
     }
 
-    private void h12Choosen(){
-        timeFormatMenuButton.setText("12H");
-    }
+    private void h12Choosen(){ timeFormatMenuButton.setText("12H"); }
     private void h24Choosen(){
         timeFormatMenuButton.setText("24H");
     }

@@ -25,6 +25,7 @@ public class SideBarController {
     private final SettingsHandler settingsController = SettingsHandler.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
     private final Timer Timer = new Timer();
+    private Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
 
     @FXML
     private AnchorPane centerPage;
@@ -118,12 +119,9 @@ public class SideBarController {
     }
 
     private void loadFont(){
-        Font font = null;
-        try {
-            font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
-        } catch (Exception e){
-            alertHandler.createErrorAlert(bundle.getString("sidebarErrorAlert"));
-        }
+        System.out.println(font.getName());
+
+
         // Icona per l'utente
         userIcon.setText("\uF007");
         userIcon.setFont(font);

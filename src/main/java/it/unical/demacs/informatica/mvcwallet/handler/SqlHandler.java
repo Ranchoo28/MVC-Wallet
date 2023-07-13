@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 import java.sql.*;
 import java.time.LocalDate;
 
+import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class SqlHandler {
@@ -470,16 +471,18 @@ public class SqlHandler {
             ResultSet rs = s.executeQuery();
             while(rs.next()){
                 if(rs.getString(1).equals(email)){
+                    rs.close();
+                    s.close();
                     closeConnection(con);
                     return true;
                 }
             }
+            rs.close();
+            s.close();
+            return false;
         } catch (SQLException e) {
-            closeConnection(con);
             throw new RuntimeException(e);
         }
-        closeConnection(con);
-        return false;
     }
 
     public String [] getCustomTheme(String username){
@@ -507,6 +510,38 @@ public class SqlHandler {
             throw new RuntimeException(e);
         }
     }
+
+    public void setCustomThemeOnDB(String mainBgc, String secondBgc, String hoverColor, String buttonColor, String borderColor, String mainTxtColor, String secondTxtColor ){
+        try {
+            con = newConnection();
+            PreparedStatement s = con.prepareStatement(
+                    "UPDATE customTheme "
+                         + "SET mainBgc = ?, "
+                         + "secondBgc = ?,"
+                         + "hoverColor = ?,"
+                         + "buttonColor = ?,"
+                         + "borderColor = ?,"
+                         + "mainTxtColor = ?, "
+                         + "secondTxtColor = ? "
+                         + "WHERE username = ?");
+
+            s.setString(1, mainBgc);
+            s.setString(2, secondBgc);
+            s.setString(3, hoverColor);
+            s.setString(4, buttonColor);
+            s.setString(5, borderColor);
+            s.setString(6, mainTxtColor);
+            s.setString(7, secondTxtColor);
+            s.setString(8, LoginController.username);
+            s.executeUpdate();
+
+            s.close();
+            closeConnection(con);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public String[] getProfileInfo(String username){
         try{
             con = newConnection();
@@ -528,6 +563,7 @@ public class SqlHandler {
             throw new RuntimeException();
         }
     }
+
 
 
 }

@@ -1,6 +1,5 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +17,7 @@ public class SceneHandler {
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
     private final SettingsHandler settingsHandler = SettingsHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
+    private final CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
 
     private static final SceneHandler instance = new SceneHandler();
     public static SceneHandler getInstance() {
@@ -30,10 +30,14 @@ public class SceneHandler {
     }
 
     public void uploadTheme(){
-        //System.out.println(SceneHandler.class.getResource(css + settingsHandler.theme));
         for(String i: SettingsHandler.getInstance().themes)
             scene.getStylesheets().remove(String.valueOf(SceneHandler.class.getResource(css + i)));
-        scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
+        if(settingsHandler.theme.equals("custom.css")){
+            customThemeHandler.readCssFile();
+            customThemeHandler.assignColorsFromDB();
+            customThemeHandler.writeCssFile();
+            scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
+        }else scene.getStylesheets().add(String.valueOf(SceneHandler.class.getResource(css + settingsHandler.theme)));
     }
 
     public void uploadLanguage(){
@@ -82,11 +86,12 @@ public class SceneHandler {
             stage1.initStyle(StageStyle.UNDECORATED);
             stage1.setScene(scene1);
             stage1.setResizable(false);
+            stage1.setAlwaysOnTop(true);
             stage1.show();
         }
     }
     public void closeCAT(){
-        stage1.close();
+        if(stage1 != null) stage1.close();
         stage1 = null;
         createSideBar();
     }

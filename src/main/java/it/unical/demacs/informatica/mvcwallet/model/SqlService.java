@@ -142,4 +142,13 @@ public class SqlService {
         finally { queryExe.shutdown(); }
         return ref.colors;
     }
+
+    public void seriveCustomThemeOnDB(String mainBgc, String secondBgc, String hoverColor, String buttonColor, String borderColor, String mainTxtColor, String secondTxtColor ){
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> SqlHandler.getInstance().setCustomThemeOnDB(mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+    }
 }
