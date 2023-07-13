@@ -18,7 +18,8 @@ public class SpotController {
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
     double [] spots = sqlHandler.getSpots(LoginController.username);
-
+    @FXML
+    private TextField amountTextField;
     @FXML
     private Button cancelButton, confirmButton, depositButton, withdrawButton;
     @FXML
@@ -35,17 +36,30 @@ public class SpotController {
     private TableColumn<Coin, Double> amountColumn;
     @FXML
     private TableView<Coin> coinTable;
+    private int x=0;
 
     @FXML
     void onDepositClick() {
         makeTransfer.setVisible(true);
         operationLabel.setText("Deposit");
+        x=1;
     }
 
     @FXML
     void onWithdrawClick() {
         makeTransfer.setVisible(true);
         operationLabel.setText("Withdraw");
+        x=-1;
+    }
+
+    @FXML
+    void onCancelClick(){
+        makeTransfer.setVisible(false);
+        amountTextField.clear();
+    }
+    @FXML
+    void onConfirmClick(){
+
     }
 
     @FXML
