@@ -187,10 +187,7 @@ public class SqlHandler {
             s.setString(6, "#ffffff");
             s.setString(7, "#ffffff");
             s.setString(8, username);
-
-
             s.executeUpdate();
-
             s.close();
             closeConnection(con);
         } catch (SQLException e) {
@@ -253,7 +250,6 @@ public class SqlHandler {
                 stmt1.setString(1,BCrypt.hashpw(newPassword, BCrypt.gensalt(12)));
                 stmt1.setString(2,email);
                 stmt1.executeUpdate();
-
                 stmt1.close();
                 closeConnection(con);
                 return true;

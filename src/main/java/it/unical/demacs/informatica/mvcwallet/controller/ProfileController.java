@@ -31,7 +31,6 @@ public class ProfileController {
     String view = PathHandler.getInstance().getPathOfView();
     String [] profileInfoArray = sqlHandler.getProfileInfo(LoginController.username);
 
-
     @FXML
     void onChangePasswordClick(){
         loadFXML("changepass-view.fxml");
