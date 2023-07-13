@@ -1,6 +1,7 @@
 package it.unical.demacs.informatica.mvcwallet.view;
 
 import it.unical.demacs.informatica.mvcwallet.handler.PathHandler;
+import it.unical.demacs.informatica.mvcwallet.handler.SettingsHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BarData;
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CandleStickChart extends XYChart<String, Number> {
+    SettingsHandler settingsHandler = SettingsHandler.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat();
     private static final String css = PathHandler.getInstance().getPathOfCSS();
     protected static final Logger logger = Logger.getLogger(CandleStickChart.class.getName());
@@ -50,6 +52,7 @@ public class CandleStickChart extends XYChart<String, Number> {
         setAnimated(true);
         setLegendVisible(false);
         getStylesheets().add(Objects.requireNonNull(getClass().getResource(css + "CandleStickChartStyles.css")).toExternalForm());
+        getStylesheets().add(Objects.requireNonNull(getClass().getResource(css + settingsHandler.theme)).toExternalForm());
         xAxis.setAnimated(true);
         yAxis.setAnimated(true);
         verticalGridLinesVisibleProperty().set(false);

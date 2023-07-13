@@ -119,9 +119,6 @@ public class SideBarController {
     }
 
     private void loadFont(){
-        System.out.println(font.getName());
-
-
         // Icona per l'utente
         userIcon.setText("\uF007");
         userIcon.setFont(font);

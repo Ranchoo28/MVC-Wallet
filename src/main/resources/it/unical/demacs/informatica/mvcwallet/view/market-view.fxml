@@ -24,7 +24,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></MenuButton>
-                  <Label fx:id="currencyLabel" styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="currencyLabel" styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -33,12 +33,12 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></MenuButton>
-                  <Label fx:id="timeLabel" styleClass="bar-label" stylesheets="@../css/CandleStickChartStyles.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                  <Label fx:id="timeLabel" styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="timeMenuButton" mnemonicParsing="false">
+                  <MenuButton fx:id="timeMenuButton" mnemonicParsing="false" styleClass="lebel-class">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></MenuButton>

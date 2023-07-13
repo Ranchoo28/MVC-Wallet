@@ -1,8 +1,8 @@
-    .label-class{-fx-font-size:
+    .chart{-fx-background-radius:15;}.label-class{-fx-font-size:
 16px;
     -fx-text-fill:
 #000080;
-    }.global-color{ -fx-background-color:
+    }.global-color, .chart-plot-background{ -fx-background-color:
 #000080;
     }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-font-size: 16px;-fx-background-color:
 #FF00FF;
@@ -20,7 +20,7 @@
 #000080;
     }.menu-button:hover .label{-fx-text-fill:
 #0000FF;
-    }.hbox-info{-fx-background-color:
+    }.hbox-info, .chart{-fx-background-color:
 #0000FF;
     }.hbox-info-button .label-class{-fx-text-fill:
 #000080;
@@ -42,29 +42,11 @@
 #000080;
     }.menu-button .menu-item:hover .label{-fx-text-fill:
 #0000FF;
-    }.menu-button .bgnull{-fx-background-color: transparent;}.menu-button .menu-item:hover .bgnull{-fx-background-color:
-#FF00FF;
-    -fx-background-radius: 10;}.menu-button .menu-item:hover .bgnull .jfx-toggle-button{-fx-text-fill:
-#0000FF;
-    }.jfx-toggle-button {-fx-text-fill:
-#000080;
-    -jfx-untoggle-color:
-#0000FF;
-    -jfx-untoggle-line-color:
-#0000FF;
-    -jfx-toggle-color:
-#0000FF;
-    -jfx-toggle-line-color:
-#0000FF;
-    }.jfx-toggle-button:hover {-fx-background-color: transparent;}.sidebar {-fx-background-color:
-#FF00FF;
-    -fx-background-radius: 10;}.sidebar .label-class {-fx-text-fill:
-#000080;
     }.sidebar .icon {-fx-text-fill:
 #000080;
     }.sidebar-button:hover {-fx-background-color:
 #FF00FF;
     -fx-background-radius: 10;}.sidebar-button:hover .label-class {-fx-text-fill:
 #0000FF;
-    }
+    }.hbox-date-picker .context-menu {-fx-pref-height: 200; -fx-max-height: 300; }
 
