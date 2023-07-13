@@ -1,0 +1,182 @@
+/* Sfondo primario */
+.root {
+    -fx-background-color: #0E6E31;
+}
+
+/* Testo primario */
+.label-class {
+     -fx-font-size: 16px;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Sfondo secondario */
+.global-color {
+    -fx-background-color: #13533B;
+}
+
+/* Pulsante */
+.button {
+    -fx-background-color: #FF5500;
+    -fx-text-fill: #FFFFFF;
+}
+
+.button:hover {
+    -fx-background-color: #FF4400;
+}
+
+/* Bordo */
+.button .border {
+    -fx-border-color: #707070;
+}
+
+/* Testo secondario */
+.secondary-text {
+    -fx-text-fill: #CCCCCC;
+}
+
+/* Sfondo di evidenziazione */
+.highlight-background {
+    -fx-background-color: #FFEE00;
+}
+
+/* Bordo di evidenziazione */
+.highlight-border {
+    -fx-border-color: #707070;
+}
+
+/* Bordo di selezione */
+.selection-border {
+    -fx-border-color: #CCCCCC;
+}
+
+/* Testo di selezione */
+.selection-text {
+    -fx-text-fill: #CCCCCC;
+}
+
+/* Menu a comparsa */
+.context-menu {
+    -fx-background-color: #1565C0;
+    -fx-border-color: #707070;
+}
+
+/* Menu Item */
+.menu-button .menu-item {
+    -fx-background-color: #FF5500;
+    -fx-text-fill: #000000;
+    -fx-border-color: transparent;
+}
+
+.menu-button .menu-item:hover {
+    -fx-background-color: #FF4400;
+}
+
+.menu-item:focused,
+.menu-item:selected,
+.menu-item:hover {
+    -fx-background-color: transparent;
+}
+
+/* Toggle Menu Button */
+.jfx-toggle-button {
+    -jfx-untoggle-color: #0E6E31;
+    -jfx-untoggle-line-color: #EEEEEE;
+    -jfx-toggle-color: #80C348;
+    -jfx-toggle-line-color: #F2D94E;
+}
+
+/* Barra laterale */
+.sidebar {
+    -fx-background-color: #0E6E31;
+}
+
+/* Icone dei bottoni della barra laterale */
+.sidebar-button .icon {
+    -fx-text-fill: #FF5500;
+}
+
+/* Etichette dei bottoni della barra laterale */
+.sidebar-button .label-class {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Bottone della barra laterale al passaggio del mouse */
+.sidebar-button:hover {
+    -fx-background-color: #13533B;
+}
+
+/* Etichette dei bottoni della barra laterale al passaggio del mouse */
+.sidebar-button:hover .label-class {
+    -fx-text-fill: #CCCCCC;
+}
+
+/* Icona dei bottoni della barra laterale al passaggio del mouse */
+.sidebar-button:hover .icon {
+    -fx-text-fill: #FF4400;
+}
+
+/* Date Picker */
+.date-picker-popup .context-menu {
+    -fx-background-color: #0E6E31;
+    -fx-border-color: #707070;
+}
+
+/* Etichette dei bottoni della barra superiore */
+.hbox-info-button .label-class {
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Icone dei bottoni della barra superiore */
+.hbox-info-button .icon {
+    -fx-text-fill: #FF5500;
+}
+
+/* Bottone della barra superiore al passaggio del mouse */
+.hbox-info-button:hover {
+    -fx-background-color: #13533B;
+}
+
+/* Etichette dei bottoni della barra superiore al passaggio del mouse */
+.hbox-info-button:hover .label-class {
+    -fx-text-fill: #CCCCCC;
+}
+
+/* Icona dei bottoni della barra superiore al passaggio del mouse */
+.hbox-info-button:hover .icon {
+    -fx-text-fill: #FF4400;
+}
+
+/* Campo di input (Text Field) */
+.text-field {
+    -fx-background-radius: 15;
+}
+
+/* Campo di input (Password Field) */
+.password-field {
+    -fx-background-radius: 15;
+}
+
+/* Menu Button */
+.menu-button {
+    -fx-background-radius: 15;
+}
+
+/* Menu Button quando è aperto */
+.menu-button .arrow-button {
+    -fx-background-radius: 15;
+}
+
+/* Menu Button al passaggio del mouse */
+.menu-button:hover {
+    -fx-background-color: #13533B;
+    -fx-text-fill: #CCCCCC; /* Testo secondario */
+}
+
+/* Menu Button quando è aperto al passaggio del mouse */
+.menu-button:hover .arrow-button {
+    -fx-background-color: #13533B;
+}
+/* Menu Button cliccato */
+.menu-button .pressed {
+    -fx-background-color: #13533B;
+}

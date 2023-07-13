@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import java.util.Properties;
 
+// Classe per gestire i service per l'invio della mail
 @Service
 public class EmailHandler {
     private EmailHandler(){}

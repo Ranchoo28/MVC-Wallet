@@ -7,13 +7,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+// Executor service per l'esecuzione delle query
 public class SqlService {
     private static final SqlHandler sqlHandler = SqlHandler.getInstance();
 
     private static final SqlService instance = new SqlService();
     public static SqlService getInstance() { return instance; }
 
-    // Executor service per l'esecuzione delle query
+
     public byte serviceLogin(String username, String password) {
         byte[] res = new byte[1];
         ExecutorService queryExe = Executors.newSingleThreadExecutor();

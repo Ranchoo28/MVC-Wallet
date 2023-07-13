@@ -25,7 +25,7 @@ public class SideBarController {
     private final SettingsHandler settingsController = SettingsHandler.getInstance();
     private final ResourceBundle bundle = LanguageHandler.getInstance().getBundle();
     private final Timer Timer = new Timer();
-    private Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
+    private final Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
 
     @FXML
     private AnchorPane centerPage;

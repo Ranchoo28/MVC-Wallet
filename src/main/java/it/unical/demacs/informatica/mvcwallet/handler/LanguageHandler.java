@@ -3,6 +3,7 @@ package it.unical.demacs.informatica.mvcwallet.handler;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+// Classe per la gestione della lingua
 public class LanguageHandler {
 
     private ResourceBundle bundle;

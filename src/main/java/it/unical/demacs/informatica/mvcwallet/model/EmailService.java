@@ -4,13 +4,14 @@ import it.unical.demacs.informatica.mvcwallet.handler.EmailHandler;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+// Service per l'invio delle mail
 public class EmailService {
     private static final EmailHandler emailHandler = EmailHandler.getInstance();
     private EmailService(){}
     private static final EmailService instance = new EmailService();
     public static EmailService getInstance(){return instance;}
 
-    // Service per l'invio delle mail.
+
     public void emailServiceSendWelcomeEmail(String toEmail, String subject, String body){
 
         ExecutorService emailExecutor = Executors.newSingleThreadExecutor();

@@ -8,6 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+// Classe per gestire il mantieni accesso
 public class LoggedHandler {
 
     private static final LoggedHandler instance;

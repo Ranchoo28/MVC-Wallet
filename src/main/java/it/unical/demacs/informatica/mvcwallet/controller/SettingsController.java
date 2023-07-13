@@ -20,27 +20,11 @@ public class SettingsController {
     String pathOfFont = PathHandler.getInstance().getPathOfFont();
 
     @FXML
-    private Label accessibilityLabel, accountLabel;
-    @FXML
     private CheckBox stayLogged;
     @FXML
     private Label pageLabel, timeLabel, currencyLabel, languageLabel, themeLabel, signedLabel, aboutLabel;
     @FXML
     private Label applyLabel, cancelLabel;
-    @FXML
-    private Button applyButton, backButton;
-    @FXML
-    private AnchorPane colorPickerPane;
-    @FXML
-    private MenuItem spotMenuItem, marketMenuItem;
-    @FXML
-    private MenuItem h12MenuItem, h24MenuItem;
-    @FXML
-    private MenuItem eurMenuItem, usdMenuItem;
-    @FXML
-    private MenuItem itaMenuItem, engMenuItem, freMenuItem, spaMenuItem, cosMenuItem;
-    @FXML
-    private MenuItem backMenuItem, darkMenuItem, lightMenuItem, mvcMenuItem, blueMenuItem, customMenuItem, cpMenuItem;
 
     @FXML private MenuButton mainPageMenuButton, timeFormatMenuButton,
             currencyMenuButton, languageMenuButton, themeMenuButton;
@@ -67,6 +51,8 @@ public class SettingsController {
     @FXML
     void onBlueClick() { blueThemeChoosen(); }
     @FXML
+    void onHunterClick() { hunterThemeChoosen();}
+    @FXML
     void onCustomClick() throws IOException { customThemeChoosen(); }
 
     /* Click per cambiare lingua */
@@ -87,6 +73,9 @@ public class SettingsController {
 
     @FXML
     void onUsdClick(){ usdCurrencyChoosen(); }
+
+    @FXML
+    void onCreditsClick(){ alertHandler.createCreditsAlert(); }
 
     @FXML
     void onSaveClick(){
@@ -116,10 +105,6 @@ public class SettingsController {
     void initialize(){
         updateLanguage();
         updateAllSettings();
-        aboutLabel.setText("\uF129");
-        Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 20);
-        aboutLabel.setFont(font);
-
     }
 
     String setMainPage(String page){
@@ -161,6 +146,7 @@ public class SettingsController {
             case "dark.css" -> darkThemeChoosen();
             case "light.css" -> lightThemeChoosen();
             case "blue.css" -> blueThemeChoosen();
+            case "hunter.css" -> hunterThemeChoosen();
             case "custom.css" -> setCustomTheme();
         }
 
@@ -177,6 +163,8 @@ public class SettingsController {
             case "usd" -> usdCurrencyChoosen();
         }
     }
+
+
 
     private void h12Choosen(){ timeFormatMenuButton.setText("12H"); }
     private void h24Choosen(){
@@ -198,6 +186,7 @@ public class SettingsController {
         themeMenuButton.setText("MVC");
     }
     private void blueThemeChoosen(){ themeMenuButton.setText("Blue"); }
+    private void hunterThemeChoosen() { themeMenuButton.setText("Hunter X Hunter"); }
     private void setCustomTheme() { themeMenuButton.setText("Custom"); }
     private void customThemeChoosen() throws IOException { sceneHandler.openCAT(); }
     private void italianLanguageChoosen(){
@@ -249,6 +238,7 @@ public class SettingsController {
             case "Dark" -> settings[3] = "dark.css";
             case "Light" -> settings[3] = "light.css";
             case "Blue" -> settings[3] = "blue.css";
+            case "Hunter X Hunter" -> settings[3] = "hunter.css";
             case "Custom" -> settings[3] = "custom.css";
         }
 
@@ -284,6 +274,7 @@ public class SettingsController {
             signedLabel.setText(bundle.getString("staySignedLabel"));
             applyLabel.setText(bundle.getString("applyButton"));
             cancelLabel.setText(bundle.getString("backButton"));
+            aboutLabel.setText(bundle.getString("creditsButton"));
         }
     }
 }
