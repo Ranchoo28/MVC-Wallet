@@ -126,7 +126,7 @@ public class SqlHandler {
             s.setString(2, "it");
             s.setString(3, "mvc.css");
             s.setString(4, "HH:mm:ss");
-            s.setString(5, "market");
+            s.setString(5, "spot");
             s.setInt(6, 0);
             s.setString(7, "eur");
             s.executeUpdate();

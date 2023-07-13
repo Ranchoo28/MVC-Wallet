@@ -161,7 +161,7 @@
                               </MenuItem>
                               <MenuItem fx:id="freMenuItem" mnemonicParsing="false" onAction="#onFrenchClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Français" textAlignment="CENTER">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="FranÃ§ais" textAlignment="CENTER">
                                        <styleClass>
                                           <String fx:value="label-class" />
                                           <String fx:value="label-dsa" />
@@ -170,7 +170,7 @@
                               </MenuItem>
                               <MenuItem fx:id="spaMenuItem" mnemonicParsing="false" onAction="#onSpanishClick">
                                  <graphic>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Español" textAlignment="CENTER">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="EspaÃ±ol" textAlignment="CENTER">
                                        <styleClass>
                                           <String fx:value="label-class" />
                                           <String fx:value="label-dsa" />
@@ -195,7 +195,7 @@
                            </cursor>
                         </MenuButton>
                         <MenuButton fx:id="themeMenuButton" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0">
-                          <items>
+                           <items>
                               <MenuItem fx:id="darkMenuItem" mnemonicParsing="false" onAction="#onDarkClick">
                                  <graphic>
                                     <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Dark" textAlignment="CENTER">
@@ -251,7 +251,7 @@
                                        </styleClass></Label>
                                  </graphic>
                               </MenuItem>
-                          </items>
+                           </items>
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -300,15 +300,19 @@
                            </styleClass></Label>
                      </graphic>
                   </Button>
-                  <Label fx:id="aboutLabel" onMouseClicked="#onCreditsClick">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" textAlignment="CENTER">
+                     <graphic>
+                        <Label fx:id="aboutLabel" onMouseClicked="#onCreditsClick">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </graphic>
                      <styleClass>
                         <String fx:value="icon" />
                         <String fx:value="label-class" />
-                        <String fx:value="button" />
                      </styleClass>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Label>
+                  </Button>
                </children>
                <VBox.margin>
                   <Insets top="30.0" />
