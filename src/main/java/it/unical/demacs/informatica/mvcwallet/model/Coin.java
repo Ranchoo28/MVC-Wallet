@@ -4,15 +4,19 @@ import java.util.Objects;
 
 public class Coin {
     private String name;
+    private final String code;
     private double amount;
 
-    public Coin(String name, double amount){
-            this.name = name;
-            this.amount = amount;
+    public Coin(String name, double amount, String code){
+        this.name = name;
+        this.amount = amount;
+        this.code = code;
     }
     public String getName() {
         return name;
     }
+
+    public String getCode(){return code;}
 
     public void setName(String name) {
         this.name = name;
