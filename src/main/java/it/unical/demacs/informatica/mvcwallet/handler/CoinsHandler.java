@@ -4,6 +4,7 @@ import it.unical.demacs.informatica.mvcwallet.model.Coin;
 
 import java.util.*;
 
+// Classe per gestire i coin nella pagina Spot
 public class CoinsHandler {
 
     public static final CoinsHandler instance = new CoinsHandler();

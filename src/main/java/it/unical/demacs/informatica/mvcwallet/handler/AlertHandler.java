@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+// Classe per la gestione degli alerts
 public class AlertHandler {
 
     private SceneHandler sceneHandler;
@@ -198,6 +199,9 @@ public class AlertHandler {
     public void createConnectionErrorAlert() {
         bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2a-alert");
         icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
         icon.getStyleClass().add("icons-color");
@@ -212,6 +216,9 @@ public class AlertHandler {
     public void createRequestErrorAlert() {
         bundle = LanguageHandler.getInstance().getBundle();
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
         FontIcon icon = new FontIcon("mdi2a-alert");
         icon.setIconColor(Paint.valueOf("#ff3333")); // Rosso
         icon.getStyleClass().add("icons-color");
@@ -220,6 +227,23 @@ public class AlertHandler {
         alert.setGraphic(icon);
         alert.setTitle(bundle.getString("errorTitle"));
         alert.setContentText(bundle.getString("requestErrorAlert"));
+        alert.show();
+    }
+
+    public void createCreditsAlert() {
+        bundle = LanguageHandler.getInstance().getBundle();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                String.valueOf(getClass().getResource(PathHandler.getInstance().getPathOfCSS() + SettingsHandler.getInstance().theme)));
+        FontIcon icon = new FontIcon("mdi2i-information-variant");
+        icon.setIconColor(Paint.valueOf("#3366ff")); // blu chiaro
+        icon.getStyleClass().add("icons-color");
+        icon.setIconSize(45);
+        alert.setHeaderText("");
+        alert.setGraphic(icon);
+        alert.setTitle(bundle.getString("creditsButton"));
+        alert.setContentText(bundle.getString("alertCreditsText"));
         alert.show();
     }
 

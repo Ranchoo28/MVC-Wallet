@@ -232,6 +232,16 @@
                                        </styleClass></Label>
                                  </graphic>
                               </MenuItem>
+                              <MenuItem fx:id="hunterMenuItem" mnemonicParsing="false" onAction="#onHunterClick">
+                                 <graphic>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Hunter X Hunter" textAlignment="CENTER">
+                                       <styleClass>
+                                          <String fx:value="label-class" />
+                                          <String fx:value="label-dsa" />
+                                       </styleClass>
+                                    </Label>
+                                 </graphic>
+                              </MenuItem>
                               <MenuItem fx:id="customMenuItem" mnemonicParsing="false" onAction="#onCustomClick">
                                  <graphic>
                                     <Label alignment="CENTER" contentDisplay="CENTER" minWidth="127.0" prefHeight="30.0" text="Custom" textAlignment="CENTER">
@@ -290,7 +300,7 @@
                            </styleClass></Label>
                      </graphic>
                   </Button>
-                  <Label fx:id="aboutLabel">
+                  <Label fx:id="aboutLabel" onMouseClicked="#onCreditsClick">
                      <styleClass>
                         <String fx:value="icon" />
                         <String fx:value="label-class" />

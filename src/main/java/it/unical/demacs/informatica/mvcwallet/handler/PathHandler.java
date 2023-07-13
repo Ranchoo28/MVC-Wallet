@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+// Classe per la gestione dei percorsi
 public class PathHandler {
 
     private static final PathHandler instance = new PathHandler();

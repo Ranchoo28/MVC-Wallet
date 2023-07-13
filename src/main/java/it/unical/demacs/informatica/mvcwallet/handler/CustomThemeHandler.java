@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// Classe per gestire il tema custom
 public class CustomThemeHandler {
     private CustomThemeHandler(){}
     private static final CustomThemeHandler instance = new CustomThemeHandler();

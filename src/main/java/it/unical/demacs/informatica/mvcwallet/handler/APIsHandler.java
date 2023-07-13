@@ -17,6 +17,8 @@ import okhttp3.ResponseBody;
 import com.google.gson.*;
 import javafx.application.Platform;
 
+// Classe per la gestione dell API
+
 public class APIsHandler {
     private static final TimeStampHandler timeStampHandler = TimeStampHandler.getInstance();
     private static final APIsHandler instance = new APIsHandler();

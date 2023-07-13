@@ -180,7 +180,6 @@ public class RegistrationController {
             int year = Integer.parseInt(yyMenuButton.getText());
             int month = Integer.parseInt(mmMenuButton.getText());
             int day = Integer.parseInt(ddMenuButton.getText());
-            System.out.println(day+" "+month+ " " +year);
             LocalDate birthday = LocalDate.of(year, month, day);
             Period p = Period.between(birthday, today);
 
@@ -304,7 +303,6 @@ public class RegistrationController {
    private void updateLanguage() {
        ResourceBundle bundle = null;
        try {
-           System.out.println(SettingsHandler.getInstance().loginLanguage);
            bundle = lanHandler.getBundle();
        } catch (Exception e) {
            alertHandler.createErrorAlert("Error in loading the language");

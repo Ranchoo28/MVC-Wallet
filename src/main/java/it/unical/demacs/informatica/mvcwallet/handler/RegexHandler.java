@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.handler;
 
+// Classe per la gestione delle regex
 public class RegexHandler {
 
     private static final RegexHandler instance = new RegexHandler();
