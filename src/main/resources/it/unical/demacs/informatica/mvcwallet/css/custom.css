@@ -1,6 +1,6 @@
     .global-color{ -fx-background-color:
 #1565C0;
-    }.label-class{-fx-text-fill:
+    }.label-class{-fx-font-size: 16px;-fx-text-fill:
 #FFFFFF;
     }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-font-size: 16px;-fx-background-color:
 #2196F3;
@@ -30,11 +30,11 @@
 #CCCCCC;
     }.hbox-info-button:hover .icon{-fx-text-fill:
 #CCCCCC;
-    }.context-menu {-fx-border-radius: 10; -fx-background-radius: 15; -fx-pref-height: 200; -fx-background-color:
+    }.context-menu {-fx-font-size: 14px;-fx-border-radius: 10; -fx-background-radius: 15; -fx-pref-height: 200; -fx-background-color:
 #1565C0;
     -fx-border-color:
 #707070;
-    }.menu-button .menu-item {-fx-background-color: transparent;}.menu-button .menu-item:hover {-fx-background-color:
+    }.menu-button .menu-item {-fx-background-color: transparent;-fx-font-size: 14px;}.menu-button .menu-item:hover {-fx-background-color:
 #1976D2;
     -fx-background-radius: 15;}.menu-button .menu-item .label{-fx-text-fill:
 #FFFFFF;

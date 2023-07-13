@@ -37,7 +37,7 @@
                         <Insets right="150.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="depositButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDepositClick" textAlignment="CENTER">
+                  <Button fx:id="depositButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onDepositClick" prefHeight="30.0" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -48,7 +48,7 @@
                         <Label fx:id="depositLabel" text="Deposit" />
                      </graphic>
                   </Button>
-                  <Button fx:id="withdrawButton" alignment="CENTER" contentDisplay="CENTER" layoutX="332.0" layoutY="25.0" mnemonicParsing="false" onAction="#onWithdrawClick" textAlignment="CENTER">
+                  <Button fx:id="withdrawButton" alignment="CENTER" contentDisplay="CENTER" layoutX="332.0" layoutY="25.0" mnemonicParsing="false" onAction="#onWithdrawClick" prefHeight="30.0" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -69,7 +69,7 @@
             </HBox>
             <HBox fx:id="makeTransfer" alignment="CENTER" spacing="30.0" visible="false">
                <children>
-                  <Label fx:id="operationLabel" alignment="CENTER" prefHeight="30.0" style="-fx-font-size: 16;" styleClass="label-class" />
+                  <Label fx:id="operationLabel" alignment="CENTER" maxWidth="200.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-font-size: 16;" styleClass="label-class" />
                   <TextField fx:id="amountTextField" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
                   <MenuButton fx:id="coinMenuButton" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" text="Coin" />
                   <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" textAlignment="CENTER">

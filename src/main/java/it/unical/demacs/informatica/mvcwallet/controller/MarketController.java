@@ -9,7 +9,6 @@ import it.unical.demacs.informatica.mvcwallet.model.Coin;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;

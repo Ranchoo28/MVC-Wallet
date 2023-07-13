@@ -12,13 +12,14 @@
 }
 /* Colore di base del testo */
 .label-class{
+    -fx-font-size: 16px;
     -fx-text-fill: #FFFFFF; /* Testo primario */
 }
 /* Colore di base del bottoni */
 .button{
+    -fx-font-size: 16px;
     -fx-background-border: 15;
     -fx-background-radius: 15;
-    -fx-font-size: 16px;
     -fx-background-color: #2196F3; /* Pulsante */
 }
 .button .label{
@@ -78,10 +79,12 @@
     -fx-border-color: #707070; /* Bordo */
     -fx-border-radius: 10;
     -fx-background-radius: 15;
+    -fx-font-size: 14px;
 }
 /* Menu Item */
 .menu-button .menu-item {
     -fx-background-color: transparent; /* Il colore é dato da context-menu */
+    -fx-font-size: 14px;
 }
 .menu-button .menu-item:hover {
     -fx-background-color: #1976D2; /* Sfondo di evidenziazione */
