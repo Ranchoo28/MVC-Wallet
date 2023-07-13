@@ -21,18 +21,18 @@ public class CoinsHandler {
 
     static {
         coins = new HashMap<>();
-        coins.put(btc.getName(), btc);
-        coins.put(eth.getName(), eth);
-        coins.put(sol.getName(), sol);
-        coins.put(bnb.getName(), bnb);
+        coins.put(btc.getCode(), btc);
+        coins.put(eth.getCode(), eth);
+        coins.put(sol.getCode(), sol);
+        coins.put(bnb.getCode(), bnb);
     }
     public Map<String, Coin> getCoins() {
         return coins;
     }
-    public List<String> getCoinNames() {
-        ArrayList<String> coinNames = new ArrayList<>(coins.keySet());
-        Collections.sort(coinNames);
-        return coinNames;
+    public List<String> getCoinCode() {
+        ArrayList<String> coinCodes = new ArrayList<>(coins.keySet());
+        Collections.sort(coinCodes);
+        return coinCodes;
     }
     /*
     Bisogna implementare un metodo per controllare che il nome sia corretto.

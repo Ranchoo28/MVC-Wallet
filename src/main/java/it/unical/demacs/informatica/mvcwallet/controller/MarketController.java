@@ -7,10 +7,12 @@ import it.unical.demacs.informatica.mvcwallet.handler.CoinsHandler;
 import it.unical.demacs.informatica.mvcwallet.model.BuildBarsService;
 import it.unical.demacs.informatica.mvcwallet.view.CandleStickChart;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class MarketController {
     private final BuildBarsService buildBarsService = BuildBarsService.getInstance();
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
     private final AlertHandler alertHandler = AlertHandler.getInstance();
-    private final List<String> coins = CoinsHandler.getInstance().getCoinNames();
+    private final List<String> coinCodes = CoinsHandler.getInstance().getCoinCode();
     private final List<String> currencies = new ArrayList<>(Arrays.asList("EUR", "USD"));
     private final List<String> timeframes = new ArrayList<>(Arrays.asList("1D", "1W", "1M", "1Y"));
     private String coin = "Bitcoin";
@@ -35,13 +37,7 @@ public class MarketController {
     private Label currencyLabel, timeLabel;
 
     @FXML
-    private ChoiceBox<String> coinChoiceBox;
-
-    @FXML
-    private ChoiceBox<String> currencyChoiceBox;
-
-    @FXML
-    private ChoiceBox<String> timeChoiceBox;
+    private MenuButton coinMenuButton, currencyMenuButton, timeMenuButton;
 
     @FXML
     private AnchorPane market;
@@ -49,7 +45,7 @@ public class MarketController {
 
     @FXML
     public void getSelectedtCoin(ActionEvent event) {
-        String value = coinChoiceBox.getValue();
+        String value = coinMenuButton.getText();
         this.coin = value;
         this.formattedCoin = value.toLowerCase().replaceAll(" ", "");
         updateChart();
@@ -57,14 +53,14 @@ public class MarketController {
 
     @FXML
     public void getSelectedCurrency(ActionEvent event) {
-        String value = currencyChoiceBox.getValue();
+        String value = currencyMenuButton.getText();
         this.currency = value;
         this.formattedCurrency = value.toLowerCase().replaceAll(" ", "");
         updateChart();
     }
 
     public void getSelectedTime(ActionEvent event) {
-        this.timeframe = timeChoiceBox.getValue();
+        this.timeframe = timeMenuButton.getText();
         updateChart();
     }
 
@@ -103,17 +99,29 @@ public class MarketController {
     }
 
     private void setItems(){
-        coinChoiceBox.getItems().addAll(coins);
-        currencyChoiceBox.getItems().addAll(currencies);
-        timeChoiceBox.getItems().addAll(timeframes);
+        for(String code:coinCodes){
+            MenuItem item = new MenuItem(code);
+            item.setOnAction(event -> {
+                coinMenuButton.setText(item.getText());
+            });
+            coinMenuButton.getItems().add(item);
+        }
 
-        coinChoiceBox.setValue(coin);
-        currencyChoiceBox.setValue(currency);
-        timeChoiceBox.setValue(timeframe);
+        for(String cur:currencies){
+            MenuItem item = new MenuItem(cur);
+            item.setOnAction(event -> {
+                currencyMenuButton.setText(item.getText());
+            });
+            currencyMenuButton.getItems().add(item);
+        }
 
-        coinChoiceBox.setOnAction(this::getSelectedtCoin);
-        currencyChoiceBox.setOnAction(this::getSelectedCurrency);
-        timeChoiceBox.setOnAction(this::getSelectedTime);
+        for(String time:timeframes){
+            MenuItem item = new MenuItem(time);
+            item.setOnAction(event -> {
+                timeMenuButton.setText(item.getText());
+            });
+            timeMenuButton.getItems().add(item);
+        }
     }
 }
 

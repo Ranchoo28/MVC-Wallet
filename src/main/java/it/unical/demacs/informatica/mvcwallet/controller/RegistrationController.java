@@ -190,7 +190,7 @@ public class RegistrationController {
             return false;
         }
     }
-    boolean clicked = false;
+    boolean ddclicked = false, mmclicked = false, yyclicked = false;
    @FXML
    void initialize() {
         addYear();
@@ -216,12 +216,30 @@ public class RegistrationController {
     private void addListener(){
 
         yyMenuButton.setOnMouseClicked(mouseEvent -> {
-            if(!clicked) {
+            if(!yyclicked) {
                 yyMenuButton.hide();
-                clicked = true;
+                yyclicked = true;
                 yyMenuButton.show();
             } else {
                 yyMenuButton.setOnMouseClicked(null);
+            }
+        });
+        mmMenuButton.setOnMouseClicked(mouseEvent -> {
+            if(!mmclicked) {
+                mmMenuButton.hide();
+                mmclicked = true;
+                mmMenuButton.show();
+            } else {
+                mmMenuButton.setOnMouseClicked(null);
+            }
+        });
+        ddMenuButton.setOnMouseClicked(mouseEvent -> {
+            if(!ddclicked) {
+                ddMenuButton.hide();
+                ddclicked = true;
+                ddMenuButton.show();
+            } else {
+                ddMenuButton.setOnMouseClicked(null);
             }
         });
 
