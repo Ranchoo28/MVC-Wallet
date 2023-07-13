@@ -163,17 +163,16 @@ public class RegistrationController {
             mmMenuButton.getItems().add(item);
         }
     }
+
     private void addYear(){
         int year = today.getYear();
-        for (int i = year; i >= year-118; i--) {
+        for (int i = year-18; i >= year-118; i--) {
             MenuItem item = new MenuItem(String.valueOf(i));
             item.setOnAction(event -> {
                 yyMenuButton.setText(item.getText());
             });
             yyMenuButton.getItems().add(item);
         }
-        System.out.println("PRONTO");
-
     }
 
     private boolean checkBirthDate(){
@@ -191,12 +190,14 @@ public class RegistrationController {
             return false;
         }
     }
-
+    boolean clicked = false;
    @FXML
    void initialize() {
         addYear();
         addMonth();
         addDay();
+
+
         Font font = Font.loadFont(String.valueOf(getClass().getResource(pathOfFont+"fa-solid-900.ttf")), 16);
         eyeIcon.setText("\uF070");
         eyeIcon.setFont(font);
@@ -213,6 +214,17 @@ public class RegistrationController {
     }
 
     private void addListener(){
+
+        yyMenuButton.setOnMouseClicked(mouseEvent -> {
+            if(!clicked) {
+                yyMenuButton.hide();
+                clicked = true;
+                yyMenuButton.show();
+            } else {
+                yyMenuButton.setOnMouseClicked(null);
+            }
+        });
+
         ChangeListener<String> listener = new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
