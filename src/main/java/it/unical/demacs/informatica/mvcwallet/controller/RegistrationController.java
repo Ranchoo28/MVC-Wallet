@@ -250,8 +250,6 @@ public class RegistrationController {
             performBinding();
         };
 
-
-
         ddMenuButton.textProperty().addListener(dateOfBirth);
         mmMenuButton.textProperty().addListener(dateOfBirth);
         yyMenuButton.textProperty().addListener(dateOfBirth);

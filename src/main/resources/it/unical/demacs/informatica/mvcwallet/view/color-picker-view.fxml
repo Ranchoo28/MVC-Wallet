@@ -29,16 +29,16 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
                      <children>
+                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="sbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="hovColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="btnColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="bdrColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
                         <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="hbox-date-picker">
                            <children>
-                              <MenuButton maxHeight="50.0" minHeight="30.0" minWidth="55.0" mnemonicParsing="false" prefHeight="30.0" text="12" />
+                              <MenuButton fx:id="fontMenuButton" maxHeight="50.0" minHeight="30.0" minWidth="55.0" mnemonicParsing="false" prefHeight="30.0" text="12" />
                            </children>
                         </HBox>
                      </children>

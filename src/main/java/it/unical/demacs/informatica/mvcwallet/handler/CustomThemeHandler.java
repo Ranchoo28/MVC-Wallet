@@ -96,7 +96,7 @@ public class CustomThemeHandler {
             cssArray.set(7, colorToHexString(buttonColor));     /* Pulsante */
             cssArray.set(9, colorToHexString(mainTxtColor));    /* Testo Primario */
 
-            cssArray.set(11, colorToHexString(hoverColor));      /* Sfondo di evidenziazione */
+            cssArray.set(11, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
             cssArray.set(13, colorToHexString(secondTxtColor)); /* Testo secondario */
             cssArray.set(15, colorToHexString(buttonColor));    /* Pulsante */
             cssArray.set(17, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */

@@ -2,9 +2,7 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
 import java.util.ResourceBundle;
@@ -22,8 +20,10 @@ public class ColorPickerController{
             mntColorPicker, sbgColorPicker, sntColorPicker;
 
     @FXML
-    private Button applyButton, cancelButton;
+    MenuButton fontMenuButton;
 
+    @FXML
+    private Button applyButton, cancelButton;
 
     private final CustomThemeHandler customThemeHandler = CustomThemeHandler.getInstance();
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
@@ -41,6 +41,40 @@ public class ColorPickerController{
         Color secondTxtColor = sntColorPicker.getValue();
         customThemeHandler.assignColorsFromColorPicker(mainBgc, secondBgc, hoverColor, buttonColor, borderColor, mainTxtColor, secondTxtColor);
     }
+
+    boolean clicked = false;
+
+    void setFontSizeInColorPicker(){
+        for(int i = 10; i <= 16; i++){
+            MenuItem item = new MenuItem(String.valueOf(i));
+            item.setOnAction(event -> {
+                fontMenuButton.setText(item.getText());
+            });
+            fontMenuButton.getItems().add(item);
+        }
+        for(int i = 18; i <= 26; i+=2){
+            MenuItem item = new MenuItem(String.valueOf(i));
+            item.setOnAction(event -> {
+                fontMenuButton.setText(item.getText());
+            });
+            fontMenuButton.getItems().add(item);
+        }
+        for(int i = 28; i <= 44; i+=4){
+            MenuItem item = new MenuItem(String.valueOf(i));
+            item.setOnAction(event -> {
+                fontMenuButton.setText(item.getText());
+            });
+            fontMenuButton.getItems().add(item);
+        }
+        for(int i = 48; i <= 72; i+=6){
+            MenuItem item = new MenuItem(String.valueOf(i));
+            item.setOnAction(event -> {
+                fontMenuButton.setText(item.getText());
+            });
+            fontMenuButton.getItems().add(item);
+        }
+    }
+
     void setColorsInColorPicker(){
         try {
             //Color[] colors = customThemeHandler.getColorsFromFile();
@@ -75,6 +109,16 @@ public class ColorPickerController{
     void initialize(){
         updateLanguage();
         setColorsInColorPicker();
+        setFontSizeInColorPicker();
+        fontMenuButton.setOnMouseClicked(mouseEvent -> {
+            if(!clicked) {
+                fontMenuButton.hide();
+                clicked = true;
+                fontMenuButton.show();
+            } else {
+                fontMenuButton.setOnMouseClicked(null);
+            }
+        });
     }
 
     private void updateLanguage(){
