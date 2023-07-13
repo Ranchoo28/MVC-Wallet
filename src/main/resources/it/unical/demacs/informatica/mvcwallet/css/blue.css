@@ -16,6 +16,9 @@
 }
 /* Colore di base del bottoni */
 .button{
+    -fx-background-border: 15;
+    -fx-background-radius: 15;
+    -fx-font-size: 16px;
     -fx-background-color: #2196F3; /* Pulsante */
 }
 .button .label{

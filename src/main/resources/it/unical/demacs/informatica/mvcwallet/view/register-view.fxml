@@ -69,21 +69,21 @@
                            </font></TextField>
                         <HBox alignment="CENTER" prefHeight="30.0" spacing="5.0" styleClass="hbox-date-picker">
                            <children>
-                              <MenuButton fx:id="ddMenuButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" text="DD" textAlignment="CENTER">
+                              <MenuButton fx:id="ddMenuButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="DD" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></MenuButton>
-                              <MenuButton fx:id="mmMenuButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" text="MM" textAlignment="CENTER">
+                              <MenuButton fx:id="mmMenuButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="65.0" text="MM" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor></MenuButton>
-                              <MenuButton fx:id="yyMenuButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" pickOnBounds="false" text="YYYY" textAlignment="CENTER">
+                              <MenuButton fx:id="yyMenuButton" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" pickOnBounds="false" prefHeight="30.0" prefWidth="80.0" text="YYYY" textAlignment="CENTER">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

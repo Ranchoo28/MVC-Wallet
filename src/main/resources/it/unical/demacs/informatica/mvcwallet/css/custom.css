@@ -2,9 +2,9 @@
 #1565C0;
     }.label-class{-fx-text-fill:
 #FFFFFF;
-    }.button{-fx-background-color:
+    }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-font-size: 16px;-fx-background-color:
 #2196F3;
-    -fx-background-radius: 15 }.button .label{-fx-text-fill:
+    -fx-background-radius: 15 }.button .label{-fx-font-size: 16;-fx-text-fill:
 #FFFFFF;
     -fx-alignment: center;}.button:hover{-fx-background-color:
 #1976D2;
