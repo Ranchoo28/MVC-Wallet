@@ -48,7 +48,7 @@
 #FFFFFF;
     }.sidebar .icon {-fx-text-fill:
 #000080;
-    }.sidebar-button:hover {-fx-background-color:
+    }.sidebar-button:hover {-fx-background-radius: 15; -fx-background-color:
 #FF00FF;
     }.sidebar-button:hover .icon {-fx-text-fill:
 #CCCCCC;
