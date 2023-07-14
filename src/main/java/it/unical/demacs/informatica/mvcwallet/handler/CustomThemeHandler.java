@@ -84,7 +84,7 @@ public class CustomThemeHandler {
         this.borderColor = borderColor;
         this.mainTxtColor = mainTxtColor;
         this.secondTxtColor = secondTxtColor;
-        sqlService.serviceCustomThemeOnDB(colorToHexString(mainTxtColor),colorToHexString(secondBgc),colorToHexString(hoverColor), colorToHexString(buttonColor),colorToHexString(borderColor), colorToHexString(mainTxtColor),colorToHexString(secondTxtColor));
+        sqlService.serviceCustomThemeOnDB(colorToHexString(mainBgc),colorToHexString(secondBgc),colorToHexString(hoverColor), colorToHexString(buttonColor),colorToHexString(borderColor), colorToHexString(mainTxtColor),colorToHexString(secondTxtColor));
     }
 
     public void assignColorsFromColorPicker(String fontSize){
@@ -107,7 +107,7 @@ public class CustomThemeHandler {
             cssArray.set(19, colorToHexString(mainTxtColor));   /* Testo primario */
 
             cssArray.set(21, colorToHexString(secondTxtColor)); /* Testo secondario */
-            cssArray.set(23, colorToHexString(secondTxtColor)); /* Sfondo secondario */
+            cssArray.set(23, colorToHexString(secondBgc)); /* Sfondo secondario */
             cssArray.set(25, colorToHexString(mainTxtColor));   /* Testo primario */
             cssArray.set(27, colorToHexString(mainTxtColor));   /* Testo primario */
             cssArray.set(29, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
@@ -115,7 +115,7 @@ public class CustomThemeHandler {
             cssArray.set(31, colorToHexString(secondTxtColor)); /* Testo secondario */
             cssArray.set(33, colorToHexString(secondTxtColor)); /* Testo secondario */
             cssArray.set(35, colorToHexString(mainBgc));        /* Sfondo primario */
-            cssArray.set(37, colorToHexString(mainBgc));        /* Bordo */
+            cssArray.set(37, colorToHexString(borderColor));        /* Bordo */
             cssArray.set(39, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
 
             cssArray.set(41, colorToHexString(secondTxtColor)); /* Testo secondario */
