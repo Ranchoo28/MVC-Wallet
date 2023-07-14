@@ -128,9 +128,9 @@ public class SceneHandler {
         try {
             uploadLoginLanguage();
             if(scene == null)
-                scene = new Scene(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view+"token-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML(view+"change-pass-forgot-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view+"token-view.fxml"));
 
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
         } catch (Exception e) {
@@ -158,9 +158,9 @@ public class SceneHandler {
         try {
             uploadLoginLanguage();
             if(scene == null)
-                scene = new Scene(loadRootFromFXML(view + "token-view.fxml"));
+                scene = new Scene(loadRootFromFXML(view + "send-email-view.fxml"));
             else
-                scene.setRoot(loadRootFromFXML(view + "token-view.fxml"));
+                scene.setRoot(loadRootFromFXML(view + "send-email-view.fxml"));
 
             stage.setTitle("MVC Wallet " + languageHandler.getBundle().getString("changePasswordTitleScene"));
 

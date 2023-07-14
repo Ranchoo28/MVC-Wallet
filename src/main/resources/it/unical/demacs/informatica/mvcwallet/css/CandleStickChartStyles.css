@@ -55,7 +55,6 @@
     -fx-font-color: #FFFFFF;
     -fx-tick-label-fill: #FFFFFF;
     -fx-font-size: 20pt;
-    -fx-font-family: "monospace";
     -fx-tick-length: 20;
     -fx-minor-tick-length: 10;
 }
@@ -63,7 +62,6 @@
 .chart-title {
      -fx-text-fill: #FFFFFF;
     -fx-font-size: 20pt;
-    -fx-font-family: "monospace";
 }
 
 /*Trattini grandi*/
@@ -75,10 +73,6 @@
 /*Trattini piccoli*/
 .axis-minor-tick-mark {
     -fx-stroke: #FFFFFF;
-}
-
-.fx-background-color {
-  -fx-background-color: red;
 }
 
 
