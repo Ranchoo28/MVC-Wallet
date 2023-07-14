@@ -83,7 +83,10 @@
                <children>
                   <Label fx:id="operationLabel" maxWidth="200.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" styleClass="label-class" />
                   <TextField fx:id="amountTextField" alignment="CENTER" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
-                  <MenuButton fx:id="coinMenuButton" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" text="Coin" />
+                  <MenuButton fx:id="coinMenuButton" alignment="CENTER" mnemonicParsing="false" prefHeight="30.0" text="Coin">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
                   <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onConfirmClick" prefHeight="30.0" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets />

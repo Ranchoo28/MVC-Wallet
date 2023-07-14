@@ -22,7 +22,7 @@
     -fx-background-radius: 15;
     -fx-background-color: #E0E0E0; /* Pulsante */
 }
-.button .label{
+.button .label, {
     -fx-text-fill: #000000; /* Testo primario */
     -fx-alignment: center;
 }
@@ -129,4 +129,22 @@
 .hbox-date-picker .context-menu {
     -fx-pref-height: 200;
     -fx-max-height: 300;
+}
+.axis {
+    -fx-text-fill: #000000;
+    -fx-font-color: #000000;
+    -fx-tick-label-fill: #000000;
+    -fx-font-size: 20pt;
+    -fx-tick-length: 20;
+    -fx-minor-tick-length: 10;
+}
+/*Trattini grandi*/
+.axis-tick-mark {
+    -fx-stroke: #000000;
+    -fx-stroke-width: 1.5;
+}
+
+/*Trattini piccoli*/
+.axis-minor-tick-mark {
+    -fx-stroke: #000000;
 }

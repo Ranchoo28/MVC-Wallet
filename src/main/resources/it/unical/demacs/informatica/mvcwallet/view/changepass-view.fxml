@@ -93,26 +93,32 @@
                         <Font size="14.0" />
                      </font>
                      <graphic>
-                        <Label fx:id="changeButtonLabel" text="Change password">
+                        <Label fx:id="changeButtonLabel">
                            <styleClass>
                               <String fx:value="label-class" />
                               <String fx:value="label-dsa" />
                            </styleClass>
                         </Label>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="30.0" style="-fx-background-radius: 15;">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <graphic>
-                        <Label fx:id="backButtonLabel" text="Cancel">
+                        <Label fx:id="backButtonLabel">
                            <styleClass>
                               <String fx:value="label-class" />
                               <String fx:value="label-dsa" />
                            </styleClass>
                         </Label>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
                <VBox.margin>
