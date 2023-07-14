@@ -42,7 +42,7 @@
 #000080;
     }.menu-button .menu-item:hover .label{-fx-text-fill:
 #0000FF;
-    .sidebar {-fx-background-color:
+    }.sidebar {-fx-background-color:
 #124280;
     -fx-background-radius: 10;} .sidebar .label-class { -fx-text-fill:
 #FFFFFF;
@@ -50,7 +50,7 @@
 #000080;
     }.sidebar-button:hover {-fx-background-color:
 #FF00FF;
-    .sidebar-button:hover .icon {-fx-text-fill:
+    }.sidebar-button:hover .icon {-fx-text-fill:
 #CCCCCC;
     }-fx-background-radius: 10;}.sidebar-button:hover .label-class {-fx-text-fill:
 #0000FF;
