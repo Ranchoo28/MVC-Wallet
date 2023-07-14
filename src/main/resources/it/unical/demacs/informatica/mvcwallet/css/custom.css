@@ -4,9 +4,9 @@
 #000080;
     }.global-color, .chart-plot-background{ -fx-background-color:
 #000080;
-    }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-font-size: 16px;-fx-background-color:
+    }.button{-fx-background-border: 15;-fx-background-radius: 15;-fx-background-color:
 #FF00FF;
-    -fx-background-radius: 15 }.button .label{-fx-font-size: 16;-fx-text-fill:
+    -fx-background-radius: 15 }.button .label{-fx-text-fill:
 #000080;
     -fx-alignment: center;}.button:hover{-fx-background-color:
 #FF00FF;
@@ -32,11 +32,11 @@
 #0000FF;
     }.hbox-info-button:hover .icon{-fx-text-fill:
 #0000FF;
-    }.context-menu {-fx-font-size: 14px;-fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color:
+    }.context-menu {-fx-border-radius: 10; -fx-background-radius: 15; -fx-background-color:
 #000080;
     -fx-border-color:
 #000080;
-    }.menu-button .menu-item {-fx-background-color: transparent;-fx-font-size: 14px;}.menu-button .menu-item:hover {-fx-background-color:
+    }.menu-button .menu-item {-fx-background-color: transparent;}.menu-button .menu-item:hover {-fx-background-color:
 #FF00FF;
     -fx-background-radius: 15;}.menu-button .menu-item .label{-fx-text-fill:
 #000080;
