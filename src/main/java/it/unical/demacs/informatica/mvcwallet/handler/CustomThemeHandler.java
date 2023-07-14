@@ -118,23 +118,15 @@ public class CustomThemeHandler {
             cssArray.set(37, colorToHexString(mainBgc));        /* Bordo */
             cssArray.set(39, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
 
-            cssArray.set(41, colorToHexString(mainTxtColor));   /* Testo primario */
-            cssArray.set(43, colorToHexString(secondTxtColor)); /* Testo secondario */
-            cssArray.set(45, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
-            cssArray.set(47, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(41, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(43, colorToHexString(mainTxtColor));   /* Testo primario */
+            cssArray.set(45, colorToHexString(secondBgc));      /* Sfondo secondario */
+            cssArray.set(47, colorToHexString(mainTxtColor));   /* Testo primario */
             cssArray.set(49, colorToHexString(mainTxtColor));   /* Testo primario */
 
-            cssArray.set(51, colorToHexString(secondTxtColor)); /* Sfondo del toggle spento */
-            cssArray.set(53, colorToHexString(secondTxtColor)); /* Colore del cursore del toggle spento */
-            cssArray.set(55, colorToHexString(secondTxtColor)); /* Sfondo del toggle acceso */
-            cssArray.set(57, colorToHexString(secondTxtColor)); /* Colore del cursore del toggle acceso */
-            cssArray.set(59, colorToHexString(secondBgc));      /* Sfondo secondario */
-
-            cssArray.set(61, colorToHexString(mainTxtColor));   /* Testo primario */
-            cssArray.set(63, colorToHexString(mainTxtColor));   /* Testo primario */
-            cssArray.set(65, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
-            cssArray.set(67, colorToHexString(secondTxtColor)); /* Testo secondario */
-            cssArray.set(69, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(51, colorToHexString(hoverColor));     /* Sfondo di evidenziazione */
+            cssArray.set(53, colorToHexString(secondTxtColor)); /* Testo secondario */
+            cssArray.set(55, colorToHexString(secondTxtColor)); /* Testo secondario */
         }
         writeCssFile();
     }

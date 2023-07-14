@@ -105,6 +105,8 @@ public class SettingsController {
     void initialize(){
         updateLanguage();
         updateAllSettings();
+        aboutLabel.setFont(Font.font(pathOfFont+"fa-solid-900.ttf"));
+        aboutLabel.setText("\uf05a");
     }
 
     String setMainPage(String page){
@@ -122,7 +124,7 @@ public class SettingsController {
                     }
                 }
         } catch (Exception e){
-          alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
+            alertHandler.createErrorAlert(bundle.getString("errorChangeSettingsText"));
         }
         return "market";
     }
@@ -274,7 +276,6 @@ public class SettingsController {
             signedLabel.setText(bundle.getString("staySignedLabel"));
             applyLabel.setText(bundle.getString("applyButton"));
             cancelLabel.setText(bundle.getString("backButton"));
-            aboutLabel.setText(bundle.getString("creditsButton"));
         }
     }
 }

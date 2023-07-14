@@ -53,7 +53,7 @@ public class APIsHandler {
                 System.out.println("Empty response body");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Platform.runLater(alertHandler::createConnectionErrorAlert);
         }
         return -1.0;
     }

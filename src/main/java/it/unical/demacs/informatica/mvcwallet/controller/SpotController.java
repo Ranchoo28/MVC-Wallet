@@ -2,6 +2,7 @@ package it.unical.demacs.informatica.mvcwallet.controller;
 
 import it.unical.demacs.informatica.mvcwallet.handler.*;
 import it.unical.demacs.informatica.mvcwallet.model.Coin;
+import it.unical.demacs.informatica.mvcwallet.model.PriceService;
 import it.unical.demacs.informatica.mvcwallet.model.SqlService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,8 +22,11 @@ public class SpotController {
     private final SqlHandler sqlHandler = SqlHandler.getInstance();
     private final SceneHandler sceneHandler = SceneHandler.getInstance();
     private final LanguageHandler languageHandler = LanguageHandler.getInstance();
+    private final PriceService priceService = PriceService.getInstance();
+
     private ObservableList<Coin> A;
-    double [] spots = sqlHandler.getSpots(LoginController.username);
+    double [] spots = sqlService.serviceGetSpots(LoginController.username);
+
     @FXML
     private TextField amountTextField;
     @FXML
@@ -69,6 +73,7 @@ public class SpotController {
     }
     @FXML
     void onConfirmClick(){
+        ResourceBundle bundle = languageHandler.getBundle();
         double amount=Double.parseDouble(amountTextField.getText());
         switch (coinMenuButton.getText()){
             case "BTC"->{
@@ -77,7 +82,7 @@ public class SpotController {
                 if (checkNegativity(newAmount)) {
                     sqlService.serviceSpotBTC(LoginController.username,newAmount);
                 }else{
-                    alertHandler.createErrorAlert("ERROR: the amount of coins that you are trying to withdraw are higher than your current amount");
+                    alertHandler.createErrorAlert(bundle.getString("alertWithdrawText"));
                 }
             }
             case "ETH"->{
@@ -85,7 +90,7 @@ public class SpotController {
                 if (checkNegativity(newAmount)) {
                     sqlService.serviceSpotETH(LoginController.username,newAmount);
                 }else{
-                    alertHandler.createErrorAlert("ERROR: the amount of coins that you are trying to withdraw are higher than your current amount");
+                    alertHandler.createErrorAlert(bundle.getString("alertWithdrawText"));
                 }
             }
             case "SOL"->{
@@ -93,7 +98,7 @@ public class SpotController {
                 if (checkNegativity(newAmount)) {
                     sqlService.serviceSpotSOL(LoginController.username,newAmount);
                 }else{
-                    alertHandler.createErrorAlert("ERROR: the amount of coins that you are trying to withdraw are higher than your current amount");
+                    alertHandler.createErrorAlert(bundle.getString("alertWithdrawText"));
                 }
             }
             case "BNB"->{
@@ -101,16 +106,15 @@ public class SpotController {
                 if (checkNegativity(newAmount)) {
                     sqlService.serviceSpotBNB(LoginController.username,newAmount);
                 }else{
-                    alertHandler.createErrorAlert("ERROR: The amount of coins that you are trying to withdraw are higher than your current amount");
+                    alertHandler.createErrorAlert(bundle.getString("alertWithdrawText"));
                 }
             }
         }
-
         sceneHandler.createSideBar();
     }
     private Coin BTC, ETH, SOL, BNB;
     private double getCurrentPriceSpot(String code,String currency){
-        return apisHandler.getCurrentPrice(code,currency);
+        return priceService.serviceGetCurrentPrice(code, currency);
     }
     @FXML
     void initialize(){
@@ -148,10 +152,8 @@ public class SpotController {
     }
     private void addListenerAmount(){
         amountTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Controlla se la password rispetta il Regex
-            isGoodAmount = !newValue.matches(regexHandler.regexAmount);
-            confirmButton.setDisable(false);
-            ;
+            isGoodAmount = newValue.matches(regexHandler.regexAmount);
+            confirmButton.setDisable(!isGoodAmount);
         });
     }
     private void addListenerCoin(){

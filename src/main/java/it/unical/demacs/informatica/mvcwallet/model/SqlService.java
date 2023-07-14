@@ -1,5 +1,6 @@
 package it.unical.demacs.informatica.mvcwallet.model;
 
+import it.unical.demacs.informatica.mvcwallet.controller.LoginController;
 import it.unical.demacs.informatica.mvcwallet.handler.SqlHandler;
 import java.time.LocalDate;
 import java.util.concurrent.ExecutionException;
@@ -206,4 +207,17 @@ public class SqlService {
         finally { queryExe.shutdown(); }
     }
 
+    public double[] serviceGetSpots(String username) {
+        var ref = new Object() {
+            double[] array = new double[4];
+        };
+        ExecutorService queryExe = Executors.newSingleThreadExecutor();
+        Future<?> future = queryExe.submit(() -> ref.array = sqlHandler.getSpots(username));
+
+        try { future.get(); }
+        catch (InterruptedException | ExecutionException e) { e.printStackTrace();}
+        finally { queryExe.shutdown(); }
+        return ref.array;
+
+    }
 }
