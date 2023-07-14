@@ -1,7 +1,7 @@
 /* #F5F5F5; /* Sfondo secondario */
 /* #E0E0E0; /* Sfondo primario */
 /* #D0D0D0; /* Sfondo di evidenziazione */
-/* #E0E0E0; /* Pulsante */
+/* #F0F0F0; /* Pulsante */
 /* #FFFFFF; /* Bordo */
 /* #666666; /* Testo secondario */
 /* #000000; /* Testo primario */
@@ -20,9 +20,9 @@
     -fx-font-size: 16px;
     -fx-background-border: 15;
     -fx-background-radius: 15;
-    -fx-background-color: #E0E0E0; /* Pulsante */
+    -fx-background-color: #F0F0F0; /* Pulsante */
 }
-.button .label, {
+.button .label {
     -fx-text-fill: #000000; /* Testo primario */
     -fx-alignment: center;
 }
@@ -35,7 +35,7 @@
 }
 /* Colore di base del Menu-Button */
 .menu-button {
-    -fx-background-color: #E0E0E0; /* Pulsante */
+    -fx-background-color: #F0F0F0; /* Pulsante */
     -fx-border-color: transparent;
     -fx-background-radius: 15;
 }
@@ -140,11 +140,11 @@
 }
 /*Trattini grandi*/
 .axis-tick-mark {
-    -fx-stroke: #000000;
+    -fx-stroke: #666666;
     -fx-stroke-width: 1.5;
 }
 
 /*Trattini piccoli*/
 .axis-minor-tick-mark {
-    -fx-stroke: #000000;
+    -fx-stroke: #666666;
 }
