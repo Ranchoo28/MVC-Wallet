@@ -27,6 +27,8 @@ public class SpotController {
     private ObservableList<Coin> A;
     double [] spots = sqlService.serviceGetSpots(LoginController.username);
 
+    private boolean check = true;
+
     @FXML
     private TextField amountTextField;
     @FXML
@@ -114,10 +116,16 @@ public class SpotController {
     }
     private Coin BTC, ETH, SOL, BNB;
     private double getCurrentPriceSpot(String code,String currency){
-        return priceService.serviceGetCurrentPrice(code, currency);
+        if(priceService.serviceGetCurrentPrice(code, currency) == -1.0 && check){
+            check = false;
+            alertHandler.createConnectionErrorAlert();
+        }
+        else return priceService.serviceGetCurrentPrice(code, currency);
+        return -1.0;
     }
     @FXML
     void initialize(){
+        check = true;
         updateLanguage();
         currencyLabel.setText(settingsHandler.getCurrency());
         BTC = new Coin("Bitcoin",spots[0], "BTC",0);
