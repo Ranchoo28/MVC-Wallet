@@ -12,7 +12,7 @@
     -fx-text-fill: #000000; /* Testo primario */
 }
 /* Colore dell'anchorpane */
-.global-color, .chart-plot-background{
+.global-color{
      -fx-background-color: #E0E0E0; /* Sfondo primario */
 }
 /* Colore di base del bottoni */
@@ -39,7 +39,7 @@
     -fx-border-color: transparent;
     -fx-background-radius: 15;
 }
-.menu-button:hover {
+.menu-button:hover, .chart-plot-background {
     -fx-background-color: #D0D0D0; /* Sfondo di evidenziazione */
 }
 .menu-button .label{
