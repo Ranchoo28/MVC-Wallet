@@ -72,7 +72,10 @@ public class LoggedHandler {
             FileReader stream = new FileReader("stayLogged.txt");
             BufferedReader buff = new BufferedReader(stream);
             String username = buff.readLine();
-            if(username.equals("null")) {
+            if(username == null){
+                setNullUser();
+                stayLoggedReading();
+            } else if(username.equals("null")) {
                 stream.close();
                 buff.close();
                 return username;
@@ -87,6 +90,18 @@ public class LoggedHandler {
             System.out.println("Error in LoggedHandler.java (rows: 70-76) "+ e);
         }
         return null;
+    }
+
+    private void setNullUser(){
+        try{
+            FileWriter stream = new FileWriter("stayLogged.txt", false);
+            PrintWriter file = new PrintWriter(stream);
+            file.println("null");
+            stream.close();
+            file.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Scrive sul file di testo in cui verrà salvato il nome
