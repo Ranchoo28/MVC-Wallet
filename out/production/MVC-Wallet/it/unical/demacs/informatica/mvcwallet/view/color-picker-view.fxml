@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.ColorPickerController">
+   <children>
+      <VBox alignment="CENTER" spacing="15.0" styleClass="context-menu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" spacing="30.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="15.0">
+                     <children>
+                        <Label fx:id="primaryBgLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Sfondo primario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="secondaryBgLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Sfondo secondario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="hoverLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Elemento selezionato">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="buttonLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Bottoni">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="borderLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Bordi">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="primaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Testo primario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="secondaryFontLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Testo secondario">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                        <Label fx:id="secondaryFontLabel1" alignment="CENTER" contentDisplay="CENTER" minHeight="30.0" prefHeight="30.0" text="Dimensione Testo">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" spacing="15.0">
+                     <children>
+                        <ColorPicker fx:id="mbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="sbgColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="hovColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="btnColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="bdrColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="mntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <ColorPicker fx:id="sntColorPicker" maxHeight="50.0" minHeight="30.0" prefHeight="30.0" prefWidth="200.0" styleClass="button">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ColorPicker>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="hbox-date-picker">
+                           <children>
+                              <MenuButton fx:id="fontMenuButton" maxHeight="50.0" minHeight="30.0" minWidth="55.0" mnemonicParsing="false" prefHeight="30.0" text="12">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></MenuButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <Button fx:id="applyButton" minHeight="30.0" mnemonicParsing="false" onAction="#onApplyButton">
+                     <graphic>
+                        <Label fx:id="applyLabel" text="Applica">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass></Label>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="cancelButton" minHeight="30.0" mnemonicParsing="false" onAction="#onCancButton">
+                     <graphic>
+                        <Label fx:id="cancLabel" text="Annulla">
+                           <styleClass>
+                              <String fx:value="label-class" />
+                              <String fx:value="label-dsa" />
+                           </styleClass>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Label>
+                     </graphic></Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

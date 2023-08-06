@@ -13,7 +13,6 @@ module it.unical.demacs.informatica.mvcwallet {
     requires spring.beans;
     requires spring.core;
     requires spring.context.support;
-    requires jakarta.mail;
     requires org.apache.commons.codec;
     requires spring.security.crypto;
     requires org.xerial.sqlitejdbc;

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.unical.demacs.informatica.mvcwallet.controller.MarketController">
+   <children>
+      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" spacing="40.0">
+               <children>
+                  <Label fx:id="coinLabel" styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <MenuButton fx:id="coinMenuButton" mnemonicParsing="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
+                  <Label fx:id="currencyLabel" styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <MenuButton fx:id="currencyMenuButton" mnemonicParsing="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
+                  <Label fx:id="timeLabel" styleClass="label-class" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <MenuButton fx:id="timeMenuButton" mnemonicParsing="false" styleClass="lebel-class">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></MenuButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="market" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
+   </children>
+</AnchorPane>

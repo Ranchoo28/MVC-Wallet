@@ -1,0 +1,78 @@
+/*Menu a comparsa dettagli candela*/
+.candlestick-tooltip-label {
+    -fx-font-size: 0.8em;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 2 5 2 0;
+}
+
+.candlestick-tooltip-data-label {
+    -fx-font-size: 1.0em;
+    -fx-font-weight: normal;
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 2 5 2 0;
+}
+
+.candlestick-average-line {
+    -fx-stroke: rgb(253,233,16,1.00);
+    -fx-stroke-width: 2px;
+}
+
+.candlestick-candle {
+    -fx-background-color: rgb(255,0,255,1.00);
+}
+
+.label-gray {
+    -fx-background-color: rgb(115,66,34,1.00);
+}
+
+.axis-label {
+    -fx-text-fill: #FFFFFF;
+}
+
+/*Contorno candele*/
+.candlestick-line {
+    -fx-stroke: rgb(255,255,255,1.00);
+    -fx-stroke-width: 2px;
+}
+
+/*Candele verdi*/
+.candlestick-bar.close-above-open {
+    -fx-background-color: rgb(0,255,0,1.00);
+    -fx-border-width: 1,1,1,1;
+    -fx-border-color: rgb(0,255,0,1.00);
+}
+/*Candele rosse*/
+.candlestick-bar.open-above-close {
+    -fx-background-color: rgb(255,0,0,1.00);
+    -fx-border-width: 1,1,1,1;
+    -fx-font-weight: bold;
+    -fx-border-color: rgb(255,0,0,1.00);
+}
+
+.axis {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-color: #FFFFFF;
+    -fx-tick-label-fill: #FFFFFF;
+    -fx-font-size: 20pt;
+    -fx-tick-length: 20;
+    -fx-minor-tick-length: 10;
+}
+
+.chart-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20pt;
+}
+
+/*Trattini grandi*/
+.axis-tick-mark {
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 1.5;
+}
+
+/*Trattini piccoli*/
+.axis-minor-tick-mark {
+    -fx-stroke: #FFFFFF;
+}
+
+
